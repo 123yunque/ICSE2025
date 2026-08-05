@@ -1,0 +1,872 @@
+     Reasoning Runtime Behavior of a Program with
+               LLM: How Far Are We?
+                   Junkai Chen∗                              Zhiyuan Pan∗                              Xing Hu†
+         School of Software Technology,              The State Key Laboratory of              The State Key Laboratory of
+              Zhejiang University                   Blockchain and Data Security,            Blockchain and Data Security,
+                 Ningbo, China                           Zhejiang University                      Zhejiang University
+             junkaichen@zju.edu.cn                        Hangzhou, China                          Hangzhou, China
+                                                         zy pan@zju.edu.cn                         xinghu@zju.edu.cn
+
+                    Zhenhao Li                                   Ge Li                                  Xin Xia
+                  York University                           Peking University                      Zhejiang University
+                 Toronto, Canada                             Beijing, China                        Hangzhou, China
+                lzhenhao@yorku.ca                           lige@pku.edu.cn                         xin.xia@acm.org
+
+
+
+   Abstract—Large language models for code (i.e., code LLMs)          family [6] and Magicoder series [7]), which are widely applied
+have shown strong code understanding and generation capabili-         to different tasks like code generation [8], [9].
+ties. To evaluate the capabilities of code LLMs in various aspects,      To provide a fair and comprehensive measure of the capa-
+many benchmarks have been proposed (e.g., HumanEval and
+ClassEval). Code reasoning is one of the most essential abilities     bilities of code LLMs, many code-related benchmarks (e.g.,
+of code LLMs (i.e., predicting code execution behaviors such as       HumanEval [8] and CodeXGLUE [10]) are proposed to eval-
+program output and execution path), but existing benchmarks           uate the effectiveness of code LLMs in different tasks such as
+for code reasoning are not sufficient. Typically, they focus          code generation and vulnerability detection [11]. Given that
+on predicting the input and output of a program, ignoring             “executable” is a distinct feature of code compared to natural
+the evaluation of the intermediate behavior during program
+execution, as well as the logical consistency (e.g., the model        language, and code execution provides additional information
+should not give the correct output if the prediction of execution     (e.g., program output) to assist with code tasks [12], [13],
+path is wrong) when performing the reasoning. To address              benchmarking code reasoning abilities of code models with
+these problems, in this paper, we propose a framework, namely         execution raises researchers’ interests [14], [15]. Here, code
+REval, for evaluating code reasoning abilities and consistency        reasoning is referred to as predicting code execution behaviors
+of code LLMs with program execution. We utilize existing
+code benchmarks and adapt them to new benchmarks within               (e.g., program outputs, execution paths and possible variable
+our framework. A large-scale empirical study is conducted and         values) without executing the code directly. For example, Gu
+most LLMs show unsatisfactory performance on both Runtime             et al. [14] proposed CRUXEval to evaluate code LLMs by
+Behavior Reasoning (i.e., an average accuracy of 44.4%) and           predicting output from input and vice versa. Typically, these
+Incremental Consistency Evaluation (i.e., an average IC score         works measure the model’s ability to predict and analyze the
+of 10.3). Evaluation results of current code LLMs reflect the
+urgent need for the community to strengthen the code reasoning        relationship between the input and output of an executable pro-
+capability of code LLMs. Our code, data and REval leaderboard         gram. However, the intermediate information (e.g., execution
+are available at https://r-eval.github.io.                            path) during code execution is ignored, posing challenges to
+   Index Terms—Code Reasoning, Large Language Model,                  developers in comprehending the program’s runtime behavior.
+Benchmark                                                                Fig. 1 shows common concerns about the runtime behavior
+                                                                      during program execution. Intuitively, how a program behaves
+                        I. I NTRODUCTION                              under certain input can help developers better understand the
+   Large language models (LLMs) attract great attention for           code and perform debugging activities. For example, if we
+their exceptional performance on diverse tasks [1] including          have concerns about the correctness of a certain statement
+sentiment analysis [2], logical reasoning [3], and question           while debugging a snippet of code, we typically first determine
+answering [4]. Recently, large language models for code (i.e.,        whether this statement is executed given the input (i.e., ❶ in
+code LLMs) have become a popular research area because                Fig. 1); If it is executed, observing the changes in variables
+of the promising prospect of empowering humans in software            before and after execution is a natural choice ❷; Sometimes
+development and maintenance [5]. Hence, both academia and             this line of code may seem fine, so the statement immediately
+industry have proposed a lot of code LLMs (e.g., CodeLlama            following it will be examined ❸; Additionally, the program
+                                                                      output can be used to verify whether the results match the
+  ∗                                                                   expectations ❹. Therefore, we argue that these kinds of
+    Equal contribution.
+  †
+    Corresponding author.                                             runtime behaviors (e.g., program state and execution path) are
+ Is the statement executed?   What is type and value of var?   What is the input?   some previous works have discussed consistency for code
+def f(var):                               Code       Input ❺
+                                                                                    LLMs [20], [21], they are limited to semantic consistency like
+    if var.isdigit():                                                               back translation between NL and code and ignore the logical
+        return "int"                                 " 99 777"                      consistency mentioned here. Hence, it is necessary to measure
+ √ elif var.replace('.', '', 1).isdigit():
+❶×      return "float"                                                              the consistency of code LLMs on sequentially related tasks.
+    elif var.count(' ') == len(var) - 1:                                            Evaluation Component 2: Incremental Consistency Eval-
+        return "str"                                What is the output?
+                                ❷                                                   uation. To fill the gap in evaluation, we propose a novel
+    elif len(var) == 1:
+        return "char"     ❸                          Output ❹                       metric named Incremental Consistency (IC) to measure the
+    else:                     What is the next line                                 extent to which the model can maintain its logical consistency
+        return "tuple"        to be executed?         'tuple'
+                                                                                    on sequentially related tasks of incremental difficulty. We
+                                                                                    observe that the four tasks in Runtime Behavior Reasoning
+            REval ❶❷❸❹ + IC                           CRUXEval ❹❺
+                                                                                    are progressive and consistent with the context of IC, i.e., the
+                                                                                    knowledge required to finish the current task is the preliminary
+Fig. 1. The demonstration of code reasoning tasks in CRUXEval [14] and
+REval. “IC”: Incremental Consistency.
+                                                                                    of the next task. Hence, we can judge how much a model is
+                                                                                    incrementally consistent by utilizing the results of reasoning
+                                                                                    runtime behavior (See Section III for details). Incremental
+essential for program understanding and reasoning for humans.                       Consistency provides new sights for evaluating LLMs and the
+Meanwhile, they are also proven to be effective for an in-depth                     consistency measure of AI systems beyond traditional metrics.
+understanding of code semantics for language models [16]. As                           To construct our framework, we leverage existing executable
+previous benchmarks like CRUXEval (i.e., with ❹ and ❺) fail                         datasets (e.g., HumanEval [8] and ClassEval [22]) as our base
+to evaluate whether LLMs can reason about these dynamic                             benchmarks and adapt them into an adapted benchmark within
+characteristics of a program, it is necessary to measure the                        our framework by extracting runtime behavior, constructing,
+code reasoning ability of LLMs with runtime behavior of                             and filtering the problems. We conduct a large-scale empirical
+execution. In this paper, we propose our framework, REval,                          study on various models, including general and code LLMs in
+to comprehensively (re)-evaluate the code reasoning ability                         our frameworks. Evaluation results show that our framework
+of LLMs, which consists of two evaluation components: (i)                           presents a degree of difficulty and most LLMs show poor
+Runtime Behavior Reasoning and (ii) Incremental Consistency                         performance on both Runtime Behavior Reasoning and IC
+Evaluation.                                                                         Evaluation (e.g., an IC score below 20 for all open-source
+Evaluation Component 1: Runtime Behavior Reasoning.                                 LLMs we evaluate). Our research highlights the importance
+To mitigate this limitation in previous research, we make the                       of utilizing runtime behavior and incremental consistency
+first attempt to systematically evaluate the code LLM’s ability                     evaluation to measure the reasoning ability of code LLMs, and
+to reason about the runtime behavior of program execution.                          we call for targeted efforts in subsequent research to enhance
+Specifically, we propose four evaluation tasks to achieve this                      these weaknesses.
+goal: ❶ Code Coverage Prediction (CCP), i.e., whether a                                In summary, the contributions of our paper are as follows:
+statement is executed or not; ❷ Program State Prediction                            • We propose a new framework, REval, to comprehensively
+(PSP), i.e., what is the value and the type of a variable;                            evaluate code LLMs’ abilities of code reasoning. To the best
+❸ Execution Path Prediction (EPP), i.e., which is the next                            of our knowledge, we are the first work to evaluate code
+statement to be executed; and ❹ Output Prediction (OP), i.e.,                         models to systematically reason about runtime behavior
+what is the output. These four tasks cover various aspects                            during program execution.
+of program execution, including control flow, data flow, and                        • We propose a novel metric named Incremental Consistency
+type dependency, which are widely applied to prior research                           (IC) to measure to what extent a code LLM can maintain its
+in software engineering such as type inference [17] and code                          consistency across sequentially related tasks of incremental
+translation [18]. Therefore, this evaluation provides a more                          difficulty.
+comprehensive measure of code model’s ability to reason                             • We conduct a large-scale empirical study on diverse LLMs
+about executable programs in comparison with previous work.                           within our evaluation framework. Our results reveal the
+   Nevertheless, it is noticed that sometimes the reasoning re-                       limitations of reasoning runtime behavior and IC of code
+sults of a model could conflict with human logic on sequential                        models.
+tasks in Runtime Behavior Reasoning. For instance, the code                         • We construct an adapted benchmark based on Hu-
+model may correctly predict the next statement to be executed                         manEval [8] and ClassEval [22] and develop an evaluation
+(i.e., EPP) when it fails to tell the value of a variable after                       harness for our framework. To facilitate further research of
+the statement’s execution (i.e., PSP), which is not expected                          code reasoning, our code, data, and REval leaderboard are
+because the control flow of the execution relies on the program                       publicly available at https://r-eval.github.io.
+state. As this kind of inconsistency in sequentially related
+tasks is unlikely to occur in humans, the trustworthiness of                                  II. BACKGROUND AND R ELATED W ORK
+AI systems built on these models (e.g., GitHub Copilot [19])                          In this section, we discuss the background information of
+can easily suffer from these unreliable behaviors. Although                         our research and the corresponding related work.
+A. Code Execution and Reasoning                                    process with code LLMs. They used the analogy of a large
+  1) Code Execution Behavior: We refer to code execution           language model to a CPU to explore the process of a program
+behavior as the additional information offered by program exe-     executing code, paying more attention to algorithm complexity
+cution compared to static analysis. According to the execution     and structure. Different from the aforementioned studies, our
+order, we classify them into pre/post-execution information        framework is not only limited to algorithm problems (e.g.,
+and runtime information:                                           competition-level ones), but also suitable for general program-
+                                                                   ming scenarios (e.g., more real-world projects). In addition, we
+  • Pre/Post-Execution Information is the content we can           also explore detailed runtime behavior like code coverage and
+    obtain before or after the actual execution process of         execution path, containing more runtime information.
+    program. For example, the input, output, and NL require-
+    ments belong to this category.                                 B. Consistency for Large Language Models
+  • Runtime Information is the intermediate state during code
+                                                                   Semantic Consistency. Semantic consistency refers to the
+    execution. For instance, we are able to collect contents       same decisions on semantically equivalent texts of LLMs [28].
+    like program state and execution path only when the code       For example, the model should provide similar and even
+    is still running.                                              the same answers in the face of two meaning-perserving
+   Previous research has leveraged code execution behavior to      questions. In the realm of software engineering, this feature
+improve the performance of various downstream tasks, e.g.,         is generally utilized for the unsupervised evaluation of code
+program understanding [23], code generation [12], [13], [24],      LLMs [20], [21]: Min et al. [21] evaluated the self-consistency
+software testing [25], [26] and vulnerability detection [16]. Ni   of code LLMs by comparing the functional correctness of
+et al. [12] improved code generation performance with an extra     two code snippets: one code is generated using a human-
+verifier, which learns the results of code execution and helps     written description, and the other is generated iteratively with
+rerank generated code candidates. Chen et al. [13] utilized        the summary of the previously generated. Chen et al. [29]
+different kinds of feedback including output to help LLMs          studied the robustness of code LLMs to the variations in
+“self-debug” the generated code. They designed a series of         natural language descriptions for code generation. Allamanis
+prompting strategies to guide the model to refine the program      et al. [20] introduced round-trip correctness which aligns code
+automatically. In these works, pre-/post-execution information,    and NL to perform unsupervised evaluation for code LLMs.
+such as program output, is applied to code generation. Fur-        The aformentioned works leveraged the back translation be-
+thermore, some works found the worth of dynamic features           tween NL and PL iteratively generated by the model and
+during execution and exploit them to train various language        conduct the semantic or functional comparison. However, they
+models. Liu et al. [24] pre-trained a language model to            are restricted to the context of semantic consistency in the
+learn the execution process of the program. Specifically, they     context of NL and PL.
+represented the program state as a sequence that neural models     Logical Consistency. If an LLM is able to make predictions
+can learn from and expect the model to predict the trace.          without logical contradiction, it shows the feature of logi-
+Compared to Liu et al., Ding et al. [16] proposed a pre-training   cal consistency [28]. For example, if one model assumes a
+technique combining both static and dynamic characteristics        proposition to be true, it should consider the negation of that
+of the program. In summary, the aforementioned works reflect       proposition to be false as well. There are lots of previous
+the close relationship between the behavior of code execution      research about how to evaluate and utilize logical consistency
+and the program semantics, and emphasize the importance of         for LLMs in natural language processing [28], [30]–[32],
+evaluating models for code reasoning with execution.               but few works pay attention to logical consistency on code
+   2) Code Reasoning with Large Language Models: As in-            LLMs. As the reasoning ability is highly related to its logical
+troduced in Section I, in the task of code reasoning, an LLM       consistency [33], a comprehensive code reasoning evaluation
+needs to predict the program behavior without execution.           should contains the measure of logical consistency in scope
+   Recently, some works have proposed different evaluation         of programming languages (PLs). Therefore, it motivates us
+approaches for the code reasoning abilities of code LLMs. For      to propose a novel consistency metric idea named IC to fill
+example, Gu et al. [14] proposed CRUXEval, which requires          this gap.
+LLMs to reason about pre/post-execution information such as
+input and output. Following this study, similar to the idea        C. Code LLMs and Benchmarks
+of CRUXEval, Liu et al. [15] extended the evaluation tasks           1) Code LLMs: Large language models for code are LLMs
+(i.e., predicting input and output) to the natural language        specialized for the generation and understanding of PLs. For
+specification. However, their evaluation approaches are still      example, CodeLlama family models [6] inherit the architecture
+limited to pre/post-execution information and ignore inter-        of Llama2 [34] and are further pre-trained on extra code cor-
+mediate runtime behavior. In contrast, our work goes a step        pora. Its three variant models (i.e., base, instruct, and Python-
+further to measure how the model learns the runtime behavior       specialized) are designed for different programming scenarios.
+during execution, which shows promising potential in helping       StarCoder2 [35] is a series of code LLMs developed by
+program comprehension, as mentioned above. We notice that          the BigCode Project, which achieves competitive performance
+a recent work [27] aimed to simulate the code execution            with other similar-sized models. These models are trained
+                Base Benchmark                             Large Language Model
+
+
+
+                                                                                      √
+       Code              Test Case                   Code Coverage Prediction
+                                                                                      ×                                                       Incremental
+                                                                                                                                              Consistency
+
+
+                                                      Program State Prediction        Value?
+                 Exec-                                                                 Type?        CCP      PSP        EPP       OP
+                 ution
+                                                     Execution Path Prediction                                                               Non Incremental
+                                                                                                                                              Consistency
+
+
+
+    Statement        Other Contexts                      Output Prediction
+                                                                                       ?                     Correct Prediction   Wrong Prediction
+
+
+
+     Benchmark Construction                        Runtime Behavior Reasoning                         Incremental Consistency Evaluation
+
+Fig. 2. Overview of our framework. Benchmark Construction: we adapt the base benchmarks to fit our framework by execution. Runtime Behavior
+Reasoning: we propose four tasks including CCP, PSP, EPP, and OP, which challenge LLMs to perform code reasoning. Incremental Consistency Evaluation:
+we evaluate if the model can maintain consistency on sequentially related tasks (i.e., Incremental Consistency).
+
+
+
+on The Stack v2 dataset [35] whose data size is four times                  benchmark to evaluate the instruction following ability on code
+larger than its first generation. CodeGen2.5 models [36] are                editing. Khan et al. [41] introduce a large-scale multilingual
+improved versions of their previous models (e.g., CodeGen2)                 multitask benchmark that consists of numerous executable
+for program synthesis. It is claimed that their performance                 coding examples. Compared to the above benchmarks for
+gains mainly come from optimizations such as training and                   code understanding, we propose a comprehensive framework
+sampling strategies.                                                        for code reasoning from the perspective of runtime behavior,
+   Code reasoning is one of the most important capabilities of              which provides a different point of view for the evaluation of
+LLMs related to code [14], [15], but few work are dedicated to              code LLMs.
+its evaluation. In this paper, we aim at comprehensively eval-                                  III. RE VAL F RAMEWORK
+uating their reasoning capabilities for programming languages
+based on execution.                                                            In this section, we first introduce the overview of our evalu-
+                                                                            ation framework REval, and then describe the two evaluation
+   2) Benchmarks: Recently, many code generation bench-                     components in detail, namely, Runtime Behavior Reasoning
+marks have been proposed to evaluate the correctness of code                and Incremental Consistency Evaluation. In the end, we
+snippets generated by code LLMs. HumanEval [8] is one of                    describe how to construct the corresponding benchmark under
+the most popular benchmarks for code generation. It consists                our framework.
+of 164 competitive programming problems and evaluates the
+functional correctness of generated samples rather than text                A. Overview of Framework
+similarity. Apart from competitive benchmarks of which ques-                   Fig. 2 shows an overview of our framework, which aims
+tion generally runs in a simple context, lots of context-aware              to challenge code LLMs to reason how the program behaves
+benchmarks such as CoderEval [37], ClassEval [22], and                      during execution. To achieve this, we adopt two different
+CrossCodeEval [38] have been proposed. These benchmarks                     perspectives for the abilities of code reasoning: (1) Runtime
+provide more complex surrounding contexts and dependencies                  Behavior Reasoning; and (2) Incremental Consistency Evalu-
+(e.g., private libraries) to evaluate code generation in real-              ation.
+world projects. In addition, some domain-specific benchmarks                   For Runtime Behavior Reasoning, we focus on whether
+have been proposed to evaluate the performance of code                      the code model can correctly predict the intermediate states
+generation in various programming languages and paradigms                   of program execution given an executable program and input
+(e.g., DS-1000 [39] for data science). Our work utilizes exist-             (as well as other contexts in the base benchmark). We select
+ing executable benchmarks for code generation and evaluates                 four different dimensions of runtime behavior, including code
+code LLMs with respect to code reasoning, which makes our                   coverage, execution path, program state, and output, each
+framework universal and applicable to different scenarios.                  of which corresponds to a specific sub-task under Runtime
+   Prior studies proposed a variety of code understanding tasks             Behavior Reasoning. We present the task description and the
+including code search, type inference, and code translation.                evaluation metric in Section III-B for each sub-task.
+Evaluating the ability of code understanding is essential for                  Besides the standalone metrics that measure a single ca-
+code LLMs. Lu et al. [10] propose CodeXGLUE, a compre-                      pability of the models, we propose a novel idea named In-
+hensive benchmark for code models that supports 10 tasks re-                cremental Consistency Evaluation to assess the consistency
+lated to code and text. Cassano et al. [40] create a hand-crafted           across a series of incremental tasks during code reasoning. As
+the knowledge required to finish the latter task contains that of     variable name V related to the current statement Si , the model
+the former task in Runtime Behavior Reasoning, the difficulty         M is required to predict the type and value of variable V
+increases progressively in order, and we can utilize this char-       after SI is executed. The ground truth of type and value can
+acteristic to evaluate Incremental Consistency of LLMs with           be denoted as Ty(I, V ) and Val(I, V ), respectively.
+existing predictions (see Section III-C for details).                 Evaluation Metrics. In this task, Accuracy (Acc.) measures
+   In addition, as our evaluation relies on existing base bench-      the percentage of correct value and type predictions:
+marks, we present how to construct an adapted benchmark of
+code reasoning within our framework in Section III-D.
+                                                                                 1 X
+B. Runtime Behavior Reasoning                                           Acc. =      JM(P, X, I, V ) = (Val(I, V ), Ty(I, V ))K
+                                                                                 N
+   Runtime behavior refers to the intermediate state and in-
+formation during program execution, such as code coverage                With this equation, a model’s prediction is correct only if
+and variable values, which are widely mentioned in previ-             the value and type both match the ground truth.
+ous research [16], [42]. As shown in Fig. 2, to evaluate                 3) Execution Path Prediction (EPP): In this task, we refer
+the reasoning ability in program runtime behavior for code            to the execution path of the program as ordered sequences of
+models, we analyze and select four representative dimensions          statements. As the granularity of our context is statement-level,
+of intermediate information during execution, including code          we challenge the code model to predict the next statement to
+coverage, execution path, program state, and output predic-           be executed given a specific statement. A code LLM skilled in
+tion. Corresponding to these features, we propose four sub-           code reasoning should be capable of telling where the control
+tasks for Runtime Behavior Reasoning and introduce them in            flow of the program is going and, consequently, can predict
+detail.                                                               the next executed statement naturally.
+   1) Code Coverage Prediction (CCP): Code coverage mea-              Task Description. Given a program P with statements
+sures the proportion of code covered by a test suite [43].            (S1 , S2 , · · · , Sn ), an input X and a statement index I, the
+Recent research [42] utilized this idea to challenge the model        model M is required to predict the next statement to be
+in predicting whether the statements in the program can be            executed after SI is executed. The ground truth can be denoted
+executed or not. Hence, we exploit the LLM code to judge              as Next(I).
+whether a specific statement is executed given the input of a         Evaluation Metrics. In this task, Accuracy measures the
+test case.                                                            percentage of correct next statement predictions:
+Task Description. Given a program P with statements
+(S1 , S2 , · · · , Sn ), an input X for execution and a statement                            1 X
+index I, the model M is required to predict whether the I-th                   Accuracy =        JM(P, X, I) = Next(I)K
+                                                                                             N
+statement SI is executed. The ground truth can be denoted as
+Coverage(I).                                                            Note that if the number of possible answers is more than
+                                                                      one (i.e., several statements could be the next one to execute),
+Evaluation Metrics. In this task, Accuracy presents the
+                                                                      we consider the prediction correct if it hits any possible one.
+percentage of correct coverage predictions. For our benchmark
+                                                                        4) Output Prediction (OP): This task is to directly generate
+that consists of N number of (P, X, I) pairs, Accuracy can
+                                                                      the output of a program with the given input, which is applied
+be computed as:
+                                                                      in previous code reasoning work [14], [15]. To accurately
+                           Conditional Expression. Value is 0 or 1.
+                                                                      predict the output of a program, code LLMs should be capable
+                         1 X                                          of controlling and simulating the whole execution process,
+       Accuracy =              JM(P, X, I) = Coverage(I)K
+                         N                                            which places high demands on the code reasoning ability. To
+   Besides, as this task can be considered as a binary classi-        evaluate the correctness of the output, we utilize test cases (i.e.,
+fication task, we also use F1 score as the evaluation metric          a collection of assertion statements) in the base benchmarks.
+following previous research [24].                                     This approach is also applied in various code benchmarks [8],
+   2) Program State Prediction (PSP): The initial idea of             [22].
+program state refers to values of the program counter and             Task Description. Given a program P and an input X for
+the variables [44] in the context of assembly language and            execution, the model M is required to generate the output.
+instructions. Since we are mainly concerned with code models          The correct output can be denoted as Y.
+at the source code level, we follow related work [16], [45]
+and define program state as a set of variables in the current         Evaluation Metrics. In this task, Accuracy measures the
+runtime scope. Each variable has its corresponding value and          percentage of correct output predictions:
+type. Program State Prediction examines the model’s ability
+to reason about value and type conversion of the variable after                                 1 X
+                                                                                  Accuracy =        JM(P, X) = YK ,
+a statement is executed.                                                                        N′
+Task Description. Given a program P with statements                   where N ′ equals the number of different (P, X) pairs in our
+(S1 , S2 , · · · , Sn ), an input X, a statement index I and a        benchmark.
+C. Incremental Consistency Evaluation                                            case. However, for the second example, the result is {0, 1, 1, 0}
+                                                                                 (é, Ë, Ë, é), so Incremental consistency is not observed.
+   Incremental Consistency refers to the idea of how much
+                                                                                    In addition, depending on how many consecutive times
+the model can maintain its consistency across a series of
+                                                                                 consistency is maintained (i.e. {1, 1, 1, 1} means 4 times),
+sequentially related tasks. Intuitively, if an LLM cannot reason
+                                                                                 we assign different weights to reward models that maintain
+about the current task, it is not expected to finish the next task
+                                                                                 Incremental Consistency more often. It is intuitive because
+whose preliminary depends on the current task. To clarify
+                                                                                 it is harder to behave incrementally consistently across more
+this idea, we first present the description of Incremental
+                                                                                 sub-tasks.
+Consistency, and then explain how we evaluate it on code
+models in practice.                                                                 Finally, we define Incremental Consistency Score (IC
+                                                                                 Score) to quantitatively model the Incremental Consistency of
+   1) Description of Incremental Consistency: The core idea
+                                                                                 an LLM M. For our benchmark that contains N number of
+of Incremental Consistency is to assess code models by
+                                                                                 (P, X, I, V ) pairs, IC Score can be computed as:
+leveraging the relationship where the knowledge from one task
+in a series of tasks depends on the next task. In the context of                                               100 X
+                                                                                                                    N
+our research, four distinct sub-tasks (i.e., CCP, PSP, EPP, and                                  IC Score =           IC Scorei ,
+                                                                                                                N i=1
+OP) in Runtime Behavior Reasoning are selected, and we can
+observe some patterns from them:
+                                                                                                 
+  i) CPP ⇐ PSP: Since the execution of a statement could                                          1 , if R = S , j ∈ {1, 2, 3, 4}
+                                                                                                           i     j
+     lead to changes in the program state, the prerequisite for                       IC Scorei = 2j−1
+                                                                                                 0,   otherwise
+     PSP is correctly predicting if the statement is executed
+     (i.e., CCP).
+                                                                                    The above formula indicates that weighted scores are given
+ ii) PSP ⇐ EPP: The control flow of a running program is
+                                                                                 based on the number of times the model maintains Incremental
+     affected by the value of some variables (e.g., “if” branch
+                                                                                 Consistency. The higher the IC score, the higher Incremen-
+     and its conditional variable), thus the next statement to
+                                                                                 tal Consistency of the model’s behavior. Specifically, for a
+     be executed (i.e., EPP) is influenced by the program state
+                                                                                 model’s results of a problem:
+     (i.e., PSP).
+iii) EPP ⇐ OP: The intermediate execution state is one                              i) If the answers are completely correct, it gains a full score.
+     of the factors that affect the program output. Thus, the                      ii) If the answers are partially correct and Incremental Con-
+     knowledge for OP covers that of PSP.                                              sistency is observed, the model gains a partial score.
+                                                                                  iii) For other cases (e.g., partially correct, but Incremental
+   According to the above descriptions, we find that the
+                                                                                       Consistency is not observed), the model gets a zero score.
+knowledge required to finish the previous task is contained
+by that of the following task. Intuitively, the subsequent tasks                 D. Benchmark Construction
+are more difficult than the current task. Hence, if a model fails
+to correctly complete a task (e.g., fails to finish CPP) but then                   As Fig. 2 illustrates, our framework utilizes existing exe-
+predicts the following tasks correctly (e.g., correct prediction                 cutable benchmarks to evaluate the code reasoning ability of
+of output), we consider this model behaves inconsistently in                     LLMs. We introduce how to adapt these base benchmarks into
+consecutive tasks.                                                               our framework in two steps: (i) Runtime Behavior Extraction;
+   2) Evaluation Approach: We analyze the results of our                         (ii) Problem Construction and Filtering:
+Runtime Behavior Reasoning to evaluate the Incremental                              1) Runtime Behavior Extraction: Our evaluation frame-
+Consistency. Specifically, for the i-th specific problem in our                  work requires code models to predict intermediate information
+benchmark (i.e., full program, a specific statement in it, input,                during code execution, thus, we need to extract the runtime
+and one question to ask), we assume that the sequential results                  information as the ground truth of the problem. We use the
+of four tasks are:                                                               provided test case to execute the corresponding canonical
+                                                                                 solution to ensure the correctness of program and input.
+                   Ri = {rCPP , rPSP , rEPP , rOP },                             During the execution, we implement the customized program
+                                                                                 tracer to record (i) the statement being executed with its
+where r ∈ {0, 1} and the number indicates whether the                            number of lines and (ii) the current program state (i.e., local
+prediction matches the ground truth (i.e., 1) or not (i.e., 0).                  variables) for each execution step. Thus, when the execution
+Hence, if the model is incrementally consistent and completes                    of code terminates, we can acquire an ordered sequence of the
+one task only when all its previous tasks are finished, the                      runtime behavior we need for the evaluation.
+binary sequence Ri should be non-declining, i.e.,                                   2) Problem Construction and Filtering: We construct our
+                                                                                 problem for each task with the extracted information. As there
+ Ri ∈ S,   where S = {{1, 1, 1, 1}, {1, 1, 1, 0}, {1, 1, 0, 0}, {1, 0, 0, 0}}.
+                                                                                 could be a large number of combinations of different runtime
+   For the first example of Incremental Consistency Evaluation                   behavior and input (e.g., lots of variables in the program state
+in Fig. 2, the resulting sequence is {1, 1, 0, 0} (Ë, Ë, é, é),                  of a specific time step), we design several filtering rules to
+which means that Incremental Consistency is observed in this                     select reasonable and representative ones:
+CCP and EPP. In these two tasks, we focus on whether and                                                  TABLE I
+when a statement is being executed. As the actual execution                                     S TATISTICS OF OUR DATASET.
+sequence of statements could be very long for loops, we
+analyze the control flow graph and break the program into                                       Description                       Number
+several blocks. We prioritize the last statement in a block as              # of Problems                                             3152
+it leads to various new blocks and is generally more difficult              # of Avg. Tokens in Programs                              408.3
+to reason about.                                                            # of Avg. Tokens in Selected Statements                    14.0
+PSP. This task challenges an LLM to predict the type and value
+of a variable. For REval, we inspect the code and focus on                                           TABLE II
+the following types of statements:                                        F EATURES OF S TUDIED LLM S . “FD”: F OUNDATION ( CODE ) MODELS .
+                                                                          “IF”: S UPPORTING INSTRUCTION FOLLOWING . “OS”: O PEN - SOURCE
+   i) Assignment. We extract the variable(s) at the left-hand                                        MODELS .
+      side for assignment statements. The possible types of
+      variables are identifier (i.e., ordinary variables like “x”),      Category     Series         Model Name       Size FD IF OS        Time
+      subscript (i.e., array slices like “x[0]”), and attribute (i.e.,                        CodeLlama-7B-Base      7B       ✓   ✗   ✓   08/2023
+      fields like “x.y”). In most cases, we extract identifiers.                              CodeLlama-7B-Python    7B       ✓   ✗   ✓   08/2023
+                                                                                    CodeLlama CodeLlama-7B-Instruct  7B       ✓   ✓   ✓   08/2023
+      Note that some naive assignments such as a = 0 or l = []                                CodeLlama-13B-Instruct 13B      ✓   ✓   ✓   08/2023
+      are skipped, but we keep statements like a += 1 for the             Code                CodeLlama-34B-Instruct 34B      ✓   ✓   ✓   08/2023
+                                                                          LLMs
+      change of variable value.                                                     Magicoder
+                                                                                                Magicoder-CL-7B        7B     ✗   ✓   ✓   12/2023
+  ii) Return statement. In return statements, we extract the                                    Magicoder-S-CL-7B      7B     ✗   ✓   ✓   12/2023
+
+      variables in the returned object if local variables are                                  StarCoder2-3B          3B      ✓   ✓   ✓   02/2024
+                                                                                    StarCoder2 StarCoder2-7B          7B      ✓   ✗   ✓   02/2024
+      returned. If the returned object is a constant value, we                                 StarCoder2-15B         15B     ✓   ✗   ✓   02/2024
+      will select the “nearest” variable, i.e., the last variable                               GPT-3.5-Turbo           -     -   ✓   ✗   01/2024
+      that is not constant.                                                           GPT
+                                                                                                GPT-4-Turbo             -     -   ✓   ✗   01/2024
+                                                                         General
+ iii) Others. For other situations, if any variable after the            LLMs        Mistral    Mistral-7B-Instruct    7B     ✗   ✓   ✓   01/2024
+      current line is changed, we extract a changed variable                                    Gemma-7B-It            7B     ✓   ✓   ✓   02/2024
+                                                                                     Gemma
+      based on the priority of “new variable > changed vari-                                    Gemma-2B-It            2B     ✓   ✓   ✓   02/2024
+      ables > changed attributes (i.e., self.xxx)”. Not all
+      variables are used because we prefer variables that have
+      closer logical relationship with other tasks (e.g., EPP).          (i.e., with more code context like class and file dependencies)
+      We ignore objects of non-serializable classes or complex           [22], [47]. Considering the diversity of base benchmarks, we
+      structures (e.g., “self” objects), as it is challenging            choose HumanEval as a representative of competition-level
+      to convert them to canonical string representations and            benchmarks and ClassEval as a representative of context-aware
+      compare ground truth with an LLM’s output.                         benchmarks.
+OP. In output prediction task, we follow CRUXEval [14] and                   • HumanEval [8] is a popular competition-level bench-
+utilize the assertion statements in the test cases of the base                  mark for code generation. It consists of 164 hand-written
+benchmarks. For base benchmarks such as ClassEval [22],                         Python programming problems and needs models to solve
+where one test case contains multiple assertions, we use all the                the problem given the function signature and docstring.
+assertions. Specifically, we replace the right operands in the               • ClassEval [22] is a class-level hand-written code gener-
+assertions with question marks (“??”), and challenge models                     ation benchmark. ClassEval provides different program-
+to predict the masked values.                                                   ming scenarios (e.g., incremental generation) and topics
+   After the above screening, we combine the results to obtain                  (e.g., management systems and database operations).
+the final adapted benchmark, ensuring that the dataset used for             These benchmarks are widely used in previous re-
+each task is consistent.                                                 search [15], [48], [49]. We show the statistics of the adapted
+                                                                         benchmarks in Table I. In addition to our selection, we
+                  IV. E XPERIMENTAL S ETUP
+                                                                         highlight that our framework is applicable for other similar
+A. Base Benchmarks                                                       code generation benchmarks.
+   In our experiments, we first need to obtain the runtime
+behavior of code such as program state, thus base benchmarks             B. Studied Code LLMs
+should be executable and equipped with test cases. Moreover,                To study the reasoning capabilities of diverse code LLMs,
+we would like to experiment with diverse types of data                   we curate a selection of models with a variety of distinctions.
+(e.g., different programming scenarios). Therefore, we utilize           Specifically, we mainly consider these dimensions of them:
+existing code generation benchmarks as the basis for code                (1) general or code specified (e.g., GPT-4-Turbo [50] v.s.
+reasoning evaluation. Typically, code generation benchmarks              CodeLlama [6]); (2) scale of parameters; (3) open-source
+can be categorized into two types: competition-level ones (i.e.,         or closed-source (e.g., GPT-3.5-Turbo [50] v.s. Mistral-7B-
+with standalone functions) [9], [46] and context-aware ones              Instruct [51]) (4) foundation or further fine-tuned (e.g., CodeL-
+ You are given a Python function ...                        System Message      Configurations. Temperature can control the randomness in
+ [PYTHON]                                          Few-shot Demonstrations      the generated results of models [8]. Specifically, we follow Gu
+ ......
+ [/ANSWER]                                                                      et al. [14] and set the temperature to 0.8. For tasks with direct
+ [PYTHON]                                                          Program      prompting, we set the maximum length of generated tokens to
+ def f(x):
+ ......                                                                         256, while for tasks with CoT prompting, we set it to 1024.
+ f(3)
+ [/PYTHON]
+                                                                                For the rest of the parameters, we use the default settings
+ [QUESTION]                                                        Question     in vLLM, to ensure a fair comparison. To obtain reliable
+ Is Line 3 (         return x*2) executed when f(3) is called?                  results, experiments for all open-source models with few-shot
+ [/QUESTION]
+ [THOUGHT]                                                                      prompting are repeated five times, and we report the mean
+ 1. The function f is defined, which takes ...                                  and standard deviation values in Section V. We do not repeat
+ 2. ...
+ [/THOUGHT]                                             Thoughts (CoT only)     experiments for closed-source models like the GPT series due
+ [ANSWER]                                                                       to a limited budget.
+ NO
+ [/ANSWER]                                                         Answer
+                                                                                                         V. R ESULTS
+Fig. 3. The prompt template for our empirical study. Note that the “Thoughts”
+part is used only we leverage Chain-of-Thought (CoT) [55] prompting.              In this section, we discuss the results of our empirical study
+                                                                                on REval by answering two research questions:
+                                                                                  • RQ1: How do LLMs perform on Runtime Behavior
+lama v.s. Magicoder-CL [7]); (5) instruct following or not                          Reasoning?
+(e.g., CodeLlama-7B-Base v.s. its instruct version); (6) open-                    • RQ2: How do LLMs perform on Incremental Consistency
+source or not; and (7) release time.                                                evaluation?
+   As a result, considering these dimensions we select several
+state-of-the-art code LLMs that have been applied to various                    A. RQ1: Performance of Runtime Behavior Reasoning
+code related tasks [29], [52]–[54]. Table II presents detailed
+features of them and we can see that full consideration of the                    Table III shows the detailed results of Runtime Behavior
+diversity of models across various features is taken to enhance                 Reasoning. All models are evaluated with few-shot prompting
+the generalization of our study.                                                except for special annotated ones (i.e., CodeLlama-7b-Instruct
+                                                                                (CoT)). Below, we discuss the results from different aspects.
+C. Prompt Design                                                                Overall Performance. Overall, we find that the performance
+   In our work, we utilize prompting to evaluate code LLMs                      of different LLMs presents a large variation, and GPT-4-
+with our code reasoning tasks. We refer to a recent study [14]                  Turbo shows superior performance in reasoning about program
+on code reasoning and design our prompt templates as illus-                     execution. For example, GPT-4-Turbo achieves the best results
+trated in Fig. 3. For classic few-shot prompting, our prompt                    in all metrics of Runtime Behavior Reasoning, and its average
+template consists mainly of five parts, including the system                    accuracy outperforms the second best (i.e., 55.7% of GPT-3.5)
+message, few-shot demonstrations, program, question, and                        by a large margin (i.e., an absolute improvement of 19.3%).
+answer. If Chain-of-Thought (CoT) [55] prompting is utilized,                   However, the overall performance of open-source models is
+the thoughts are added into the prompt template as well as the                  not high and the best performer among them (i.e., CodeLlama-
+examples in it. Both few-shot prompting and CoT prompting                       34B-Instruct) only achieves a level close to that of GPT-3.5
+are widely applied in various tasks [55]–[57], including rea-                   (i.e., 51.0% v.s. 55.7%) in terms of average accuracy.
+soning tasks [14].                                                              Task. Runtime Behavior Reasoning consists of four distinct
+                                                                                evaluation tasks, i.e., CCP, PSP, EPP, and OP, and the perfor-
+D. Implementation Details
+                                                                                mance varies among different tasks. For example, all models
+Access of Models and Base Benchmarks. For open-source                           achieve an accuracy of more than 50% in OP (i.e., Output
+models such as CodeLlama, we use the corresponding official                     Prediction), while only about half of them (i.e., 8 out of 15)
+releases available on HuggingFace [58]. For closed-source                       can provide the correct answers for more than 10% problems
+models (e.g., GPT-3.5-Turbo and GPT-4-Turbo), we invoke                         in EPP (i.e., Execution Path Prediction). Hence, according
+the OpenAI API [59] to access them. Two benchmarks (i.e.,                       to the average score of tasks, the performance distribution
+HumanEval and ClassEval) are also publicly available on                         may suggest that EPP is the most challenging task and OP
+HuggingFace [60], [61]. To help replicate our research, we                      is relatively easy among them.
+list detailed information, such as model IDs and URLs in our                    Size and Category. In general, we observe that for mod-
+replication package [62].                                                       els within the same family, the variant with larger size of
+Environment. We run experiments on a Linux server with                          parameters shows better performance in Runtime Behavior
+8 NVIDIA A800 GPUs. For open-source LLMs, we deploy                             Reasoning. In the case of the CodeLlama-instruct series, as the
+a local API server based on vLLM [63] which is a unified                        number of parameters increases (i.e., 7B → 34B), the accuracy
+library for LLM serving and inference. All models are not                       of EPP has a relative improve by over 100% (i.e., 14.4%
+quantized and we use their original precisions.                                 → 29.2%). Meanwhile, smaller models like StarCoder2-3B
+                                                              TABLE III
+R ESULTS FOR RUNTIME B EHAVIOR R EASONING AND I NCREMENTAL C ONSISTENCY E VALUATION (RQ1 & 2). “CCP”, “PSP”, “EPP”, AND “OP”: FOUR
+                     TASKS OF RUNTIME B EHAVIOR R EASONING ; “AVG ”: THE AVERAGE ACCURACY SCORE OF FOUR TASKS .
+      W E REPORT THE RESULTS IN THE FORM OF “ MEAN±STANDARD DEVIATION ” EXCEPT FOR TWO GPT MODELS BECAUSE OF BUDGET LIMIT.
+
+                                              CCP                     PSP          EPP           OP         Acc. Avg.         IC
+              Model
+                                    Acc. (%)          F1            Acc. (%)    Acc. (%)      Acc. (%)         (%)           Score
+CodeLlama-7B-Base                    54.3±0.5       56.1±0.5        25.0±0.5      5.6±0.3     58.2±1.6         35.8         4.0±0.2
+CodeLlama-7B-Python                  55.5±0.7       62.7±0.6        31.3±1.0      8.7±0.7     62.3±1.0         39.4         4.8±0.2
+CodeLlama-7B-Instruct                55.6±0.9       47.2±1.2        25.1±0.5     10.8±0.2     62.6±0.8         38.5         4.1±0.1
+CodeLlama-13B-Instruct               61.0±0.7       66.4±0.6        32.5±0.4     14.4±0.4     64.5±1.1         43.1         6.6±0.3
+CodeLlama-34B-Instruct               61.5±0.5       70.1±0.4        47.5±0.6     29.2±0.4     65.9±1.1         51.0        11.8±0.3
+StarCoder2-3B                        54.8±0.7       58.2±0.5        29.0±0.7      6.5±0.5     58.8±0.8         37.3         4.3±0.3
+StarCoder2-7B                        55.1±0.7       63.8±0.6        34.2±0.7      5.0±0.4     63.9±0.8         39.6         4.2±0.3
+StarCoder2-15B                       58.9±0.8       64.6±0.8        43.5±0.3     28.0±0.5     71.5±1.1         50.5        10.7±0.4
+Magicoder-CL                         58.7±1.4       61.2±1.8        30.1±0.5     15.5±1.1     60.4±1.4         41.2         6.2±0.3
+Magicoder-S-CL                       60.3±1.1       69.9±0.8        31.4±0.4      9.8±0.4     62.3±1.2         40.9         6.0±0.2
+Gemma-2B-It                          52.7±0.4       31.0±0.6        13.5±0.5     7.3±0.5      43.9±1.5         29.3         5.5±0.2
+Gemma-7B-It                          66.3±0.3       75.2±0.1        32.1±0.1     8.4±0.4      57.9±0.7         41.2         6.9±0.2
+Mistral-7B-Instruct                  69.5±0.2       75.9±0.2        35.2±0.3     35.8±0.4     51.5±0.7         48.0        16.3±0.3
+GPT-3.5-Turbo                          61.8           64.0            51.6         48.6          60.7          55.7          20.6
+GPT-4-Turbo                            88.4           89.8            71.4         57.7          82.6          75.0          42.5
+             Average                   61.0           63.7            35.6         19.4          61.8          44.4          10.3
+CodeLlama-7B-Instruct (CoT)            57.5           59.2            33.4         21.4          55.8          42.2           7.5
+
+can also outperform larger models such as CodeLlama-7B-               mance of CPP, PSP, and EPP receives varying degrees of
+Instruct in terms of average accuracy (i.e., 37.3% v.s. 35.8%).       improvement. For instance, the EPP accuracy with CoT is
+The StarCoder2 series utilizes varied architectures and training      improved from 10.8% to 21.4%, surpassing the performance
+datasets compared to CodeLlama. This may demonstrate that             of the larger 13B model (i.e., 14.4%). It may demonstrate the
+apart from parameter size, the model architecture and training        effectiveness of presenting how to reason about a piece of code
+strategy also play an important role in code reasoning ability.       step by step. However, CoT prompting fails to improve its OP
+We also find that code LLMs do not exhibit an obviously               performance, with an absolute decrease of 6.8%. This may
+leading advantage over general LLMs of the same size.                 result from the wrong thought chain that the model generates
+                                                                      for the whole program and eventually leads to the mistake.
+Training Strategy. As shown in Table III, we conduct experi-
+ments on three variants of CodeLlama (i.e., base, instruct, and         Summary for RQ1: Models with different features (e.g.,
+Python) of the same 7B size. Compared to the base model, the            size and training strategy) exhibit notable disparities in
+“instruct” variant that leverages instruction tuning techniques         performance on Runtime Behavior Reasoning. Overall,
+brings gains in the code reasoning ability (i.e., Avg. Acc.             GPT-4-Turbo demonstrates a clear advantage over other
+from 35.8% to 38.5%), which may reflect the relationship                models in all four tasks in our setting.
+between understanding instructions and reasoning program.
+Meanwhile, since our base benchmarks are all in Python, addi-
+tional training with Python corpora (i.e., CodeLlama-Python)          B. RQ2: Incremental Consistency Evaluation
+leads to an improvement of performance (i.e., an absolute                Fig. 4 shows the sorted average accuracy for Runtime
+improvement of 0.9%). In addition, we note that although              Behavior Reason for different models, with an additional line
+further fine-tuning applied to the Magicoder series improves          indicating the IC scores. A detailed information of mean
+their performance in code generation [7], the improvement in          IC scores and their standard deviations are also reported in
+code reasoning ability is relatively limited compared to their        Table III.
+foundation model CodeLlama-7B-Python. This may indicate
+                                                                      Overall Performance. We find that the majority of LLMs
+that the training strategies they utilize are not well suited for
+                                                                      exhibit a low level of Incremental Consistency with scores be-
+the reasoning tasks in our evaluation.
+                                                                      low 20, which highlights the inconsistency in model behavior
+Prompting Strategy. The last row of Table III presents the            across the four tasks of Runtime Behavior Reasoning. Among
+performance of CodeLlama-7B-Instruct with CoT prompting.              all of the models, GPT-4-Turbo stands out with the highest IC
+Compared to the model with few-shot prompting, the perfor-            score of 42.5, even more than double that of the second place
+                                                                                        def largest_prime_factor(n: int):
+      42.5                                                                                  """Return the largest prime factor of n.
+                                                                                        Assume n > 1 and is not a prime.
+                                                                                            >>> largest_prime_factor(13195)
+                          10.3
+                          44.4
+                                          6.0                                               29
+                                          40.9
+                                                                                            >>> largest_prime_factor(2048)
+                                                                                            2
+                                                                                            """
+                                                                                            def is_prime(k):
+                                                                                                if k < 2:
+                                                                                                    return False
+                                                                                                for i in range(2, k - 1):
+                                                                                                    if k % i == 0:               GPT-4-
+                                                                                                        return False             Turbo
+                                                                                                return True
+                                                                                            largest = 1
+Fig. 4. Average Accuracy of Runtime Behavior Reasoning and Incremental                                                          GPT-3.5-
+                                                                                          √ for j in range(2, n + 1):
+Consistency Score for different models, sorted in descending order according                    if n % j == 0 and is_prime(j): Turbo
+to average accuracy.                                                                                largest = max(largest, j)
+                                                                                                                                CodeLlama-
+                                                                                          × return largest
+                                                                                                                                34B-Instruct
+
+                                                                                        Input: 15
+GPT-3.5 (i.e., 20.6). Given that GPT-4-Turbo achieves the best
+                                                                                        Question:
+results in both Runtime Behavior Reasoning and Incremental                              What is the next line to be executed after
+Consistency Evaluation (i.e., 75.0% of Avg. Acc. and 42.5                               line “largest = max(largest, j)”?
+
+of IC score), we believe that it has both superior ability in
+program reasoning and a high level of Incremental Consistency                  Fig. 5. A tricky problem of EPP from HumanEval/59 [8]. The prediction
+                                                                               of GPT-4-Turbo is correct and the other two models (i.e., GPT-3.5-Turbo
+across sequentially related tasks in our evaluation.                           and CodeLlama-34B-Instruct) fail to finish it. The problem description is
+Trend Between IC and Runtime Behavior Reasoning. As                            simplified for a concise presentation.
+illustrated in Fig. 4, we find that there is an approximately
+similar trend between the model’s average accuracy and its IC                  parameter n and input 15, this problem requires the model to
+score. For example, compared to CodeLlama-7B-Instruct, its                     predict the next statement to be executed after an assignment
+larger version CodeLlama-34B-Instruct has a noticeable higher                  statement (i.e., largest = max ...). Here we select three
+average accuracy (i.e., 38.5% v.s. 51.0%) and IC score (i.e., 4.1              models that show competitive performance in EPP including
+v.s. 11.8). However, this pattern does not hold for all models.                GPT-4-Turbo, GPT-3.5-Turbo, and CodeLlama-34B-Instruct.
+The performance of the general LLM Mistral-7B is not as                        For GPT-3.5-Turbo and CodeLlama-34B-Instruct, the predic-
+good as that of CodeLlama-34B in terms of average accuracy                     tion is the last “return” statement of this function; while GPT-
+(i.e., 48.0% v.s. 51.0% in Runtime Beheavior Reasoning), but                   4-Turbo chooses the above “for” loop as its prediction. We
+performs better on Incremental Consistency (i.e., 16.3 v.s.                    mark a happy emoji to show that GPT-4-Turbo makes the right
+11.8).                                                                         choice, and the other two models fail to predict it correctly.
+Others. Similar to the results of RQ1, we observe that code                    The explanation is that if the assignment statement is executed,
+LLMs do not significantly outperform general LLMs in the                       the possible value of j can only be 3 or 5 (n + 1 = 16), which
+IC evaluation. For example, the IC score of Gemma-2B-It                        means that the loop will continue and the “return” statement
+(i.e., 5.5) is higher than code LLMs trained with more code                    is not the next executed line.
+corpora like CodeLlama-7b-Instruct and StarCoder2-7B (i.e.,                       In our framework and the adapted benchmark, there are
+4.1 and 4.2). This phenomenon may suggest that more code                       many problems like this that have no obvious answer and are
+data cannot help LLMs reason programs better and maintain                      challenging. If the model is not capable of reasoning about
+their Incremental Consistency. In addition, CoT prompting for                  its inherent logic of execution, it can easily be misled and
+CodeLlama-7B-Instruct leads to a great increase in its IC Score                give the most “look-alike” answer (i.e., the “return” statement
+(i.e., 4.1 → 7.5), and this improvement of IC Score may benefit                in this case), indicating that our framework can effectively
+from explicit problem solving steps.                                           measure the code reasoning capability of LLMs and present
+                                                                               the discrimination of them. We discuss more cases in the
+   Summary for RQ2: In code reasoning tasks, most LLMs                         appendix, which can be accessed in our replication package1 .
+   behave inconsistently and their average accuracy is not
+                                                                               B. Unsatisfactory Performance of Code Reasoning
+   entirely associated with IC. GPT-4-Turbo achieves an IC
+   Score of as high as 42.5, surpassing other models by a                        According to evaluation results, we observe that many
+   large margin (i.e., more than 21.9 absolute improvements).                  models perform poorly in Runtime Behavior Reasoning and
+                                                                               Incremental Consistency Evaluation. In particular, even the
+                                                                               best performer GPT-4-Turbo only achieves an IC score of
+                           VI. D ISCUSSION                                     42.5, reflecting the limitation of current models in maintaining
+A. Case Study                                                                  consistency in sequential-related tasks, and there is still a long
+                                                                               way to go to make the LLMs perform code reasoning.
+  Fig. 5 shows a case from the problem of EPP. Given a
+Python function that aims to return the largest prime factor of                  1 https://r-eval.github.io
+                           TABLE IV                                  which are widely applied in previous research [16], [42].
+ P EARSON C ORRELATION C OEFFICIENT M ATRIX OF THE R ESULTS OF       These four tasks are proven to effectively evaluate the code
+RUNTIME B EHAVIOR R EASONING (RBR), I NCREMENTAL C ONSISTENCY
+                  (IC), AND H UMAN E VAL (HE)                        reasoning capability of code LLMs [15], [16], [42], and are
+                                                                     appropriate for Incremental Consistency Evaluation for their
+           Pearson Correlation   RBR      IC      HE                 unique sequential relationship. However, there are still some
+                  RBR            1.000   0.940   0.772               dynamic features such as memory allocation and exception
+                   IC            0.940   1.000   0.724               handling which may help measure code models, and we have
+                   HE            0.772   0.724   1.000               not explored yet. Further research could consider exploring the
+                                                                     potential for LLMs to reason about other dynamic program
+                                                                     features and extend REval to more scenarios.
+   One potential reason is that the current LLM might not            External Threats. In the empirical study for our evalu-
+understand the program execution behavior. While it is con-          ation framework, the results are restricted to the specific
+venient to obtain source code from open-source platforms             collection of code models and base benchmarks. To mitigate
+(e.g., GitHub), there is relatively less data available regarding    this threat, we choose representative code LLMs considering
+code execution behavior, because running the program and             several standards including their scale, popularity, and training
+collecting its runtime information require the corresponding         strategy; For the base benchmarks applied, two benchmarks
+development environments and test suite. Therefore, if the           (i.e., HumanEval [8] and ClassEval [22]) are distinct from
+model is not familiar with the knowledge related to runtime          evaluation fashion and programming scenarios, as described in
+behavior, it may not perform well in code reasoning tasks.           Section III-D. With the above efforts, the experimental results
+C. Correlation between Code Reasoning & Code Generation              are expected to be sustained in more circumstances.
+
+   We utilize the experimental results and study the correlation               VII. C ONCLUSION AND F UTURE W ORK
+between code reasoning and code generation, i.e., whether
+                                                                        In this paper, we propose REval, a comprehensive frame-
+an LLM that performs well in code generation could exhibit
+                                                                     work for evaluating the code reasoning capability of code
+equally strong abilities in code reasoning.
+                                                                     LLMs. Our framework consists of two evaluation compo-
+   Table IV presents the Pearson correlation coefficient matrix
+                                                                     nents including Runtime Behavior Reasoning and Incremental
+of Runtime Behavior Reasoning (Avg. Acc.), Incremental
+                                                                     Consistency Evaluation: We conduct a large-scale empirical
+Consistency Score and HumanEval (pass@1 rate). According
+                                                                     study on several popular LLMs and two widely used base
+to the matrix, we find that there is a strong positive correlation
+                                                                     benchmarks. Our empirical results show that the majority of
+(i.e, the Pearson correlation coefficients are larger than 0.7)
+                                                                     LLMs we evaluate show unsatisfactory performance in both
+among code generation (i.e., HumanEval) and code reasoning
+                                                                     Runtime Behavior Reasoning and Incremental Consistency
+(i.e., Runtime Behavior Reasoning and Incremental Consis-
+                                                                     Evaluation. To improve the code reasoning capabilities of
+tency). However, the correlation between code reasoning and
+                                                                     LLMs, future works can explore:
+code generation is relatively lower than that between two rea-
+soning tasks internally (i.e., 0.724 and 0.772 v.s. 0.940), which    Training with Execution Behavior. One reason why large
+indicates that models with similar code generation abilities         models may struggle with code reasoning is possibly due to
+may vary a lot in code reasoning. As the correlation may             a lack of knowledge related to program execution. Although
+help researchers increase the understanding of code LLMs and         some general fine-tuning approaches are applied to code
+improve the models’ code generation and reasoning abilities,         LLMs [7], they fail to improve the code reasoning capabilities.
+future research could investigate such correlation in depth.         Given the demonstrated effectiveness of training models with
+                                                                     execution behavior in improving performance in a range of
+D. Threats to Validity                                               downstream tasks [16], [24], it is reasonable to expect that
+Internal Threats. To construct the adapted benchmark for             LLMs would also derive benefits from such a process.
+different sub-tasks of Runtime Behavior Reasoning, we man-           Improving Prompting Strategy. Our evaluation results
+ually establish some rules to select appropriate statements and      demonstrate the effectiveness of CoT prompting in code
+variables for the evaluation. However, our selection criteria        reasoning tasks. Apart from CoT, other prompting techniques
+may not effectively represent the runtime state of the program.      that have been proven effective in NL reasoning tasks (such
+To mitigate this threat, we take some measures to determine          as Tree-of-Thoughts [64]) may also be applicable to code
+problem settings that are representative and challenging, based      reasoning tasks. Besides, the prompting approach tailored for
+on the characteristics of different tasks. For instance, we          reasoning about program execution also warrants investigation.
+choose the last statement in the control flow (i.e., for EPP)
+and variables that are modified after the execution (i.e., for                           ACKNOWLEDGMENTS
+PSP). These measures help us to reasonably assess the model’s          This research is supported by the Ningbo Natural Science
+capability to reason about code and provide meaningful dif-          Foundation (No. 2023J292). It is also supported by the ad-
+ferentiation. For Runtime Behavior Reasoning, we select four         vanced computing resources provided by the Supercomputing
+dimensions of the intermediate state of program execution            Center of Hangzhou City University.
+                              R EFERENCES                                         [22] X. Du, M. Liu, K. Wang, H. Wang, J. Liu, Y. Chen, J. Feng, C. Sha,
+                                                                                       X. Peng, and Y. Lou, “Classeval: A manually-crafted benchmark for
+                                                                                       evaluating llms on class-level code generation,” in Proceedings of the
+ [1] B. Min, H. Ross, E. Sulem, A. P. B. Veyseh, T. H. Nguyen, O. Sainz,               46th IEEE/ACM International Conference on Software Engineering,
+     E. Agirre, I. Heintz, and D. Roth, “Recent advances in natural language           2024.
+     processing via large pre-trained language models: A survey,” ACM             [23] J. Henkel, S. K. Lahiri, B. Liblit, and T. Reps, “Code vectors:
+     Computing Surveys, vol. 56, no. 2, pp. 1–40, 2023.                                understanding programs through embedded abstracted symbolic traces,”
+ [2] F. Barbieri, L. E. Anke, and J. Camacho-Collados, “Xlm-t: Multilingual            in Proceedings of the 2018 26th ACM Joint Meeting on European
+     language models in twitter for sentiment analysis and beyond,” in                 Software Engineering Conference and Symposium on the Foundations
+     Proceedings of the Thirteenth Language Resources and Evaluation                   of Software Engineering, ser. ESEC/FSE 2018. New York, NY, USA:
+     Conference, 2022, pp. 258–266.                                                    Association for Computing Machinery, 2018, p. 163–174. [Online].
+ [3] A. Creswell, M. Shanahan, and I. Higgins, “Selection-inference: Exploit-          Available: https://doi.org/10.1145/3236024.3236085
+     ing large language models for interpretable logical reasoning,” in The       [24] C. Liu, S. Lu, W. Chen, D. Jiang, A. Svyatkovskiy, S. Fu, N. Sundaresan,
+     Eleventh International Conference on Learning Representations, 2022.              and N. Duan, “Code execution with pre-trained language models,” arXiv
+ [4] A. Rogers, M. Gardner, and I. Augenstein, “Qa dataset explosion:                  preprint arXiv:2305.05383, 2023.
+     A taxonomy of nlp resources for question answering and reading               [25] F. Tsimpourlas, G. Rooijackers, A. Rajan, and M. Allamanis,
+     comprehension,” ACM Computing Surveys, vol. 55, no. 10, pp. 1–45,                 “Embedding and classifying test execution traces using neural networks,”
+     2023.                                                                             IET Software, vol. 16, no. 3, pp. 301–316, 2022. [Online]. Available:
+ [5] A. Fan, B. Gokkaya, M. Harman, M. Lyubarskiy, S. Sengupta, S. Yoo,                https://ietresearch.onlinelibrary.wiley.com/doi/abs/10.1049/sfw2.12038
+     and J. M. Zhang, “Large language models for software engineering:            [26] E. Jabbar, H. Hemmati, and R. Feldt, “Investigating execution trace
+     Survey and open problems,” arXiv preprint arXiv:2310.03533, 2023.                 embedding for test case prioritization,” in 2023 IEEE 23rd International
+ [6] B. Roziere, J. Gehring, F. Gloeckle, S. Sootla, I. Gat, X. E. Tan, Y. Adi,        Conference on Software Quality, Reliability, and Security (QRS), 2023,
+     J. Liu, T. Remez, J. Rapin et al., “Code llama: Open foundation models            pp. 279–290.
+     for code,” arXiv preprint arXiv:2308.12950, 2023.                            [27] E. La Malfa, C. Weinhuber, O. Torre, F. Lin, A. Cohn, N. Shadbolt,
+ [7] Y. Wei, Z. Wang, J. Liu, Y. Ding, and L. Zhang, “Magicoder: Source                and M. Wooldridge, “Code simulation challenges for large language
+     code is all you need,” arXiv preprint arXiv:2312.02120, 2023.                     models,” arXiv preprint arXiv:2401.09074, 2024.
+ [8] M. Chen, J. Tworek, H. Jun, Q. Yuan, H. P. d. O. Pinto, J. Kaplan,           [28] M. Jang, D. S. Kwon, and T. Lukasiewicz, “Becel: Benchmark for
+     H. Edwards, Y. Burda, N. Joseph, G. Brockman et al., “Evaluating large            consistency evaluation of language models,” in Proceedings of the 29th
+     language models trained on code,” arXiv preprint arXiv:2107.03374,                International Conference on Computational Linguistics, 2022, pp. 3680–
+     2021.                                                                             3696.
+ [9] J. Austin, A. Odena, M. Nye, M. Bosma, H. Michalewski, D. Dohan,             [29] J. Chen, Z. Li, X. Hu, and X. Xia, “Nlperturbator: Studying the
+     E. Jiang, C. Cai, M. Terry, Q. Le et al., “Program synthesis with large           robustness of code llms to natural language variations,” arXiv preprint
+     language models,” arXiv preprint arXiv:2108.07732, 2021.                          arXiv:2406.19783, 2024.
+[10] S. Lu, D. Guo, S. Ren, J. Huang, A. Svyatkovskiy, A. Blanco,                 [30] M. Jang and T. Lukasiewicz, “Consistency analysis of chatgpt,” in
+     C. Clement, D. Drain, D. Jiang, D. Tang et al., “Codexglue: A machine             Proceedings of the 2023 Conference on Empirical Methods in Natural
+     learning benchmark dataset for code understanding and generation,”                Language Processing, 2023, pp. 15 970–15 985.
+     in Thirty-fifth Conference on Neural Information Processing Systems          [31] Y. Elazar, N. Kassner, S. Ravfogel, A. Ravichander, E. Hovy, H. Schütze,
+     Datasets and Benchmarks Track (Round 1), 2021.                                    and Y. Goldberg, “Measuring and improving consistency in pretrained
+[11] Y. Chang, X. Wang, J. Wang, Y. Wu, L. Yang, K. Zhu, H. Chen, X. Yi,               language models,” Transactions of the Association for Computational
+     C. Wang, Y. Wang et al., “A survey on evaluation of large language                Linguistics, vol. 9, pp. 1012–1031, 2021.
+     models,” ACM Transactions on Intelligent Systems and Technology,             [32] P. Sahu, M. Cogswell, Y. Gong, and A. Divakaran, “Unpacking
+     2023.                                                                             large language models with conceptual consistency,” arXiv preprint
+[12] A. Ni, S. Iyer, D. Radev, V. Stoyanov, W.-t. Yih, S. Wang, and X. V. Lin,         arXiv:2209.15093, 2022.
+     “Lever: Learning to verify language-to-code generation with execution,”      [33] X. Wang, J. Wei, D. Schuurmans, Q. V. Le, E. H. Chi, S. Narang,
+     in International Conference on Machine Learning. PMLR, 2023, pp.                  A. Chowdhery, and D. Zhou, “Self-consistency improves chain of
+     26 106–26 128.                                                                    thought reasoning in language models,” in The Eleventh International
+[13] X. Chen, M. Lin, N. Schärli, and D. Zhou, “Teaching large language               Conference on Learning Representations, 2022.
+     models to self-debug,” arXiv preprint arXiv:2304.05128, 2023.                [34] H. Touvron, L. Martin, K. Stone, P. Albert, A. Almahairi, Y. Babaei,
+                                                                                       N. Bashlykov, S. Batra, P. Bhargava, S. Bhosale et al., “Llama
+[14] A. Gu, B. Rozière, H. Leather, A. Solar-Lezama, G. Synnaeve, and S. I.
+                                                                                       2: Open foundation and fine-tuned chat models,” arXiv preprint
+     Wang, “Cruxeval: A benchmark for code reasoning, understanding and
+                                                                                       arXiv:2307.09288, 2023.
+     execution,” arXiv preprint arXiv:2401.03065, 2024.
+                                                                                  [35] A. Lozhkov, R. Li, L. B. Allal, F. Cassano, J. Lamy-Poirier, N. Tazi
+[15] C. Liu, S. D. Zhang, and R. Jabbarvand, “Codemind: A framework to                 et al., “Starcoder 2 and the stack v2: The next generation,” arXiv preprint
+     challenge large language models for code reasoning,” arXiv preprint               arXiv:2402.19173, 2024.
+     arXiv:2402.09664, 2024.
+                                                                                  [36] E. Nijkamp, H. Hayashi, C. Xiong, S. Savarese, and Y. Zhou, “Code-
+[16] Y. Ding, B. Steenhoek, K. Pei, G. Kaiser, W. Le, and B. Ray, “Traced:             gen2: Lessons for training llms on programming and natural languages,”
+     Execution-aware pre-training for source code,” in Proceedings of the              arXiv preprint arXiv:2305.02309, 2023.
+     46th IEEE/ACM International Conference on Software Engineering,              [37] H. Yu, B. Shen, D. Ran, J. Zhang, Q. Zhang, Y. Ma, G. Liang, Y. Li,
+     2024, pp. 1–12.                                                                   Q. Wang, and T. Xie, “Codereval: A benchmark of pragmatic code
+[17] Y. Peng, C. Gao, Z. Li, B. Gao, D. Lo, Q. Zhang, and M. Lyu,                      generation with generative pre-trained models,” in Proceedings of the
+     “Static inference meets deep learning: a hybrid type inference approach           46th IEEE/ACM International Conference on Software Engineering,
+     for python,” in Proceedings of the 44th International Conference on               2024, pp. 1–12.
+     Software Engineering, 2022, pp. 2019–2030.                                   [38] Y. Ding, Z. Wang, W. Ahmad, H. Ding, M. Tan, N. Jain, M. K.
+[18] D. Guo, S. Ren, S. Lu, Z. Feng, D. Tang, S. Liu, L. Zhou, N. Duan,                Ramanathan, R. Nallapati, P. Bhatia, D. Roth et al., “Crosscodeeval:
+     A. Svyatkovskiy, S. Fu et al., “Graphcodebert: Pre-training code repre-           A diverse and multilingual benchmark for cross-file code completion,”
+     sentations with data flow,” arXiv preprint arXiv:2009.08366, 2020.                Advances in Neural Information Processing Systems, vol. 36, 2024.
+[19] “GitHub Copilot · Your AI pair programmer,” https://github.com/              [39] Y. Lai, C. Li, Y. Wang, T. Zhang, R. Zhong, L. Zettlemoyer, W.-
+     features/copilot, 2024, last accessed Mar. 2024.                                  t. Yih, D. Fried, S. Wang, and T. Yu, “Ds-1000: A natural and
+[20] M. Allamanis, S. Panthaplackel, and P. Yin, “Unsupervised evaluation of           reliable benchmark for data science code generation,” in International
+     code llms with round-trip correctness,” arXiv preprint arXiv:2402.08699,          Conference on Machine Learning. PMLR, 2023, pp. 18 319–18 345.
+     2024.                                                                        [40] F. Cassano, L. Li, A. Sethi, N. Shinn, A. Brennan-Jones, A. Lozhkov,
+[21] M. J. Min, Y. Ding, L. Buratti, S. Pujar, G. Kaiser, S. Jana, and B. Ray,         C. Anderson, and A. Guha, “Can it edit? evaluating the ability of large
+     “Beyond accuracy: Evaluating self-consistency of code llms,” in The               language models to follow code editing instructions,” arXiv preprint
+     Twelfth International Conference on Learning Representations, 2023.               arXiv:2312.12450, 2023.
+[41] M. A. M. Khan, M. S. Bari, X. L. Do, W. Wang, M. R. Parvez, and              [59] “API Reference - OpenAI API,” https://platform.openai.com/docs/
+     S. Joty, “xcodeeval: A large scale multilingual multitask benchmark for           api-reference, 2024, last accessed Mar. 2024.
+     code understanding, generation, translation and retrieval,” arXiv preprint   [60] “openai humaneval · Datasets at Hugging Face,” https://huggingface.co/
+     arXiv:2303.03004, 2023.                                                           datasets/openai humaneval, 2024, last accessed Mar. 2024.
+[42] M. Tufano, S. Chandel, A. Agarwal, N. Sundaresan, and C. Clement,            [61] “FudanSELab/ClassEval        ·    Datasets    at    Hugging     Face,”
+     “Predicting code coverage without execution,” arXiv preprint                      https://huggingface.co/datasets/FudanSELab/ClassEval,     2024,     last
+     arXiv:2307.13383, 2023.                                                           accessed Mar. 2024.
+[43] H. Hemmati, “How effective are code coverage criteria?” in 2015 IEEE         [62] “Replication package,” https://figshare.com/s/e5de95bd79ab5ddea76c,
+     International Conference on Software Quality, Reliability and Security.           2024, replication package.
+     IEEE, 2015, pp. 151–156.                                                     [63] W. Kwon, Z. Li, S. Zhuang, Y. Sheng, L. Zheng, C. H. Yu, J. E.
+[44] P. Ammann and J. Offutt, Introduction to software testing. Cambridge              Gonzalez, H. Zhang, and I. Stoica, “Efficient memory management for
+     University Press, 2016.                                                           large language model serving with pagedattention,” in Proceedings of
+[45] B. Souza and M. Pradel, “Lexecutor: Learning-guided execution,” in                the ACM SIGOPS 29th Symposium on Operating Systems Principles,
+     Proceedings of the 31st ACM Joint European Software Engineering                   2023.
+     Conference and Symposium on the Foundations of Software Engineering,         [64] S. Yao, D. Yu, J. Zhao, I. Shafran, T. Griffiths, Y. Cao, and
+     2023, pp. 1522–1534.                                                              K. Narasimhan, “Tree of thoughts: Deliberate problem solving with large
+[46] M. Chen, J. Tworek, H. Jun, Q. Yuan, H. P. de Oliveira Pinto, J. Kaplan,          language models,” Advances in Neural Information Processing Systems,
+     H. Edwards, Y. Burda, N. Joseph, G. Brockman, A. Ray, R. Puri,                    vol. 36, 2024.
+     G. Krueger, M. Petrov, H. Khlaaf, G. Sastry, P. Mishkin, B. Chan,
+     S. Gray, N. Ryder, M. Pavlov, A. Power, L. Kaiser, M. Bavarian,
+     C. Winter, P. Tillet, F. P. Such, D. Cummings, M. Plappert, F. Chantzis,
+     E. Barnes, A. Herbert-Voss, W. H. Guss, A. Nichol, A. Paino, N. Tezak,
+     J. Tang, I. Babuschkin, S. Balaji, S. Jain, W. Saunders, C. Hesse,
+     A. N. Carr, J. Leike, J. Achiam, V. Misra, E. Morikawa, A. Radford,
+     M. Knight, M. Brundage, M. Murati, K. Mayer, P. Welinder, B. McGrew,
+     D. Amodei, S. McCandlish, I. Sutskever, and W. Zaremba, “Evaluating
+     large language models trained on code,” 2021.
+[47] J. Li, G. Li, Y. Zhao, Y. Li, Z. Jin, H. Zhu, H. Liu, K. Liu, L. Wang,
+     Z. Fang et al., “Deveval: Evaluating code generation in practical software
+     projects,” arXiv preprint arXiv:2401.06401, 2024.
+[48] K. Zhang, Z. Li, J. Li, G. Li, and Z. Jin, “Self-edit: Fault-aware code
+     editor for code generation,” in Proceedings of the 61st Annual Meeting
+     of the Association for Computational Linguistics (Volume 1: Long
+     Papers), A. Rogers, J. Boyd-Graber, and N. Okazaki, Eds. Toronto,
+     Canada: Association for Computational Linguistics, Jul. 2023, pp.
+     769–787. [Online]. Available: https://aclanthology.org/2023.acl-long.45
+[49] X. Hou, Y. Zhao, Y. Liu, Z. Yang, K. Wang, L. Li, X. Luo, D. Lo,
+     J. Grundy, and H. Wang, “Large language models for software engineer-
+     ing: A systematic literature review,” arXiv preprint arXiv:2308.10620,
+     2023.
+[50] J. Achiam, S. Adler, S. Agarwal, L. Ahmad, I. Akkaya, F. L. Aleman,
+     D. Almeida, J. Altenschmidt, S. Altman, S. Anadkat et al., “Gpt-4
+     technical report,” arXiv preprint arXiv:2303.08774, 2023.
+[51] A. Q. Jiang, A. Sablayrolles, A. Mensch, C. Bamford, D. S. Chaplot,
+     D. d. l. Casas, F. Bressand, G. Lengyel, G. Lample, L. Saulnier et al.,
+     “Mistral 7b,” arXiv preprint arXiv:2310.06825, 2023.
+[52] A. Z. Yang, C. Le Goues, R. Martins, and V. Hellendoorn, “Large
+     language models for test-free fault localization,” in Proceedings of the
+     46th IEEE/ACM International Conference on Software Engineering,
+     2024, pp. 1–12.
+[53] A. G. Shypula, A. Madaan, Y. Zeng, U. Alon, J. R. Gardner,
+     Y. Yang, M. Hashemi, G. Neubig, P. Ranganathan, O. Bastani, and
+     A. Yazdanbakhsh, “Learning performance-improving code edits,” in The
+     Twelfth International Conference on Learning Representations, 2024.
+     [Online]. Available: https://openreview.net/forum?id=ix7rLVHXyY
+[54] Y. Wei, C. S. Xia, and L. Zhang, “Copiloting the copilots: Fusing
+     large language models with completion engines for automated program
+     repair,” in Proceedings of the 31st ACM Joint European Software
+     Engineering Conference and Symposium on the Foundations of Software
+     Engineering, 2023, pp. 172–184.
+[55] J. Wei, X. Wang, D. Schuurmans, M. Bosma, F. Xia, E. Chi, Q. V. Le,
+     D. Zhou et al., “Chain-of-thought prompting elicits reasoning in large
+     language models,” Advances in neural information processing systems,
+     vol. 35, pp. 24 824–24 837, 2022.
+[56] J. Chen, X. Hu, Z. Li, C. Gao, X. Xia, and D. Lo, “Code search is all you
+     need? improving code suggestions with code search,” in Proceedings of
+     the 46th IEEE/ACM International Conference on Software Engineering,
+     ICSE 2024, Lisbon, Portugal, April 14-20, 2024, 2024, pp. 73:1–73:13.
+[57] Y. Song, T. Wang, P. Cai, S. K. Mondal, and J. P. Sahoo, “A compre-
+     hensive survey of few-shot learning: Evolution, applications, challenges,
+     and opportunities,” ACM Computing Surveys, vol. 55, no. 13s, pp. 1–40,
+     2023.
+[58] “Models - Hugging Face,” https://huggingface.co/models, 2024, last
+     accessed Mar. 2024.
+

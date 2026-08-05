@@ -1,0 +1,246 @@
+{
+  "deck_name": "REval_PPT",
+  "language": "Chinese",
+  "goal": "将 ICSE 2025 论文 Reasoning Runtime Behavior of a Program with LLM: How Far Are We? 做成 10 页左右的中文文献汇报 PPT。",
+  "deck_context": {
+    "source_summary": "论文提出 REval 框架，用运行时行为推理和增量一致性评估代码大语言模型是否真正理解程序执行过程。基准基于 HumanEval 和 ClassEval 构造，共 3152 个问题实例。实验显示多数模型在运行时行为推理和增量一致性上表现不足。",
+    "core_claim": "代码生成能力不等于稳定的程序执行推理能力；评估代码 LLM 应观察执行路径、变量状态和推理一致性，而不只是最终输出。",
+    "canonical_terms": [
+      "REval",
+      "Runtime Behavior Reasoning",
+      "Incremental Consistency",
+      "CCP",
+      "PSP",
+      "EPP",
+      "OP",
+      "IC Score"
+    ]
+  },
+  "selected_image_backend": "built-in image tool",
+  "max_concurrent_slides": 1,
+  "sample_generation_method": {
+    "backend_used": "built-in image tool",
+    "tool_name": "image_gen",
+    "mode": "generate",
+    "prompt_source": "direct full-deck generation requested by user; prompts/slide_XX.json",
+    "size": "16:9 landscape",
+    "quality": "medium",
+    "approved_sample_path": "",
+    "input_context_preparation": "No strict input images; source facts embedded in deck_context and slide local_context.",
+    "handoff_rule": "Use the built-in image_gen tool; copy the generated local image from C:\\Users\\朱雀\\.codex\\generated_images into origin_image/slide_XX.png."
+  },
+  "style": {
+    "name": "清爽科研答辩风",
+    "visual_direction": "A visually unified academic presentation deck for a software engineering paper review. Light background, structured information hierarchy, crisp vector-style diagrams, restrained technical aesthetics, suitable for a research seminar or defense.",
+    "color_palette": "warm white and very light gray background; deep navy for titles; teal and cyan accents; occasional amber highlight for warnings and key numbers; avoid purple-dominated gradients.",
+    "typography": "clean sans-serif Chinese and English typography, bold concise titles, readable medium-weight body text, clear hierarchy, no tiny text.",
+    "texture_and_finish": "flat modern research style with subtle grid texture, thin diagram lines, data cards, compact callouts, no decorative blobs."
+  },
+  "slides": [
+    {
+      "number": 1,
+      "title": "代码 LLM 是否真的理解程序运行过程？",
+      "role": "cover",
+      "intent": "Open the paper review and establish the central question.",
+      "key_points": [
+        "Reasoning Runtime Behavior of a Program with LLM",
+        "ICSE 2025 文献汇报",
+        "核心框架：REval"
+      ],
+      "local_context": {
+        "required_background": "Paper title: Reasoning Runtime Behavior of a Program with LLM: How Far Are We? Authors: Junkai Chen, Zhenhao Li, Zhiyuan Pan, Ge Li, Xing Hu, Xin Xia."
+      },
+      "layout": {
+        "composition": "Large title on the left, subtitle and metadata below, abstract code-to-execution-to-LLM diagram on the right."
+      },
+      "visual_elements": {
+        "main_visual": "A clean diagram showing code blocks flowing into execution traces and then into an LLM reasoning node."
+      }
+    },
+    {
+      "number": 2,
+      "title": "研究背景：从会写代码到理解执行",
+      "role": "context",
+      "intent": "Explain why final output evaluation is insufficient.",
+      "key_points": [
+        "现有代码基准常关注功能正确性或输入输出关系",
+        "真实调试需要理解语句覆盖、变量状态和执行路径",
+        "只答对输出不代表模型理解了执行过程"
+      ],
+      "local_context": {
+        "required_background": "Existing benchmarks include HumanEval, ClassEval, CRUXEval. The paper argues that runtime information is essential for program understanding."
+      },
+      "layout": {
+        "composition": "Two-column contrast: traditional evaluation on the left, REval runtime-behavior view on the right."
+      },
+      "visual_elements": {
+        "main_visual": "Input-output pipeline contrasted with a richer execution trace pipeline."
+      }
+    },
+    {
+      "number": 3,
+      "title": "科学问题与研究目标",
+      "role": "problem framing",
+      "intent": "Present the research questions and deeper evaluation motivation.",
+      "key_points": [
+        "RQ1：LLM 如何完成运行时行为推理？",
+        "RQ2：LLM 是否保持增量一致性？",
+        "代码生成能力强，是否也意味着代码推理能力强？"
+      ],
+      "local_context": {
+        "required_background": "The paper asks whether current LLMs can reason about runtime behavior and whether their reasoning is logically consistent across sequentially related tasks."
+      },
+      "layout": {
+        "composition": "Three large question cards with small icons: runtime behavior, consistency chain, generation-vs-reasoning."
+      },
+      "visual_elements": {
+        "main_visual": "Three linked research question cards forming a triangle of evaluation goals."
+      }
+    },
+    {
+      "number": 4,
+      "title": "REval 框架总览",
+      "role": "framework overview",
+      "intent": "Show the overall evaluation pipeline.",
+      "key_points": [
+        "基于可执行代码基准和测试用例",
+        "执行标准答案并用 tracer 提取运行轨迹",
+        "构造四类任务并计算 Accuracy 与 IC Score"
+      ],
+      "local_context": {
+        "required_background": "Framework pipeline: base benchmark -> execution -> runtime behavior extraction -> runtime behavior reasoning -> incremental consistency evaluation."
+      },
+      "layout": {
+        "composition": "Horizontal process diagram with four stages and two metric outputs."
+      },
+      "visual_elements": {
+        "main_visual": "Pipeline diagram: Benchmark, Execution Tracer, Task Construction, Model Evaluation, Metrics."
+      }
+    },
+    {
+      "number": 5,
+      "title": "四类运行时行为任务",
+      "role": "concept explanation",
+      "intent": "Define CCP, PSP, EPP, and OP.",
+      "key_points": [
+        "CCP：判断语句是否执行",
+        "PSP：预测变量值和类型",
+        "EPP：预测下一条执行语句",
+        "OP：预测程序输出"
+      ],
+      "local_context": {
+        "required_background": "The four tasks cover control flow, data flow, type dependency, and final output."
+      },
+      "layout": {
+        "composition": "2x2 matrix with one task per quadrant; each quadrant has abbreviation, Chinese definition, and evaluation focus."
+      },
+      "visual_elements": {
+        "main_visual": "Four task cards connected to a central code execution trace."
+      }
+    },
+    {
+      "number": 6,
+      "title": "增量一致性：不只看答对，还看逻辑链",
+      "role": "metric explanation",
+      "intent": "Explain Incremental Consistency and IC Score.",
+      "key_points": [
+        "任务关系近似递进：CCP → PSP → EPP → OP",
+        "前面错、后面却对，可能说明推理链不可靠",
+        "IC Score 奖励连续一致的推理序列"
+      ],
+      "local_context": {
+        "required_background": "Consistent examples include {1,1,1,1}, {1,1,1,0}, {1,1,0,0}, {1,0,0,0}; inconsistent examples include front wrong but later correct patterns such as {0,1,1,0}."
+      },
+      "layout": {
+        "composition": "Top: arrow chain CCP to OP. Bottom: two sequence examples, one marked consistent and one marked inconsistent."
+      },
+      "visual_elements": {
+        "main_visual": "Logic chain diagram with green consistent path and amber warning inconsistent path."
+      }
+    },
+    {
+      "number": 7,
+      "title": "实验设计",
+      "role": "experimental design",
+      "intent": "Summarize datasets, models, and prompting setup.",
+      "key_points": [
+        "数据：HumanEval + ClassEval，3152 个问题实例",
+        "模型：CodeLlama、Magicoder、StarCoder2、Gemma、Mistral、GPT",
+        "Prompt：few-shot 为主，额外测试 CoT",
+        "开源模型重复 5 次，闭源模型因预算未重复"
+      ],
+      "local_context": {
+        "required_background": "Dataset statistics: 3152 problems, average program length 408.3 tokens, average selected statement length 14.0 tokens. Open-source models served by vLLM on 8 NVIDIA A800 GPUs."
+      },
+      "layout": {
+        "composition": "Dashboard layout with dataset card, model-family strip, prompting card, environment card."
+      },
+      "visual_elements": {
+        "main_visual": "Compact experimental setup dashboard."
+      }
+    },
+    {
+      "number": 8,
+      "title": "RQ1：运行时行为推理仍然困难",
+      "role": "data evidence",
+      "intent": "Present main Runtime Behavior Reasoning results.",
+      "key_points": [
+        "四任务平均准确率仅 44.4%",
+        "GPT-4-Turbo 最高：75.0%",
+        "最强开源模型 CodeLlama-34B-Instruct：51.0%",
+        "EPP 最难：平均 19.4%；OP 相对最容易：61.8%"
+      ],
+      "local_context": {
+        "required_background": "Key model average accuracies: GPT-4-Turbo 75.0%, GPT-3.5-Turbo 55.7%, CodeLlama-34B-Instruct 51.0%, StarCoder2-15B 50.5%, Mistral-7B-Instruct 48.0%. Task averages: CCP 61.0%, PSP 35.6%, EPP 19.4%, OP 61.8%."
+      },
+      "layout": {
+        "composition": "Left: ranking bar chart with key models. Right: task difficulty mini chart and main takeaway callout."
+      },
+      "visual_elements": {
+        "main_visual": "Data visualization with labeled bars and task difficulty cards."
+      }
+    },
+    {
+      "number": 9,
+      "title": "RQ2：模型普遍缺乏增量一致性",
+      "role": "data evidence",
+      "intent": "Present IC Score and correlation findings.",
+      "key_points": [
+        "平均 IC Score 只有 10.3",
+        "GPT-4-Turbo 最高：42.5；GPT-3.5：20.6",
+        "多数模型 IC Score 低于 20",
+        "HumanEval 与 RBR / IC 相关，但不等价"
+      ],
+      "local_context": {
+        "required_background": "Pearson correlations: RBR-IC 0.940, RBR-HumanEval 0.772, IC-HumanEval 0.724. The paper argues code generation and code reasoning are positively correlated but distinct."
+      },
+      "layout": {
+        "composition": "Left: IC Score ranking bars. Right: small 3x3 correlation matrix and interpretation callout."
+      },
+      "visual_elements": {
+        "main_visual": "IC score bars plus correlation matrix."
+      }
+    },
+    {
+      "number": 10,
+      "title": "结论、创新点与不足",
+      "role": "summary critique",
+      "intent": "Close with balanced assessment for paper review.",
+      "key_points": [
+        "结论：当前 LLM 仍难以可靠推理程序执行过程",
+        "创新：运行时行为视角、四任务设计、增量一致性、新基准",
+        "不足：规则筛选、动态特征有限、主要基于 Python、IC 假设可讨论",
+        "启示：需要执行轨迹训练和面向执行推理的 prompt 策略"
+      ],
+      "local_context": {
+        "required_background": "The paper suggests future work on training with execution behavior and improving prompting strategies such as CoT or Tree-of-Thoughts for code reasoning."
+      },
+      "layout": {
+        "composition": "Three-column closing page: Takeaway, Contributions, Limitations. Bottom ribbon: future directions."
+      },
+      "visual_elements": {
+        "main_visual": "Structured conclusion board with icons for takeaway, contribution, limitation, future work."
+      }
+    }
+  ]
+}
