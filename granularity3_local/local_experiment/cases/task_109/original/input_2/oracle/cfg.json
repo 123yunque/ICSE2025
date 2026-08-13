@@ -1,0 +1,101 @@
+{
+  "blocks": {
+    "B001": {
+      "kind": "sequential",
+      "source": "count=0",
+      "source_span": [
+        3,
+        4,
+        3,
+        11
+      ]
+    },
+    "B002": {
+      "kind": "for_header",
+      "source": "for i in range(0, n)",
+      "source_span": [
+        4,
+        4,
+        6,
+        29
+      ]
+    },
+    "B003": {
+      "kind": "if_predicate",
+      "source": "if s[i] == '1'",
+      "source_span": [
+        5,
+        8,
+        6,
+        29
+      ]
+    },
+    "B004": {
+      "kind": "sequential",
+      "source": "count = count + 1",
+      "source_span": [
+        6,
+        12,
+        6,
+        29
+      ]
+    },
+    "B005": {
+      "kind": "return",
+      "source": "return count",
+      "source_span": [
+        7,
+        4,
+        7,
+        16
+      ]
+    }
+  },
+  "case_id": "task_109/original/input_2",
+  "code_sha256": "a86ea4bbdc3159c79e28e8903d5c8f19c2e978e181c5b6caf019241869444cfa",
+  "edges": [
+    {
+      "edge_type": "fallthrough",
+      "from": "B001",
+      "to": "B002"
+    },
+    {
+      "edge_type": "branch_true",
+      "from": "B003",
+      "to": "B004"
+    },
+    {
+      "edge_type": "loop_body",
+      "from": "B002",
+      "to": "B003"
+    },
+    {
+      "edge_type": "backedge",
+      "from": "B004",
+      "to": "B002"
+    },
+    {
+      "edge_type": "backedge",
+      "from": "B003",
+      "to": "B002"
+    },
+    {
+      "edge_type": "loop_exit",
+      "from": "B002",
+      "to": "B005"
+    },
+    {
+      "edge_type": "return",
+      "from": "B005",
+      "to": null
+    }
+  ],
+  "entry_block": "B001",
+  "function": "odd_Equivalent",
+  "input": "('11011', 5)",
+  "input_id": "input_2",
+  "python_version": "3.9.12",
+  "schema_version": "g3-local-oracle-v1",
+  "task_id": "task_109",
+  "variant": "original"
+}

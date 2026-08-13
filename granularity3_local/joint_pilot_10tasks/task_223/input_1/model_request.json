@@ -1,0 +1,164 @@
+{
+  "blocks": [
+    {
+      "id": "B001",
+      "line": 4,
+      "source": "if x not in arr"
+    },
+    {
+      "id": "B002",
+      "line": 5,
+      "source": "return False"
+    },
+    {
+      "id": "B003",
+      "line": 6,
+      "source": "l = bisect_left(arr, x)\nr = bisect_right(arr, x)"
+    },
+    {
+      "id": "B004",
+      "line": 8,
+      "source": "return r - l > n / 2"
+    }
+  ],
+  "cfg_edges": [
+    {
+      "from": "B002",
+      "to": null,
+      "type": "return"
+    },
+    {
+      "from": "B001",
+      "to": "B002",
+      "type": "branch_true"
+    },
+    {
+      "from": "B001",
+      "to": "B003",
+      "type": "branch_false"
+    },
+    {
+      "from": "B003",
+      "to": "B004",
+      "type": "fallthrough"
+    },
+    {
+      "from": "B004",
+      "to": null,
+      "type": "return"
+    }
+  ],
+  "function": "is_majority",
+  "input": {
+    "$type": "list",
+    "items": [
+      {
+        "$type": "list",
+        "items": [
+          1,
+          2,
+          3,
+          3,
+          3,
+          3,
+          10
+        ]
+      },
+      7,
+      3
+    ]
+  },
+  "numbered_code": [
+    [
+      3,
+      "def is_majority(arr, n, x):"
+    ],
+    [
+      4,
+      "\tif x not in arr:"
+    ],
+    [
+      5,
+      "\t\treturn False"
+    ],
+    [
+      6,
+      "\tl = bisect_left(arr, x)"
+    ],
+    [
+      7,
+      "\tr = bisect_right(arr, x)"
+    ],
+    [
+      8,
+      "\treturn r - l > n / 2"
+    ]
+  ],
+  "probes": [
+    {
+      "current_block": "B001",
+      "id": "p1",
+      "occurrence": 1,
+      "pre_state": {
+        "arr": {
+          "$type": "list",
+          "items": [
+            1,
+            2,
+            3,
+            3,
+            3,
+            3,
+            10
+          ]
+        },
+        "n": 7,
+        "x": 3
+      }
+    },
+    {
+      "current_block": "B003",
+      "id": "p2",
+      "occurrence": 1,
+      "pre_state": {
+        "arr": {
+          "$type": "list",
+          "items": [
+            1,
+            2,
+            3,
+            3,
+            3,
+            3,
+            10
+          ]
+        },
+        "n": 7,
+        "x": 3
+      }
+    },
+    {
+      "current_block": "B004",
+      "id": "p3",
+      "occurrence": 1,
+      "pre_state": {
+        "arr": {
+          "$type": "list",
+          "items": [
+            1,
+            2,
+            3,
+            3,
+            3,
+            3,
+            10
+          ]
+        },
+        "l": 2,
+        "n": 7,
+        "r": 6,
+        "x": 3
+      }
+    }
+  ]
+}

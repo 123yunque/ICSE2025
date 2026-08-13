@@ -1,0 +1,11 @@
+# Python and test caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Granularity-3 full-dataset artifacts (regenerable, thousands of small files)
+/granularity3_local/mbppplus_3inputs_audit/cases/
+/granularity3_local/mbppplus_3inputs_audit/case_records.jsonl
+
+# Regenerable compact batches for full-dataset runs
+/granularity3_local/compact_full/

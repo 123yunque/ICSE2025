@@ -1,0 +1,9 @@
+{
+  "answer_isolation": true,
+  "case_id": "task_109/original/input_1",
+  "local_answers": "answers.jsonl",
+  "model_case": "model_case.json",
+  "model_inputs": "model_inputs.jsonl",
+  "probe_count": 18,
+  "schema_version": "g3-local-probe-v1"
+}

@@ -1,0 +1,10 @@
+{"delta": {}, "next": "B002", "probe_id": "task_18/original/input_1/F0/B001#1", "schema_version": "g3-local-probe-v1"}
+{"delta": {"string": {"after": "robasscurve", "before": "probasscurve"}}, "next": "B001", "probe_id": "task_18/original/input_1/F0/B002#1", "schema_version": "g3-local-probe-v1"}
+{"delta": {"char": {"after": "r", "before": "p"}}, "next": "B002", "probe_id": "task_18/original/input_1/F0/B001#2", "schema_version": "g3-local-probe-v1"}
+{"delta": {"string": {"after": "obasscuve", "before": "robasscurve"}}, "next": "B001", "probe_id": "task_18/original/input_1/F0/B002#2", "schema_version": "g3-local-probe-v1"}
+{"delta": {"char": {"after": "o", "before": "r"}}, "next": "B002", "probe_id": "task_18/original/input_1/F0/B001#3", "schema_version": "g3-local-probe-v1"}
+{"delta": {"string": {"after": "basscuve", "before": "obasscuve"}}, "next": "B001", "probe_id": "task_18/original/input_1/F0/B002#3", "schema_version": "g3-local-probe-v1"}
+{"delta": {"char": {"after": "s", "before": "o"}}, "next": "B002", "probe_id": "task_18/original/input_1/F0/B001#4", "schema_version": "g3-local-probe-v1"}
+{"delta": {"string": {"after": "bacuve", "before": "basscuve"}}, "next": "B001", "probe_id": "task_18/original/input_1/F0/B002#4", "schema_version": "g3-local-probe-v1"}
+{"delta": {}, "next": "B003", "probe_id": "task_18/original/input_1/F0/B001#5", "schema_version": "g3-local-probe-v1"}
+{"delta": {}, "next": null, "probe_id": "task_18/original/input_1/F0/B003#1", "return": "bacuve", "schema_version": "g3-local-probe-v1"}

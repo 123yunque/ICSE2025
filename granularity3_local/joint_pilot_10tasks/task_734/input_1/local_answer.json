@@ -1,0 +1,147 @@
+{
+  "line_trace": [
+    3,
+    4,
+    6,
+    7,
+    8,
+    9,
+    6,
+    7,
+    8,
+    9,
+    6,
+    7,
+    8,
+    9,
+    6,
+    10
+  ],
+  "probes": [
+    {
+      "id": "p1",
+      "next_block": "B002",
+      "state_delta": {
+        "partial": {
+          "after": 0,
+          "before": {
+            "$undefined": true
+          }
+        },
+        "result": {
+          "after": 0,
+          "before": {
+            "$undefined": true
+          }
+        }
+      }
+    },
+    {
+      "id": "p2",
+      "next_block": "B003",
+      "state_delta": {}
+    },
+    {
+      "id": "p3",
+      "next_block": "B002",
+      "state_delta": {
+        "arr": {
+          "after": {
+            "$type": "list",
+            "items": [
+              1,
+              2
+            ]
+          },
+          "before": {
+            "$type": "list",
+            "items": [
+              1,
+              2,
+              3
+            ]
+          }
+        },
+        "partial": {
+          "after": 3,
+          "before": 0
+        },
+        "result": {
+          "after": 3,
+          "before": 0
+        }
+      }
+    },
+    {
+      "id": "p4",
+      "next_block": "B002",
+      "state_delta": {
+        "arr": {
+          "after": {
+            "$type": "list",
+            "items": [
+              1
+            ]
+          },
+          "before": {
+            "$type": "list",
+            "items": [
+              1,
+              2
+            ]
+          }
+        },
+        "partial": {
+          "after": 8,
+          "before": 3
+        },
+        "result": {
+          "after": 11,
+          "before": 3
+        }
+      }
+    },
+    {
+      "id": "p5",
+      "next_block": "B003",
+      "state_delta": {}
+    },
+    {
+      "id": "p6",
+      "next_block": "B002",
+      "state_delta": {
+        "arr": {
+          "after": {
+            "$type": "list",
+            "items": []
+          },
+          "before": {
+            "$type": "list",
+            "items": [
+              1
+            ]
+          }
+        },
+        "partial": {
+          "after": 9,
+          "before": 8
+        },
+        "result": {
+          "after": 20,
+          "before": 11
+        }
+      }
+    },
+    {
+      "id": "p7",
+      "next_block": "B004",
+      "state_delta": {}
+    },
+    {
+      "id": "p8",
+      "next_block": null,
+      "state_delta": {}
+    }
+  ],
+  "return_value": 20
+}

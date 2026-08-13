@@ -1,0 +1,20 @@
+{
+  "case_id": "task_223/original/input_3",
+  "code_sha256": "5ca8874e3759c993bf9cf95fe7f0aedd4303998d3da78d6576ad838f7cc7ed91",
+  "event_count": 3,
+  "executed_blocks": [
+    "B001",
+    "B003",
+    "B004"
+  ],
+  "function": "is_majority",
+  "input": "([1, 1, 1, 2, 2], 5, 1)",
+  "input_id": "input_3",
+  "python_version": "3.9.12",
+  "result": true,
+  "schema_version": "g3-local-oracle-v1",
+  "semantics_preserved": true,
+  "source_path": "F:\\Pycharm2023\\CodeMutation\\CodeMutationQYX4\\standardized_datasets\\mbppplus\\task_223\\code.py",
+  "task_id": "task_223",
+  "variant": "original"
+}

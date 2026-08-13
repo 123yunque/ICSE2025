@@ -1,0 +1,68 @@
+{
+  "blocks": {
+    "B001": {
+      "kind": "for_header",
+      "source": "for char in second_string",
+      "source_span": [
+        3,
+        1,
+        4,
+        35
+      ]
+    },
+    "B002": {
+      "kind": "sequential",
+      "source": "string = string.replace(char, '')",
+      "source_span": [
+        4,
+        2,
+        4,
+        35
+      ]
+    },
+    "B003": {
+      "kind": "return",
+      "source": "return string",
+      "source_span": [
+        5,
+        1,
+        5,
+        14
+      ]
+    }
+  },
+  "case_id": "task_18/original/input_1",
+  "cfg_edges": [
+    {
+      "edge_type": "loop_body",
+      "from": "B001",
+      "to": "B002"
+    },
+    {
+      "edge_type": "backedge",
+      "from": "B002",
+      "to": "B001"
+    },
+    {
+      "edge_type": "loop_exit",
+      "from": "B001",
+      "to": "B003"
+    },
+    {
+      "edge_type": "return",
+      "from": "B003",
+      "to": null
+    }
+  ],
+  "entry_block": "B001",
+  "function": "remove_dirty_chars",
+  "input": "('probasscurve', 'pros')",
+  "schema_version": "g3-local-probe-v1",
+  "task_definition": {
+    "delta": "Only local variables created, changed, or deleted by the target block, as before/after values.",
+    "next": "The direct basic block entered immediately after the target event; null on return.",
+    "return": "The returned value; include only when next is null because the target block returns."
+  },
+  "task_id": "task_18",
+  "variant": "original"
+}

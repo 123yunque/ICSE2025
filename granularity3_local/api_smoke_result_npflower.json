@@ -1,0 +1,18 @@
+{
+  "elapsed_seconds": 1.6522959999999998,
+  "endpoint_configured": true,
+  "error_type": "PermissionDeniedError",
+  "exception_chain": [
+    {
+      "reason": "Error code: 403 - {'error': {'message': 'user quota is not enough (request id: 2026081317042378696491894yYsEJD)', 'type': 'new_api_error', 'param': '', 'code': 'local:insufficient_quota'}}",
+      "type": "PermissionDeniedError"
+    },
+    {
+      "reason": "Client error '403 Forbidden' for url 'https://yunwu.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403",
+      "type": "HTTPStatusError"
+    }
+  ],
+  "reason": "Error code: 403 - {'error': {'message': 'user quota is not enough (request id: 2026081317042378696491894yYsEJD)', 'type': 'new_api_error', 'param': '', 'code': 'local:insufficient_quota'}}",
+  "requested_model": "gpt-5.4",
+  "status": "failed"
+}

@@ -1,0 +1,10 @@
+{"delta": {"N": {"after": 3, "before": {"$undefined": true}}, "n": {"after": 5, "before": {"$undefined": true}}, "sum": {"after": 0, "before": {"$undefined": true}}}, "next": "B002", "probe_id": "task_126/original/input_1/F0/B001#1", "schema_version": "g3-local-probe-v1"}
+{"delta": {"i": {"after": 1, "before": {"$undefined": true}}}, "next": "B003", "probe_id": "task_126/original/input_1/F0/B002#1", "schema_version": "g3-local-probe-v1"}
+{"delta": {}, "next": "B004", "probe_id": "task_126/original/input_1/F0/B003#1", "schema_version": "g3-local-probe-v1"}
+{"delta": {"sum": {"after": 1, "before": 0}}, "next": "B005", "probe_id": "task_126/original/input_1/F0/B004#1", "schema_version": "g3-local-probe-v1"}
+{"delta": {}, "next": "B006", "probe_id": "task_126/original/input_1/F0/B005#1", "schema_version": "g3-local-probe-v1"}
+{"delta": {"sum": {"after": {"$float": "0x1.8000000000000p+2"}, "before": 1}}, "next": "B002", "probe_id": "task_126/original/input_1/F0/B006#1", "schema_version": "g3-local-probe-v1"}
+{"delta": {"i": {"after": 2, "before": 1}}, "next": "B003", "probe_id": "task_126/original/input_1/F0/B002#2", "schema_version": "g3-local-probe-v1"}
+{"delta": {}, "next": "B002", "probe_id": "task_126/original/input_1/F0/B003#2", "schema_version": "g3-local-probe-v1"}
+{"delta": {}, "next": "B007", "probe_id": "task_126/original/input_1/F0/B002#3", "schema_version": "g3-local-probe-v1"}
+{"delta": {}, "next": null, "probe_id": "task_126/original/input_1/F0/B007#1", "return": {"$float": "0x1.8000000000000p+2"}, "schema_version": "g3-local-probe-v1"}

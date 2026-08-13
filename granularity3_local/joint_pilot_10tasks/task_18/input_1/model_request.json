@@ -1,0 +1,139 @@
+{
+  "blocks": [
+    {
+      "id": "B001",
+      "line": 3,
+      "source": "for char in second_string"
+    },
+    {
+      "id": "B002",
+      "line": 4,
+      "source": "string = string.replace(char, '')"
+    },
+    {
+      "id": "B003",
+      "line": 5,
+      "source": "return string"
+    }
+  ],
+  "cfg_edges": [
+    {
+      "from": "B001",
+      "to": "B002",
+      "type": "loop_body"
+    },
+    {
+      "from": "B002",
+      "to": "B001",
+      "type": "backedge"
+    },
+    {
+      "from": "B001",
+      "to": "B003",
+      "type": "loop_exit"
+    },
+    {
+      "from": "B003",
+      "to": null,
+      "type": "return"
+    }
+  ],
+  "function": "remove_dirty_chars",
+  "input": {
+    "$type": "list",
+    "items": [
+      "probasscurve",
+      "pros"
+    ]
+  },
+  "numbered_code": [
+    [
+      2,
+      "def remove_dirty_chars(string, second_string): "
+    ],
+    [
+      3,
+      "\tfor char in second_string:"
+    ],
+    [
+      4,
+      "\t\tstring = string.replace(char, '')"
+    ],
+    [
+      5,
+      "\treturn string"
+    ]
+  ],
+  "probes": [
+    {
+      "current_block": "B001",
+      "id": "p1",
+      "occurrence": 1,
+      "pre_state": {
+        "char": "p",
+        "second_string": "pros",
+        "string": "probasscurve"
+      }
+    },
+    {
+      "current_block": "B002",
+      "id": "p2",
+      "occurrence": 1,
+      "pre_state": {
+        "char": "p",
+        "second_string": "pros",
+        "string": "probasscurve"
+      }
+    },
+    {
+      "current_block": "B001",
+      "id": "p3",
+      "occurrence": 3,
+      "pre_state": {
+        "char": "r",
+        "second_string": "pros",
+        "string": "obasscuve"
+      }
+    },
+    {
+      "current_block": "B002",
+      "id": "p4",
+      "occurrence": 3,
+      "pre_state": {
+        "char": "o",
+        "second_string": "pros",
+        "string": "obasscuve"
+      }
+    },
+    {
+      "current_block": "B002",
+      "id": "p5",
+      "occurrence": 4,
+      "pre_state": {
+        "char": "s",
+        "second_string": "pros",
+        "string": "basscuve"
+      }
+    },
+    {
+      "current_block": "B001",
+      "id": "p6",
+      "occurrence": 5,
+      "pre_state": {
+        "char": "s",
+        "second_string": "pros",
+        "string": "bacuve"
+      }
+    },
+    {
+      "current_block": "B003",
+      "id": "p7",
+      "occurrence": 1,
+      "pre_state": {
+        "char": "s",
+        "second_string": "pros",
+        "string": "bacuve"
+      }
+    }
+  ]
+}

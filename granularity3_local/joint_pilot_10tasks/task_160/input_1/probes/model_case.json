@@ -1,0 +1,118 @@
+{
+  "blocks": {
+    "B001": {
+      "kind": "sequential",
+      "source": "i = 0",
+      "source_span": [
+        3,
+        1,
+        3,
+        6
+      ]
+    },
+    "B002": {
+      "kind": "while_header",
+      "source": "while i * a <= n",
+      "source_span": [
+        4,
+        1,
+        7,
+        11
+      ]
+    },
+    "B003": {
+      "kind": "if_predicate",
+      "source": "if (n - i * a) % b == 0",
+      "source_span": [
+        5,
+        2,
+        6,
+        33
+      ]
+    },
+    "B004": {
+      "kind": "return",
+      "source": "return (i, (n - (i * a)) // b)",
+      "source_span": [
+        6,
+        3,
+        6,
+        33
+      ]
+    },
+    "B005": {
+      "kind": "sequential",
+      "source": "i = i + 1",
+      "source_span": [
+        7,
+        2,
+        7,
+        11
+      ]
+    },
+    "B006": {
+      "kind": "return",
+      "source": "return None",
+      "source_span": [
+        8,
+        1,
+        8,
+        12
+      ]
+    }
+  },
+  "case_id": "task_160/original/input_1",
+  "cfg_edges": [
+    {
+      "edge_type": "fallthrough",
+      "from": "B001",
+      "to": "B002"
+    },
+    {
+      "edge_type": "return",
+      "from": "B004",
+      "to": null
+    },
+    {
+      "edge_type": "branch_true",
+      "from": "B003",
+      "to": "B004"
+    },
+    {
+      "edge_type": "branch_false",
+      "from": "B003",
+      "to": "B005"
+    },
+    {
+      "edge_type": "loop_body",
+      "from": "B002",
+      "to": "B003"
+    },
+    {
+      "edge_type": "backedge",
+      "from": "B005",
+      "to": "B002"
+    },
+    {
+      "edge_type": "loop_exit",
+      "from": "B002",
+      "to": "B006"
+    },
+    {
+      "edge_type": "return",
+      "from": "B006",
+      "to": null
+    }
+  ],
+  "entry_block": "B001",
+  "function": "find_solution",
+  "input": "(2, 3, 7)",
+  "schema_version": "g3-local-probe-v1",
+  "task_definition": {
+    "delta": "Only local variables created, changed, or deleted by the target block, as before/after values.",
+    "next": "The direct basic block entered immediately after the target event; null on return.",
+    "return": "The returned value; include only when next is null because the target block returns."
+  },
+  "task_id": "task_160",
+  "variant": "original"
+}

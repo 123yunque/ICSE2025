@@ -1,0 +1,4 @@
+{"delta": {"n": {"after": 4, "before": {"$undefined": true}}, "s": {"after": "aaaaaaaa", "before": "aaaa"}}, "next": "B002", "probe_id": "task_9/original/input_1/F0/B001#1", "schema_version": "g3-local-probe-v1"}
+{"delta": {"i": {"after": 1, "before": {"$undefined": true}}}, "next": "B003", "probe_id": "task_9/original/input_1/F0/B002#1", "schema_version": "g3-local-probe-v1"}
+{"delta": {}, "next": "B004", "probe_id": "task_9/original/input_1/F0/B003#1", "schema_version": "g3-local-probe-v1"}
+{"delta": {}, "next": null, "probe_id": "task_9/original/input_1/F0/B004#1", "return": 1, "schema_version": "g3-local-probe-v1"}

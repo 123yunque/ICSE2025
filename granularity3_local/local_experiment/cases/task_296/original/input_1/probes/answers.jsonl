@@ -1,0 +1,38 @@
+{"delta": {"inv_count": {"after": 0, "before": {"$undefined": true}}}, "next": "B002", "probe_id": "task_296/original/input_1/F0/B001#1", "schema_version": "g3-local-probe-v1"}
+{"delta": {"i": {"after": 0, "before": {"$undefined": true}}}, "next": "B003", "probe_id": "task_296/original/input_1/F0/B002#1", "schema_version": "g3-local-probe-v1"}
+{"delta": {"j": {"after": 1, "before": {"$undefined": true}}}, "next": "B004", "probe_id": "task_296/original/input_1/F0/B003#1", "schema_version": "g3-local-probe-v1"}
+{"delta": {}, "next": "B003", "probe_id": "task_296/original/input_1/F0/B004#1", "schema_version": "g3-local-probe-v1"}
+{"delta": {"j": {"after": 2, "before": 1}}, "next": "B004", "probe_id": "task_296/original/input_1/F0/B003#2", "schema_version": "g3-local-probe-v1"}
+{"delta": {}, "next": "B003", "probe_id": "task_296/original/input_1/F0/B004#2", "schema_version": "g3-local-probe-v1"}
+{"delta": {"j": {"after": 3, "before": 2}}, "next": "B004", "probe_id": "task_296/original/input_1/F0/B003#3", "schema_version": "g3-local-probe-v1"}
+{"delta": {}, "next": "B003", "probe_id": "task_296/original/input_1/F0/B004#3", "schema_version": "g3-local-probe-v1"}
+{"delta": {"j": {"after": 4, "before": 3}}, "next": "B004", "probe_id": "task_296/original/input_1/F0/B003#4", "schema_version": "g3-local-probe-v1"}
+{"delta": {}, "next": "B003", "probe_id": "task_296/original/input_1/F0/B004#4", "schema_version": "g3-local-probe-v1"}
+{"delta": {}, "next": "B002", "probe_id": "task_296/original/input_1/F0/B003#5", "schema_version": "g3-local-probe-v1"}
+{"delta": {"i": {"after": 1, "before": 0}}, "next": "B003", "probe_id": "task_296/original/input_1/F0/B002#2", "schema_version": "g3-local-probe-v1"}
+{"delta": {"j": {"after": 2, "before": 4}}, "next": "B004", "probe_id": "task_296/original/input_1/F0/B003#6", "schema_version": "g3-local-probe-v1"}
+{"delta": {}, "next": "B005", "probe_id": "task_296/original/input_1/F0/B004#5", "schema_version": "g3-local-probe-v1"}
+{"delta": {"inv_count": {"after": 1, "before": 0}}, "next": "B003", "probe_id": "task_296/original/input_1/F0/B005#1", "schema_version": "g3-local-probe-v1"}
+{"delta": {"j": {"after": 3, "before": 2}}, "next": "B004", "probe_id": "task_296/original/input_1/F0/B003#7", "schema_version": "g3-local-probe-v1"}
+{"delta": {}, "next": "B005", "probe_id": "task_296/original/input_1/F0/B004#6", "schema_version": "g3-local-probe-v1"}
+{"delta": {"inv_count": {"after": 2, "before": 1}}, "next": "B003", "probe_id": "task_296/original/input_1/F0/B005#2", "schema_version": "g3-local-probe-v1"}
+{"delta": {"j": {"after": 4, "before": 3}}, "next": "B004", "probe_id": "task_296/original/input_1/F0/B003#8", "schema_version": "g3-local-probe-v1"}
+{"delta": {}, "next": "B005", "probe_id": "task_296/original/input_1/F0/B004#7", "schema_version": "g3-local-probe-v1"}
+{"delta": {"inv_count": {"after": 3, "before": 2}}, "next": "B003", "probe_id": "task_296/original/input_1/F0/B005#3", "schema_version": "g3-local-probe-v1"}
+{"delta": {}, "next": "B002", "probe_id": "task_296/original/input_1/F0/B003#9", "schema_version": "g3-local-probe-v1"}
+{"delta": {"i": {"after": 2, "before": 1}}, "next": "B003", "probe_id": "task_296/original/input_1/F0/B002#3", "schema_version": "g3-local-probe-v1"}
+{"delta": {"j": {"after": 3, "before": 4}}, "next": "B004", "probe_id": "task_296/original/input_1/F0/B003#10", "schema_version": "g3-local-probe-v1"}
+{"delta": {}, "next": "B005", "probe_id": "task_296/original/input_1/F0/B004#8", "schema_version": "g3-local-probe-v1"}
+{"delta": {"inv_count": {"after": 4, "before": 3}}, "next": "B003", "probe_id": "task_296/original/input_1/F0/B005#4", "schema_version": "g3-local-probe-v1"}
+{"delta": {"j": {"after": 4, "before": 3}}, "next": "B004", "probe_id": "task_296/original/input_1/F0/B003#11", "schema_version": "g3-local-probe-v1"}
+{"delta": {}, "next": "B005", "probe_id": "task_296/original/input_1/F0/B004#9", "schema_version": "g3-local-probe-v1"}
+{"delta": {"inv_count": {"after": 5, "before": 4}}, "next": "B003", "probe_id": "task_296/original/input_1/F0/B005#5", "schema_version": "g3-local-probe-v1"}
+{"delta": {}, "next": "B002", "probe_id": "task_296/original/input_1/F0/B003#12", "schema_version": "g3-local-probe-v1"}
+{"delta": {"i": {"after": 3, "before": 2}}, "next": "B003", "probe_id": "task_296/original/input_1/F0/B002#4", "schema_version": "g3-local-probe-v1"}
+{"delta": {}, "next": "B004", "probe_id": "task_296/original/input_1/F0/B003#13", "schema_version": "g3-local-probe-v1"}
+{"delta": {}, "next": "B003", "probe_id": "task_296/original/input_1/F0/B004#10", "schema_version": "g3-local-probe-v1"}
+{"delta": {}, "next": "B002", "probe_id": "task_296/original/input_1/F0/B003#14", "schema_version": "g3-local-probe-v1"}
+{"delta": {"i": {"after": 4, "before": 3}}, "next": "B003", "probe_id": "task_296/original/input_1/F0/B002#5", "schema_version": "g3-local-probe-v1"}
+{"delta": {}, "next": "B002", "probe_id": "task_296/original/input_1/F0/B003#15", "schema_version": "g3-local-probe-v1"}
+{"delta": {}, "next": "B006", "probe_id": "task_296/original/input_1/F0/B002#6", "schema_version": "g3-local-probe-v1"}
+{"delta": {}, "next": null, "probe_id": "task_296/original/input_1/F0/B006#1", "return": 5, "schema_version": "g3-local-probe-v1"}

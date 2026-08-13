@@ -1,0 +1,139 @@
+{
+  "task_count": 378,
+  "statuses": {
+    "supported": 369,
+    "unsupported_recursion": 6,
+    "unsupported_jump": 3
+  },
+  "supported_count": 369,
+  "unsupported": [
+    {
+      "task_id": "task_65",
+      "status": "unsupported_recursion",
+      "supported": false,
+      "all_statuses": [
+        "unsupported_recursion"
+      ],
+      "reasons": [
+        "target directly calls itself; frame-aware recursion is not implemented"
+      ],
+      "warnings": [],
+      "function": "recursive_list_sum",
+      "function_count": 1
+    },
+    {
+      "task_id": "task_103",
+      "status": "unsupported_recursion",
+      "supported": false,
+      "all_statuses": [
+        "unsupported_recursion"
+      ],
+      "reasons": [
+        "target directly calls itself; frame-aware recursion is not implemented"
+      ],
+      "warnings": [],
+      "function": "eulerian_num",
+      "function_count": 1
+    },
+    {
+      "task_id": "task_123",
+      "status": "unsupported_jump",
+      "supported": false,
+      "all_statuses": [
+        "unsupported_jump"
+      ],
+      "reasons": [
+        "target contains break or continue"
+      ],
+      "warnings": [
+        "helper_functions_are_treated_as_atomic_calls"
+      ],
+      "function": "amicable_numbers_sum",
+      "function_count": 2
+    },
+    {
+      "task_id": "task_278",
+      "status": "unsupported_jump",
+      "supported": false,
+      "all_statuses": [
+        "unsupported_jump"
+      ],
+      "reasons": [
+        "target contains break or continue"
+      ],
+      "warnings": [],
+      "function": "count_first_elements",
+      "function_count": 1
+    },
+    {
+      "task_id": "task_297",
+      "status": "unsupported_recursion",
+      "supported": false,
+      "all_statuses": [
+        "unsupported_recursion"
+      ],
+      "reasons": [
+        "target directly calls itself; frame-aware recursion is not implemented"
+      ],
+      "warnings": [],
+      "function": "flatten_list",
+      "function_count": 1
+    },
+    {
+      "task_id": "task_389",
+      "status": "unsupported_recursion",
+      "supported": false,
+      "all_statuses": [
+        "unsupported_recursion"
+      ],
+      "reasons": [
+        "target directly calls itself; frame-aware recursion is not implemented"
+      ],
+      "warnings": [],
+      "function": "find_lucas",
+      "function_count": 1
+    },
+    {
+      "task_id": "task_462",
+      "status": "unsupported_recursion",
+      "supported": false,
+      "all_statuses": [
+        "unsupported_recursion"
+      ],
+      "reasons": [
+        "target directly calls itself; frame-aware recursion is not implemented"
+      ],
+      "warnings": [],
+      "function": "combinations_list",
+      "function_count": 1
+    },
+    {
+      "task_id": "task_583",
+      "status": "unsupported_recursion",
+      "supported": false,
+      "all_statuses": [
+        "unsupported_recursion"
+      ],
+      "reasons": [
+        "target directly calls itself; frame-aware recursion is not implemented"
+      ],
+      "warnings": [],
+      "function": "catalan_number",
+      "function_count": 1
+    },
+    {
+      "task_id": "task_622",
+      "status": "unsupported_jump",
+      "supported": false,
+      "all_statuses": [
+        "unsupported_jump"
+      ],
+      "reasons": [
+        "target contains break or continue"
+      ],
+      "warnings": [],
+      "function": "get_median",
+      "function_count": 1
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "line_trace": [
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "probes": [
+    {
+      "id": "p1",
+      "next_block": "B002",
+      "state_delta": {
+        "n": {
+          "after": 4,
+          "before": {
+            "$undefined": true
+          }
+        },
+        "s": {
+          "after": "aaaaaaaa",
+          "before": "aaaa"
+        }
+      }
+    },
+    {
+      "id": "p2",
+      "next_block": "B003",
+      "state_delta": {
+        "i": {
+          "after": 1,
+          "before": {
+            "$undefined": true
+          }
+        }
+      }
+    },
+    {
+      "id": "p3",
+      "next_block": "B004",
+      "state_delta": {}
+    },
+    {
+      "id": "p4",
+      "next_block": null,
+      "state_delta": {}
+    }
+  ],
+  "return_value": 1
+}

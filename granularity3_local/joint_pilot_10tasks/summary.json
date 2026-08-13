@@ -1,0 +1,871 @@
+{
+  "completion_tokens": 2183,
+  "delta_accuracy": 0.9710144927536232,
+  "delta_correct_count": 67,
+  "delta_semantic_accuracy": 1.0,
+  "delta_semantic_correct_count": 69,
+  "elapsed_seconds": 37.6400511,
+  "failed_task_count": 0,
+  "input_index": 1,
+  "joint_exact_count": 8,
+  "joint_semantic_exact_count": 9,
+  "line_trace_exact_count": 9,
+  "max_probes_per_task": 8,
+  "model": "gpt-5.4",
+  "next_accuracy": 1.0,
+  "next_correct_count": 69,
+  "probe_count": 69,
+  "probe_exact_accuracy": 0.9710144927536232,
+  "probe_exact_count": 67,
+  "probe_semantic_exact_accuracy": 1.0,
+  "probe_semantic_exact_count": 69,
+  "prompt_tokens": 9657,
+  "records": [
+    {
+      "api": {
+        "completion_tokens": 98,
+        "elapsed_seconds": 3.1250002,
+        "prompt_tokens": 799,
+        "total_tokens": 897
+      },
+      "function": "is_majority",
+      "score": {
+        "delta_correct_count": 3,
+        "delta_semantic_correct_count": 3,
+        "joint_exact": true,
+        "joint_semantic_exact": true,
+        "line_trace_edit_distance": 0,
+        "line_trace_exact": true,
+        "line_trace_expected_length": 4,
+        "line_trace_longest_correct_prefix": 4,
+        "line_trace_predicted_length": 4,
+        "next_correct_count": 3,
+        "probe_count": 3,
+        "probe_exact_count": 3,
+        "probe_rows": [
+          {
+            "delta_correct": true,
+            "delta_semantic_correct": true,
+            "exact": true,
+            "id": "p1",
+            "next_correct": true,
+            "semantic_exact": true
+          },
+          {
+            "delta_correct": true,
+            "delta_semantic_correct": true,
+            "exact": true,
+            "id": "p2",
+            "next_correct": true,
+            "semantic_exact": true
+          },
+          {
+            "delta_correct": true,
+            "delta_semantic_correct": true,
+            "exact": true,
+            "id": "p3",
+            "next_correct": true,
+            "semantic_exact": true
+          }
+        ],
+        "probe_semantic_exact_count": 3,
+        "return_correct": true
+      },
+      "status": "success",
+      "task_id": "task_223"
+    },
+    {
+      "api": {
+        "completion_tokens": 198,
+        "elapsed_seconds": 3.5814931,
+        "prompt_tokens": 786,
+        "total_tokens": 984
+      },
+      "function": "remove_dirty_chars",
+      "score": {
+        "delta_correct_count": 7,
+        "delta_semantic_correct_count": 7,
+        "joint_exact": true,
+        "joint_semantic_exact": true,
+        "line_trace_edit_distance": 0,
+        "line_trace_exact": true,
+        "line_trace_expected_length": 10,
+        "line_trace_longest_correct_prefix": 10,
+        "line_trace_predicted_length": 10,
+        "next_correct_count": 7,
+        "probe_count": 7,
+        "probe_exact_count": 7,
+        "probe_rows": [
+          {
+            "delta_correct": true,
+            "delta_semantic_correct": true,
+            "exact": true,
+            "id": "p1",
+            "next_correct": true,
+            "semantic_exact": true
+          },
+          {
+            "delta_correct": true,
+            "delta_semantic_correct": true,
+            "exact": true,
+            "id": "p2",
+            "next_correct": true,
+            "semantic_exact": true
+          },
+          {
+            "delta_correct": true,
+            "delta_semantic_correct": true,
+            "exact": true,
+            "id": "p3",
+            "next_correct": true,
+            "semantic_exact": true
+          },
+          {
+            "delta_correct": true,
+            "delta_semantic_correct": true,
+            "exact": true,
+            "id": "p4",
+            "next_correct": true,
+            "semantic_exact": true
+          },
+          {
+            "delta_correct": true,
+            "delta_semantic_correct": true,
+            "exact": true,
+            "id": "p5",
+            "next_correct": true,
+            "semantic_exact": true
+          },
+          {
+            "delta_correct": true,
+            "delta_semantic_correct": true,
+            "exact": true,
+            "id": "p6",
+            "next_correct": true,
+            "semantic_exact": true
+          },
+          {
+            "delta_correct": true,
+            "delta_semantic_correct": true,
+            "exact": true,
+            "id": "p7",
+            "next_correct": true,
+            "semantic_exact": true
+          }
+        ],
+        "probe_semantic_exact_count": 7,
+        "return_correct": true
+      },
+      "status": "success",
+      "task_id": "task_18"
+    },
+    {
+      "api": {
+        "completion_tokens": 125,
+        "elapsed_seconds": 4.2197606,
+        "prompt_tokens": 781,
+        "total_tokens": 906
+      },
+      "function": "find_Rotations",
+      "score": {
+        "delta_correct_count": 4,
+        "delta_semantic_correct_count": 4,
+        "joint_exact": true,
+        "joint_semantic_exact": true,
+        "line_trace_edit_distance": 0,
+        "line_trace_exact": true,
+        "line_trace_expected_length": 5,
+        "line_trace_longest_correct_prefix": 5,
+        "line_trace_predicted_length": 5,
+        "next_correct_count": 4,
+        "probe_count": 4,
+        "probe_exact_count": 4,
+        "probe_rows": [
+          {
+            "delta_correct": true,
+            "delta_semantic_correct": true,
+            "exact": true,
+            "id": "p1",
+            "next_correct": true,
+            "semantic_exact": true
+          },
+          {
+            "delta_correct": true,
+            "delta_semantic_correct": true,
+            "exact": true,
+            "id": "p2",
+            "next_correct": true,
+            "semantic_exact": true
+          },
+          {
+            "delta_correct": true,
+            "delta_semantic_correct": true,
+            "exact": true,
+            "id": "p3",
+            "next_correct": true,
+            "semantic_exact": true
+          },
+          {
+            "delta_correct": true,
+            "delta_semantic_correct": true,
+            "exact": true,
+            "id": "p4",
+            "next_correct": true,
+            "semantic_exact": true
+          }
+        ],
+        "probe_semantic_exact_count": 4,
+        "return_correct": true
+      },
+      "status": "success",
+      "task_id": "task_9"
+    },
+    {
+      "api": {
+        "completion_tokens": 197,
+        "elapsed_seconds": 3.2247079,
+        "prompt_tokens": 771,
+        "total_tokens": 968
+      },
+      "function": "even_bit_set_number",
+      "score": {
+        "delta_correct_count": 5,
+        "delta_semantic_correct_count": 7,
+        "joint_exact": false,
+        "joint_semantic_exact": true,
+        "line_trace_edit_distance": 0,
+        "line_trace_exact": true,
+        "line_trace_expected_length": 9,
+        "line_trace_longest_correct_prefix": 9,
+        "line_trace_predicted_length": 9,
+        "next_correct_count": 7,
+        "probe_count": 7,
+        "probe_exact_count": 5,
+        "probe_rows": [
+          {
+            "delta_correct": true,
+            "delta_semantic_correct": true,
+            "exact": true,
+            "id": "p1",
+            "next_correct": true,
+            "semantic_exact": true
+          },
+          {
+            "delta_correct": true,
+            "delta_semantic_correct": true,
+            "exact": true,
+            "id": "p2",
+            "next_correct": true,
+            "semantic_exact": true
+          },
+          {
+            "delta_correct": false,
+            "delta_semantic_correct": true,
+            "exact": false,
+            "id": "p3",
+            "next_correct": true,
+            "semantic_exact": true
+          },
+          {
+            "delta_correct": true,
+            "delta_semantic_correct": true,
+            "exact": true,
+            "id": "p4",
+            "next_correct": true,
+            "semantic_exact": true
+          },
+          {
+            "delta_correct": false,
+            "delta_semantic_correct": true,
+            "exact": false,
+            "id": "p5",
+            "next_correct": true,
+            "semantic_exact": true
+          },
+          {
+            "delta_correct": true,
+            "delta_semantic_correct": true,
+            "exact": true,
+            "id": "p6",
+            "next_correct": true,
+            "semantic_exact": true
+          },
+          {
+            "delta_correct": true,
+            "delta_semantic_correct": true,
+            "exact": true,
+            "id": "p7",
+            "next_correct": true,
+            "semantic_exact": true
+          }
+        ],
+        "probe_semantic_exact_count": 7,
+        "return_correct": true
+      },
+      "status": "success",
+      "task_id": "task_235"
+    },
+    {
+      "api": {
+        "completion_tokens": 205,
+        "elapsed_seconds": 2.7484352,
+        "prompt_tokens": 1001,
+        "total_tokens": 1206
+      },
+      "function": "find_solution",
+      "score": {
+        "delta_correct_count": 8,
+        "delta_semantic_correct_count": 8,
+        "joint_exact": true,
+        "joint_semantic_exact": true,
+        "line_trace_edit_distance": 0,
+        "line_trace_exact": true,
+        "line_trace_expected_length": 10,
+        "line_trace_longest_correct_prefix": 10,
+        "line_trace_predicted_length": 10,
+        "next_correct_count": 8,
+        "probe_count": 8,
+        "probe_exact_count": 8,
+        "probe_rows": [
+          {
+            "delta_correct": true,
+            "delta_semantic_correct": true,
+            "exact": true,
+            "id": "p1",
+            "next_correct": true,
+            "semantic_exact": true
+          },
+          {
+            "delta_correct": true,
+            "delta_semantic_correct": true,
+            "exact": true,
+            "id": "p2",
+            "next_correct": true,
+            "semantic_exact": true
+          },
+          {
+            "delta_correct": true,
+            "delta_semantic_correct": true,
+            "exact": true,
+            "id": "p3",
+            "next_correct": true,
+            "semantic_exact": true
+          },
+          {
+            "delta_correct": true,
+            "delta_semantic_correct": true,
+            "exact": true,
+            "id": "p4",
+            "next_correct": true,
+            "semantic_exact": true
+          },
+          {
+            "delta_correct": true,
+            "delta_semantic_correct": true,
+            "exact": true,
+            "id": "p5",
+            "next_correct": true,
+            "semantic_exact": true
+          },
+          {
+            "delta_correct": true,
+            "delta_semantic_correct": true,
+            "exact": true,
+            "id": "p6",
+            "next_correct": true,
+            "semantic_exact": true
+          },
+          {
+            "delta_correct": true,
+            "delta_semantic_correct": true,
+            "exact": true,
+            "id": "p7",
+            "next_correct": true,
+            "semantic_exact": true
+          },
+          {
+            "delta_correct": true,
+            "delta_semantic_correct": true,
+            "exact": true,
+            "id": "p8",
+            "next_correct": true,
+            "semantic_exact": true
+          }
+        ],
+        "probe_semantic_exact_count": 8,
+        "return_correct": true
+      },
+      "status": "success",
+      "task_id": "task_160"
+    },
+    {
+      "api": {
+        "completion_tokens": 220,
+        "elapsed_seconds": 3.9665032,
+        "prompt_tokens": 932,
+        "total_tokens": 1152
+      },
+      "function": "odd_Equivalent",
+      "score": {
+        "delta_correct_count": 8,
+        "delta_semantic_correct_count": 8,
+        "joint_exact": true,
+        "joint_semantic_exact": true,
+        "line_trace_edit_distance": 0,
+        "line_trace_exact": true,
+        "line_trace_expected_length": 18,
+        "line_trace_longest_correct_prefix": 18,
+        "line_trace_predicted_length": 18,
+        "next_correct_count": 8,
+        "probe_count": 8,
+        "probe_exact_count": 8,
+        "probe_rows": [
+          {
+            "delta_correct": true,
+            "delta_semantic_correct": true,
+            "exact": true,
+            "id": "p1",
+            "next_correct": true,
+            "semantic_exact": true
+          },
+          {
+            "delta_correct": true,
+            "delta_semantic_correct": true,
+            "exact": true,
+            "id": "p2",
+            "next_correct": true,
+            "semantic_exact": true
+          },
+          {
+            "delta_correct": true,
+            "delta_semantic_correct": true,
+            "exact": true,
+            "id": "p3",
+            "next_correct": true,
+            "semantic_exact": true
+          },
+          {
+            "delta_correct": true,
+            "delta_semantic_correct": true,
+            "exact": true,
+            "id": "p4",
+            "next_correct": true,
+            "semantic_exact": true
+          },
+          {
+            "delta_correct": true,
+            "delta_semantic_correct": true,
+            "exact": true,
+            "id": "p5",
+            "next_correct": true,
+            "semantic_exact": true
+          },
+          {
+            "delta_correct": true,
+            "delta_semantic_correct": true,
+            "exact": true,
+            "id": "p6",
+            "next_correct": true,
+            "semantic_exact": true
+          },
+          {
+            "delta_correct": true,
+            "delta_semantic_correct": true,
+            "exact": true,
+            "id": "p7",
+            "next_correct": true,
+            "semantic_exact": true
+          },
+          {
+            "delta_correct": true,
+            "delta_semantic_correct": true,
+            "exact": true,
+            "id": "p8",
+            "next_correct": true,
+            "semantic_exact": true
+          }
+        ],
+        "probe_semantic_exact_count": 8,
+        "return_correct": true
+      },
+      "status": "success",
+      "task_id": "task_109"
+    },
+    {
+      "api": {
+        "completion_tokens": 275,
+        "elapsed_seconds": 2.960872,
+        "prompt_tokens": 1167,
+        "total_tokens": 1442
+      },
+      "function": "sum",
+      "score": {
+        "delta_correct_count": 8,
+        "delta_semantic_correct_count": 8,
+        "joint_exact": true,
+        "joint_semantic_exact": true,
+        "line_trace_edit_distance": 0,
+        "line_trace_exact": true,
+        "line_trace_expected_length": 12,
+        "line_trace_longest_correct_prefix": 12,
+        "line_trace_predicted_length": 12,
+        "next_correct_count": 8,
+        "probe_count": 8,
+        "probe_exact_count": 8,
+        "probe_rows": [
+          {
+            "delta_correct": true,
+            "delta_semantic_correct": true,
+            "exact": true,
+            "id": "p1",
+            "next_correct": true,
+            "semantic_exact": true
+          },
+          {
+            "delta_correct": true,
+            "delta_semantic_correct": true,
+            "exact": true,
+            "id": "p2",
+            "next_correct": true,
+            "semantic_exact": true
+          },
+          {
+            "delta_correct": true,
+            "delta_semantic_correct": true,
+            "exact": true,
+            "id": "p3",
+            "next_correct": true,
+            "semantic_exact": true
+          },
+          {
+            "delta_correct": true,
+            "delta_semantic_correct": true,
+            "exact": true,
+            "id": "p4",
+            "next_correct": true,
+            "semantic_exact": true
+          },
+          {
+            "delta_correct": true,
+            "delta_semantic_correct": true,
+            "exact": true,
+            "id": "p5",
+            "next_correct": true,
+            "semantic_exact": true
+          },
+          {
+            "delta_correct": true,
+            "delta_semantic_correct": true,
+            "exact": true,
+            "id": "p6",
+            "next_correct": true,
+            "semantic_exact": true
+          },
+          {
+            "delta_correct": true,
+            "delta_semantic_correct": true,
+            "exact": true,
+            "id": "p7",
+            "next_correct": true,
+            "semantic_exact": true
+          },
+          {
+            "delta_correct": true,
+            "delta_semantic_correct": true,
+            "exact": true,
+            "id": "p8",
+            "next_correct": true,
+            "semantic_exact": true
+          }
+        ],
+        "probe_semantic_exact_count": 8,
+        "return_correct": true
+      },
+      "status": "success",
+      "task_id": "task_126"
+    },
+    {
+      "api": {
+        "completion_tokens": 254,
+        "elapsed_seconds": 6.048585,
+        "prompt_tokens": 1284,
+        "total_tokens": 1538
+      },
+      "function": "is_woodall",
+      "score": {
+        "delta_correct_count": 8,
+        "delta_semantic_correct_count": 8,
+        "joint_exact": true,
+        "joint_semantic_exact": true,
+        "line_trace_edit_distance": 0,
+        "line_trace_exact": true,
+        "line_trace_expected_length": 30,
+        "line_trace_longest_correct_prefix": 30,
+        "line_trace_predicted_length": 30,
+        "next_correct_count": 8,
+        "probe_count": 8,
+        "probe_exact_count": 8,
+        "probe_rows": [
+          {
+            "delta_correct": true,
+            "delta_semantic_correct": true,
+            "exact": true,
+            "id": "p1",
+            "next_correct": true,
+            "semantic_exact": true
+          },
+          {
+            "delta_correct": true,
+            "delta_semantic_correct": true,
+            "exact": true,
+            "id": "p2",
+            "next_correct": true,
+            "semantic_exact": true
+          },
+          {
+            "delta_correct": true,
+            "delta_semantic_correct": true,
+            "exact": true,
+            "id": "p3",
+            "next_correct": true,
+            "semantic_exact": true
+          },
+          {
+            "delta_correct": true,
+            "delta_semantic_correct": true,
+            "exact": true,
+            "id": "p4",
+            "next_correct": true,
+            "semantic_exact": true
+          },
+          {
+            "delta_correct": true,
+            "delta_semantic_correct": true,
+            "exact": true,
+            "id": "p5",
+            "next_correct": true,
+            "semantic_exact": true
+          },
+          {
+            "delta_correct": true,
+            "delta_semantic_correct": true,
+            "exact": true,
+            "id": "p6",
+            "next_correct": true,
+            "semantic_exact": true
+          },
+          {
+            "delta_correct": true,
+            "delta_semantic_correct": true,
+            "exact": true,
+            "id": "p7",
+            "next_correct": true,
+            "semantic_exact": true
+          },
+          {
+            "delta_correct": true,
+            "delta_semantic_correct": true,
+            "exact": true,
+            "id": "p8",
+            "next_correct": true,
+            "semantic_exact": true
+          }
+        ],
+        "probe_semantic_exact_count": 8,
+        "return_correct": true
+      },
+      "status": "success",
+      "task_id": "task_20"
+    },
+    {
+      "api": {
+        "completion_tokens": 346,
+        "elapsed_seconds": 4.2441741,
+        "prompt_tokens": 980,
+        "total_tokens": 1326
+      },
+      "function": "sum_Of_Subarray_Prod",
+      "score": {
+        "delta_correct_count": 8,
+        "delta_semantic_correct_count": 8,
+        "joint_exact": true,
+        "joint_semantic_exact": true,
+        "line_trace_edit_distance": 0,
+        "line_trace_exact": true,
+        "line_trace_expected_length": 16,
+        "line_trace_longest_correct_prefix": 16,
+        "line_trace_predicted_length": 16,
+        "next_correct_count": 8,
+        "probe_count": 8,
+        "probe_exact_count": 8,
+        "probe_rows": [
+          {
+            "delta_correct": true,
+            "delta_semantic_correct": true,
+            "exact": true,
+            "id": "p1",
+            "next_correct": true,
+            "semantic_exact": true
+          },
+          {
+            "delta_correct": true,
+            "delta_semantic_correct": true,
+            "exact": true,
+            "id": "p2",
+            "next_correct": true,
+            "semantic_exact": true
+          },
+          {
+            "delta_correct": true,
+            "delta_semantic_correct": true,
+            "exact": true,
+            "id": "p3",
+            "next_correct": true,
+            "semantic_exact": true
+          },
+          {
+            "delta_correct": true,
+            "delta_semantic_correct": true,
+            "exact": true,
+            "id": "p4",
+            "next_correct": true,
+            "semantic_exact": true
+          },
+          {
+            "delta_correct": true,
+            "delta_semantic_correct": true,
+            "exact": true,
+            "id": "p5",
+            "next_correct": true,
+            "semantic_exact": true
+          },
+          {
+            "delta_correct": true,
+            "delta_semantic_correct": true,
+            "exact": true,
+            "id": "p6",
+            "next_correct": true,
+            "semantic_exact": true
+          },
+          {
+            "delta_correct": true,
+            "delta_semantic_correct": true,
+            "exact": true,
+            "id": "p7",
+            "next_correct": true,
+            "semantic_exact": true
+          },
+          {
+            "delta_correct": true,
+            "delta_semantic_correct": true,
+            "exact": true,
+            "id": "p8",
+            "next_correct": true,
+            "semantic_exact": true
+          }
+        ],
+        "probe_semantic_exact_count": 8,
+        "return_correct": true
+      },
+      "status": "success",
+      "task_id": "task_734"
+    },
+    {
+      "api": {
+        "completion_tokens": 265,
+        "elapsed_seconds": 3.5205198,
+        "prompt_tokens": 1156,
+        "total_tokens": 1421
+      },
+      "function": "get_Inv_Count",
+      "score": {
+        "delta_correct_count": 8,
+        "delta_semantic_correct_count": 8,
+        "joint_exact": false,
+        "joint_semantic_exact": false,
+        "line_trace_edit_distance": 5,
+        "line_trace_exact": false,
+        "line_trace_expected_length": 38,
+        "line_trace_longest_correct_prefix": 10,
+        "line_trace_predicted_length": 33,
+        "next_correct_count": 8,
+        "probe_count": 8,
+        "probe_exact_count": 8,
+        "probe_rows": [
+          {
+            "delta_correct": true,
+            "delta_semantic_correct": true,
+            "exact": true,
+            "id": "p1",
+            "next_correct": true,
+            "semantic_exact": true
+          },
+          {
+            "delta_correct": true,
+            "delta_semantic_correct": true,
+            "exact": true,
+            "id": "p2",
+            "next_correct": true,
+            "semantic_exact": true
+          },
+          {
+            "delta_correct": true,
+            "delta_semantic_correct": true,
+            "exact": true,
+            "id": "p3",
+            "next_correct": true,
+            "semantic_exact": true
+          },
+          {
+            "delta_correct": true,
+            "delta_semantic_correct": true,
+            "exact": true,
+            "id": "p4",
+            "next_correct": true,
+            "semantic_exact": true
+          },
+          {
+            "delta_correct": true,
+            "delta_semantic_correct": true,
+            "exact": true,
+            "id": "p5",
+            "next_correct": true,
+            "semantic_exact": true
+          },
+          {
+            "delta_correct": true,
+            "delta_semantic_correct": true,
+            "exact": true,
+            "id": "p6",
+            "next_correct": true,
+            "semantic_exact": true
+          },
+          {
+            "delta_correct": true,
+            "delta_semantic_correct": true,
+            "exact": true,
+            "id": "p7",
+            "next_correct": true,
+            "semantic_exact": true
+          },
+          {
+            "delta_correct": true,
+            "delta_semantic_correct": true,
+            "exact": true,
+            "id": "p8",
+            "next_correct": true,
+            "semantic_exact": true
+          }
+        ],
+        "probe_semantic_exact_count": 8,
+        "return_correct": true
+      },
+      "status": "success",
+      "task_id": "task_296"
+    }
+  ],
+  "return_correct_count": 10,
+  "successful_task_count": 10,
+  "task_count": 10,
+  "total_tokens": 11840
+}

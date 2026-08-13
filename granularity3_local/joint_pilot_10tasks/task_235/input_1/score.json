@@ -1,0 +1,74 @@
+{
+  "delta_correct_count": 5,
+  "delta_semantic_correct_count": 7,
+  "joint_exact": false,
+  "joint_semantic_exact": true,
+  "line_trace_edit_distance": 0,
+  "line_trace_exact": true,
+  "line_trace_expected_length": 9,
+  "line_trace_longest_correct_prefix": 9,
+  "line_trace_predicted_length": 9,
+  "next_correct_count": 7,
+  "probe_count": 7,
+  "probe_exact_count": 5,
+  "probe_rows": [
+    {
+      "delta_correct": true,
+      "delta_semantic_correct": true,
+      "exact": true,
+      "id": "p1",
+      "next_correct": true,
+      "semantic_exact": true
+    },
+    {
+      "delta_correct": true,
+      "delta_semantic_correct": true,
+      "exact": true,
+      "id": "p2",
+      "next_correct": true,
+      "semantic_exact": true
+    },
+    {
+      "delta_correct": false,
+      "delta_semantic_correct": true,
+      "exact": false,
+      "id": "p3",
+      "next_correct": true,
+      "semantic_exact": true
+    },
+    {
+      "delta_correct": true,
+      "delta_semantic_correct": true,
+      "exact": true,
+      "id": "p4",
+      "next_correct": true,
+      "semantic_exact": true
+    },
+    {
+      "delta_correct": false,
+      "delta_semantic_correct": true,
+      "exact": false,
+      "id": "p5",
+      "next_correct": true,
+      "semantic_exact": true
+    },
+    {
+      "delta_correct": true,
+      "delta_semantic_correct": true,
+      "exact": true,
+      "id": "p6",
+      "next_correct": true,
+      "semantic_exact": true
+    },
+    {
+      "delta_correct": true,
+      "delta_semantic_correct": true,
+      "exact": true,
+      "id": "p7",
+      "next_correct": true,
+      "semantic_exact": true
+    }
+  ],
+  "probe_semantic_exact_count": 7,
+  "return_correct": true
+}

@@ -1,0 +1,30 @@
+{
+  "case_id": "task_126/original/input_1",
+  "code_sha256": "27e06a6840f336824d66c4baf2e6f7ef3a372dc04cbf79fbb813a14ae6cf86de",
+  "event_count": 10,
+  "executed_blocks": [
+    "B001",
+    "B002",
+    "B003",
+    "B004",
+    "B005",
+    "B006",
+    "B002",
+    "B003",
+    "B002",
+    "B007"
+  ],
+  "function": "sum",
+  "input": "(10, 15)",
+  "input_id": "input_1",
+  "line_event_count": 12,
+  "python_version": "3.9.25",
+  "result": {
+    "$float": "0x1.8000000000000p+2"
+  },
+  "schema_version": "g3-local-oracle-v1",
+  "semantics_preserved": true,
+  "source_path": "F:\\Pycharm2023\\CodeMutation\\ICSE2025\\granularity3_local\\joint_pilot_10tasks\\task_126\\input_1\\code.py",
+  "task_id": "task_126",
+  "variant": "original"
+}

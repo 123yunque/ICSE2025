@@ -1,0 +1,142 @@
+{
+  "blocks": [
+    {
+      "id": "B001",
+      "line": 3,
+      "source": "n = len(s)\ns += s"
+    },
+    {
+      "id": "B002",
+      "line": 5,
+      "source": "for i in range(1, n + 1)"
+    },
+    {
+      "id": "B003",
+      "line": 6,
+      "source": "if s[i:i + n] == s[0:n]"
+    },
+    {
+      "id": "B004",
+      "line": 7,
+      "source": "return i"
+    },
+    {
+      "id": "B005",
+      "line": 8,
+      "source": "return n"
+    }
+  ],
+  "cfg_edges": [
+    {
+      "from": "B001",
+      "to": "B002",
+      "type": "fallthrough"
+    },
+    {
+      "from": "B004",
+      "to": null,
+      "type": "return"
+    },
+    {
+      "from": "B003",
+      "to": "B004",
+      "type": "branch_true"
+    },
+    {
+      "from": "B002",
+      "to": "B003",
+      "type": "loop_body"
+    },
+    {
+      "from": "B003",
+      "to": "B002",
+      "type": "backedge"
+    },
+    {
+      "from": "B002",
+      "to": "B005",
+      "type": "loop_exit"
+    },
+    {
+      "from": "B005",
+      "to": null,
+      "type": "return"
+    }
+  ],
+  "function": "find_Rotations",
+  "input": {
+    "$type": "list",
+    "items": [
+      "aaaa"
+    ]
+  },
+  "numbered_code": [
+    [
+      2,
+      "def find_Rotations(s): "
+    ],
+    [
+      3,
+      "    n = len(s)"
+    ],
+    [
+      4,
+      "    s += s"
+    ],
+    [
+      5,
+      "    for i in range(1, n + 1):"
+    ],
+    [
+      6,
+      "        if s[i: i + n] == s[0: n]:"
+    ],
+    [
+      7,
+      "            return i"
+    ],
+    [
+      8,
+      "    return n"
+    ]
+  ],
+  "probes": [
+    {
+      "current_block": "B001",
+      "id": "p1",
+      "occurrence": 1,
+      "pre_state": {
+        "s": "aaaa"
+      }
+    },
+    {
+      "current_block": "B002",
+      "id": "p2",
+      "occurrence": 1,
+      "pre_state": {
+        "n": 4,
+        "s": "aaaaaaaa"
+      }
+    },
+    {
+      "current_block": "B003",
+      "id": "p3",
+      "occurrence": 1,
+      "pre_state": {
+        "i": 1,
+        "n": 4,
+        "s": "aaaaaaaa"
+      }
+    },
+    {
+      "current_block": "B004",
+      "id": "p4",
+      "occurrence": 1,
+      "pre_state": {
+        "i": 1,
+        "n": 4,
+        "s": "aaaaaaaa"
+      }
+    }
+  ]
+}

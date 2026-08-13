@@ -1,0 +1,87 @@
+{
+  "line_trace": [
+    3,
+    4,
+    5,
+    4,
+    5,
+    6,
+    4,
+    5,
+    6,
+    4,
+    5,
+    4,
+    5,
+    4,
+    5,
+    6,
+    4,
+    7
+  ],
+  "probes": [
+    {
+      "id": "p1",
+      "next_block": "B002",
+      "state_delta": {
+        "count": {
+          "after": 0,
+          "before": {
+            "$undefined": true
+          }
+        }
+      }
+    },
+    {
+      "id": "p2",
+      "next_block": "B002",
+      "state_delta": {}
+    },
+    {
+      "id": "p3",
+      "next_block": "B004",
+      "state_delta": {}
+    },
+    {
+      "id": "p4",
+      "next_block": "B002",
+      "state_delta": {
+        "count": {
+          "after": 2,
+          "before": 1
+        }
+      }
+    },
+    {
+      "id": "p5",
+      "next_block": "B003",
+      "state_delta": {
+        "i": {
+          "after": 3,
+          "before": 2
+        }
+      }
+    },
+    {
+      "id": "p6",
+      "next_block": "B004",
+      "state_delta": {}
+    },
+    {
+      "id": "p7",
+      "next_block": "B002",
+      "state_delta": {
+        "count": {
+          "after": 3,
+          "before": 2
+        }
+      }
+    },
+    {
+      "id": "p8",
+      "next_block": null,
+      "state_delta": {}
+    }
+  ],
+  "return_value": 3
+}

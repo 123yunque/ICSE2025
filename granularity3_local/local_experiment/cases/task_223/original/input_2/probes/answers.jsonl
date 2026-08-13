@@ -1,0 +1,3 @@
+{"delta": {}, "next": "B003", "probe_id": "task_223/original/input_2/F0/B001#1", "schema_version": "g3-local-probe-v1"}
+{"delta": {"l": {"after": 3, "before": {"$undefined": true}}, "r": {"after": 6, "before": {"$undefined": true}}}, "next": "B004", "probe_id": "task_223/original/input_2/F0/B003#1", "schema_version": "g3-local-probe-v1"}
+{"delta": {}, "next": null, "probe_id": "task_223/original/input_2/F0/B004#1", "return": false, "schema_version": "g3-local-probe-v1"}

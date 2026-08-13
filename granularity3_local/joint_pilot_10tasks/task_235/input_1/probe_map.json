@@ -1,0 +1,30 @@
+[
+  {
+    "id": "p1",
+    "probe_id": "task_235/original/input_1/F0/B001#1"
+  },
+  {
+    "id": "p2",
+    "probe_id": "task_235/original/input_1/F0/B002#1"
+  },
+  {
+    "id": "p3",
+    "probe_id": "task_235/original/input_1/F0/B003#1"
+  },
+  {
+    "id": "p4",
+    "probe_id": "task_235/original/input_1/F0/B002#2"
+  },
+  {
+    "id": "p5",
+    "probe_id": "task_235/original/input_1/F0/B003#2"
+  },
+  {
+    "id": "p6",
+    "probe_id": "task_235/original/input_1/F0/B002#3"
+  },
+  {
+    "id": "p7",
+    "probe_id": "task_235/original/input_1/F0/B004#1"
+  }
+]

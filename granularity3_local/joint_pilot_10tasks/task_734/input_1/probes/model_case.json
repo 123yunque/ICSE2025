@@ -1,0 +1,83 @@
+{
+  "blocks": {
+    "B001": {
+      "kind": "sequential",
+      "source": "result = 0\npartial = 0",
+      "source_span": [
+        3,
+        4,
+        4,
+        15
+      ]
+    },
+    "B002": {
+      "kind": "while_header",
+      "source": "while arr != []",
+      "source_span": [
+        6,
+        4,
+        9,
+        17
+      ]
+    },
+    "B003": {
+      "kind": "sequential",
+      "source": "partial = arr[-1] * (1 + partial)\nresult += partial\narr.pop()",
+      "source_span": [
+        7,
+        8,
+        9,
+        17
+      ]
+    },
+    "B004": {
+      "kind": "return",
+      "source": "return result",
+      "source_span": [
+        10,
+        4,
+        10,
+        17
+      ]
+    }
+  },
+  "case_id": "task_734/original/input_1",
+  "cfg_edges": [
+    {
+      "edge_type": "fallthrough",
+      "from": "B001",
+      "to": "B002"
+    },
+    {
+      "edge_type": "loop_body",
+      "from": "B002",
+      "to": "B003"
+    },
+    {
+      "edge_type": "backedge",
+      "from": "B003",
+      "to": "B002"
+    },
+    {
+      "edge_type": "loop_exit",
+      "from": "B002",
+      "to": "B004"
+    },
+    {
+      "edge_type": "return",
+      "from": "B004",
+      "to": null
+    }
+  ],
+  "entry_block": "B001",
+  "function": "sum_Of_Subarray_Prod",
+  "input": "([1, 2, 3],)",
+  "schema_version": "g3-local-probe-v1",
+  "task_definition": {
+    "delta": "Only local variables created, changed, or deleted by the target block, as before/after values.",
+    "next": "The direct basic block entered immediately after the target event; null on return.",
+    "return": "The returned value; include only when next is null because the target block returns."
+  },
+  "task_id": "task_734",
+  "variant": "original"
+}

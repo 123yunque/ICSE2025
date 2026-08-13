@@ -1,0 +1,28 @@
+{
+  "case_id": "task_18/original/input_1",
+  "code_sha256": "3fcf1eda45f79aa4d46ee3060da6deebec7f9a280328d55c5d0d6e53859c5ad8",
+  "event_count": 10,
+  "executed_blocks": [
+    "B001",
+    "B002",
+    "B001",
+    "B002",
+    "B001",
+    "B002",
+    "B001",
+    "B002",
+    "B001",
+    "B003"
+  ],
+  "function": "remove_dirty_chars",
+  "input": "('probasscurve', 'pros')",
+  "input_id": "input_1",
+  "line_event_count": 10,
+  "python_version": "3.9.25",
+  "result": "bacuve",
+  "schema_version": "g3-local-oracle-v1",
+  "semantics_preserved": true,
+  "source_path": "F:\\Pycharm2023\\CodeMutation\\ICSE2025\\granularity3_local\\joint_pilot_10tasks\\task_18\\input_1\\code.py",
+  "task_id": "task_18",
+  "variant": "original"
+}

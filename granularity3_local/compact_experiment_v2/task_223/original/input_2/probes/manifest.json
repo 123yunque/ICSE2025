@@ -1,0 +1,10 @@
+{
+  "answer_isolation": true,
+  "batch_count": 1,
+  "batch_size": 8,
+  "case_id": "task_223/original/input_2",
+  "max_occurrences_per_block": 3,
+  "original_probe_count": 3,
+  "schema_version": "g3-compact-batch-v1",
+  "selected_probe_count": 3
+}
