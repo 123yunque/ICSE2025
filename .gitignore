@@ -8,4 +8,4 @@ __pycache__/
 /granularity3_local/mbppplus_3inputs_audit/case_records.jsonl
 
 # Regenerable compact batches for full-dataset runs
-/granularity3_local/compact_full/
+granularity3_local/
