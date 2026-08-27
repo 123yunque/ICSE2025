@@ -1,1 +1,0 @@
-{"answers": [{"delta": {}, "id": "p1", "next": "B003"}, {"delta": {"l": {"after": 2, "before": {"$u": 1}}, "r": {"after": 6, "before": {"$u": 1}}}, "id": "p2", "next": "B004"}, {"delta": {}, "id": "p3", "next": null, "ret": true}], "batch_id": "task_223/original/input_1/batch_1"}

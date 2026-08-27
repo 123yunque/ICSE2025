@@ -61,7 +61,7 @@ def run_isolated_case(
         command = [
             sys.executable,
             "-m",
-            "granularity3_local.worker",
+            "granularity3_local.legacy.worker",
             "--request",
             str(request_path),
             "--response",

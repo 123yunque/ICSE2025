@@ -1,0 +1,288 @@
+{
+  "baseline_dir": "F:\\Pycharm2023\\CodeMutation\\ICSE2025\\granularity3_local\\block_state_api_flat_runs_10tasks",
+  "sample_size": 40,
+  "schema_version": "g3-block-state-canary-v1",
+  "selection": [
+    {
+      "baseline_changes_exact": false,
+      "baseline_elapsed_seconds": 10.768838,
+      "baseline_expanded_block_exact": true,
+      "case_key": "task_9/input_2",
+      "task_id": "task_9"
+    },
+    {
+      "baseline_changes_exact": false,
+      "baseline_elapsed_seconds": 18.92049689999999,
+      "baseline_expanded_block_exact": false,
+      "case_key": "task_9/input_9",
+      "task_id": "task_9"
+    },
+    {
+      "baseline_changes_exact": false,
+      "baseline_elapsed_seconds": 97.4863987,
+      "baseline_expanded_block_exact": false,
+      "case_key": "task_9/input_5",
+      "task_id": "task_9"
+    },
+    {
+      "baseline_changes_exact": false,
+      "baseline_elapsed_seconds": 168.48685419999998,
+      "baseline_expanded_block_exact": false,
+      "case_key": "task_9/input_10",
+      "task_id": "task_9"
+    },
+    {
+      "baseline_changes_exact": false,
+      "baseline_elapsed_seconds": 10.74112070000001,
+      "baseline_expanded_block_exact": true,
+      "case_key": "task_18/input_3",
+      "task_id": "task_18"
+    },
+    {
+      "baseline_changes_exact": false,
+      "baseline_elapsed_seconds": 14.358315400000038,
+      "baseline_expanded_block_exact": true,
+      "case_key": "task_18/input_10",
+      "task_id": "task_18"
+    },
+    {
+      "baseline_changes_exact": false,
+      "baseline_elapsed_seconds": 21.768963499999927,
+      "baseline_expanded_block_exact": true,
+      "case_key": "task_18/input_1",
+      "task_id": "task_18"
+    },
+    {
+      "baseline_changes_exact": false,
+      "baseline_elapsed_seconds": 58.994342600000095,
+      "baseline_expanded_block_exact": false,
+      "case_key": "task_18/input_9",
+      "task_id": "task_18"
+    },
+    {
+      "baseline_changes_exact": true,
+      "baseline_elapsed_seconds": 2.1904428999999936,
+      "baseline_expanded_block_exact": false,
+      "case_key": "task_20/input_8",
+      "task_id": "task_20"
+    },
+    {
+      "baseline_changes_exact": true,
+      "baseline_elapsed_seconds": 5.133729399999993,
+      "baseline_expanded_block_exact": true,
+      "case_key": "task_20/input_3",
+      "task_id": "task_20"
+    },
+    {
+      "baseline_changes_exact": true,
+      "baseline_elapsed_seconds": 7.072106899999994,
+      "baseline_expanded_block_exact": true,
+      "case_key": "task_20/input_7",
+      "task_id": "task_20"
+    },
+    {
+      "baseline_changes_exact": false,
+      "baseline_elapsed_seconds": 22.542630199999962,
+      "baseline_expanded_block_exact": true,
+      "case_key": "task_20/input_9",
+      "task_id": "task_20"
+    },
+    {
+      "baseline_changes_exact": false,
+      "baseline_elapsed_seconds": 28.426410899999837,
+      "baseline_expanded_block_exact": false,
+      "case_key": "task_109/input_8",
+      "task_id": "task_109"
+    },
+    {
+      "baseline_changes_exact": true,
+      "baseline_elapsed_seconds": 30.28719500000011,
+      "baseline_expanded_block_exact": true,
+      "case_key": "task_109/input_2",
+      "task_id": "task_109"
+    },
+    {
+      "baseline_changes_exact": true,
+      "baseline_elapsed_seconds": 35.55100600000003,
+      "baseline_expanded_block_exact": true,
+      "case_key": "task_109/input_1",
+      "task_id": "task_109"
+    },
+    {
+      "baseline_changes_exact": false,
+      "baseline_elapsed_seconds": 75.38761279999994,
+      "baseline_expanded_block_exact": true,
+      "case_key": "task_109/input_4",
+      "task_id": "task_109"
+    },
+    {
+      "baseline_changes_exact": false,
+      "baseline_elapsed_seconds": 8.906849800000145,
+      "baseline_expanded_block_exact": true,
+      "case_key": "task_126/input_9",
+      "task_id": "task_126"
+    },
+    {
+      "baseline_changes_exact": false,
+      "baseline_elapsed_seconds": 22.920101199999863,
+      "baseline_expanded_block_exact": true,
+      "case_key": "task_126/input_6",
+      "task_id": "task_126"
+    },
+    {
+      "baseline_changes_exact": false,
+      "baseline_elapsed_seconds": 33.52884500000005,
+      "baseline_expanded_block_exact": true,
+      "case_key": "task_126/input_2",
+      "task_id": "task_126"
+    },
+    {
+      "baseline_changes_exact": false,
+      "baseline_elapsed_seconds": 48.9835829000001,
+      "baseline_expanded_block_exact": true,
+      "case_key": "task_126/input_1",
+      "task_id": "task_126"
+    },
+    {
+      "baseline_changes_exact": false,
+      "baseline_elapsed_seconds": 5.130812399999968,
+      "baseline_expanded_block_exact": false,
+      "case_key": "task_160/input_10",
+      "task_id": "task_160"
+    },
+    {
+      "baseline_changes_exact": true,
+      "baseline_elapsed_seconds": 9.839693000000125,
+      "baseline_expanded_block_exact": true,
+      "case_key": "task_160/input_9",
+      "task_id": "task_160"
+    },
+    {
+      "baseline_changes_exact": true,
+      "baseline_elapsed_seconds": 14.089313100000027,
+      "baseline_expanded_block_exact": true,
+      "case_key": "task_160/input_7",
+      "task_id": "task_160"
+    },
+    {
+      "baseline_changes_exact": true,
+      "baseline_elapsed_seconds": 17.273519599999872,
+      "baseline_expanded_block_exact": true,
+      "case_key": "task_160/input_3",
+      "task_id": "task_160"
+    },
+    {
+      "baseline_changes_exact": true,
+      "baseline_elapsed_seconds": 4.203062099999897,
+      "baseline_expanded_block_exact": true,
+      "case_key": "task_223/input_10",
+      "task_id": "task_223"
+    },
+    {
+      "baseline_changes_exact": true,
+      "baseline_elapsed_seconds": 4.972748299999921,
+      "baseline_expanded_block_exact": true,
+      "case_key": "task_223/input_3",
+      "task_id": "task_223"
+    },
+    {
+      "baseline_changes_exact": true,
+      "baseline_elapsed_seconds": 6.360043200000064,
+      "baseline_expanded_block_exact": true,
+      "case_key": "task_223/input_4",
+      "task_id": "task_223"
+    },
+    {
+      "baseline_changes_exact": true,
+      "baseline_elapsed_seconds": 11.275246400000015,
+      "baseline_expanded_block_exact": true,
+      "case_key": "task_223/input_1",
+      "task_id": "task_223"
+    },
+    {
+      "baseline_changes_exact": false,
+      "baseline_elapsed_seconds": 4.155663100000083,
+      "baseline_expanded_block_exact": true,
+      "case_key": "task_235/input_4",
+      "task_id": "task_235"
+    },
+    {
+      "baseline_changes_exact": true,
+      "baseline_elapsed_seconds": 10.531744200000048,
+      "baseline_expanded_block_exact": true,
+      "case_key": "task_235/input_3",
+      "task_id": "task_235"
+    },
+    {
+      "baseline_changes_exact": true,
+      "baseline_elapsed_seconds": 45.2988678,
+      "baseline_expanded_block_exact": true,
+      "case_key": "task_235/input_9",
+      "task_id": "task_235"
+    },
+    {
+      "baseline_changes_exact": true,
+      "baseline_elapsed_seconds": 101.83645309999974,
+      "baseline_expanded_block_exact": true,
+      "case_key": "task_235/input_6",
+      "task_id": "task_235"
+    },
+    {
+      "baseline_changes_exact": false,
+      "baseline_elapsed_seconds": 5.537564900000007,
+      "baseline_expanded_block_exact": false,
+      "case_key": "task_296/input_6",
+      "task_id": "task_296"
+    },
+    {
+      "baseline_changes_exact": false,
+      "baseline_elapsed_seconds": 236.8428851000001,
+      "baseline_expanded_block_exact": false,
+      "case_key": "task_296/input_5",
+      "task_id": "task_296"
+    },
+    {
+      "baseline_changes_exact": false,
+      "baseline_elapsed_seconds": 315.68073540000023,
+      "baseline_expanded_block_exact": false,
+      "case_key": "task_296/input_10",
+      "task_id": "task_296"
+    },
+    {
+      "baseline_changes_exact": false,
+      "baseline_elapsed_seconds": 416.354953,
+      "baseline_expanded_block_exact": false,
+      "case_key": "task_296/input_9",
+      "task_id": "task_296"
+    },
+    {
+      "baseline_changes_exact": true,
+      "baseline_elapsed_seconds": 10.042197999999644,
+      "baseline_expanded_block_exact": true,
+      "case_key": "task_734/input_4",
+      "task_id": "task_734"
+    },
+    {
+      "baseline_changes_exact": true,
+      "baseline_elapsed_seconds": 11.066931599999862,
+      "baseline_expanded_block_exact": true,
+      "case_key": "task_734/input_2",
+      "task_id": "task_734"
+    },
+    {
+      "baseline_changes_exact": true,
+      "baseline_elapsed_seconds": 12.7854096,
+      "baseline_expanded_block_exact": true,
+      "case_key": "task_734/input_1",
+      "task_id": "task_734"
+    },
+    {
+      "baseline_changes_exact": true,
+      "baseline_elapsed_seconds": 25.09470939999983,
+      "baseline_expanded_block_exact": true,
+      "case_key": "task_734/input_3",
+      "task_id": "task_734"
+    }
+  ],
+  "task_count": 10
+}

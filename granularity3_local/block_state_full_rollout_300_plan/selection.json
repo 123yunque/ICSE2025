@@ -1,0 +1,2120 @@
+{
+  "full_task_count": 366,
+  "model_batches": "F:\\Pycharm2023\\CodeMutation\\ICSE2025\\granularity3_local\\block_state_model_batches\\model_batches.jsonl",
+  "ordered_case_keys_sha256": "2bb58cb8bdfad896cd2bb013946b8afc477fbf4781167b4567fb1ca9efcd6cce",
+  "population_complexity_task_counts": {
+    "0_loops": 306,
+    "1_loop": 44,
+    "2plus_loops": 16
+  },
+  "sample_complexity_task_counts": {
+    "0_loops": 251,
+    "1_loop": 36,
+    "2plus_loops": 13
+  },
+  "sample_size": 300,
+  "sample_task_count": 300,
+  "schema_version": "g3-block-state-rollout-v1",
+  "selection": [
+    {
+      "case_key": "task_2/input_8",
+      "complexity": "0_loops",
+      "input_id": "input_8",
+      "loop_headers": 0,
+      "task_id": "task_2"
+    },
+    {
+      "case_key": "task_3/input_7",
+      "complexity": "1_loop",
+      "input_id": "input_7",
+      "loop_headers": 1,
+      "task_id": "task_3"
+    },
+    {
+      "case_key": "task_4/input_4",
+      "complexity": "0_loops",
+      "input_id": "input_4",
+      "loop_headers": 0,
+      "task_id": "task_4"
+    },
+    {
+      "case_key": "task_6/input_7",
+      "complexity": "0_loops",
+      "input_id": "input_7",
+      "loop_headers": 0,
+      "task_id": "task_6"
+    },
+    {
+      "case_key": "task_8/input_7",
+      "complexity": "0_loops",
+      "input_id": "input_7",
+      "loop_headers": 0,
+      "task_id": "task_8"
+    },
+    {
+      "case_key": "task_9/input_2",
+      "complexity": "1_loop",
+      "input_id": "input_2",
+      "loop_headers": 1,
+      "task_id": "task_9"
+    },
+    {
+      "case_key": "task_11/input_3",
+      "complexity": "0_loops",
+      "input_id": "input_3",
+      "loop_headers": 0,
+      "task_id": "task_11"
+    },
+    {
+      "case_key": "task_12/input_9",
+      "complexity": "0_loops",
+      "input_id": "input_9",
+      "loop_headers": 0,
+      "task_id": "task_12"
+    },
+    {
+      "case_key": "task_14/input_6",
+      "complexity": "0_loops",
+      "input_id": "input_6",
+      "loop_headers": 0,
+      "task_id": "task_14"
+    },
+    {
+      "case_key": "task_17/input_3",
+      "complexity": "0_loops",
+      "input_id": "input_3",
+      "loop_headers": 0,
+      "task_id": "task_17"
+    },
+    {
+      "case_key": "task_18/input_2",
+      "complexity": "1_loop",
+      "input_id": "input_2",
+      "loop_headers": 1,
+      "task_id": "task_18"
+    },
+    {
+      "case_key": "task_19/input_4",
+      "complexity": "0_loops",
+      "input_id": "input_4",
+      "loop_headers": 0,
+      "task_id": "task_19"
+    },
+    {
+      "case_key": "task_56/input_1",
+      "complexity": "0_loops",
+      "input_id": "input_1",
+      "loop_headers": 0,
+      "task_id": "task_56"
+    },
+    {
+      "case_key": "task_57/input_5",
+      "complexity": "0_loops",
+      "input_id": "input_5",
+      "loop_headers": 0,
+      "task_id": "task_57"
+    },
+    {
+      "case_key": "task_58/input_6",
+      "complexity": "0_loops",
+      "input_id": "input_6",
+      "loop_headers": 0,
+      "task_id": "task_58"
+    },
+    {
+      "case_key": "task_61/input_4",
+      "complexity": "1_loop",
+      "input_id": "input_4",
+      "loop_headers": 1,
+      "task_id": "task_61"
+    },
+    {
+      "case_key": "task_62/input_9",
+      "complexity": "0_loops",
+      "input_id": "input_9",
+      "loop_headers": 0,
+      "task_id": "task_62"
+    },
+    {
+      "case_key": "task_63/input_1",
+      "complexity": "0_loops",
+      "input_id": "input_1",
+      "loop_headers": 0,
+      "task_id": "task_63"
+    },
+    {
+      "case_key": "task_64/input_10",
+      "complexity": "0_loops",
+      "input_id": "input_10",
+      "loop_headers": 0,
+      "task_id": "task_64"
+    },
+    {
+      "case_key": "task_66/input_3",
+      "complexity": "0_loops",
+      "input_id": "input_3",
+      "loop_headers": 0,
+      "task_id": "task_66"
+    },
+    {
+      "case_key": "task_67/input_3",
+      "complexity": "2plus_loops",
+      "input_id": "input_3",
+      "loop_headers": 2,
+      "task_id": "task_67"
+    },
+    {
+      "case_key": "task_69/input_2",
+      "complexity": "0_loops",
+      "input_id": "input_2",
+      "loop_headers": 0,
+      "task_id": "task_69"
+    },
+    {
+      "case_key": "task_70/input_1",
+      "complexity": "0_loops",
+      "input_id": "input_1",
+      "loop_headers": 0,
+      "task_id": "task_70"
+    },
+    {
+      "case_key": "task_71/input_6",
+      "complexity": "2plus_loops",
+      "input_id": "input_6",
+      "loop_headers": 2,
+      "task_id": "task_71"
+    },
+    {
+      "case_key": "task_72/input_10",
+      "complexity": "0_loops",
+      "input_id": "input_10",
+      "loop_headers": 0,
+      "task_id": "task_72"
+    },
+    {
+      "case_key": "task_74/input_1",
+      "complexity": "1_loop",
+      "input_id": "input_1",
+      "loop_headers": 1,
+      "task_id": "task_74"
+    },
+    {
+      "case_key": "task_75/input_2",
+      "complexity": "0_loops",
+      "input_id": "input_2",
+      "loop_headers": 0,
+      "task_id": "task_75"
+    },
+    {
+      "case_key": "task_77/input_5",
+      "complexity": "0_loops",
+      "input_id": "input_5",
+      "loop_headers": 0,
+      "task_id": "task_77"
+    },
+    {
+      "case_key": "task_80/input_4",
+      "complexity": "0_loops",
+      "input_id": "input_4",
+      "loop_headers": 0,
+      "task_id": "task_80"
+    },
+    {
+      "case_key": "task_82/input_5",
+      "complexity": "0_loops",
+      "input_id": "input_5",
+      "loop_headers": 0,
+      "task_id": "task_82"
+    },
+    {
+      "case_key": "task_84/input_2",
+      "complexity": "1_loop",
+      "input_id": "input_2",
+      "loop_headers": 1,
+      "task_id": "task_84"
+    },
+    {
+      "case_key": "task_85/input_5",
+      "complexity": "0_loops",
+      "input_id": "input_5",
+      "loop_headers": 0,
+      "task_id": "task_85"
+    },
+    {
+      "case_key": "task_86/input_7",
+      "complexity": "0_loops",
+      "input_id": "input_7",
+      "loop_headers": 0,
+      "task_id": "task_86"
+    },
+    {
+      "case_key": "task_87/input_3",
+      "complexity": "0_loops",
+      "input_id": "input_3",
+      "loop_headers": 0,
+      "task_id": "task_87"
+    },
+    {
+      "case_key": "task_89/input_6",
+      "complexity": "0_loops",
+      "input_id": "input_6",
+      "loop_headers": 0,
+      "task_id": "task_89"
+    },
+    {
+      "case_key": "task_90/input_5",
+      "complexity": "0_loops",
+      "input_id": "input_5",
+      "loop_headers": 0,
+      "task_id": "task_90"
+    },
+    {
+      "case_key": "task_91/input_1",
+      "complexity": "0_loops",
+      "input_id": "input_1",
+      "loop_headers": 0,
+      "task_id": "task_91"
+    },
+    {
+      "case_key": "task_92/input_8",
+      "complexity": "0_loops",
+      "input_id": "input_8",
+      "loop_headers": 0,
+      "task_id": "task_92"
+    },
+    {
+      "case_key": "task_94/input_7",
+      "complexity": "0_loops",
+      "input_id": "input_7",
+      "loop_headers": 0,
+      "task_id": "task_94"
+    },
+    {
+      "case_key": "task_95/input_10",
+      "complexity": "0_loops",
+      "input_id": "input_10",
+      "loop_headers": 0,
+      "task_id": "task_95"
+    },
+    {
+      "case_key": "task_96/input_3",
+      "complexity": "0_loops",
+      "input_id": "input_3",
+      "loop_headers": 0,
+      "task_id": "task_96"
+    },
+    {
+      "case_key": "task_97/input_2",
+      "complexity": "0_loops",
+      "input_id": "input_2",
+      "loop_headers": 0,
+      "task_id": "task_97"
+    },
+    {
+      "case_key": "task_98/input_3",
+      "complexity": "0_loops",
+      "input_id": "input_3",
+      "loop_headers": 0,
+      "task_id": "task_98"
+    },
+    {
+      "case_key": "task_100/input_2",
+      "complexity": "2plus_loops",
+      "input_id": "input_2",
+      "loop_headers": 3,
+      "task_id": "task_100"
+    },
+    {
+      "case_key": "task_101/input_5",
+      "complexity": "0_loops",
+      "input_id": "input_5",
+      "loop_headers": 0,
+      "task_id": "task_101"
+    },
+    {
+      "case_key": "task_102/input_10",
+      "complexity": "0_loops",
+      "input_id": "input_10",
+      "loop_headers": 0,
+      "task_id": "task_102"
+    },
+    {
+      "case_key": "task_104/input_10",
+      "complexity": "0_loops",
+      "input_id": "input_10",
+      "loop_headers": 0,
+      "task_id": "task_104"
+    },
+    {
+      "case_key": "task_105/input_10",
+      "complexity": "0_loops",
+      "input_id": "input_10",
+      "loop_headers": 0,
+      "task_id": "task_105"
+    },
+    {
+      "case_key": "task_108/input_10",
+      "complexity": "0_loops",
+      "input_id": "input_10",
+      "loop_headers": 0,
+      "task_id": "task_108"
+    },
+    {
+      "case_key": "task_109/input_4",
+      "complexity": "1_loop",
+      "input_id": "input_4",
+      "loop_headers": 1,
+      "task_id": "task_109"
+    },
+    {
+      "case_key": "task_111/input_3",
+      "complexity": "0_loops",
+      "input_id": "input_3",
+      "loop_headers": 0,
+      "task_id": "task_111"
+    },
+    {
+      "case_key": "task_113/input_2",
+      "complexity": "0_loops",
+      "input_id": "input_2",
+      "loop_headers": 0,
+      "task_id": "task_113"
+    },
+    {
+      "case_key": "task_116/input_10",
+      "complexity": "0_loops",
+      "input_id": "input_10",
+      "loop_headers": 0,
+      "task_id": "task_116"
+    },
+    {
+      "case_key": "task_118/input_8",
+      "complexity": "0_loops",
+      "input_id": "input_8",
+      "loop_headers": 0,
+      "task_id": "task_118"
+    },
+    {
+      "case_key": "task_124/input_7",
+      "complexity": "0_loops",
+      "input_id": "input_7",
+      "loop_headers": 0,
+      "task_id": "task_124"
+    },
+    {
+      "case_key": "task_125/input_10",
+      "complexity": "1_loop",
+      "input_id": "input_10",
+      "loop_headers": 1,
+      "task_id": "task_125"
+    },
+    {
+      "case_key": "task_126/input_8",
+      "complexity": "1_loop",
+      "input_id": "input_8",
+      "loop_headers": 1,
+      "task_id": "task_126"
+    },
+    {
+      "case_key": "task_127/input_9",
+      "complexity": "0_loops",
+      "input_id": "input_9",
+      "loop_headers": 0,
+      "task_id": "task_127"
+    },
+    {
+      "case_key": "task_128/input_4",
+      "complexity": "0_loops",
+      "input_id": "input_4",
+      "loop_headers": 0,
+      "task_id": "task_128"
+    },
+    {
+      "case_key": "task_129/input_6",
+      "complexity": "0_loops",
+      "input_id": "input_6",
+      "loop_headers": 0,
+      "task_id": "task_129"
+    },
+    {
+      "case_key": "task_130/input_5",
+      "complexity": "1_loop",
+      "input_id": "input_5",
+      "loop_headers": 1,
+      "task_id": "task_130"
+    },
+    {
+      "case_key": "task_132/input_1",
+      "complexity": "0_loops",
+      "input_id": "input_1",
+      "loop_headers": 0,
+      "task_id": "task_132"
+    },
+    {
+      "case_key": "task_133/input_7",
+      "complexity": "0_loops",
+      "input_id": "input_7",
+      "loop_headers": 0,
+      "task_id": "task_133"
+    },
+    {
+      "case_key": "task_135/input_5",
+      "complexity": "0_loops",
+      "input_id": "input_5",
+      "loop_headers": 0,
+      "task_id": "task_135"
+    },
+    {
+      "case_key": "task_137/input_8",
+      "complexity": "0_loops",
+      "input_id": "input_8",
+      "loop_headers": 0,
+      "task_id": "task_137"
+    },
+    {
+      "case_key": "task_138/input_4",
+      "complexity": "0_loops",
+      "input_id": "input_4",
+      "loop_headers": 0,
+      "task_id": "task_138"
+    },
+    {
+      "case_key": "task_140/input_2",
+      "complexity": "0_loops",
+      "input_id": "input_2",
+      "loop_headers": 0,
+      "task_id": "task_140"
+    },
+    {
+      "case_key": "task_141/input_9",
+      "complexity": "1_loop",
+      "input_id": "input_9",
+      "loop_headers": 1,
+      "task_id": "task_141"
+    },
+    {
+      "case_key": "task_142/input_6",
+      "complexity": "0_loops",
+      "input_id": "input_6",
+      "loop_headers": 0,
+      "task_id": "task_142"
+    },
+    {
+      "case_key": "task_145/input_1",
+      "complexity": "0_loops",
+      "input_id": "input_1",
+      "loop_headers": 0,
+      "task_id": "task_145"
+    },
+    {
+      "case_key": "task_161/input_5",
+      "complexity": "0_loops",
+      "input_id": "input_5",
+      "loop_headers": 0,
+      "task_id": "task_161"
+    },
+    {
+      "case_key": "task_165/input_1",
+      "complexity": "0_loops",
+      "input_id": "input_1",
+      "loop_headers": 0,
+      "task_id": "task_165"
+    },
+    {
+      "case_key": "task_166/input_4",
+      "complexity": "0_loops",
+      "input_id": "input_4",
+      "loop_headers": 0,
+      "task_id": "task_166"
+    },
+    {
+      "case_key": "task_167/input_7",
+      "complexity": "1_loop",
+      "input_id": "input_7",
+      "loop_headers": 1,
+      "task_id": "task_167"
+    },
+    {
+      "case_key": "task_168/input_1",
+      "complexity": "0_loops",
+      "input_id": "input_1",
+      "loop_headers": 0,
+      "task_id": "task_168"
+    },
+    {
+      "case_key": "task_170/input_7",
+      "complexity": "0_loops",
+      "input_id": "input_7",
+      "loop_headers": 0,
+      "task_id": "task_170"
+    },
+    {
+      "case_key": "task_171/input_7",
+      "complexity": "0_loops",
+      "input_id": "input_7",
+      "loop_headers": 0,
+      "task_id": "task_171"
+    },
+    {
+      "case_key": "task_222/input_4",
+      "complexity": "0_loops",
+      "input_id": "input_4",
+      "loop_headers": 0,
+      "task_id": "task_222"
+    },
+    {
+      "case_key": "task_223/input_4",
+      "complexity": "0_loops",
+      "input_id": "input_4",
+      "loop_headers": 0,
+      "task_id": "task_223"
+    },
+    {
+      "case_key": "task_224/input_9",
+      "complexity": "0_loops",
+      "input_id": "input_9",
+      "loop_headers": 0,
+      "task_id": "task_224"
+    },
+    {
+      "case_key": "task_226/input_9",
+      "complexity": "0_loops",
+      "input_id": "input_9",
+      "loop_headers": 0,
+      "task_id": "task_226"
+    },
+    {
+      "case_key": "task_230/input_10",
+      "complexity": "0_loops",
+      "input_id": "input_10",
+      "loop_headers": 0,
+      "task_id": "task_230"
+    },
+    {
+      "case_key": "task_232/input_10",
+      "complexity": "0_loops",
+      "input_id": "input_10",
+      "loop_headers": 0,
+      "task_id": "task_232"
+    },
+    {
+      "case_key": "task_233/input_1",
+      "complexity": "0_loops",
+      "input_id": "input_1",
+      "loop_headers": 0,
+      "task_id": "task_233"
+    },
+    {
+      "case_key": "task_234/input_4",
+      "complexity": "0_loops",
+      "input_id": "input_4",
+      "loop_headers": 0,
+      "task_id": "task_234"
+    },
+    {
+      "case_key": "task_235/input_9",
+      "complexity": "1_loop",
+      "input_id": "input_9",
+      "loop_headers": 1,
+      "task_id": "task_235"
+    },
+    {
+      "case_key": "task_237/input_6",
+      "complexity": "0_loops",
+      "input_id": "input_6",
+      "loop_headers": 0,
+      "task_id": "task_237"
+    },
+    {
+      "case_key": "task_240/input_6",
+      "complexity": "0_loops",
+      "input_id": "input_6",
+      "loop_headers": 0,
+      "task_id": "task_240"
+    },
+    {
+      "case_key": "task_242/input_2",
+      "complexity": "0_loops",
+      "input_id": "input_2",
+      "loop_headers": 0,
+      "task_id": "task_242"
+    },
+    {
+      "case_key": "task_244/input_1",
+      "complexity": "0_loops",
+      "input_id": "input_1",
+      "loop_headers": 0,
+      "task_id": "task_244"
+    },
+    {
+      "case_key": "task_245/input_8",
+      "complexity": "2plus_loops",
+      "input_id": "input_8",
+      "loop_headers": 5,
+      "task_id": "task_245"
+    },
+    {
+      "case_key": "task_247/input_5",
+      "complexity": "2plus_loops",
+      "input_id": "input_5",
+      "loop_headers": 2,
+      "task_id": "task_247"
+    },
+    {
+      "case_key": "task_250/input_3",
+      "complexity": "0_loops",
+      "input_id": "input_3",
+      "loop_headers": 0,
+      "task_id": "task_250"
+    },
+    {
+      "case_key": "task_253/input_5",
+      "complexity": "0_loops",
+      "input_id": "input_5",
+      "loop_headers": 0,
+      "task_id": "task_253"
+    },
+    {
+      "case_key": "task_255/input_9",
+      "complexity": "0_loops",
+      "input_id": "input_9",
+      "loop_headers": 0,
+      "task_id": "task_255"
+    },
+    {
+      "case_key": "task_256/input_5",
+      "complexity": "0_loops",
+      "input_id": "input_5",
+      "loop_headers": 0,
+      "task_id": "task_256"
+    },
+    {
+      "case_key": "task_257/input_10",
+      "complexity": "0_loops",
+      "input_id": "input_10",
+      "loop_headers": 0,
+      "task_id": "task_257"
+    },
+    {
+      "case_key": "task_259/input_8",
+      "complexity": "0_loops",
+      "input_id": "input_8",
+      "loop_headers": 0,
+      "task_id": "task_259"
+    },
+    {
+      "case_key": "task_260/input_9",
+      "complexity": "1_loop",
+      "input_id": "input_9",
+      "loop_headers": 1,
+      "task_id": "task_260"
+    },
+    {
+      "case_key": "task_262/input_6",
+      "complexity": "0_loops",
+      "input_id": "input_6",
+      "loop_headers": 0,
+      "task_id": "task_262"
+    },
+    {
+      "case_key": "task_264/input_7",
+      "complexity": "0_loops",
+      "input_id": "input_7",
+      "loop_headers": 0,
+      "task_id": "task_264"
+    },
+    {
+      "case_key": "task_265/input_3",
+      "complexity": "0_loops",
+      "input_id": "input_3",
+      "loop_headers": 0,
+      "task_id": "task_265"
+    },
+    {
+      "case_key": "task_266/input_5",
+      "complexity": "0_loops",
+      "input_id": "input_5",
+      "loop_headers": 0,
+      "task_id": "task_266"
+    },
+    {
+      "case_key": "task_267/input_2",
+      "complexity": "0_loops",
+      "input_id": "input_2",
+      "loop_headers": 0,
+      "task_id": "task_267"
+    },
+    {
+      "case_key": "task_269/input_6",
+      "complexity": "0_loops",
+      "input_id": "input_6",
+      "loop_headers": 0,
+      "task_id": "task_269"
+    },
+    {
+      "case_key": "task_270/input_7",
+      "complexity": "0_loops",
+      "input_id": "input_7",
+      "loop_headers": 0,
+      "task_id": "task_270"
+    },
+    {
+      "case_key": "task_271/input_3",
+      "complexity": "0_loops",
+      "input_id": "input_3",
+      "loop_headers": 0,
+      "task_id": "task_271"
+    },
+    {
+      "case_key": "task_272/input_4",
+      "complexity": "0_loops",
+      "input_id": "input_4",
+      "loop_headers": 0,
+      "task_id": "task_272"
+    },
+    {
+      "case_key": "task_274/input_3",
+      "complexity": "0_loops",
+      "input_id": "input_3",
+      "loop_headers": 0,
+      "task_id": "task_274"
+    },
+    {
+      "case_key": "task_276/input_7",
+      "complexity": "0_loops",
+      "input_id": "input_7",
+      "loop_headers": 0,
+      "task_id": "task_276"
+    },
+    {
+      "case_key": "task_277/input_1",
+      "complexity": "0_loops",
+      "input_id": "input_1",
+      "loop_headers": 0,
+      "task_id": "task_277"
+    },
+    {
+      "case_key": "task_279/input_7",
+      "complexity": "0_loops",
+      "input_id": "input_7",
+      "loop_headers": 0,
+      "task_id": "task_279"
+    },
+    {
+      "case_key": "task_280/input_1",
+      "complexity": "0_loops",
+      "input_id": "input_1",
+      "loop_headers": 0,
+      "task_id": "task_280"
+    },
+    {
+      "case_key": "task_282/input_10",
+      "complexity": "0_loops",
+      "input_id": "input_10",
+      "loop_headers": 0,
+      "task_id": "task_282"
+    },
+    {
+      "case_key": "task_283/input_2",
+      "complexity": "0_loops",
+      "input_id": "input_2",
+      "loop_headers": 0,
+      "task_id": "task_283"
+    },
+    {
+      "case_key": "task_284/input_8",
+      "complexity": "0_loops",
+      "input_id": "input_8",
+      "loop_headers": 0,
+      "task_id": "task_284"
+    },
+    {
+      "case_key": "task_285/input_7",
+      "complexity": "0_loops",
+      "input_id": "input_7",
+      "loop_headers": 0,
+      "task_id": "task_285"
+    },
+    {
+      "case_key": "task_286/input_2",
+      "complexity": "1_loop",
+      "input_id": "input_2",
+      "loop_headers": 1,
+      "task_id": "task_286"
+    },
+    {
+      "case_key": "task_290/input_2",
+      "complexity": "0_loops",
+      "input_id": "input_2",
+      "loop_headers": 0,
+      "task_id": "task_290"
+    },
+    {
+      "case_key": "task_292/input_4",
+      "complexity": "0_loops",
+      "input_id": "input_4",
+      "loop_headers": 0,
+      "task_id": "task_292"
+    },
+    {
+      "case_key": "task_293/input_9",
+      "complexity": "0_loops",
+      "input_id": "input_9",
+      "loop_headers": 0,
+      "task_id": "task_293"
+    },
+    {
+      "case_key": "task_294/input_6",
+      "complexity": "0_loops",
+      "input_id": "input_6",
+      "loop_headers": 0,
+      "task_id": "task_294"
+    },
+    {
+      "case_key": "task_296/input_3",
+      "complexity": "2plus_loops",
+      "input_id": "input_3",
+      "loop_headers": 2,
+      "task_id": "task_296"
+    },
+    {
+      "case_key": "task_299/input_6",
+      "complexity": "1_loop",
+      "input_id": "input_6",
+      "loop_headers": 1,
+      "task_id": "task_299"
+    },
+    {
+      "case_key": "task_301/input_4",
+      "complexity": "0_loops",
+      "input_id": "input_4",
+      "loop_headers": 0,
+      "task_id": "task_301"
+    },
+    {
+      "case_key": "task_305/input_10",
+      "complexity": "1_loop",
+      "input_id": "input_10",
+      "loop_headers": 1,
+      "task_id": "task_305"
+    },
+    {
+      "case_key": "task_309/input_6",
+      "complexity": "0_loops",
+      "input_id": "input_6",
+      "loop_headers": 0,
+      "task_id": "task_309"
+    },
+    {
+      "case_key": "task_310/input_5",
+      "complexity": "0_loops",
+      "input_id": "input_5",
+      "loop_headers": 0,
+      "task_id": "task_310"
+    },
+    {
+      "case_key": "task_311/input_8",
+      "complexity": "1_loop",
+      "input_id": "input_8",
+      "loop_headers": 1,
+      "task_id": "task_311"
+    },
+    {
+      "case_key": "task_312/input_5",
+      "complexity": "0_loops",
+      "input_id": "input_5",
+      "loop_headers": 0,
+      "task_id": "task_312"
+    },
+    {
+      "case_key": "task_388/input_4",
+      "complexity": "1_loop",
+      "input_id": "input_4",
+      "loop_headers": 1,
+      "task_id": "task_388"
+    },
+    {
+      "case_key": "task_390/input_9",
+      "complexity": "0_loops",
+      "input_id": "input_9",
+      "loop_headers": 0,
+      "task_id": "task_390"
+    },
+    {
+      "case_key": "task_392/input_3",
+      "complexity": "1_loop",
+      "input_id": "input_3",
+      "loop_headers": 1,
+      "task_id": "task_392"
+    },
+    {
+      "case_key": "task_394/input_6",
+      "complexity": "0_loops",
+      "input_id": "input_6",
+      "loop_headers": 0,
+      "task_id": "task_394"
+    },
+    {
+      "case_key": "task_397/input_6",
+      "complexity": "0_loops",
+      "input_id": "input_6",
+      "loop_headers": 0,
+      "task_id": "task_397"
+    },
+    {
+      "case_key": "task_398/input_2",
+      "complexity": "0_loops",
+      "input_id": "input_2",
+      "loop_headers": 0,
+      "task_id": "task_398"
+    },
+    {
+      "case_key": "task_404/input_4",
+      "complexity": "0_loops",
+      "input_id": "input_4",
+      "loop_headers": 0,
+      "task_id": "task_404"
+    },
+    {
+      "case_key": "task_405/input_2",
+      "complexity": "0_loops",
+      "input_id": "input_2",
+      "loop_headers": 0,
+      "task_id": "task_405"
+    },
+    {
+      "case_key": "task_409/input_3",
+      "complexity": "0_loops",
+      "input_id": "input_3",
+      "loop_headers": 0,
+      "task_id": "task_409"
+    },
+    {
+      "case_key": "task_410/input_7",
+      "complexity": "0_loops",
+      "input_id": "input_7",
+      "loop_headers": 0,
+      "task_id": "task_410"
+    },
+    {
+      "case_key": "task_412/input_4",
+      "complexity": "0_loops",
+      "input_id": "input_4",
+      "loop_headers": 0,
+      "task_id": "task_412"
+    },
+    {
+      "case_key": "task_413/input_9",
+      "complexity": "0_loops",
+      "input_id": "input_9",
+      "loop_headers": 0,
+      "task_id": "task_413"
+    },
+    {
+      "case_key": "task_415/input_6",
+      "complexity": "0_loops",
+      "input_id": "input_6",
+      "loop_headers": 0,
+      "task_id": "task_415"
+    },
+    {
+      "case_key": "task_418/input_3",
+      "complexity": "0_loops",
+      "input_id": "input_3",
+      "loop_headers": 0,
+      "task_id": "task_418"
+    },
+    {
+      "case_key": "task_419/input_7",
+      "complexity": "0_loops",
+      "input_id": "input_7",
+      "loop_headers": 0,
+      "task_id": "task_419"
+    },
+    {
+      "case_key": "task_420/input_10",
+      "complexity": "0_loops",
+      "input_id": "input_10",
+      "loop_headers": 0,
+      "task_id": "task_420"
+    },
+    {
+      "case_key": "task_421/input_8",
+      "complexity": "0_loops",
+      "input_id": "input_8",
+      "loop_headers": 0,
+      "task_id": "task_421"
+    },
+    {
+      "case_key": "task_424/input_4",
+      "complexity": "0_loops",
+      "input_id": "input_4",
+      "loop_headers": 0,
+      "task_id": "task_424"
+    },
+    {
+      "case_key": "task_425/input_5",
+      "complexity": "0_loops",
+      "input_id": "input_5",
+      "loop_headers": 0,
+      "task_id": "task_425"
+    },
+    {
+      "case_key": "task_426/input_9",
+      "complexity": "0_loops",
+      "input_id": "input_9",
+      "loop_headers": 0,
+      "task_id": "task_426"
+    },
+    {
+      "case_key": "task_427/input_9",
+      "complexity": "0_loops",
+      "input_id": "input_9",
+      "loop_headers": 0,
+      "task_id": "task_427"
+    },
+    {
+      "case_key": "task_428/input_6",
+      "complexity": "2plus_loops",
+      "input_id": "input_6",
+      "loop_headers": 3,
+      "task_id": "task_428"
+    },
+    {
+      "case_key": "task_429/input_2",
+      "complexity": "0_loops",
+      "input_id": "input_2",
+      "loop_headers": 0,
+      "task_id": "task_429"
+    },
+    {
+      "case_key": "task_432/input_8",
+      "complexity": "0_loops",
+      "input_id": "input_8",
+      "loop_headers": 0,
+      "task_id": "task_432"
+    },
+    {
+      "case_key": "task_433/input_10",
+      "complexity": "0_loops",
+      "input_id": "input_10",
+      "loop_headers": 0,
+      "task_id": "task_433"
+    },
+    {
+      "case_key": "task_435/input_3",
+      "complexity": "0_loops",
+      "input_id": "input_3",
+      "loop_headers": 0,
+      "task_id": "task_435"
+    },
+    {
+      "case_key": "task_436/input_7",
+      "complexity": "0_loops",
+      "input_id": "input_7",
+      "loop_headers": 0,
+      "task_id": "task_436"
+    },
+    {
+      "case_key": "task_439/input_4",
+      "complexity": "0_loops",
+      "input_id": "input_4",
+      "loop_headers": 0,
+      "task_id": "task_439"
+    },
+    {
+      "case_key": "task_440/input_8",
+      "complexity": "1_loop",
+      "input_id": "input_8",
+      "loop_headers": 1,
+      "task_id": "task_440"
+    },
+    {
+      "case_key": "task_441/input_6",
+      "complexity": "0_loops",
+      "input_id": "input_6",
+      "loop_headers": 0,
+      "task_id": "task_441"
+    },
+    {
+      "case_key": "task_445/input_3",
+      "complexity": "0_loops",
+      "input_id": "input_3",
+      "loop_headers": 0,
+      "task_id": "task_445"
+    },
+    {
+      "case_key": "task_446/input_2",
+      "complexity": "0_loops",
+      "input_id": "input_2",
+      "loop_headers": 0,
+      "task_id": "task_446"
+    },
+    {
+      "case_key": "task_447/input_4",
+      "complexity": "0_loops",
+      "input_id": "input_4",
+      "loop_headers": 0,
+      "task_id": "task_447"
+    },
+    {
+      "case_key": "task_448/input_5",
+      "complexity": "1_loop",
+      "input_id": "input_5",
+      "loop_headers": 1,
+      "task_id": "task_448"
+    },
+    {
+      "case_key": "task_451/input_1",
+      "complexity": "0_loops",
+      "input_id": "input_1",
+      "loop_headers": 0,
+      "task_id": "task_451"
+    },
+    {
+      "case_key": "task_453/input_5",
+      "complexity": "0_loops",
+      "input_id": "input_5",
+      "loop_headers": 0,
+      "task_id": "task_453"
+    },
+    {
+      "case_key": "task_454/input_7",
+      "complexity": "0_loops",
+      "input_id": "input_7",
+      "loop_headers": 0,
+      "task_id": "task_454"
+    },
+    {
+      "case_key": "task_455/input_4",
+      "complexity": "0_loops",
+      "input_id": "input_4",
+      "loop_headers": 0,
+      "task_id": "task_455"
+    },
+    {
+      "case_key": "task_457/input_5",
+      "complexity": "0_loops",
+      "input_id": "input_5",
+      "loop_headers": 0,
+      "task_id": "task_457"
+    },
+    {
+      "case_key": "task_458/input_8",
+      "complexity": "0_loops",
+      "input_id": "input_8",
+      "loop_headers": 0,
+      "task_id": "task_458"
+    },
+    {
+      "case_key": "task_459/input_9",
+      "complexity": "0_loops",
+      "input_id": "input_9",
+      "loop_headers": 0,
+      "task_id": "task_459"
+    },
+    {
+      "case_key": "task_460/input_5",
+      "complexity": "0_loops",
+      "input_id": "input_5",
+      "loop_headers": 0,
+      "task_id": "task_460"
+    },
+    {
+      "case_key": "task_463/input_4",
+      "complexity": "1_loop",
+      "input_id": "input_4",
+      "loop_headers": 1,
+      "task_id": "task_463"
+    },
+    {
+      "case_key": "task_465/input_10",
+      "complexity": "0_loops",
+      "input_id": "input_10",
+      "loop_headers": 0,
+      "task_id": "task_465"
+    },
+    {
+      "case_key": "task_468/input_8",
+      "complexity": "1_loop",
+      "input_id": "input_8",
+      "loop_headers": 1,
+      "task_id": "task_468"
+    },
+    {
+      "case_key": "task_471/input_9",
+      "complexity": "0_loops",
+      "input_id": "input_9",
+      "loop_headers": 0,
+      "task_id": "task_471"
+    },
+    {
+      "case_key": "task_472/input_10",
+      "complexity": "0_loops",
+      "input_id": "input_10",
+      "loop_headers": 0,
+      "task_id": "task_472"
+    },
+    {
+      "case_key": "task_473/input_2",
+      "complexity": "0_loops",
+      "input_id": "input_2",
+      "loop_headers": 0,
+      "task_id": "task_473"
+    },
+    {
+      "case_key": "task_474/input_4",
+      "complexity": "0_loops",
+      "input_id": "input_4",
+      "loop_headers": 0,
+      "task_id": "task_474"
+    },
+    {
+      "case_key": "task_476/input_10",
+      "complexity": "0_loops",
+      "input_id": "input_10",
+      "loop_headers": 0,
+      "task_id": "task_476"
+    },
+    {
+      "case_key": "task_477/input_3",
+      "complexity": "0_loops",
+      "input_id": "input_3",
+      "loop_headers": 0,
+      "task_id": "task_477"
+    },
+    {
+      "case_key": "task_478/input_10",
+      "complexity": "0_loops",
+      "input_id": "input_10",
+      "loop_headers": 0,
+      "task_id": "task_478"
+    },
+    {
+      "case_key": "task_479/input_9",
+      "complexity": "0_loops",
+      "input_id": "input_9",
+      "loop_headers": 0,
+      "task_id": "task_479"
+    },
+    {
+      "case_key": "task_554/input_10",
+      "complexity": "0_loops",
+      "input_id": "input_10",
+      "loop_headers": 0,
+      "task_id": "task_554"
+    },
+    {
+      "case_key": "task_556/input_10",
+      "complexity": "2plus_loops",
+      "input_id": "input_10",
+      "loop_headers": 2,
+      "task_id": "task_556"
+    },
+    {
+      "case_key": "task_557/input_5",
+      "complexity": "0_loops",
+      "input_id": "input_5",
+      "loop_headers": 0,
+      "task_id": "task_557"
+    },
+    {
+      "case_key": "task_558/input_2",
+      "complexity": "0_loops",
+      "input_id": "input_2",
+      "loop_headers": 0,
+      "task_id": "task_558"
+    },
+    {
+      "case_key": "task_559/input_8",
+      "complexity": "1_loop",
+      "input_id": "input_8",
+      "loop_headers": 1,
+      "task_id": "task_559"
+    },
+    {
+      "case_key": "task_560/input_5",
+      "complexity": "0_loops",
+      "input_id": "input_5",
+      "loop_headers": 0,
+      "task_id": "task_560"
+    },
+    {
+      "case_key": "task_562/input_4",
+      "complexity": "0_loops",
+      "input_id": "input_4",
+      "loop_headers": 0,
+      "task_id": "task_562"
+    },
+    {
+      "case_key": "task_564/input_3",
+      "complexity": "2plus_loops",
+      "input_id": "input_3",
+      "loop_headers": 2,
+      "task_id": "task_564"
+    },
+    {
+      "case_key": "task_565/input_7",
+      "complexity": "0_loops",
+      "input_id": "input_7",
+      "loop_headers": 0,
+      "task_id": "task_565"
+    },
+    {
+      "case_key": "task_566/input_5",
+      "complexity": "0_loops",
+      "input_id": "input_5",
+      "loop_headers": 0,
+      "task_id": "task_566"
+    },
+    {
+      "case_key": "task_567/input_2",
+      "complexity": "0_loops",
+      "input_id": "input_2",
+      "loop_headers": 0,
+      "task_id": "task_567"
+    },
+    {
+      "case_key": "task_568/input_4",
+      "complexity": "0_loops",
+      "input_id": "input_4",
+      "loop_headers": 0,
+      "task_id": "task_568"
+    },
+    {
+      "case_key": "task_569/input_9",
+      "complexity": "0_loops",
+      "input_id": "input_9",
+      "loop_headers": 0,
+      "task_id": "task_569"
+    },
+    {
+      "case_key": "task_573/input_6",
+      "complexity": "0_loops",
+      "input_id": "input_6",
+      "loop_headers": 0,
+      "task_id": "task_573"
+    },
+    {
+      "case_key": "task_577/input_9",
+      "complexity": "0_loops",
+      "input_id": "input_9",
+      "loop_headers": 0,
+      "task_id": "task_577"
+    },
+    {
+      "case_key": "task_578/input_8",
+      "complexity": "0_loops",
+      "input_id": "input_8",
+      "loop_headers": 0,
+      "task_id": "task_578"
+    },
+    {
+      "case_key": "task_579/input_1",
+      "complexity": "0_loops",
+      "input_id": "input_1",
+      "loop_headers": 0,
+      "task_id": "task_579"
+    },
+    {
+      "case_key": "task_585/input_10",
+      "complexity": "0_loops",
+      "input_id": "input_10",
+      "loop_headers": 0,
+      "task_id": "task_585"
+    },
+    {
+      "case_key": "task_586/input_6",
+      "complexity": "0_loops",
+      "input_id": "input_6",
+      "loop_headers": 0,
+      "task_id": "task_586"
+    },
+    {
+      "case_key": "task_587/input_1",
+      "complexity": "0_loops",
+      "input_id": "input_1",
+      "loop_headers": 0,
+      "task_id": "task_587"
+    },
+    {
+      "case_key": "task_588/input_6",
+      "complexity": "0_loops",
+      "input_id": "input_6",
+      "loop_headers": 0,
+      "task_id": "task_588"
+    },
+    {
+      "case_key": "task_589/input_6",
+      "complexity": "0_loops",
+      "input_id": "input_6",
+      "loop_headers": 0,
+      "task_id": "task_589"
+    },
+    {
+      "case_key": "task_591/input_1",
+      "complexity": "0_loops",
+      "input_id": "input_1",
+      "loop_headers": 0,
+      "task_id": "task_591"
+    },
+    {
+      "case_key": "task_592/input_3",
+      "complexity": "0_loops",
+      "input_id": "input_3",
+      "loop_headers": 0,
+      "task_id": "task_592"
+    },
+    {
+      "case_key": "task_593/input_5",
+      "complexity": "0_loops",
+      "input_id": "input_5",
+      "loop_headers": 0,
+      "task_id": "task_593"
+    },
+    {
+      "case_key": "task_594/input_7",
+      "complexity": "0_loops",
+      "input_id": "input_7",
+      "loop_headers": 0,
+      "task_id": "task_594"
+    },
+    {
+      "case_key": "task_597/input_3",
+      "complexity": "0_loops",
+      "input_id": "input_3",
+      "loop_headers": 0,
+      "task_id": "task_597"
+    },
+    {
+      "case_key": "task_598/input_1",
+      "complexity": "0_loops",
+      "input_id": "input_1",
+      "loop_headers": 0,
+      "task_id": "task_598"
+    },
+    {
+      "case_key": "task_599/input_5",
+      "complexity": "0_loops",
+      "input_id": "input_5",
+      "loop_headers": 0,
+      "task_id": "task_599"
+    },
+    {
+      "case_key": "task_600/input_4",
+      "complexity": "0_loops",
+      "input_id": "input_4",
+      "loop_headers": 0,
+      "task_id": "task_600"
+    },
+    {
+      "case_key": "task_602/input_1",
+      "complexity": "1_loop",
+      "input_id": "input_1",
+      "loop_headers": 1,
+      "task_id": "task_602"
+    },
+    {
+      "case_key": "task_603/input_2",
+      "complexity": "2plus_loops",
+      "input_id": "input_2",
+      "loop_headers": 3,
+      "task_id": "task_603"
+    },
+    {
+      "case_key": "task_604/input_6",
+      "complexity": "0_loops",
+      "input_id": "input_6",
+      "loop_headers": 0,
+      "task_id": "task_604"
+    },
+    {
+      "case_key": "task_605/input_10",
+      "complexity": "1_loop",
+      "input_id": "input_10",
+      "loop_headers": 1,
+      "task_id": "task_605"
+    },
+    {
+      "case_key": "task_607/input_7",
+      "complexity": "0_loops",
+      "input_id": "input_7",
+      "loop_headers": 0,
+      "task_id": "task_607"
+    },
+    {
+      "case_key": "task_608/input_2",
+      "complexity": "2plus_loops",
+      "input_id": "input_2",
+      "loop_headers": 2,
+      "task_id": "task_608"
+    },
+    {
+      "case_key": "task_610/input_2",
+      "complexity": "0_loops",
+      "input_id": "input_2",
+      "loop_headers": 0,
+      "task_id": "task_610"
+    },
+    {
+      "case_key": "task_611/input_7",
+      "complexity": "0_loops",
+      "input_id": "input_7",
+      "loop_headers": 0,
+      "task_id": "task_611"
+    },
+    {
+      "case_key": "task_612/input_3",
+      "complexity": "0_loops",
+      "input_id": "input_3",
+      "loop_headers": 0,
+      "task_id": "task_612"
+    },
+    {
+      "case_key": "task_614/input_3",
+      "complexity": "0_loops",
+      "input_id": "input_3",
+      "loop_headers": 0,
+      "task_id": "task_614"
+    },
+    {
+      "case_key": "task_616/input_4",
+      "complexity": "0_loops",
+      "input_id": "input_4",
+      "loop_headers": 0,
+      "task_id": "task_616"
+    },
+    {
+      "case_key": "task_618/input_9",
+      "complexity": "0_loops",
+      "input_id": "input_9",
+      "loop_headers": 0,
+      "task_id": "task_618"
+    },
+    {
+      "case_key": "task_619/input_8",
+      "complexity": "0_loops",
+      "input_id": "input_8",
+      "loop_headers": 0,
+      "task_id": "task_619"
+    },
+    {
+      "case_key": "task_623/input_5",
+      "complexity": "0_loops",
+      "input_id": "input_5",
+      "loop_headers": 0,
+      "task_id": "task_623"
+    },
+    {
+      "case_key": "task_626/input_9",
+      "complexity": "0_loops",
+      "input_id": "input_9",
+      "loop_headers": 0,
+      "task_id": "task_626"
+    },
+    {
+      "case_key": "task_628/input_5",
+      "complexity": "0_loops",
+      "input_id": "input_5",
+      "loop_headers": 0,
+      "task_id": "task_628"
+    },
+    {
+      "case_key": "task_629/input_4",
+      "complexity": "0_loops",
+      "input_id": "input_4",
+      "loop_headers": 0,
+      "task_id": "task_629"
+    },
+    {
+      "case_key": "task_630/input_3",
+      "complexity": "0_loops",
+      "input_id": "input_3",
+      "loop_headers": 0,
+      "task_id": "task_630"
+    },
+    {
+      "case_key": "task_631/input_10",
+      "complexity": "0_loops",
+      "input_id": "input_10",
+      "loop_headers": 0,
+      "task_id": "task_631"
+    },
+    {
+      "case_key": "task_633/input_2",
+      "complexity": "2plus_loops",
+      "input_id": "input_2",
+      "loop_headers": 2,
+      "task_id": "task_633"
+    },
+    {
+      "case_key": "task_635/input_3",
+      "complexity": "0_loops",
+      "input_id": "input_3",
+      "loop_headers": 0,
+      "task_id": "task_635"
+    },
+    {
+      "case_key": "task_637/input_3",
+      "complexity": "0_loops",
+      "input_id": "input_3",
+      "loop_headers": 0,
+      "task_id": "task_637"
+    },
+    {
+      "case_key": "task_638/input_5",
+      "complexity": "0_loops",
+      "input_id": "input_5",
+      "loop_headers": 0,
+      "task_id": "task_638"
+    },
+    {
+      "case_key": "task_639/input_1",
+      "complexity": "0_loops",
+      "input_id": "input_1",
+      "loop_headers": 0,
+      "task_id": "task_639"
+    },
+    {
+      "case_key": "task_643/input_10",
+      "complexity": "0_loops",
+      "input_id": "input_10",
+      "loop_headers": 0,
+      "task_id": "task_643"
+    },
+    {
+      "case_key": "task_644/input_7",
+      "complexity": "0_loops",
+      "input_id": "input_7",
+      "loop_headers": 0,
+      "task_id": "task_644"
+    },
+    {
+      "case_key": "task_721/input_9",
+      "complexity": "2plus_loops",
+      "input_id": "input_9",
+      "loop_headers": 4,
+      "task_id": "task_721"
+    },
+    {
+      "case_key": "task_722/input_3",
+      "complexity": "0_loops",
+      "input_id": "input_3",
+      "loop_headers": 0,
+      "task_id": "task_722"
+    },
+    {
+      "case_key": "task_723/input_7",
+      "complexity": "0_loops",
+      "input_id": "input_7",
+      "loop_headers": 0,
+      "task_id": "task_723"
+    },
+    {
+      "case_key": "task_724/input_4",
+      "complexity": "0_loops",
+      "input_id": "input_4",
+      "loop_headers": 0,
+      "task_id": "task_724"
+    },
+    {
+      "case_key": "task_726/input_9",
+      "complexity": "0_loops",
+      "input_id": "input_9",
+      "loop_headers": 0,
+      "task_id": "task_726"
+    },
+    {
+      "case_key": "task_728/input_10",
+      "complexity": "0_loops",
+      "input_id": "input_10",
+      "loop_headers": 0,
+      "task_id": "task_728"
+    },
+    {
+      "case_key": "task_730/input_10",
+      "complexity": "0_loops",
+      "input_id": "input_10",
+      "loop_headers": 0,
+      "task_id": "task_730"
+    },
+    {
+      "case_key": "task_731/input_5",
+      "complexity": "0_loops",
+      "input_id": "input_5",
+      "loop_headers": 0,
+      "task_id": "task_731"
+    },
+    {
+      "case_key": "task_733/input_3",
+      "complexity": "1_loop",
+      "input_id": "input_3",
+      "loop_headers": 1,
+      "task_id": "task_733"
+    },
+    {
+      "case_key": "task_734/input_2",
+      "complexity": "1_loop",
+      "input_id": "input_2",
+      "loop_headers": 1,
+      "task_id": "task_734"
+    },
+    {
+      "case_key": "task_735/input_3",
+      "complexity": "0_loops",
+      "input_id": "input_3",
+      "loop_headers": 0,
+      "task_id": "task_735"
+    },
+    {
+      "case_key": "task_736/input_4",
+      "complexity": "0_loops",
+      "input_id": "input_4",
+      "loop_headers": 0,
+      "task_id": "task_736"
+    },
+    {
+      "case_key": "task_737/input_4",
+      "complexity": "0_loops",
+      "input_id": "input_4",
+      "loop_headers": 0,
+      "task_id": "task_737"
+    },
+    {
+      "case_key": "task_739/input_2",
+      "complexity": "0_loops",
+      "input_id": "input_2",
+      "loop_headers": 0,
+      "task_id": "task_739"
+    },
+    {
+      "case_key": "task_740/input_5",
+      "complexity": "0_loops",
+      "input_id": "input_5",
+      "loop_headers": 0,
+      "task_id": "task_740"
+    },
+    {
+      "case_key": "task_742/input_3",
+      "complexity": "0_loops",
+      "input_id": "input_3",
+      "loop_headers": 0,
+      "task_id": "task_742"
+    },
+    {
+      "case_key": "task_743/input_9",
+      "complexity": "0_loops",
+      "input_id": "input_9",
+      "loop_headers": 0,
+      "task_id": "task_743"
+    },
+    {
+      "case_key": "task_744/input_10",
+      "complexity": "0_loops",
+      "input_id": "input_10",
+      "loop_headers": 0,
+      "task_id": "task_744"
+    },
+    {
+      "case_key": "task_745/input_10",
+      "complexity": "0_loops",
+      "input_id": "input_10",
+      "loop_headers": 0,
+      "task_id": "task_745"
+    },
+    {
+      "case_key": "task_749/input_9",
+      "complexity": "0_loops",
+      "input_id": "input_9",
+      "loop_headers": 0,
+      "task_id": "task_749"
+    },
+    {
+      "case_key": "task_750/input_1",
+      "complexity": "0_loops",
+      "input_id": "input_1",
+      "loop_headers": 0,
+      "task_id": "task_750"
+    },
+    {
+      "case_key": "task_751/input_5",
+      "complexity": "0_loops",
+      "input_id": "input_5",
+      "loop_headers": 0,
+      "task_id": "task_751"
+    },
+    {
+      "case_key": "task_753/input_9",
+      "complexity": "0_loops",
+      "input_id": "input_9",
+      "loop_headers": 0,
+      "task_id": "task_753"
+    },
+    {
+      "case_key": "task_754/input_2",
+      "complexity": "0_loops",
+      "input_id": "input_2",
+      "loop_headers": 0,
+      "task_id": "task_754"
+    },
+    {
+      "case_key": "task_757/input_5",
+      "complexity": "0_loops",
+      "input_id": "input_5",
+      "loop_headers": 0,
+      "task_id": "task_757"
+    },
+    {
+      "case_key": "task_758/input_3",
+      "complexity": "0_loops",
+      "input_id": "input_3",
+      "loop_headers": 0,
+      "task_id": "task_758"
+    },
+    {
+      "case_key": "task_759/input_1",
+      "complexity": "0_loops",
+      "input_id": "input_1",
+      "loop_headers": 0,
+      "task_id": "task_759"
+    },
+    {
+      "case_key": "task_760/input_5",
+      "complexity": "0_loops",
+      "input_id": "input_5",
+      "loop_headers": 0,
+      "task_id": "task_760"
+    },
+    {
+      "case_key": "task_762/input_5",
+      "complexity": "0_loops",
+      "input_id": "input_5",
+      "loop_headers": 0,
+      "task_id": "task_762"
+    },
+    {
+      "case_key": "task_763/input_5",
+      "complexity": "1_loop",
+      "input_id": "input_5",
+      "loop_headers": 1,
+      "task_id": "task_763"
+    },
+    {
+      "case_key": "task_765/input_4",
+      "complexity": "0_loops",
+      "input_id": "input_4",
+      "loop_headers": 0,
+      "task_id": "task_765"
+    },
+    {
+      "case_key": "task_766/input_1",
+      "complexity": "0_loops",
+      "input_id": "input_1",
+      "loop_headers": 0,
+      "task_id": "task_766"
+    },
+    {
+      "case_key": "task_767/input_3",
+      "complexity": "1_loop",
+      "input_id": "input_3",
+      "loop_headers": 1,
+      "task_id": "task_767"
+    },
+    {
+      "case_key": "task_769/input_7",
+      "complexity": "0_loops",
+      "input_id": "input_7",
+      "loop_headers": 0,
+      "task_id": "task_769"
+    },
+    {
+      "case_key": "task_770/input_3",
+      "complexity": "1_loop",
+      "input_id": "input_3",
+      "loop_headers": 1,
+      "task_id": "task_770"
+    },
+    {
+      "case_key": "task_771/input_7",
+      "complexity": "1_loop",
+      "input_id": "input_7",
+      "loop_headers": 1,
+      "task_id": "task_771"
+    },
+    {
+      "case_key": "task_772/input_10",
+      "complexity": "0_loops",
+      "input_id": "input_10",
+      "loop_headers": 0,
+      "task_id": "task_772"
+    },
+    {
+      "case_key": "task_777/input_4",
+      "complexity": "0_loops",
+      "input_id": "input_4",
+      "loop_headers": 0,
+      "task_id": "task_777"
+    },
+    {
+      "case_key": "task_778/input_4",
+      "complexity": "0_loops",
+      "input_id": "input_4",
+      "loop_headers": 0,
+      "task_id": "task_778"
+    },
+    {
+      "case_key": "task_780/input_9",
+      "complexity": "0_loops",
+      "input_id": "input_9",
+      "loop_headers": 0,
+      "task_id": "task_780"
+    },
+    {
+      "case_key": "task_781/input_1",
+      "complexity": "1_loop",
+      "input_id": "input_1",
+      "loop_headers": 1,
+      "task_id": "task_781"
+    },
+    {
+      "case_key": "task_782/input_6",
+      "complexity": "1_loop",
+      "input_id": "input_6",
+      "loop_headers": 1,
+      "task_id": "task_782"
+    },
+    {
+      "case_key": "task_784/input_2",
+      "complexity": "0_loops",
+      "input_id": "input_2",
+      "loop_headers": 0,
+      "task_id": "task_784"
+    },
+    {
+      "case_key": "task_785/input_4",
+      "complexity": "0_loops",
+      "input_id": "input_4",
+      "loop_headers": 0,
+      "task_id": "task_785"
+    },
+    {
+      "case_key": "task_787/input_6",
+      "complexity": "0_loops",
+      "input_id": "input_6",
+      "loop_headers": 0,
+      "task_id": "task_787"
+    },
+    {
+      "case_key": "task_788/input_4",
+      "complexity": "0_loops",
+      "input_id": "input_4",
+      "loop_headers": 0,
+      "task_id": "task_788"
+    },
+    {
+      "case_key": "task_790/input_6",
+      "complexity": "0_loops",
+      "input_id": "input_6",
+      "loop_headers": 0,
+      "task_id": "task_790"
+    },
+    {
+      "case_key": "task_791/input_7",
+      "complexity": "0_loops",
+      "input_id": "input_7",
+      "loop_headers": 0,
+      "task_id": "task_791"
+    },
+    {
+      "case_key": "task_793/input_3",
+      "complexity": "0_loops",
+      "input_id": "input_3",
+      "loop_headers": 0,
+      "task_id": "task_793"
+    },
+    {
+      "case_key": "task_794/input_6",
+      "complexity": "0_loops",
+      "input_id": "input_6",
+      "loop_headers": 0,
+      "task_id": "task_794"
+    },
+    {
+      "case_key": "task_796/input_3",
+      "complexity": "0_loops",
+      "input_id": "input_3",
+      "loop_headers": 0,
+      "task_id": "task_796"
+    },
+    {
+      "case_key": "task_797/input_8",
+      "complexity": "0_loops",
+      "input_id": "input_8",
+      "loop_headers": 0,
+      "task_id": "task_797"
+    },
+    {
+      "case_key": "task_798/input_9",
+      "complexity": "0_loops",
+      "input_id": "input_9",
+      "loop_headers": 0,
+      "task_id": "task_798"
+    },
+    {
+      "case_key": "task_800/input_5",
+      "complexity": "0_loops",
+      "input_id": "input_5",
+      "loop_headers": 0,
+      "task_id": "task_800"
+    },
+    {
+      "case_key": "task_801/input_5",
+      "complexity": "0_loops",
+      "input_id": "input_5",
+      "loop_headers": 0,
+      "task_id": "task_801"
+    },
+    {
+      "case_key": "task_803/input_9",
+      "complexity": "0_loops",
+      "input_id": "input_9",
+      "loop_headers": 0,
+      "task_id": "task_803"
+    },
+    {
+      "case_key": "task_804/input_6",
+      "complexity": "0_loops",
+      "input_id": "input_6",
+      "loop_headers": 0,
+      "task_id": "task_804"
+    },
+    {
+      "case_key": "task_806/input_10",
+      "complexity": "1_loop",
+      "input_id": "input_10",
+      "loop_headers": 1,
+      "task_id": "task_806"
+    },
+    {
+      "case_key": "task_807/input_6",
+      "complexity": "0_loops",
+      "input_id": "input_6",
+      "loop_headers": 0,
+      "task_id": "task_807"
+    },
+    {
+      "case_key": "task_808/input_7",
+      "complexity": "0_loops",
+      "input_id": "input_7",
+      "loop_headers": 0,
+      "task_id": "task_808"
+    },
+    {
+      "case_key": "task_809/input_6",
+      "complexity": "0_loops",
+      "input_id": "input_6",
+      "loop_headers": 0,
+      "task_id": "task_809"
+    }
+  ]
+}

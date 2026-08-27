@@ -2,10 +2,38 @@
 __pycache__/
 *.py[cod]
 .pytest_cache/
+.coverage
+.mypy_cache/
+.ruff_cache/
 
-# Granularity-3 full-dataset artifacts (regenerable, thousands of small files)
-/granularity3_local/mbppplus_3inputs_audit/cases/
-/granularity3_local/mbppplus_3inputs_audit/case_records.jsonl
+# Local credentials, editor state, and scratch outputs
+.env
+.env.*
+!.env.example
+.idea/
+.vscode/
+/tmp/
 
-# Regenerable compact batches for full-dataset runs
-granularity3_local/
+# Granularity-3 legacy/generated trees superseded by the block-state release
+/granularity3_local/mbppplus_3inputs_audit/
+/granularity3_local/compact_full/
+
+# Full Oracle details are regenerable and contain thousands of machine-local files.
+# Aggregate records and summaries remain versioned.
+/granularity3_local/block_state_mbppplus_full/cases/
+/granularity3_local/block_state_mbppplus_full/.tmp/
+
+# Development pilots, probes, and superseded result trees. The selected 40-case
+# canaries and the 3557-case formal run are intentionally kept under version control.
+/granularity3_local/block_state_api_10tasks/
+/granularity3_local/block_state_api_flat_runs_10tasks/
+/granularity3_local/block_state_api_canary_probe_*/
+/granularity3_local/block_state_evaluation_selfcheck/
+/granularity3_local/block_state_local_pilot/
+/granularity3_local/joint_benchmark_10x10/
+/granularity3_local/block_state_model_batches_per_case/
+/granularity3_local/block_state_api_per_case_10tasks/
+
+# Reproduced outputs should be written separately from immutable formal artifacts.
+/granularity3_local/block_state_api_full_gpt54_low_3557/evaluation_reproduced/
+/granularity3_local/block_state_api_full_gpt54_low_3557/final_gate_reproduced/

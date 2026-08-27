@@ -1,0 +1,54 @@
+{
+  "all_criteria_pass": true,
+  "case_count": 300,
+  "criteria": {
+    "api_error_rate": true,
+    "completion_cap_hit_rate": true,
+    "expanded_block_accuracy": true,
+    "format_valid_rate": true,
+    "p90_latency": true
+  },
+  "metrics": {
+    "api_error_count": 0,
+    "api_error_rate": 0.0,
+    "canonical_joint_exact_count": 246,
+    "canonical_joint_exact_rate": 0.82,
+    "case_wall_seconds": {
+      "p90": 12.892903500000102,
+      "sum": 2652.4842022999983
+    },
+    "changes_exact_count": 247,
+    "changes_exact_rate": 0.8233333333333334,
+    "completion_cap": 8192,
+    "completion_cap_hit_case_keys": [],
+    "completion_cap_hit_count": 0,
+    "completion_cap_hit_rate": 0.0,
+    "completion_tokens": 77658,
+    "expanded_block_exact_count": 284,
+    "expanded_block_exact_rate": 0.9466666666666667,
+    "expected_case_count": 300,
+    "format_valid_rate": 0.9733333333333334,
+    "invalid_response_count": 8,
+    "max_observed_completion_tokens": 4575,
+    "prompt_tokens": 209413,
+    "reasoning_details_reported_count": 296,
+    "reasoning_tokens": 60219,
+    "received_case_count": 300,
+    "response_latency_seconds": {
+      "max": 178.15877569999992,
+      "p50": 4.959657600000014,
+      "p90": 12.892903500000102
+    },
+    "scored_case_count": 292,
+    "total_tokens": 287071,
+    "unsupported_parameter_error_count": 0
+  },
+  "schema_version": "g3-block-state-rollout-v1",
+  "thresholds": {
+    "max_api_error_rate": 0.02,
+    "max_completion_cap_hit_rate": 0.01,
+    "max_p90_seconds": 60.0,
+    "min_expanded_block_rate": 0.725,
+    "min_format_valid_rate": 0.95
+  }
+}

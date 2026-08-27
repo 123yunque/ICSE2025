@@ -1,0 +1,493 @@
+{
+  "case_statuses": {
+    "failed": 25,
+    "success": 3616
+  },
+  "change_count": 56700,
+  "change_distribution": {
+    "max": 4938,
+    "min": 0,
+    "p50": 0,
+    "p90": 9,
+    "p99": 215
+  },
+  "config": {
+    "dataset_root": "F:\\Pycharm2023\\CodeMutation\\empirical\\output_mbppplus_new",
+    "inputs_per_task": 10,
+    "max_events": 50000,
+    "max_output_bytes": 200000000,
+    "max_trace_bytes": 50000000,
+    "output_root": "F:\\Pycharm2023\\CodeMutation\\ICSE2025\\granularity3_local\\block_state_mbppplus_full",
+    "pending_case_count": 40,
+    "planned_case_count": 3641,
+    "resume": true,
+    "task_limit": null,
+    "timeout_seconds": 30.0,
+    "workers": 8
+  },
+  "elapsed_seconds": 40.43656373023987,
+  "event_count": 70832,
+  "event_distribution": {
+    "max": 4285,
+    "min": 1,
+    "p50": 1,
+    "p90": 13,
+    "p99": 334
+  },
+  "failed_cases": [
+    {
+      "case_key": "task_67/input_8",
+      "elapsed_seconds": 4.222640200000001,
+      "error_type": "TraceSizeLimitExceeded",
+      "function": "bell_number",
+      "input": "[39]",
+      "input_id": "input_8",
+      "reason": "dynamic trace size limit exceeded: 50017051>50000000",
+      "source_path": "F:\\Pycharm2023\\CodeMutation\\empirical\\output_mbppplus_new\\task_67\\code.py",
+      "status": "failed",
+      "task_id": "task_67"
+    },
+    {
+      "case_key": "task_67/input_4",
+      "elapsed_seconds": 7.769661299999999,
+      "error_type": "TraceSizeLimitExceeded",
+      "function": "bell_number",
+      "input": "[59]",
+      "input_id": "input_4",
+      "reason": "dynamic trace size limit exceeded: 50040040>50000000",
+      "source_path": "F:\\Pycharm2023\\CodeMutation\\empirical\\output_mbppplus_new\\task_67\\code.py",
+      "status": "failed",
+      "task_id": "task_67"
+    },
+    {
+      "case_key": "task_67/input_6",
+      "elapsed_seconds": 5.2993859,
+      "error_type": "TraceSizeLimitExceeded",
+      "function": "bell_number",
+      "input": "[44]",
+      "input_id": "input_6",
+      "reason": "dynamic trace size limit exceeded: 50012762>50000000",
+      "source_path": "F:\\Pycharm2023\\CodeMutation\\empirical\\output_mbppplus_new\\task_67\\code.py",
+      "status": "failed",
+      "task_id": "task_67"
+    },
+    {
+      "case_key": "task_67/input_7",
+      "elapsed_seconds": 10.2964813,
+      "error_type": "TraceSizeLimitExceeded",
+      "function": "bell_number",
+      "input": "[77]",
+      "input_id": "input_7",
+      "reason": "dynamic trace size limit exceeded: 50081168>50000000",
+      "source_path": "F:\\Pycharm2023\\CodeMutation\\empirical\\output_mbppplus_new\\task_67\\code.py",
+      "status": "failed",
+      "task_id": "task_67"
+    },
+    {
+      "case_key": "task_84/input_6",
+      "elapsed_seconds": 12.2104232,
+      "error_type": "TraceSizeLimitExceeded",
+      "function": "sequence",
+      "input": "[76586]",
+      "input_id": "input_6",
+      "reason": "dynamic trace size limit exceeded: 50278792>50000000",
+      "source_path": "F:\\Pycharm2023\\CodeMutation\\empirical\\output_mbppplus_new\\task_84\\code.py",
+      "status": "failed",
+      "task_id": "task_84"
+    },
+    {
+      "case_key": "task_84/input_9",
+      "elapsed_seconds": 13.2851572,
+      "error_type": "TraceSizeLimitExceeded",
+      "function": "sequence",
+      "input": "[76583]",
+      "input_id": "input_9",
+      "reason": "dynamic trace size limit exceeded: 50276824>50000000",
+      "source_path": "F:\\Pycharm2023\\CodeMutation\\empirical\\output_mbppplus_new\\task_84\\code.py",
+      "status": "failed",
+      "task_id": "task_84"
+    },
+    {
+      "case_key": "task_84/input_8",
+      "elapsed_seconds": 13.3248855,
+      "error_type": "TraceSizeLimitExceeded",
+      "function": "sequence",
+      "input": "[92337]",
+      "input_id": "input_8",
+      "reason": "dynamic trace size limit exceeded: 50261954>50000000",
+      "source_path": "F:\\Pycharm2023\\CodeMutation\\empirical\\output_mbppplus_new\\task_84\\code.py",
+      "status": "failed",
+      "task_id": "task_84"
+    },
+    {
+      "case_key": "task_84/input_7",
+      "elapsed_seconds": 12.158726699999999,
+      "error_type": "TraceSizeLimitExceeded",
+      "function": "sequence",
+      "input": "[109865]",
+      "input_id": "input_7",
+      "reason": "dynamic trace size limit exceeded: 50563285>50000000",
+      "source_path": "F:\\Pycharm2023\\CodeMutation\\empirical\\output_mbppplus_new\\task_84\\code.py",
+      "status": "failed",
+      "task_id": "task_84"
+    },
+    {
+      "case_key": "task_84/input_5",
+      "elapsed_seconds": 15.910839900000001,
+      "error_type": "TraceSizeLimitExceeded",
+      "function": "sequence",
+      "input": "[1000003]",
+      "input_id": "input_5",
+      "reason": "dynamic trace size limit exceeded: 52003059>50000000",
+      "source_path": "F:\\Pycharm2023\\CodeMutation\\empirical\\output_mbppplus_new\\task_84\\code.py",
+      "status": "failed",
+      "task_id": "task_84"
+    },
+    {
+      "case_key": "task_239/input_7",
+      "elapsed_seconds": 9.300018199999998,
+      "error_type": "TraceSizeLimitExceeded",
+      "function": "get_total_number_of_sequences",
+      "input": "[200, 6]",
+      "input_id": "input_7",
+      "reason": "dynamic trace size limit exceeded: 50013536>50000000",
+      "source_path": "F:\\Pycharm2023\\CodeMutation\\empirical\\output_mbppplus_new\\task_239\\code.py",
+      "status": "failed",
+      "task_id": "task_239"
+    },
+    {
+      "case_key": "task_239/input_4",
+      "elapsed_seconds": 9.039828700000001,
+      "error_type": "TraceSizeLimitExceeded",
+      "function": "get_total_number_of_sequences",
+      "input": "[100, 10]",
+      "input_id": "input_4",
+      "reason": "dynamic trace size limit exceeded: 50015348>50000000",
+      "source_path": "F:\\Pycharm2023\\CodeMutation\\empirical\\output_mbppplus_new\\task_239\\code.py",
+      "status": "failed",
+      "task_id": "task_239"
+    },
+    {
+      "case_key": "task_239/input_9",
+      "elapsed_seconds": 9.486103899999998,
+      "error_type": "TraceSizeLimitExceeded",
+      "function": "get_total_number_of_sequences",
+      "input": "[199, 6]",
+      "input_id": "input_9",
+      "reason": "dynamic trace size limit exceeded: 50010823>50000000",
+      "source_path": "F:\\Pycharm2023\\CodeMutation\\empirical\\output_mbppplus_new\\task_239\\code.py",
+      "status": "failed",
+      "task_id": "task_239"
+    },
+    {
+      "case_key": "task_392/input_6",
+      "elapsed_seconds": 7.254894100000001,
+      "error_type": "TraceSizeLimitExceeded",
+      "function": "get_max_sum",
+      "input": "[10000]",
+      "input_id": "input_6",
+      "reason": "dynamic trace size limit exceeded: 50014857>50000000",
+      "source_path": "F:\\Pycharm2023\\CodeMutation\\empirical\\output_mbppplus_new\\task_392\\code.py",
+      "status": "failed",
+      "task_id": "task_392"
+    },
+    {
+      "case_key": "task_392/input_7",
+      "elapsed_seconds": 7.590985200000002,
+      "error_type": "TraceSizeLimitExceeded",
+      "function": "get_max_sum",
+      "input": "[100000]",
+      "input_id": "input_7",
+      "reason": "dynamic trace size limit exceeded: 50004118>50000000",
+      "source_path": "F:\\Pycharm2023\\CodeMutation\\empirical\\output_mbppplus_new\\task_392\\code.py",
+      "status": "failed",
+      "task_id": "task_392"
+    },
+    {
+      "case_key": "task_392/input_9",
+      "elapsed_seconds": 10.477852599999999,
+      "error_type": "TraceSizeLimitExceeded",
+      "function": "get_max_sum",
+      "input": "[1000000]",
+      "input_id": "input_9",
+      "reason": "dynamic trace size limit exceeded: 50011672>50000000",
+      "source_path": "F:\\Pycharm2023\\CodeMutation\\empirical\\output_mbppplus_new\\task_392\\code.py",
+      "status": "failed",
+      "task_id": "task_392"
+    },
+    {
+      "case_key": "task_603/input_6",
+      "elapsed_seconds": 8.598846000000002,
+      "error_type": "TraceSizeLimitExceeded",
+      "function": "get_ludic",
+      "input": "[10000]",
+      "input_id": "input_6",
+      "reason": "dynamic trace size limit exceeded: 50025010>50000000",
+      "source_path": "F:\\Pycharm2023\\CodeMutation\\empirical\\output_mbppplus_new\\task_603\\code.py",
+      "status": "failed",
+      "task_id": "task_603"
+    },
+    {
+      "case_key": "task_603/input_8",
+      "elapsed_seconds": 9.700789400000001,
+      "error_type": "TraceSizeLimitExceeded",
+      "function": "get_ludic",
+      "input": "[9999]",
+      "input_id": "input_8",
+      "reason": "dynamic trace size limit exceeded: 50017080>50000000",
+      "source_path": "F:\\Pycharm2023\\CodeMutation\\empirical\\output_mbppplus_new\\task_603\\code.py",
+      "status": "failed",
+      "task_id": "task_603"
+    },
+    {
+      "case_key": "task_603/input_10",
+      "elapsed_seconds": 9.785053100000003,
+      "error_type": "TraceSizeLimitExceeded",
+      "function": "get_ludic",
+      "input": "[9998]",
+      "input_id": "input_10",
+      "reason": "dynamic trace size limit exceeded: 50017080>50000000",
+      "source_path": "F:\\Pycharm2023\\CodeMutation\\empirical\\output_mbppplus_new\\task_603\\code.py",
+      "status": "failed",
+      "task_id": "task_603"
+    },
+    {
+      "case_key": "task_605/input_7",
+      "elapsed_seconds": 1.7814070999999991,
+      "error_type": "EventLimitExceeded",
+      "function": "prime_num",
+      "input": "[982451653]",
+      "input_id": "input_7",
+      "reason": "dynamic event limit exceeded: 50000",
+      "source_path": "F:\\Pycharm2023\\CodeMutation\\empirical\\output_mbppplus_new\\task_605\\code.py",
+      "status": "failed",
+      "task_id": "task_605"
+    },
+    {
+      "case_key": "task_605/input_8",
+      "elapsed_seconds": 2.2100843999999995,
+      "error_type": "EventLimitExceeded",
+      "function": "prime_num",
+      "input": "[9999999967]",
+      "input_id": "input_8",
+      "reason": "dynamic event limit exceeded: 50000",
+      "source_path": "F:\\Pycharm2023\\CodeMutation\\empirical\\output_mbppplus_new\\task_605\\code.py",
+      "status": "failed",
+      "task_id": "task_605"
+    },
+    {
+      "case_key": "task_605/input_5",
+      "elapsed_seconds": 3.2916922999999976,
+      "error_type": "EventLimitExceeded",
+      "function": "prime_num",
+      "input": "[999999999989]",
+      "input_id": "input_5",
+      "reason": "dynamic event limit exceeded: 50000",
+      "source_path": "F:\\Pycharm2023\\CodeMutation\\empirical\\output_mbppplus_new\\task_605\\code.py",
+      "status": "failed",
+      "task_id": "task_605"
+    },
+    {
+      "case_key": "task_608/input_7",
+      "elapsed_seconds": 8.030913100000003,
+      "error_type": "TraceSizeLimitExceeded",
+      "function": "bell_Number",
+      "input": "[50]",
+      "input_id": "input_7",
+      "reason": "dynamic trace size limit exceeded: 50018786>50000000",
+      "source_path": "F:\\Pycharm2023\\CodeMutation\\empirical\\output_mbppplus_new\\task_608\\code.py",
+      "status": "failed",
+      "task_id": "task_608"
+    },
+    {
+      "case_key": "task_608/input_8",
+      "elapsed_seconds": 11.892972799999995,
+      "error_type": "TraceSizeLimitExceeded",
+      "function": "bell_Number",
+      "input": "[100]",
+      "input_id": "input_8",
+      "reason": "dynamic trace size limit exceeded: 50049205>50000000",
+      "source_path": "F:\\Pycharm2023\\CodeMutation\\empirical\\output_mbppplus_new\\task_608\\code.py",
+      "status": "failed",
+      "task_id": "task_608"
+    },
+    {
+      "case_key": "task_752/input_6",
+      "elapsed_seconds": 2.9800144999999993,
+      "error_type": "TraceSizeLimitExceeded",
+      "function": "jacobsthal_num",
+      "input": "[1000]",
+      "input_id": "input_6",
+      "reason": "dynamic trace size limit exceeded: 50058003>50000000",
+      "source_path": "F:\\Pycharm2023\\CodeMutation\\empirical\\output_mbppplus_new\\task_752\\code.py",
+      "status": "failed",
+      "task_id": "task_752"
+    },
+    {
+      "case_key": "task_752/input_8",
+      "elapsed_seconds": 2.8986613000000006,
+      "error_type": "TraceSizeLimitExceeded",
+      "function": "jacobsthal_num",
+      "input": "[1001]",
+      "input_id": "input_8",
+      "reason": "dynamic trace size limit exceeded: 50064323>50000000",
+      "source_path": "F:\\Pycharm2023\\CodeMutation\\empirical\\output_mbppplus_new\\task_752\\code.py",
+      "status": "failed",
+      "task_id": "task_752"
+    }
+  ],
+  "local_answer_chars": 67274606,
+  "model_input_chars": 846742,
+  "planned_case_count": 3641,
+  "preflight_statuses": {
+    "supported": 367,
+    "unsupported_jump": 3,
+    "unsupported_recursion": 6
+  },
+  "recorded_case_count": 3641,
+  "schema_version": "g3-block-state-dataset-v1",
+  "size_bytes": 622924612,
+  "successful_case_count": 3616,
+  "supported_task_count": 367,
+  "task_count": 376,
+  "unsupported_task_count": 9,
+  "unsupported_tasks": [
+    {
+      "all_statuses": [
+        "unsupported_recursion"
+      ],
+      "function": "recursive_list_sum",
+      "function_count": 1,
+      "planned_inputs": 10,
+      "reasons": [
+        "target directly calls itself; frame-aware recursion is not implemented"
+      ],
+      "status": "unsupported_recursion",
+      "supported": false,
+      "task_id": "task_65",
+      "warnings": []
+    },
+    {
+      "all_statuses": [
+        "unsupported_recursion"
+      ],
+      "function": "eulerian_num",
+      "function_count": 1,
+      "planned_inputs": 10,
+      "reasons": [
+        "target directly calls itself; frame-aware recursion is not implemented"
+      ],
+      "status": "unsupported_recursion",
+      "supported": false,
+      "task_id": "task_103",
+      "warnings": []
+    },
+    {
+      "all_statuses": [
+        "unsupported_jump"
+      ],
+      "function": "amicable_numbers_sum",
+      "function_count": 2,
+      "planned_inputs": 10,
+      "reasons": [
+        "target contains break or continue"
+      ],
+      "status": "unsupported_jump",
+      "supported": false,
+      "task_id": "task_123",
+      "warnings": [
+        "helper_functions_are_treated_as_atomic_calls"
+      ]
+    },
+    {
+      "all_statuses": [
+        "unsupported_jump"
+      ],
+      "function": "count_first_elements",
+      "function_count": 1,
+      "planned_inputs": 10,
+      "reasons": [
+        "target contains break or continue"
+      ],
+      "status": "unsupported_jump",
+      "supported": false,
+      "task_id": "task_278",
+      "warnings": []
+    },
+    {
+      "all_statuses": [
+        "unsupported_recursion"
+      ],
+      "function": "flatten_list",
+      "function_count": 1,
+      "planned_inputs": 10,
+      "reasons": [
+        "target directly calls itself; frame-aware recursion is not implemented"
+      ],
+      "status": "unsupported_recursion",
+      "supported": false,
+      "task_id": "task_297",
+      "warnings": []
+    },
+    {
+      "all_statuses": [
+        "unsupported_recursion"
+      ],
+      "function": "find_lucas",
+      "function_count": 1,
+      "planned_inputs": 10,
+      "reasons": [
+        "target directly calls itself; frame-aware recursion is not implemented"
+      ],
+      "status": "unsupported_recursion",
+      "supported": false,
+      "task_id": "task_389",
+      "warnings": []
+    },
+    {
+      "all_statuses": [
+        "unsupported_recursion"
+      ],
+      "function": "combinations_list",
+      "function_count": 1,
+      "planned_inputs": 10,
+      "reasons": [
+        "target directly calls itself; frame-aware recursion is not implemented"
+      ],
+      "status": "unsupported_recursion",
+      "supported": false,
+      "task_id": "task_462",
+      "warnings": []
+    },
+    {
+      "all_statuses": [
+        "unsupported_recursion"
+      ],
+      "function": "catalan_number",
+      "function_count": 1,
+      "planned_inputs": 10,
+      "reasons": [
+        "target directly calls itself; frame-aware recursion is not implemented"
+      ],
+      "status": "unsupported_recursion",
+      "supported": false,
+      "task_id": "task_583",
+      "warnings": []
+    },
+    {
+      "all_statuses": [
+        "unsupported_jump"
+      ],
+      "function": "get_median",
+      "function_count": 1,
+      "planned_inputs": 10,
+      "reasons": [
+        "target contains break or continue"
+      ],
+      "status": "unsupported_jump",
+      "supported": false,
+      "task_id": "task_622",
+      "warnings": []
+    }
+  ]
+}

@@ -1,7 +1,0 @@
-{"delta": {"mask": {"after": 2, "before": {"$undefined": true}}}, "next": "B002", "probe_id": "task_235/original/input_1/F0/B001#1", "schema_version": "g3-local-probe-v1"}
-{"delta": {}, "next": "B003", "probe_id": "task_235/original/input_1/F0/B002#1", "schema_version": "g3-local-probe-v1"}
-{"delta": {"mask": {"after": 8, "before": 2}}, "next": "B002", "probe_id": "task_235/original/input_1/F0/B003#1", "schema_version": "g3-local-probe-v1"}
-{"delta": {}, "next": "B003", "probe_id": "task_235/original/input_1/F0/B002#2", "schema_version": "g3-local-probe-v1"}
-{"delta": {"mask": {"after": 32, "before": 8}}, "next": "B002", "probe_id": "task_235/original/input_1/F0/B003#2", "schema_version": "g3-local-probe-v1"}
-{"delta": {}, "next": "B004", "probe_id": "task_235/original/input_1/F0/B002#3", "schema_version": "g3-local-probe-v1"}
-{"delta": {}, "next": null, "probe_id": "task_235/original/input_1/F0/B004#1", "return": 10, "schema_version": "g3-local-probe-v1"}

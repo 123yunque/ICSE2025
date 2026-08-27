@@ -1,0 +1,86 @@
+{"batch_id": "task_7/input_1", "reason": "response is not valid JSON: line 1 column 1", "status": "invalid_response"}
+{"batch_id": "task_11/input_5", "reason": "response is not valid JSON: line 1 column 1", "status": "invalid_response"}
+{"batch_id": "task_20/input_5", "reason": "task_20/input_5/input_5: duplicate change for step/variable (4, 'i')", "status": "invalid_response"}
+{"batch_id": "task_59/input_2", "reason": "response is not valid JSON: line 1 column 1", "status": "invalid_response"}
+{"batch_id": "task_64/input_3", "reason": "task_64/input_3/input_3: duplicate change for step/variable (0, 'subjectmarks')", "status": "invalid_response"}
+{"batch_id": "task_64/input_4", "reason": "response is not valid JSON: line 1 column 551", "status": "invalid_response"}
+{"batch_id": "task_64/input_5", "reason": "response is not valid JSON: line 1 column 523", "status": "invalid_response"}
+{"batch_id": "task_64/input_8", "reason": "response is not valid JSON: line 1 column 515", "status": "invalid_response"}
+{"batch_id": "task_64/input_9", "reason": "response is not valid JSON: line 1 column 601", "status": "invalid_response"}
+{"batch_id": "task_72/input_10", "reason": "response is not valid JSON: line 1 column 1", "status": "invalid_response"}
+{"batch_id": "task_77/input_3", "reason": "response is not valid JSON: line 1 column 1", "status": "invalid_response"}
+{"batch_id": "task_87/input_8", "reason": "response is not valid JSON: line 1 column 719", "status": "invalid_response"}
+{"batch_id": "task_88/input_1", "reason": "response is not valid JSON: line 1 column 1", "status": "invalid_response"}
+{"batch_id": "task_97/input_4", "reason": "response is not valid JSON: line 1 column 112", "status": "invalid_response"}
+{"batch_id": "task_100/input_2", "reason": "response is not valid JSON: line 1 column 341", "status": "invalid_response"}
+{"batch_id": "task_100/input_8", "reason": "response is not valid JSON: line 1 column 444", "status": "invalid_response"}
+{"batch_id": "task_111/input_5", "reason": "response is not valid JSON: line 1 column 1", "status": "invalid_response"}
+{"batch_id": "task_130/input_6", "reason": "task_130/input_6/input_6: changes[4] step 4 is outside block_trace", "status": "invalid_response"}
+{"batch_id": "task_141/input_3", "reason": "response is not valid JSON: line 1 column 308", "status": "invalid_response"}
+{"batch_id": "task_141/input_4", "reason": "response is not valid JSON: line 1 column 226", "status": "invalid_response"}
+{"batch_id": "task_141/input_8", "reason": "response is not valid JSON: line 1 column 236", "status": "invalid_response"}
+{"batch_id": "task_141/input_9", "reason": "task_141/input_9/input_9: changes[10] step 4 is outside block_trace", "status": "invalid_response"}
+{"batch_id": "task_141/input_10", "reason": "response is not valid JSON: line 1 column 210", "status": "invalid_response"}
+{"batch_id": "task_227/input_7", "reason": "response is not valid JSON: line 1 column 1", "status": "invalid_response"}
+{"batch_id": "task_233/input_10", "reason": "response is not valid JSON: line 1 column 64", "status": "invalid_response"}
+{"batch_id": "task_235/input_2", "reason": "task_235/input_2/input_2: duplicate change for step/variable (1, 'mask')", "status": "invalid_response"}
+{"batch_id": "task_239/input_2", "reason": "task_239/input_2/input_2: changes must be sorted by step and variable", "status": "invalid_response"}
+{"batch_id": "task_245/input_1", "reason": "task_245/input_1/input_1: changes[27] step 77 is outside block_trace", "status": "invalid_response"}
+{"batch_id": "task_245/input_2", "reason": "task_245/input_2/input_2: changes must be sorted by step and variable", "status": "invalid_response"}
+{"batch_id": "task_245/input_5", "reason": "task_245/input_5/input_5: duplicate change for step/variable (25, 'max_sum')", "status": "invalid_response"}
+{"batch_id": "task_245/input_6", "reason": "task_245/input_6/input_6: changes must be sorted by step and variable", "status": "invalid_response"}
+{"batch_id": "task_247/input_5", "reason": "task_247/input_5/input_5: changes must be sorted by step and variable", "status": "invalid_response"}
+{"batch_id": "task_259/input_2", "reason": "response is not valid JSON: line 1 column 1", "status": "invalid_response"}
+{"batch_id": "task_286/input_9", "reason": "task_286/input_9/input_9: changes must be sorted by step and variable", "status": "invalid_response"}
+{"batch_id": "task_296/input_3", "reason": "task_296/input_3/input_3: changes must be sorted by step and variable", "status": "invalid_response"}
+{"batch_id": "task_300/input_7", "reason": "task_300/input_7/input_7: changes[8] step 4 is outside block_trace", "status": "invalid_response"}
+{"batch_id": "task_306/input_6", "reason": "task_306/input_6/input_6: changes[10] step 11 is outside block_trace", "status": "invalid_response"}
+{"batch_id": "task_306/input_7", "reason": "task_306/input_7/input_7: changes must be sorted by step and variable", "status": "invalid_response"}
+{"batch_id": "task_306/input_9", "reason": "task_306/input_9/input_9: changes must be sorted by step and variable", "status": "invalid_response"}
+{"batch_id": "task_391/input_1", "reason": "response is not valid JSON: line 1 column 265", "status": "invalid_response"}
+{"batch_id": "task_391/input_4", "reason": "response is not valid JSON: line 1 column 284", "status": "invalid_response"}
+{"batch_id": "task_391/input_5", "reason": "response is not valid JSON: line 1 column 192", "status": "invalid_response"}
+{"batch_id": "task_391/input_6", "reason": "response is not valid JSON: line 1 column 259", "status": "invalid_response"}
+{"batch_id": "task_391/input_10", "reason": "response is not valid JSON: line 1 column 232", "status": "invalid_response"}
+{"batch_id": "task_394/input_6", "reason": "response is not valid JSON: line 1 column 1", "status": "invalid_response"}
+{"batch_id": "task_415/input_3", "reason": "response is not valid JSON: line 1 column 151", "status": "invalid_response"}
+{"batch_id": "task_415/input_4", "reason": "response is not valid JSON: line 1 column 1080", "status": "invalid_response"}
+{"batch_id": "task_415/input_5", "reason": "response is not valid JSON: line 1 column 1531", "status": "invalid_response"}
+{"batch_id": "task_415/input_7", "reason": "response is not valid JSON: line 1 column 1458", "status": "invalid_response"}
+{"batch_id": "task_419/input_6", "reason": "task_419/input_6/input_6: changes[0] must be [step, variable, before, after]", "status": "invalid_response"}
+{"batch_id": "task_421/input_5", "reason": "task_421/input_5/input_5: duplicate change for step/variable (0, 'res')", "status": "invalid_response"}
+{"batch_id": "task_437/input_6", "reason": "response is not valid JSON: line 1 column 1", "status": "invalid_response"}
+{"batch_id": "task_459/input_7", "reason": "task_459/input_7/input_7: changes[0] must be [step, variable, before, after]", "status": "invalid_response"}
+{"batch_id": "task_463/input_2", "reason": "task_463/input_2/input_2: changes[12] step 4 is outside block_trace", "status": "invalid_response"}
+{"batch_id": "task_463/input_3", "reason": "task_463/input_3/input_3: changes[10] step 4 is outside block_trace", "status": "invalid_response"}
+{"batch_id": "task_463/input_6", "reason": "task_463/input_6/input_6: changes[12] step 4 is outside block_trace", "status": "invalid_response"}
+{"batch_id": "task_463/input_8", "reason": "task_463/input_8/input_8: changes[14] step 4 is outside block_trace", "status": "invalid_response"}
+{"batch_id": "task_463/input_10", "reason": "task_463/input_10/input_10: changes[12] step 4 is outside block_trace", "status": "invalid_response"}
+{"batch_id": "task_468/input_9", "reason": "task_468/input_9/input_9: changes[7] step 4 is outside block_trace", "status": "invalid_response"}
+{"batch_id": "task_567/input_8", "reason": "response is not valid JSON: line 1 column 1", "status": "invalid_response"}
+{"batch_id": "task_576/input_10", "reason": "task_576/input_10/input_10: changes[5] step 9 is outside block_trace", "status": "invalid_response"}
+{"batch_id": "task_585/input_2", "reason": "response is not valid JSON: line 1 column 217", "status": "invalid_response"}
+{"batch_id": "task_585/input_9", "reason": "response is not valid JSON: line 1 column 251", "status": "invalid_response"}
+{"batch_id": "task_587/input_5", "reason": "response is not valid JSON: line 1 column 1", "status": "invalid_response"}
+{"batch_id": "task_591/input_4", "reason": "response is not valid JSON: line 1 column 123", "status": "invalid_response"}
+{"batch_id": "task_599/input_9", "reason": "task_599/input_9/input_9: changes must be sorted by step and variable", "status": "invalid_response"}
+{"batch_id": "task_602/input_6", "reason": "task_602/input_6/input_6: changes[4] step 2 is outside block_trace", "status": "invalid_response"}
+{"batch_id": "task_602/input_7", "reason": "task_602/input_7/input_7: changes[4] step 2 is outside block_trace", "status": "invalid_response"}
+{"batch_id": "task_603/input_2", "reason": "task_603/input_2/input_2: changes must be sorted by step and variable", "status": "invalid_response"}
+{"batch_id": "task_616/input_4", "reason": "response is not valid JSON: line 1 column 1", "status": "invalid_response"}
+{"batch_id": "task_619/input_6", "reason": "task_619/input_6/input_6: changes must be sorted by step and variable", "status": "invalid_response"}
+{"batch_id": "task_619/input_9", "reason": "task_619/input_9/input_9: changes must be sorted by step and variable", "status": "invalid_response"}
+{"batch_id": "task_620/input_5", "reason": "response is not valid JSON: line 1 column 1728", "status": "invalid_response"}
+{"batch_id": "task_620/input_6", "reason": "response is not valid JSON: line 1 column 1320", "status": "invalid_response"}
+{"batch_id": "task_620/input_8", "reason": "response is not valid JSON: line 1 column 1640", "status": "invalid_response"}
+{"batch_id": "task_628/input_6", "reason": "response is not valid JSON: line 1 column 1", "status": "invalid_response"}
+{"batch_id": "task_721/input_7", "reason": "task_721/input_7/input_7: changes must be sorted by step and variable", "status": "invalid_response"}
+{"batch_id": "task_734/input_3", "reason": "task_734/input_3/input_3: duplicate change for step/variable (1, 'arr')", "status": "invalid_response"}
+{"batch_id": "task_749/input_1", "reason": "response is not valid JSON: line 1 column 1", "status": "invalid_response"}
+{"batch_id": "task_751/input_9", "reason": "response is not valid JSON: line 1 column 1", "status": "invalid_response"}
+{"batch_id": "task_763/input_8", "reason": "task_763/input_8/input_8: changes[8] step 6 is outside block_trace", "status": "invalid_response"}
+{"batch_id": "task_770/input_7", "reason": "task_770/input_7/input_7: changes[8] step 4 is outside block_trace", "status": "invalid_response"}
+{"batch_id": "task_771/input_3", "reason": "response is not valid JSON: line 1 column 496", "status": "invalid_response"}
+{"batch_id": "task_781/input_4", "reason": "response is not valid JSON: line 1 column 1", "status": "invalid_response"}
+{"batch_id": "task_782/input_3", "reason": "task_782/input_3/input_3: duplicate change for step/variable (1, 'i')", "status": "invalid_response"}
+{"batch_id": "task_809/input_7", "reason": "response is not valid JSON: line 1 column 1", "status": "invalid_response"}

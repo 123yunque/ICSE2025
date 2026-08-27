@@ -1,0 +1,78 @@
+{
+  "all_criteria_pass": false,
+  "baseline": {
+    "api_error_count": 1,
+    "canonical_joint_exact_count": 16,
+    "canonical_joint_exact_rate": 0.4,
+    "case_wall_seconds": {
+      "p90": 101.83645309999974,
+      "sum": 2175.1711996
+    },
+    "changes_exact_count": 19,
+    "changes_exact_rate": 0.475,
+    "completion_tokens": 134108,
+    "expanded_block_exact_count": 29,
+    "expanded_block_exact_rate": 0.725,
+    "expected_case_count": 40,
+    "invalid_response_count": 1,
+    "prompt_tokens": 26355,
+    "reasoning_details_reported_count": 0,
+    "reasoning_tokens": 0,
+    "received_case_count": 40,
+    "response_latency_seconds": {
+      "max": 416.354953,
+      "p50": 14.358315400000038,
+      "p90": 101.83645309999974
+    },
+    "scored_case_count": 40,
+    "total_tokens": 160463,
+    "unsupported_parameter_error_count": 0
+  },
+  "candidate": {
+    "api_error_count": 0,
+    "canonical_joint_exact_count": 3,
+    "canonical_joint_exact_rate": 0.075,
+    "case_wall_seconds": {
+      "p90": 10.373005999999998,
+      "sum": 241.41256320000002
+    },
+    "changes_exact_count": 4,
+    "changes_exact_rate": 0.1,
+    "completion_tokens": 5645,
+    "expanded_block_exact_count": 9,
+    "expanded_block_exact_rate": 0.225,
+    "expected_case_count": 40,
+    "invalid_response_count": 14,
+    "prompt_tokens": 26651,
+    "reasoning_details_reported_count": 3,
+    "reasoning_tokens": 0,
+    "received_case_count": 40,
+    "response_latency_seconds": {
+      "max": 17.543933299999996,
+      "p50": 4.941449299999995,
+      "p90": 10.373005999999998
+    },
+    "scored_case_count": 26,
+    "total_tokens": 32296,
+    "unsupported_parameter_error_count": 0
+  },
+  "case_count": 40,
+  "criteria": {
+    "block_accuracy_no_material_drop": false,
+    "completion_tokens_materially_reduced": true,
+    "p90_latency_materially_reduced": true,
+    "provider_accepted_parameters": true,
+    "provider_execution_evidence": true
+  },
+  "deltas": {
+    "completion_token_reduction": 0.9579070599815075,
+    "expanded_block_accuracy": -0.5,
+    "p90_latency_reduction": 0.898140541188978
+  },
+  "schema_version": "g3-block-state-canary-v1",
+  "thresholds": {
+    "max_block_accuracy_drop": 0.05,
+    "min_completion_token_reduction": 0.3,
+    "min_p90_latency_reduction": 0.3
+  }
+}

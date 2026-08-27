@@ -1,0 +1,5 @@
+name: granularity3
+channels:
+  - defaults
+dependencies:
+  - python=3.9

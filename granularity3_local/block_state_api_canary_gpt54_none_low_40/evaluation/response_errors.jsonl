@@ -1,0 +1,14 @@
+{"batch_id": "task_9/input_10", "reason": "task_9/input_10/input_10: duplicate change for step/variable (1, 'i')", "status": "invalid_response"}
+{"batch_id": "task_20/input_7", "reason": "task_20/input_7/input_7: changes must be sorted by step and variable", "status": "invalid_response"}
+{"batch_id": "task_20/input_9", "reason": "task_20/input_9/input_9: changes must be sorted by step and variable", "status": "invalid_response"}
+{"batch_id": "task_109/input_2", "reason": "task_109/input_2/input_2: changes must be sorted by step and variable", "status": "invalid_response"}
+{"batch_id": "task_109/input_1", "reason": "task_109/input_1/input_1: duplicate change for step/variable (1, 'i')", "status": "invalid_response"}
+{"batch_id": "task_109/input_4", "reason": "task_109/input_4/input_4: changes[2] step 2 is outside block_trace", "status": "invalid_response"}
+{"batch_id": "task_126/input_9", "reason": "task_126/input_9/input_9: changes must be sorted by step and variable", "status": "invalid_response"}
+{"batch_id": "task_126/input_6", "reason": "task_126/input_6/input_6: changes[11] step 5 is outside block_trace", "status": "invalid_response"}
+{"batch_id": "task_126/input_1", "reason": "task_126/input_1/input_1: changes must be sorted by step and variable", "status": "invalid_response"}
+{"batch_id": "task_235/input_4", "reason": "task_235/input_4/input_4: changes must be sorted by step and variable", "status": "invalid_response"}
+{"batch_id": "task_235/input_9", "reason": "task_235/input_9/input_9: changes[5] step 4 is outside block_trace", "status": "invalid_response"}
+{"batch_id": "task_235/input_6", "reason": "task_235/input_6/input_6: changes must be sorted by step and variable", "status": "invalid_response"}
+{"batch_id": "task_296/input_5", "reason": "task_296/input_5/input_5: changes must be sorted by step and variable", "status": "invalid_response"}
+{"batch_id": "task_734/input_3", "reason": "task_734/input_3/input_3: changes[11] step 4 is outside block_trace", "status": "invalid_response"}

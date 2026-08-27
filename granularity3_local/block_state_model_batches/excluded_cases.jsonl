@@ -1,0 +1,84 @@
+{"case_key": "task_61/input_1", "limit": 10000, "reason": "answer_size_limit", "value": 11258}
+{"case_key": "task_61/input_8", "limit": 10000, "reason": "answer_size_limit", "value": 18280}
+{"case_key": "task_61/input_7", "limit": 10000, "reason": "answer_size_limit", "value": 79312}
+{"case_key": "task_61/input_3", "limit": 10000, "reason": "answer_size_limit", "value": 215842}
+{"case_key": "task_61/input_9", "limit": 10000, "reason": "answer_size_limit", "value": 325349}
+{"case_key": "task_67/input_5", "limit": 500, "reason": "event_limit", "value": 783}
+{"case_key": "task_67/input_8", "reason": "TraceSizeLimitExceeded"}
+{"case_key": "task_67/input_4", "reason": "TraceSizeLimitExceeded"}
+{"case_key": "task_67/input_6", "reason": "TraceSizeLimitExceeded"}
+{"case_key": "task_67/input_10", "limit": 500, "reason": "event_limit", "value": 1443}
+{"case_key": "task_67/input_9", "limit": 500, "reason": "event_limit", "value": 1599}
+{"case_key": "task_67/input_7", "reason": "TraceSizeLimitExceeded"}
+{"case_key": "task_84/input_4", "limit": 10000, "reason": "answer_size_limit", "value": 52173}
+{"case_key": "task_84/input_10", "limit": 10000, "reason": "answer_size_limit", "value": 34595}
+{"case_key": "task_84/input_6", "reason": "TraceSizeLimitExceeded"}
+{"case_key": "task_84/input_9", "reason": "TraceSizeLimitExceeded"}
+{"case_key": "task_84/input_8", "reason": "TraceSizeLimitExceeded"}
+{"case_key": "task_84/input_7", "reason": "TraceSizeLimitExceeded"}
+{"case_key": "task_84/input_5", "reason": "TraceSizeLimitExceeded"}
+{"case_key": "task_125/input_5", "limit": 500, "reason": "event_limit", "value": 821}
+{"case_key": "task_125/input_7", "limit": 500, "reason": "event_limit", "value": 659}
+{"case_key": "task_239/input_1", "limit": 10000, "reason": "answer_size_limit", "value": 11097}
+{"case_key": "task_239/input_3", "limit": 10000, "reason": "answer_size_limit", "value": 19995}
+{"case_key": "task_239/input_6", "limit": 500, "reason": "event_limit", "value": 904}
+{"case_key": "task_239/input_5", "limit": 500, "reason": "event_limit", "value": 1513}
+{"case_key": "task_239/input_7", "reason": "TraceSizeLimitExceeded"}
+{"case_key": "task_239/input_4", "reason": "TraceSizeLimitExceeded"}
+{"case_key": "task_239/input_9", "reason": "TraceSizeLimitExceeded"}
+{"case_key": "task_239/input_10", "limit": 500, "reason": "event_limit", "value": 1726}
+{"case_key": "task_239/input_8", "limit": 500, "reason": "event_limit", "value": 1978}
+{"case_key": "task_245/input_9", "limit": 10000, "reason": "answer_size_limit", "value": 10437}
+{"case_key": "task_245/input_10", "limit": 10000, "reason": "answer_size_limit", "value": 10615}
+{"case_key": "task_247/input_1", "limit": 10000, "reason": "answer_size_limit", "value": 71264}
+{"case_key": "task_247/input_6", "limit": 10000, "reason": "answer_size_limit", "value": 18660}
+{"case_key": "task_247/input_2", "limit": 10000, "reason": "answer_size_limit", "value": 155504}
+{"case_key": "task_247/input_7", "limit": 10000, "reason": "answer_size_limit", "value": 53068}
+{"case_key": "task_247/input_10", "limit": 10000, "reason": "answer_size_limit", "value": 27202}
+{"case_key": "task_247/input_8", "limit": 500, "reason": "event_limit", "value": 573}
+{"case_key": "task_247/input_3", "limit": 500, "reason": "event_limit", "value": 1137}
+{"case_key": "task_247/input_9", "limit": 500, "reason": "event_limit", "value": 1137}
+{"case_key": "task_247/input_4", "limit": 500, "reason": "event_limit", "value": 903}
+{"case_key": "task_260/input_4", "limit": 10000, "reason": "answer_size_limit", "value": 17942}
+{"case_key": "task_260/input_8", "limit": 10000, "reason": "answer_size_limit", "value": 17647}
+{"case_key": "task_260/input_10", "limit": 500, "reason": "event_limit", "value": 2472}
+{"case_key": "task_260/input_7", "limit": 500, "reason": "event_limit", "value": 2470}
+{"case_key": "task_306/input_1", "limit": 10000, "reason": "answer_size_limit", "value": 15371}
+{"case_key": "task_306/input_2", "limit": 10000, "reason": "answer_size_limit", "value": 15371}
+{"case_key": "task_306/input_3", "limit": 10000, "reason": "answer_size_limit", "value": 16335}
+{"case_key": "task_392/input_1", "limit": 10000, "reason": "answer_size_limit", "value": 12858}
+{"case_key": "task_392/input_4", "limit": 10000, "reason": "answer_size_limit", "value": 35099}
+{"case_key": "task_392/input_10", "limit": 10000, "reason": "answer_size_limit", "value": 34386}
+{"case_key": "task_392/input_5", "limit": 500, "reason": "event_limit", "value": 2003}
+{"case_key": "task_392/input_6", "reason": "TraceSizeLimitExceeded"}
+{"case_key": "task_392/input_7", "reason": "TraceSizeLimitExceeded"}
+{"case_key": "task_392/input_8", "limit": 500, "reason": "event_limit", "value": 1003}
+{"case_key": "task_392/input_9", "reason": "TraceSizeLimitExceeded"}
+{"case_key": "task_603/input_3", "limit": 10000, "reason": "answer_size_limit", "value": 15811}
+{"case_key": "task_603/input_4", "limit": 10000, "reason": "answer_size_limit", "value": 67534}
+{"case_key": "task_603/input_5", "limit": 500, "reason": "event_limit", "value": 4285}
+{"case_key": "task_603/input_7", "limit": 500, "reason": "event_limit", "value": 4281}
+{"case_key": "task_603/input_6", "reason": "TraceSizeLimitExceeded"}
+{"case_key": "task_603/input_8", "reason": "TraceSizeLimitExceeded"}
+{"case_key": "task_603/input_10", "reason": "TraceSizeLimitExceeded"}
+{"case_key": "task_605/input_6", "limit": 500, "reason": "event_limit", "value": 2509}
+{"case_key": "task_605/input_7", "reason": "EventLimitExceeded"}
+{"case_key": "task_605/input_8", "reason": "EventLimitExceeded"}
+{"case_key": "task_605/input_5", "reason": "EventLimitExceeded"}
+{"case_key": "task_608/input_4", "limit": 10000, "reason": "answer_size_limit", "value": 45362}
+{"case_key": "task_608/input_9", "limit": 10000, "reason": "answer_size_limit", "value": 30899}
+{"case_key": "task_608/input_6", "limit": 500, "reason": "event_limit", "value": 1023}
+{"case_key": "task_608/input_5", "limit": 10000, "reason": "answer_size_limit", "value": 737542}
+{"case_key": "task_608/input_7", "reason": "TraceSizeLimitExceeded"}
+{"case_key": "task_608/input_10", "limit": 500, "reason": "event_limit", "value": 960}
+{"case_key": "task_608/input_8", "reason": "TraceSizeLimitExceeded"}
+{"case_key": "task_620/input_7", "limit": 500, "reason": "event_limit", "value": 979}
+{"case_key": "task_620/input_9", "limit": 500, "reason": "event_limit", "value": 699}
+{"case_key": "task_620/input_10", "limit": 500, "reason": "event_limit", "value": 648}
+{"case_key": "task_633/input_5", "limit": 10000, "reason": "answer_size_limit", "value": 10134}
+{"case_key": "task_633/input_8", "limit": 10000, "reason": "answer_size_limit", "value": 10134}
+{"case_key": "task_752/input_5", "limit": 10000, "reason": "answer_size_limit", "value": 136890}
+{"case_key": "task_752/input_9", "limit": 10000, "reason": "answer_size_limit", "value": 133227}
+{"case_key": "task_752/input_10", "limit": 10000, "reason": "answer_size_limit", "value": 129631}
+{"case_key": "task_752/input_6", "reason": "TraceSizeLimitExceeded"}
+{"case_key": "task_752/input_8", "reason": "TraceSizeLimitExceeded"}

@@ -1,0 +1,56 @@
+{
+  "all_criteria_pass": true,
+  "case_count": 3557,
+  "criteria": {
+    "api_error_rate": true,
+    "completion_cap_hit_rate": true,
+    "expanded_block_accuracy": true,
+    "format_valid_rate": true,
+    "p90_latency": true
+  },
+  "metrics": {
+    "api_error_count": 1,
+    "api_error_rate": 0.000281135788585887,
+    "canonical_joint_exact_count": 2883,
+    "canonical_joint_exact_rate": 0.8105144784931122,
+    "case_wall_seconds": {
+      "p90": 11.204590800000005,
+      "sum": 25809.795130099883
+    },
+    "changes_exact_count": 2912,
+    "changes_exact_rate": 0.8186674163621029,
+    "completion_cap": 8192,
+    "completion_cap_hit_case_keys": [
+      "task_770/input_7"
+    ],
+    "completion_cap_hit_count": 1,
+    "completion_cap_hit_rate": 0.000281135788585887,
+    "completion_tokens": 855425,
+    "expanded_block_exact_count": 3357,
+    "expanded_block_exact_rate": 0.9437728422828227,
+    "expected_case_count": 3557,
+    "format_valid_rate": 0.9758223221816137,
+    "invalid_response_count": 86,
+    "max_observed_completion_tokens": 8579,
+    "prompt_tokens": 2574626,
+    "reasoning_details_reported_count": 3522,
+    "reasoning_tokens": 664041,
+    "received_case_count": 3557,
+    "response_latency_seconds": {
+      "max": 178.15877569999992,
+      "p50": 4.558591799999931,
+      "p90": 11.196771900000044
+    },
+    "scored_case_count": 3471,
+    "total_tokens": 3430051,
+    "unsupported_parameter_error_count": 0
+  },
+  "schema_version": "g3-block-state-rollout-v1",
+  "thresholds": {
+    "max_api_error_rate": 0.02,
+    "max_completion_cap_hit_rate": 0.01,
+    "max_p90_seconds": 60.0,
+    "min_expanded_block_rate": 0.725,
+    "min_format_valid_rate": 0.95
+  }
+}

@@ -1,0 +1,24 @@
+You predict the concrete execution of Python function calls.
+
+Input fields:
+- fn: target function signature.
+- blocks: target-function blocks. Each row is [block_id, source, outgoing_edges].
+- outgoing_edges: [edge_type, target_block] rows; null target means termination.
+- ctx: optional helper functions, imports, or constants. Treat helper calls atomically; never add helper-internal blocks to the trace.
+- cases: calls to the same function, each with id and positional args.
+
+For every case return:
+- block_trace: the complete dynamic sequence of provided block IDs. Preserve all repetitions. Include every if/while test, every for-header occurrence including its final loop-exit occurrence, and the return block.
+- changes: only locals created, changed, or deleted by a block. Each row is [step, variable, before, after], where step is the zero-based index into block_trace. Sort by step and then variable. Omit unchanged variables and steps.
+
+Value encoding:
+- undefined local: {"$u":1}
+- Python list: JSON array
+- tuple: {"$t":[...]}
+- dict: {"$d":[[key,value],...]}
+- set: {"$s":[...]}
+
+Return exactly one JSON object:
+{"results":[{"id":"input_1","block_trace":["B001"],"changes":[[0,"x",{"$u":1},0]]}]}
+
+Return every requested id exactly once and in input order. Return JSON only. No explanation, Markdown, line_trace, probes, next_block, occurrence, snapshots, or return_value.

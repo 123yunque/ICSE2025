@@ -1,8 +1,0 @@
-{
-  "elapsed_seconds": 21.6557201,
-  "endpoint_configured": true,
-  "error_type": "APIConnectionError",
-  "reason": "Connection error.",
-  "requested_model": "gpt-5.4",
-  "status": "failed"
-}
