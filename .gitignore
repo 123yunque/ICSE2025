@@ -33,7 +33,7 @@ __pycache__/
 /granularity3_local/joint_benchmark_10x10/
 /granularity3_local/block_state_model_batches_per_case/
 /granularity3_local/block_state_api_per_case_10tasks/
-
+/REval_PPT/
 # Reproduced outputs should be written separately from immutable formal artifacts.
 /granularity3_local/block_state_api_full_gpt54_low_3557/evaluation_reproduced/
 /granularity3_local/block_state_api_full_gpt54_low_3557/final_gate_reproduced/
