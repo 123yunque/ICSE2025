@@ -11,6 +11,8 @@ conda run -n granularity3 python -m granularity3_local.verify_release
 
 完整离线复评流程见 [`REPRODUCIBILITY.md`](REPRODUCIBILITY.md)；正式运行产物逐项说明见 [`block_state_api_full_gpt54_low_3557/RUN_ARTIFACT_GUIDE.md`](block_state_api_full_gpt54_low_3557/RUN_ARTIFACT_GUIDE.md)，端到端案例见 [`CASE_STUDY.md`](block_state_api_full_gpt54_low_3557/CASE_STUDY.md) 和 [`CASE_STUDY.png`](block_state_api_full_gpt54_low_3557/CASE_STUDY.png)。
 
+控制流与变量状态解耦的新实验见 [`DECOMPOSED_EXECUTION.md`](DECOMPOSED_EXECUTION.md)。该方案保留旧版联合实验作为基线，新增 Control-Flow、Oracle-CF State 和 Predicted-CF State 三种条件。
+
 ## 目录结构
 
 ```text
@@ -28,6 +30,11 @@ granularity3_local/
 ├── block_state_api.py        # 新版模型 API 调用
 ├── block_state_canary.py     # 分层抽样与新旧配置指标对比
 ├── block_state_evaluate.py   # 新版响应校验和评分
+├── decomposed_core.py        # 控制流/逐变量状态解耦协议与核心逻辑
+├── decomposed_statement.py   # 语句级变量状态插桩
+├── decomposed_prepare.py     # 解耦数据与 Predicted-CF State 请求生成
+├── decomposed_api.py         # 解耦任务 API 调用
+├── decomposed_evaluate.py    # 解耦任务评分与联合分析
 ├── legacy/                   # 旧版 Probe/行号 baseline，不参与新版主流程
 └── tests/                    # 新版测试；tests/legacy 保存旧版测试
 ```
