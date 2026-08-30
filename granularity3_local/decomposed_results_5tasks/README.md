@@ -22,13 +22,22 @@
 
 - `run_config.json`：模型、API、采样及任务选择配置；
 - `requests.jsonl`：实际发送给模型的请求；
+- `predictions.jsonl`：从原始响应解析、校验后的模型推理结果；
 - `oracles.jsonl`：最终语句级 Oracle；
-- `api_attempts.jsonl`：原始模型响应、校验状态及 token 用量；
+- `api_attempts.jsonl`：原始模型最终回答、校验状态及 reasoning/token 用量；
 - `scores.jsonl`：逐请求最终评分；
 - `summary.json`：该阶段最终汇总。
 
 `combined/` 保留逐案例联合评分及最终联合汇总。
 
+实际使用的比较逻辑位于 `decomposed_core.py` 的 `score_control_flow()`、
+`score_state()`，以及 `decomposed_evaluate.py` 的
+`evaluate_response_records()`、`build_combined_report()`。
+
+API 不返回模型的隐藏思维链，因此“推理结果”指模型最终输出；
+`api_attempts.jsonl` 中额外保留了每次调用的 `reasoning_tokens` 计数。
+
 以下内容没有保留：可由准备脚本重新生成的 pilot 缓存、与
-`api_attempts.jsonl` 重复的 `model_responses.jsonl`、可由原始响应重新生成的
-`predictions.jsonl`、空的错误文件，以及修正 Oracle 之前的旧评分。
+`api_attempts.jsonl` 重复的 `model_responses.jsonl`、空错误文件，以及修正
+Oracle 之前的旧评分。虽然 `predictions.jsonl` 可由原始响应重新生成，但为便于
+直接检查和比较，仍按用户要求保留。
