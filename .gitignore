@@ -37,3 +37,5 @@ __pycache__/
 # Reproduced outputs should be written separately from immutable formal artifacts.
 /granularity3_local/block_state_api_full_gpt54_low_3557/evaluation_reproduced/
 /granularity3_local/block_state_api_full_gpt54_low_3557/final_gate_reproduced/
+/granularity3_local/decomposed_pilot_*/
+/granularity3_local/decomposed_api_*/
