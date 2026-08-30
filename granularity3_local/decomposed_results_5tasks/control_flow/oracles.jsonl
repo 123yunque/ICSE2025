@@ -1,0 +1,5 @@
+{"answer": {"trace": [["B001", 1], ["B003", 1], ["B004", 1], ["B005", 1]]}, "case_key": "task_3/input_3", "input_id": "input_3", "kind": "control_flow", "request_id": "task_3/input_3", "schema_version": "g3-decomposed-v1", "task_id": "task_3"}
+{"answer": {"trace": [["B001", 1], ["B002", 1]]}, "case_key": "task_4/input_1", "input_id": "input_1", "kind": "control_flow", "request_id": "task_4/input_1", "schema_version": "g3-decomposed-v1", "task_id": "task_4"}
+{"answer": {"trace": [["B001", 1], ["B002", 1], ["B003", 1], ["B004", 1]]}, "case_key": "task_9/input_1", "input_id": "input_1", "kind": "control_flow", "request_id": "task_9/input_1", "schema_version": "g3-decomposed-v1", "task_id": "task_9"}
+{"answer": {"trace": [["B001", 1], ["B002", 1]]}, "case_key": "task_11/input_1", "input_id": "input_1", "kind": "control_flow", "request_id": "task_11/input_1", "schema_version": "g3-decomposed-v1", "task_id": "task_11"}
+{"answer": {"trace": [["B001", 1], ["B002", 1]]}, "case_key": "task_12/input_1", "input_id": "input_1", "kind": "control_flow", "request_id": "task_12/input_1", "schema_version": "g3-decomposed-v1", "task_id": "task_12"}

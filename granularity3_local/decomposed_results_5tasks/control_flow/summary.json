@@ -1,0 +1,20 @@
+{
+  "canonical_format_valid_count": 5,
+  "canonical_format_valid_rate": 1.0,
+  "canonical_trace_exact_count": 3,
+  "canonical_trace_exact_rate": 0.6,
+  "canonical_trace_exact_rate_all_requests": 0.6,
+  "expanded_trace_exact_count": 5,
+  "expanded_trace_exact_rate": 1.0,
+  "expanded_trace_exact_rate_all_requests": 1.0,
+  "expected_request_count": 5,
+  "format_valid_rate": 1.0,
+  "fully_valid": true,
+  "invalid_response_count": 0,
+  "kind": "control_flow",
+  "missing_response_count": 0,
+  "received_response_count": 5,
+  "response_complete": true,
+  "schema_version": "g3-decomposed-evaluation-v1",
+  "valid_response_count": 5
+}

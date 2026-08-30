@@ -1,0 +1,13 @@
+{
+  "control_case_count": 5,
+  "control_flow_expanded_exact_rate": 1.0,
+  "end_to_end_joint_exact_rate": 1.0,
+  "oracle_cf_state_exact_rate": 1.0,
+  "predicted_cf_state_exact_rate": 1.0,
+  "predicted_state_attempt_rate": 1.0,
+  "predicted_state_exact_given_cf_correct": 1.0,
+  "predicted_state_exact_given_cf_wrong": null,
+  "schema_version": "g3-decomposed-combined-v1",
+  "state_error_propagation_gap": 0.0,
+  "state_task_count": 7
+}

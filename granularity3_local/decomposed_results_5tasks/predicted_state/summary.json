@@ -1,0 +1,17 @@
+{
+  "expected_request_count": 7,
+  "format_valid_rate": 1.0,
+  "fully_valid": true,
+  "invalid_response_count": 0,
+  "kind": "predicted_state",
+  "mean_state_position_accuracy": 1.0,
+  "mean_state_position_accuracy_all_requests": 1.0,
+  "missing_response_count": 0,
+  "received_response_count": 7,
+  "response_complete": true,
+  "schema_version": "g3-decomposed-evaluation-v1",
+  "state_exact_count": 7,
+  "state_exact_rate": 1.0,
+  "state_exact_rate_all_requests": 1.0,
+  "valid_response_count": 7
+}

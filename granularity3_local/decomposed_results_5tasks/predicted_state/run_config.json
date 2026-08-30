@@ -1,0 +1,36 @@
+{
+  "execution": {
+    "concurrency": 3,
+    "retries": 0,
+    "retry_invalid": false,
+    "timeout": 180
+  },
+  "fingerprint": "92ec4e46bb30a6dafaa3eecdbccbf2157fd4135c8bdb357a321c99bd93c50032",
+  "generation": {
+    "api_base_url": "https://api.openlux.ai/v1",
+    "kind": "predicted_state",
+    "max_completion_tokens": 8192,
+    "model": "gpt-5.4",
+    "reasoning_effort": "low",
+    "system_prompt_sha256": "619ab7b0c7a906ed75c408feb3108f8e1b14410d5133d821379ecdfa0023f39f",
+    "temperature": null,
+    "verbosity": "low"
+  },
+  "kind": "predicted_state",
+  "schema_version": "g3-decomposed-api-config-v1",
+  "selected_request_count": 7,
+  "selected_tasks": [
+    "task_3",
+    "task_4",
+    "task_9",
+    "task_11",
+    "task_12"
+  ],
+  "selection": {
+    "cases_per_task": null,
+    "max_requests": null,
+    "ordered_request_ids_sha256": "72a09b039c7b151b1845b861ccc999c1c7f277541ab562385f4657bcb5d29592",
+    "task_ids": null,
+    "task_limit": null
+  }
+}
