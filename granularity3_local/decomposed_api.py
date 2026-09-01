@@ -35,8 +35,8 @@ from granularity3_local.decomposed_evaluate import evaluate_response_records
 from granularity3_local.oracle import write_json, write_jsonl
 
 
-API_SCHEMA_VERSION = "g3-decomposed-api-v1"
-RUN_CONFIG_SCHEMA_VERSION = "g3-decomposed-api-config-v1"
+API_SCHEMA_VERSION = "g3-decomposed-api-v2"
+RUN_CONFIG_SCHEMA_VERSION = "g3-decomposed-api-config-v2"
 
 
 def _stable_hash(value):
@@ -93,10 +93,38 @@ def select_requests(
     task_limit=None,
     cases_per_task=None,
     max_requests=None,
+    request_ids=None,
 ):
     oracle_by_id = {row["request_id"]: row for row in oracles}
     if len(oracle_by_id) != len(oracles):
         raise ValueError("duplicate oracle request ids")
+    request_by_id = {row["request_id"]: row for row in requests}
+    if len(request_by_id) != len(requests):
+        raise ValueError("duplicate request ids")
+    requested_ids = list(dict.fromkeys(request_ids or []))
+    if requested_ids:
+        if (
+            task_ids
+            or task_limit is not None
+            or cases_per_task is not None
+            or max_requests is not None
+        ):
+            raise ValueError(
+                "request_ids cannot be combined with task/case/request limits"
+            )
+        missing = [request_id for request_id in requested_ids if request_id not in request_by_id]
+        if missing:
+            raise ValueError(f"request ids not found: {missing[:20]}")
+        selected = [request_by_id[request_id] for request_id in requested_ids]
+        selected_tasks = list(dict.fromkeys(row["task_id"] for row in selected))
+        selected_oracles = []
+        for row in selected:
+            request_id = row["request_id"]
+            if request_id not in oracle_by_id:
+                raise ValueError(f"request has no oracle: {request_id}")
+            selected_oracles.append(oracle_by_id[request_id])
+        return selected, selected_oracles, selected_tasks
+
     available_tasks = sorted(
         {row["task_id"] for row in requests},
         key=task_sort_key,
@@ -281,6 +309,7 @@ def run_api_experiment(
     task_limit=None,
     cases_per_task=None,
     max_requests=None,
+    request_ids=None,
     timeout=180,
     max_completion_tokens=16000,
     retries=1,
@@ -301,6 +330,7 @@ def run_api_experiment(
         task_limit=task_limit,
         cases_per_task=cases_per_task,
         max_requests=max_requests,
+        request_ids=request_ids,
     )
     if not selected:
         raise ValueError("selection contains no requests")
@@ -334,6 +364,7 @@ def run_api_experiment(
             "task_limit": task_limit,
             "cases_per_task": cases_per_task,
             "max_requests": max_requests,
+            "request_ids_file_count": len(request_ids or []),
             "ordered_request_ids_sha256": _stable_hash(
                 [row["request_id"] for row in selected]
             ),
@@ -484,6 +515,28 @@ def _parse_tasks(value):
     return [item.strip() for item in value.split(",") if item.strip()]
 
 
+def _read_request_ids(path):
+    if not path:
+        return None
+    result = []
+    for line_number, line in enumerate(
+        Path(path).read_text(encoding="utf-8").splitlines(),
+        start=1,
+    ):
+        line = line.strip()
+        if not line:
+            continue
+        if line.startswith("{"):
+            value = json.loads(line)
+            request_id = value.get("request_id") if isinstance(value, dict) else None
+        else:
+            request_id = line
+        if not isinstance(request_id, str) or not request_id:
+            raise ValueError(f"invalid request id at {path}:{line_number}")
+        result.append(request_id)
+    return result
+
+
 def main():
     parser = argparse.ArgumentParser(
         description="Run decomposed granularity-3 requests through a Chat Completions API."
@@ -500,6 +553,10 @@ def main():
     parser.add_argument("--task-limit", type=int)
     parser.add_argument("--cases-per-task", type=int)
     parser.add_argument("--max-requests", type=int)
+    parser.add_argument(
+        "--request-ids-file",
+        help="Optional newline/JSONL file selecting an exact frozen request cohort.",
+    )
     parser.add_argument("--model", default=os.getenv("YUNWU_MODEL", ""))
     parser.add_argument(
         "--base-url",
@@ -550,6 +607,7 @@ def main():
         task_limit=args.task_limit,
         cases_per_task=args.cases_per_task,
         max_requests=args.max_requests,
+        request_ids=_read_request_ids(args.request_ids_file),
         timeout=args.timeout,
         max_completion_tokens=args.max_completion_tokens,
         retries=args.retries,

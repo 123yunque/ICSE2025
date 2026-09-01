@@ -19,6 +19,10 @@ class StatementEventLimitExceeded(RuntimeError):
     pass
 
 
+class StatementResultMismatch(RuntimeError):
+    """Instrumentation did not reproduce the trusted runtime result."""
+
+
 class StatementStateRuntime:
     def __init__(self, max_events=10000):
         self.max_events = max_events

@@ -35,6 +35,8 @@ __pycache__/
 /granularity3_local/block_state_api_per_case_10tasks/
 /granularity3_local/decomposed_pilot_*/
 /granularity3_local/decomposed_api_*/
+/granularity3_local/decomposed_full_*/
+/granularity3_local/decomposed_canary_*/
 /REval_PPT/
 # Reproduced outputs should be written separately from immutable formal artifacts.
 /granularity3_local/block_state_api_full_gpt54_low_3557/evaluation_reproduced/

@@ -25,7 +25,7 @@ from granularity3_local.block_state_local import (
 )
 
 
-SCHEMA_VERSION = "g3-decomposed-v1"
+SCHEMA_VERSION = "g3-decomposed-v2"
 CONTROL_FLOW_KIND = "control_flow"
 ORACLE_STATE_KIND = "oracle_state"
 PREDICTED_STATE_KIND = "predicted_state"
@@ -63,9 +63,11 @@ Input fields:
 - args: positional arguments for this call.
 - blocks: target-function blocks. Each row is [block_id, source, outgoing_edges].
 - execution_trace: the concrete block path, encoded as [path, repeat_count] rows.
-- trace_source: oracle or predicted. Follow the supplied trace exactly; do not replace it.
 - target_variable: the only variable whose state you must return.
 - ctx: optional helper functions, imports, or constants. Treat helper calls atomically.
+
+Treat execution_trace as the fixed path for this question. Follow it exactly;
+do not infer, repair, or replace it with another path.
 
 Return exactly one JSON object with one field named states.
 states must contain:

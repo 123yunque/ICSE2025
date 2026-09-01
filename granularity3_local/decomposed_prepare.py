@@ -18,6 +18,7 @@ from granularity3_local.decomposed_core import (
     PREDICTED_STATE_KIND,
     SCHEMA_VERSION,
     STATE_SYSTEM_PROMPT,
+    compact_json,
     input_sort_key,
     make_oracle_response,
     read_json,
@@ -27,12 +28,21 @@ from granularity3_local.decomposed_core import (
     task_sort_key,
     validate_response,
 )
-from granularity3_local.decomposed_statement import execute_statement_state_trace
+from granularity3_local.decomposed_statement import (
+    StatementResultMismatch,
+    execute_statement_state_trace,
+)
 from granularity3_local.oracle import write_json, write_jsonl
 
 
-PREPARE_SCHEMA_VERSION = "g3-decomposed-prepare-v1"
-PREDICTED_PREPARE_SCHEMA_VERSION = "g3-decomposed-predicted-state-v1"
+PREPARE_SCHEMA_VERSION = "g3-decomposed-prepare-v2"
+PREDICTED_PREPARE_SCHEMA_VERSION = "g3-decomposed-predicted-state-v2"
+COHORT_SCHEMA_VERSION = "g3-decomposed-cohort-v1"
+
+
+def stable_ids_sha256(values):
+    payload = "\n".join(values).encode("utf-8")
+    return hashlib.sha256(payload).hexdigest()
 
 
 def latest_case_records(records):
@@ -72,8 +82,10 @@ def prepare_decomposed_dataset(
     max_events=500,
     max_statement_events=2000,
     max_state_items=500,
+    max_state_answer_chars=16000,
     include_unchanged=False,
     require_state_change=False,
+    case_keys=None,
 ):
     local_output_root = Path(local_output_root)
     output_dir = Path(output_dir)
@@ -111,7 +123,27 @@ def prepare_decomposed_dataset(
             continue
         grouped[row["task_id"]].append(row)
 
-    selected_task_ids = _select_task_ids(grouped, task_ids, task_limit)
+    requested_case_keys = list(dict.fromkeys(case_keys or []))
+    requested_case_set = set(requested_case_keys)
+    if requested_case_keys:
+        if task_ids or task_limit is not None or inputs_per_task is not None:
+            raise ValueError(
+                "case_keys cannot be combined with task_ids, task_limit, or inputs_per_task"
+            )
+        available_case_keys = {
+            row["case_key"]
+            for task_rows in grouped.values()
+            for row in task_rows
+        }
+        missing = [key for key in requested_case_keys if key not in available_case_keys]
+        if missing:
+            raise ValueError(f"requested case keys are not eligible: {missing[:20]}")
+        selected_task_ids = sorted(
+            {key.split("/", 1)[0] for key in requested_case_keys},
+            key=task_sort_key,
+        )
+    else:
+        selected_task_ids = _select_task_ids(grouped, task_ids, task_limit)
     preselection_excluded_count = len(excluded)
     selected_task_set = set(selected_task_ids)
     excluded = [
@@ -133,6 +165,8 @@ def prepare_decomposed_dataset(
             grouped[task_id],
             key=lambda row: input_sort_key(row["input_id"]),
         )
+        if requested_case_set:
+            task_rows = [row for row in task_rows if row["case_key"] in requested_case_set]
         if inputs_per_task is not None:
             if inputs_per_task < 1:
                 raise ValueError("inputs_per_task must be positive")
@@ -197,7 +231,7 @@ def prepare_decomposed_dataset(
                 )
                 statement_event_count = len(statement_trace["events"])
                 if statement_trace["result"] != runtime_case["result"]:
-                    raise AssertionError(
+                    raise StatementResultMismatch(
                         f"statement instrumentation changed result: "
                         f"{statement_trace['result']!r} != {runtime_case['result']!r}"
                     )
@@ -227,11 +261,24 @@ def prepare_decomposed_dataset(
                         "limit": max_state_items,
                     })
                     continue
+                answer_chars = len(compact_json({"states": states}))
+                if (
+                    max_state_answer_chars is not None
+                    and answer_chars > max_state_answer_chars
+                ):
+                    excluded.append({
+                        "case_key": case_key,
+                        "scope": "variable",
+                        "target_variable": variable,
+                        "reason": "state_answer_size_limit",
+                        "value": answer_chars,
+                        "limit": max_state_answer_chars,
+                    })
+                    continue
                 request_id = f"{case_key}/state/{variable_index:03d}"
                 state_request = {
                     **common_request,
                     "execution_trace": control_trace,
-                    "trace_source": "oracle",
                     "target_variable": variable,
                 }
                 state_requests.append({
@@ -243,6 +290,7 @@ def prepare_decomposed_dataset(
                     "kind": ORACLE_STATE_KIND,
                     "target_variable": variable,
                     "control_request_id": case_key,
+                    "control_trace_source": "oracle",
                     "request": state_request,
                 })
                 state_oracles.append({
@@ -254,6 +302,7 @@ def prepare_decomposed_dataset(
                     "kind": ORACLE_STATE_KIND,
                     "target_variable": variable,
                     "control_request_id": case_key,
+                    "control_trace_source": "oracle",
                     "answer": {"states": states},
                 })
                 kept_variables.append(variable)
@@ -297,6 +346,19 @@ def prepare_decomposed_dataset(
         encoding="utf-8",
     )
 
+    case_keys_in_order = [row["case_key"] for row in control_requests]
+    state_request_ids = [row["request_id"] for row in state_requests]
+    state_case_count = sum(
+        manifest["tracked_variable_count"] > 0 for manifest in case_manifests
+    )
+    state_excluded_case_count = sum(
+        manifest["state_status"] == "excluded" for manifest in case_manifests
+    )
+    zero_change_case_count = sum(
+        manifest["state_status"] == "success"
+        and manifest["tracked_variable_count"] == 0
+        for manifest in case_manifests
+    )
     summary = {
         "schema_version": PREPARE_SCHEMA_VERSION,
         "protocol_schema_version": SCHEMA_VERSION,
@@ -308,6 +370,12 @@ def prepare_decomposed_dataset(
         "control_flow_request_count": len(control_requests),
         "oracle_state_request_count": len(state_requests),
         "tracked_variable_count": len(state_requests),
+        "state_case_count": state_case_count,
+        "state_case_coverage_rate": (
+            state_case_count / len(control_requests) if control_requests else None
+        ),
+        "zero_change_case_count": zero_change_case_count,
+        "state_excluded_case_count": state_excluded_case_count,
         "excluded_count": len(excluded),
         "preselection_excluded_count": preselection_excluded_count,
         "include_unchanged": include_unchanged,
@@ -315,7 +383,10 @@ def prepare_decomposed_dataset(
         "max_events": max_events,
         "max_statement_events": max_statement_events,
         "max_state_items": max_state_items,
+        "max_state_answer_chars": max_state_answer_chars,
         "inputs_per_task": inputs_per_task,
+        "case_keys_sha256": stable_ids_sha256(case_keys_in_order),
+        "state_request_ids_sha256": stable_ids_sha256(state_request_ids),
         "control_prompt_sha256": hashlib.sha256(
             CONTROL_FLOW_SYSTEM_PROMPT.encode("utf-8")
         ).hexdigest(),
@@ -324,6 +395,21 @@ def prepare_decomposed_dataset(
         ).hexdigest(),
     }
     write_json(output_dir / "summary.json", summary)
+    write_json(
+        output_dir / "cohort.json",
+        {
+            "schema_version": COHORT_SCHEMA_VERSION,
+            "prepare_schema_version": PREPARE_SCHEMA_VERSION,
+            "protocol_schema_version": SCHEMA_VERSION,
+            "case_count": len(case_keys_in_order),
+            "case_keys_sha256": summary["case_keys_sha256"],
+            "case_keys": case_keys_in_order,
+            "state_case_count": state_case_count,
+            "state_request_count": len(state_request_ids),
+            "state_request_ids_sha256": summary["state_request_ids_sha256"],
+            "state_request_ids": state_request_ids,
+        },
+    )
     return {
         "summary": summary,
         "control_requests": control_requests,
@@ -340,6 +426,7 @@ def prepare_predicted_state_dataset(
     state_requests,
     state_oracles,
     output_dir,
+    state_request_ids=None,
 ):
     """Replace Oracle traces with valid model-predicted traces for E2E state tasks."""
     output_dir = Path(output_dir)
@@ -347,6 +434,17 @@ def prepare_predicted_state_dataset(
     control_by_id = {row["request_id"]: row for row in control_requests}
     response_by_id = {row["request_id"]: row for row in control_responses}
     oracle_by_id = {row["request_id"]: row for row in state_oracles}
+    requested_state_ids = list(dict.fromkeys(state_request_ids or []))
+    if requested_state_ids:
+        state_by_id = {row["request_id"]: row for row in state_requests}
+        missing = [
+            request_id
+            for request_id in requested_state_ids
+            if request_id not in state_by_id
+        ]
+        if missing:
+            raise ValueError(f"state request ids not found: {missing[:20]}")
+        state_requests = [state_by_id[request_id] for request_id in requested_state_ids]
 
     predicted_trace_by_case = {}
     control_errors = {}
@@ -381,12 +479,12 @@ def prepare_predicted_state_dataset(
         request_id = parent_request_id.replace("/state/", "/predicted_state/", 1)
         request = dict(state_record["request"])
         request["execution_trace"] = trace
-        request["trace_source"] = "predicted"
         predicted_requests.append({
             **{key: value for key, value in state_record.items() if key != "request"},
             "request_id": request_id,
             "kind": PREDICTED_STATE_KIND,
             "parent_state_request_id": parent_request_id,
+            "control_trace_source": "predicted",
             "request": request,
         })
         oracle = oracle_by_id[parent_request_id]
@@ -395,6 +493,7 @@ def prepare_predicted_state_dataset(
             "request_id": request_id,
             "kind": PREDICTED_STATE_KIND,
             "parent_state_request_id": parent_request_id,
+            "control_trace_source": "predicted",
         })
 
     write_jsonl(output_dir / "requests.jsonl", predicted_requests)
@@ -431,6 +530,50 @@ def _parse_task_ids(value):
     return [item.strip() for item in value.split(",") if item.strip()]
 
 
+def _read_case_keys_file(path):
+    if not path:
+        return None
+    result = []
+    for line_number, line in enumerate(
+        Path(path).read_text(encoding="utf-8").splitlines(),
+        start=1,
+    ):
+        line = line.strip()
+        if not line:
+            continue
+        if line.startswith("{"):
+            value = json.loads(line)
+            case_key = value.get("case_key") if isinstance(value, dict) else None
+        else:
+            case_key = line
+        if not isinstance(case_key, str) or "/" not in case_key:
+            raise ValueError(f"invalid case key at {path}:{line_number}")
+        result.append(case_key)
+    return result
+
+
+def _read_request_ids_file(path):
+    if not path:
+        return None
+    result = []
+    for line_number, line in enumerate(
+        Path(path).read_text(encoding="utf-8").splitlines(),
+        start=1,
+    ):
+        line = line.strip()
+        if not line:
+            continue
+        if line.startswith("{"):
+            value = json.loads(line)
+            request_id = value.get("request_id") if isinstance(value, dict) else None
+        else:
+            request_id = line
+        if not isinstance(request_id, str) or "/" not in request_id:
+            raise ValueError(f"invalid request id at {path}:{line_number}")
+        result.append(request_id)
+    return result
+
+
 def main():
     parser = argparse.ArgumentParser(
         description="Prepare decomposed control-flow and variable-state tasks."
@@ -446,6 +589,11 @@ def main():
     prepare.add_argument("--max-events", type=int, default=500)
     prepare.add_argument("--max-statement-events", type=int, default=2000)
     prepare.add_argument("--max-state-items", type=int, default=500)
+    prepare.add_argument("--max-state-answer-chars", type=int, default=16000)
+    prepare.add_argument(
+        "--case-keys-file",
+        help="Optional newline/JSONL file that freezes the exact eligible case cohort.",
+    )
     prepare.add_argument("--include-unchanged", action="store_true")
     prepare.add_argument(
         "--require-state-change",
@@ -462,6 +610,10 @@ def main():
     predicted.add_argument("--state-requests", required=True)
     predicted.add_argument("--state-oracles", required=True)
     predicted.add_argument("--output-dir", required=True)
+    predicted.add_argument(
+        "--state-request-ids-file",
+        help="Optional exact state-request cohort, used for stratified canaries.",
+    )
 
     args = parser.parse_args()
     if args.command == "prepare":
@@ -474,8 +626,10 @@ def main():
             max_events=args.max_events,
             max_statement_events=args.max_statement_events,
             max_state_items=args.max_state_items,
+            max_state_answer_chars=args.max_state_answer_chars,
             include_unchanged=args.include_unchanged,
             require_state_change=args.require_state_change,
+            case_keys=_read_case_keys_file(args.case_keys_file),
         )
     else:
         result = prepare_predicted_state_dataset(
@@ -484,6 +638,7 @@ def main():
             state_requests=read_jsonl(args.state_requests),
             state_oracles=read_jsonl(args.state_oracles),
             output_dir=args.output_dir,
+            state_request_ids=_read_request_ids_file(args.state_request_ids_file),
         )
     print(json.dumps(result["summary"], ensure_ascii=False, sort_keys=True))
 

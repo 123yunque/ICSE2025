@@ -18,12 +18,15 @@ block_trace + changes
 k 个 Variable-State Tasks
 ```
 
-主实验回答两个相互独立的问题：
+主实验把输出任务解耦，并回答两个条件化问题：
 
 1. 模型能否预测程序实际经过的 Block？
 2. 在真实执行路径已经给定时，模型能否维护一个目标变量的状态？
 
-旧版联合实验保持不变，作为 `Joint Baseline`。
+旧版联合实验保持不变，作为历史 `Joint Baseline`。由于旧版把同一 run
+内的多次赋值压成首尾值，它只能在旧 run-level Oracle 与新语句级 Oracle
+完全一致的变量子集上进行公平状态比较；不能直接把旧 `changes_exact`
+与新 `state_exact` 当作同一指标。
 
 ## 2. 三种实验条件
 
@@ -105,6 +108,8 @@ Predicted Trace
 ```
 
 它与 Oracle-CF State 使用相同状态答案，唯一变化是输入 Trace 来自模型预测。
+Trace 来源仅保存在模型不可见的请求元数据中；模型输入不包含
+`trace_source=oracle/predicted`，避免条件标签成为混淆变量。
 
 核心比较：
 
@@ -122,6 +127,8 @@ decomposed_statement.py  语句级状态插桩与语义保持验证
 decomposed_prepare.py    生成 CF、Oracle-CF State、Predicted-CF State 数据
 decomposed_evaluate.py   分项评估和三条件联合报告
 decomposed_api.py        可恢复、可并发的 Chat Completions API runner
+decomposed_plan.py       冻结全量 cohort、审计规模并选择分层 canary
+decomposed_gate.py       canary 与全量阶段质量门禁
 tests/test_decomposed.py 解耦协议和端到端本地测试
 ```
 
@@ -304,3 +311,49 @@ Oracle-CF State Task 测量的是：
 > 在真实执行路径已经固定时，模型维护目标变量动态状态的能力。
 
 它不是完整端到端执行能力；完整能力由 Predicted-CF State 和联合指标补充。该设计的目的正是避免把控制流失败错误归因于数据流推理。
+
+## 10. 正式全量 v2 协议
+
+正式运行使用 `g3-decomposed-v2`。准备命令固定以下边界：基本块事件最多
+500、语句事件最多 2000、单变量状态项最多 500、单变量 Oracle JSON 最多
+16000 字符。最后一项防止超大容器值使模型输出超过 completion 上限。
+
+```powershell
+conda run -n Npflower python -m granularity3_local.decomposed_prepare prepare `
+  --local-output-root granularity3_local\block_state_mbppplus_full `
+  --output-dir granularity3_local\decomposed_full_v2_16k_prepared `
+  --max-events 500 `
+  --max-statement-events 2000 `
+  --max-state-items 500 `
+  --max-state-answer-chars 16000
+```
+
+准备目录中的 `cohort.json` 保存完整 case/request ID 和 SHA-256。随后冻结
+旧基线共同集并选择跨状态长度和值类型的 40-case canary：
+
+```powershell
+conda run -n Npflower python -m granularity3_local.decomposed_plan `
+  --prepared-dir granularity3_local\decomposed_full_v2_16k_prepared `
+  --output-dir granularity3_local\decomposed_full_v2_16k_plan `
+  --legacy-selected-requests granularity3_local\block_state_api_full_gpt54_low_3557\selected_model_batches.jsonl `
+  --canary-case-count 40
+```
+
+API canary 和正式运行都使用 ID 文件精确选择，避免 `task-limit` 造成只取
+前部简单案例。能力统计使用首个收到的响应，不对格式无效回答进行模型重试；
+网络错误可通过相同配置 `--resume` 恢复，已收到但格式无效的回答使用
+`--resume-received` 固定为失败。
+
+正式 API 配置为 `gpt-5.4`、`reasoning_effort=low`、`verbosity=low`、
+`max_completion_tokens=16384`、`retries=0`。Control-Flow 与 Oracle-CF
+State 可以并行；Predicted-CF State 必须在 Control-Flow 完成后构造。
+
+正式报告同时给出：
+
+- control case micro 与 task macro；
+- state variable micro、case all-variable exact 与 task macro；
+- 状态长度分桶；
+- 1117/3591 的状态案例覆盖率；
+- Oracle-CF、Predicted-CF 和端到端联合指标；
+- 旧联合基线仅在 run-level 与 statement-level Oracle 兼容子集上的结果；
+- 所有排除原因及完整 frozen cohort 哈希。

@@ -4,19 +4,23 @@ import unittest
 from pathlib import Path
 from types import SimpleNamespace
 
-from granularity3_local.decomposed_api import run_api_experiment
+from granularity3_local.decomposed_api import run_api_experiment, select_requests
 from granularity3_local.decomposed_core import (
     CONTROL_FLOW_KIND,
     ORACLE_STATE_KIND,
+    STATE_SYSTEM_PROMPT,
     ResponseValidationError,
     make_oracle_response,
     state_sequences_from_events,
     validate_response,
 )
 from granularity3_local.decomposed_evaluate import (
+    build_legacy_compatibility_report,
     build_combined_report,
     evaluate_response_records,
+    legacy_state_sequence,
 )
+from granularity3_local.decomposed_plan import select_stratified_canary
 from granularity3_local.decomposed_prepare import (
     prepare_decomposed_dataset,
     prepare_predicted_state_dataset,
@@ -94,6 +98,7 @@ class DecomposedCoreTests(unittest.TestCase):
         )
         with self.assertRaises(ResponseValidationError):
             validate_response(state, {"states": [1], "trace": [["B001", 1]]})
+        self.assertNotIn("trace_source", STATE_SYSTEM_PROMPT)
 
     def test_statement_trace_keeps_multiple_changes_inside_one_basic_block(self):
         source = (
@@ -197,7 +202,8 @@ class DecomposedPipelineTests(unittest.TestCase):
             self.assertEqual(prepared["summary"]["control_flow_request_count"], 1)
             self.assertEqual(prepared["summary"]["oracle_state_request_count"], 1)
             state_request = prepared["state_requests"][0]
-            self.assertEqual(state_request["request"]["trace_source"], "oracle")
+            self.assertNotIn("trace_source", state_request["request"])
+            self.assertEqual(state_request["control_trace_source"], "oracle")
             self.assertEqual(state_request["request"]["target_variable"], "y")
             self.assertNotIn("changes", state_request["request"])
             self.assertEqual(
@@ -223,6 +229,14 @@ class DecomposedPipelineTests(unittest.TestCase):
                 state_evaluation["summary"]["state_exact_rate_all_requests"],
                 1.0,
             )
+            self.assertEqual(
+                state_evaluation["summary"]["state_case_exact_rate_all_cases"],
+                1.0,
+            )
+            self.assertEqual(
+                state_evaluation["summary"]["task_macro_state_exact_rate_all_requests"],
+                1.0,
+            )
 
             predicted = prepare_predicted_state_dataset(
                 prepared["control_requests"],
@@ -232,8 +246,9 @@ class DecomposedPipelineTests(unittest.TestCase):
                 Path(directory) / "predicted",
             )
             self.assertEqual(predicted["summary"]["predicted_state_request_count"], 1)
+            self.assertNotIn("trace_source", predicted["requests"][0]["request"])
             self.assertEqual(
-                predicted["requests"][0]["request"]["trace_source"],
+                predicted["requests"][0]["control_trace_source"],
                 "predicted",
             )
             predicted_evaluation = evaluate_response_records(
@@ -252,6 +267,10 @@ class DecomposedPipelineTests(unittest.TestCase):
             self.assertEqual(report["summary"]["oracle_cf_state_exact_rate"], 1.0)
             self.assertEqual(report["summary"]["predicted_cf_state_exact_rate"], 1.0)
             self.assertEqual(report["summary"]["state_error_propagation_gap"], 0.0)
+            self.assertEqual(
+                report["summary"]["end_to_end_case_joint_exact_rate"],
+                1.0,
+            )
 
     def test_api_runner_can_execute_selected_control_request(self):
         class FakeCompletions:
@@ -301,6 +320,99 @@ class DecomposedPipelineTests(unittest.TestCase):
                 summary["evaluation"]["expanded_trace_exact_rate_all_requests"],
                 1.0,
             )
+
+    def test_exact_request_selection_preserves_frozen_order(self):
+        requests = [
+            {
+                "request_id": f"task_1/input_{index}",
+                "case_key": f"task_1/input_{index}",
+                "task_id": "task_1",
+                "input_id": f"input_{index}",
+            }
+            for index in (1, 2, 3)
+        ]
+        oracles = [
+            {"request_id": row["request_id"], "answer": {}}
+            for row in requests
+        ]
+        selected, selected_oracles, _tasks = select_requests(
+            requests,
+            oracles,
+            request_ids=["task_1/input_3", "task_1/input_1"],
+        )
+        self.assertEqual(
+            [row["request_id"] for row in selected],
+            ["task_1/input_3", "task_1/input_1"],
+        )
+        self.assertEqual(
+            [row["request_id"] for row in selected_oracles],
+            ["task_1/input_3", "task_1/input_1"],
+        )
+
+    def test_legacy_report_uses_only_oracle_compatible_variables(self):
+        request = {
+            "request_id": "task_1/input_1/state/001",
+            "case_key": "task_1/input_1",
+            "task_id": "task_1",
+            "input_id": "input_1",
+            "target_variable": "x",
+        }
+        oracle = {**request, "answer": {"states": [0, 1, 2]}}
+        legacy_oracle = [{
+            "batch_id": "task_1/input_1",
+            "results": [{
+                "id": "input_1",
+                "block_trace": [["B001", 1], ["B002", 1]],
+                "changes": [[0, "x", 0, 1], [1, "x", 1, 2]],
+            }],
+        }]
+        legacy_prediction = [{
+            "batch_id": "task_1/input_1",
+            "results": [{
+                "id": "input_1",
+                "block_trace": [["B001", 1], ["B002", 1]],
+                "changes": [[0, "x", 0, 1], [1, "x", 1, 2]],
+            }],
+        }]
+        self.assertEqual(
+            legacy_state_sequence(legacy_oracle[0]["results"][0]["changes"], "x"),
+            {"states": [0, 1, 2], "chain_valid": True},
+        )
+        report = build_legacy_compatibility_report(
+            [request],
+            [oracle],
+            legacy_oracle,
+            legacy_prediction,
+            [{"case_key": "task_1/input_1", "expanded_block_exact": True}],
+        )
+        self.assertEqual(
+            report["summary"]["legacy_state_exact_rate_all_compatible_requests"],
+            1.0,
+        )
+
+    def test_canary_selection_covers_length_bins_with_unique_cases(self):
+        candidates = []
+        lengths = [2, 3, 6, 11, 26, 101]
+        for index, length in enumerate(lengths, start=1):
+            candidates.append({
+                "request_id": f"task_{index}/input_1/state/001",
+                "case_key": f"task_{index}/input_1",
+                "task_id": f"task_{index}",
+                "state_length": length,
+                "state_length_bin": (
+                    "2" if length == 2 else
+                    "3-5" if length <= 5 else
+                    "6-10" if length <= 10 else
+                    "11-25" if length <= 25 else
+                    "26-100" if length <= 100 else ">100"
+                ),
+                "state_answer_chars": length,
+                "statement_event_count": length,
+                "request_chars": length,
+            })
+        selected = select_stratified_canary(candidates, len(candidates))
+        self.assertEqual(len({row["case_key"] for row in selected}), 6)
+        self.assertEqual(len({row["state_length_bin"] for row in selected}), 6)
 
 
 if __name__ == "__main__":
