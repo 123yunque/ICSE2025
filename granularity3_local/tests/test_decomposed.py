@@ -244,6 +244,11 @@ class DecomposedPipelineTests(unittest.TestCase):
                 prepared["state_requests"],
                 prepared["state_oracles"],
                 Path(directory) / "predicted",
+                state_request_ids=[
+                    state_request["request_id"].replace(
+                        "/state/", "/predicted_state/", 1
+                    )
+                ],
             )
             self.assertEqual(predicted["summary"]["predicted_state_request_count"], 1)
             self.assertNotIn("trace_source", predicted["requests"][0]["request"])

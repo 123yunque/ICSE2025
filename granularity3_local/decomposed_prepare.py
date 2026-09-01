@@ -437,14 +437,18 @@ def prepare_predicted_state_dataset(
     requested_state_ids = list(dict.fromkeys(state_request_ids or []))
     if requested_state_ids:
         state_by_id = {row["request_id"]: row for row in state_requests}
+        normalized_state_ids = [
+            request_id.replace("/predicted_state/", "/state/", 1)
+            for request_id in requested_state_ids
+        ]
         missing = [
             request_id
-            for request_id in requested_state_ids
+            for request_id in normalized_state_ids
             if request_id not in state_by_id
         ]
         if missing:
             raise ValueError(f"state request ids not found: {missing[:20]}")
-        state_requests = [state_by_id[request_id] for request_id in requested_state_ids]
+        state_requests = [state_by_id[request_id] for request_id in normalized_state_ids]
 
     predicted_trace_by_case = {}
     control_errors = {}
