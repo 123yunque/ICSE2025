@@ -347,6 +347,44 @@ API canary 和正式运行都使用 ID 文件精确选择，避免 `task-limit` 
 正式 API 配置为 `gpt-5.4`、`reasoning_effort=low`、`verbosity=low`、
 `max_completion_tokens=16384`、`retries=0`。Control-Flow 与 Oracle-CF
 State 可以并行；Predicted-CF State 必须在 Control-Flow 完成后构造。
+API runner 逐条追加 attempts 与 responses，进程中断时仍可恢复；正常结束后再按
+冻结 ID 顺序重写为规范 JSONL。`--progress-every 50` 只降低全量日志频率。
+
+Control-Flow 全量命令：
+
+```powershell
+conda run -n Npflower python -m granularity3_local.decomposed_api `
+  --kind control_flow `
+  --requests granularity3_local\decomposed_full_v2_16k_prepared\control_flow\requests.jsonl `
+  --oracles granularity3_local\decomposed_full_v2_16k_prepared\control_flow\oracles.jsonl `
+  --output-dir granularity3_local\decomposed_full_v2_api_control_3591 `
+  --request-ids-file granularity3_local\decomposed_full_v2_16k_plan\full_control_request_ids.txt `
+  --model gpt-5.4 `
+  --reasoning-effort low `
+  --verbosity low `
+  --max-completion-tokens 16384 `
+  --retries 0 `
+  --concurrency 3 `
+  --progress-every 50
+```
+
+Oracle-CF State 全量命令：
+
+```powershell
+conda run -n Npflower python -m granularity3_local.decomposed_api `
+  --kind oracle_state `
+  --requests granularity3_local\decomposed_full_v2_16k_prepared\oracle_state\requests.jsonl `
+  --oracles granularity3_local\decomposed_full_v2_16k_prepared\oracle_state\oracles.jsonl `
+  --output-dir granularity3_local\decomposed_full_v2_api_oracle_state_2241 `
+  --request-ids-file granularity3_local\decomposed_full_v2_16k_plan\full_oracle_state_request_ids.txt `
+  --model gpt-5.4 `
+  --reasoning-effort low `
+  --verbosity low `
+  --max-completion-tokens 16384 `
+  --retries 0 `
+  --concurrency 3 `
+  --progress-every 50
+```
 
 正式报告同时给出：
 

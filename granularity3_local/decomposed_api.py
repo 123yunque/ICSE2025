@@ -48,6 +48,15 @@ def _usage_value(usage, name):
     return value if isinstance(value, int) else 0
 
 
+def _append_jsonl(path, row):
+    path = Path(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("a", encoding="utf-8", newline="\n") as handle:
+        handle.write(json.dumps(row, ensure_ascii=False, sort_keys=True))
+        handle.write("\n")
+        handle.flush()
+
+
 def _nested_usage_value(usage, container_name, value_name):
     container = getattr(usage, container_name, None) if usage is not None else None
     value = getattr(container, value_name, None) if container is not None else None
@@ -320,9 +329,12 @@ def run_api_experiment(
     concurrency=1,
     resume=False,
     resume_received=False,
+    progress_every=1,
 ):
     if concurrency < 1:
         raise ValueError("concurrency must be positive")
+    if progress_every < 1:
+        raise ValueError("progress_every must be positive")
     selected, selected_oracles, selected_tasks = select_requests(
         requests,
         oracles,
@@ -375,19 +387,21 @@ def run_api_experiment(
             "retries": retries,
             "retry_invalid": retry_invalid,
             "concurrency": concurrency,
+            "progress_every": progress_every,
         },
     }
     run_config["fingerprint"] = _stable_hash(run_config)
     config_path = output_dir / "run_config.json"
     responses_path = output_dir / "model_responses.jsonl"
+    attempts_path = output_dir / "api_attempts.jsonl"
     if config_path.exists():
         existing = read_json(config_path)
         if existing.get("fingerprint") != run_config["fingerprint"]:
             raise ValueError("output directory contains a different run configuration")
         if not resume:
             raise ValueError("output directory already exists; use --resume or a new directory")
-    elif responses_path.exists() and not resume:
-        raise ValueError("output directory already contains responses")
+    elif responses_path.exists() or attempts_path.exists():
+        raise ValueError("output directory has API artifacts but no run configuration")
 
     write_json(config_path, run_config)
     write_jsonl(output_dir / "selected_requests.jsonl", selected)
@@ -403,35 +417,34 @@ def run_api_experiment(
         if resume
         else {}
     )
-    attempts = read_jsonl(output_dir / "api_attempts.jsonl") if resume else []
+    attempts = read_jsonl(attempts_path) if resume else []
     lock = threading.Lock()
 
     def persist_attempt(row):
         with lock:
             attempts.append(row)
-            write_jsonl(output_dir / "api_attempts.jsonl", attempts)
+            _append_jsonl(attempts_path, row)
 
     def persist_response(request_id, response):
         with lock:
             if response is not None:
                 response_by_id[request_id] = response
-            write_jsonl(
-                responses_path,
-                [
-                    response_by_id[row["request_id"]]
-                    for row in selected
-                    if row["request_id"] in response_by_id
-                ],
-            )
+                _append_jsonl(responses_path, response)
 
     started = time.perf_counter()
 
     def invoke(index, request_record):
         request_id = request_record["request_id"]
-        print(
-            f"[decomposed-api] start {index}/{len(selected)} {request_id}",
-            flush=True,
+        show_progress = (
+            index == 1
+            or index == len(selected)
+            or index % progress_every == 0
         )
+        if show_progress:
+            print(
+                f"[decomposed-api] start {index}/{len(selected)} {request_id}",
+                flush=True,
+            )
         response, _ = call_one_request(
             client=client,
             request_record=request_record,
@@ -448,11 +461,12 @@ def run_api_experiment(
             on_attempt=persist_attempt,
         )
         persist_response(request_id, response)
-        print(
-            f"[decomposed-api] done {index}/{len(selected)} {request_id} "
-            f"received={response is not None}",
-            flush=True,
-        )
+        if show_progress or response is None:
+            print(
+                f"[decomposed-api] done {index}/{len(selected)} {request_id} "
+                f"received={response is not None}",
+                flush=True,
+            )
         return request_id
 
     pending = [
@@ -474,6 +488,8 @@ def run_api_experiment(
         for row in selected
         if row["request_id"] in response_by_id
     ]
+    write_jsonl(responses_path, responses)
+    write_jsonl(attempts_path, attempts)
     evaluation = evaluate_response_records(
         selected,
         selected_oracles,
@@ -574,6 +590,7 @@ def main():
     parser.add_argument("--verbosity", choices=("low", "medium", "high"))
     parser.add_argument("--temperature", type=float)
     parser.add_argument("--concurrency", type=int, default=1)
+    parser.add_argument("--progress-every", type=int, default=1)
     parser.add_argument("--resume", action="store_true")
     parser.add_argument("--resume-received", action="store_true")
     args = parser.parse_args()
@@ -618,6 +635,7 @@ def main():
         concurrency=args.concurrency,
         resume=args.resume,
         resume_received=args.resume_received,
+        progress_every=args.progress_every,
     )
     print(json.dumps(summary, ensure_ascii=False, sort_keys=True))
 
