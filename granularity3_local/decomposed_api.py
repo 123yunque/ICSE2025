@@ -35,8 +35,8 @@ from granularity3_local.decomposed_evaluate import evaluate_response_records
 from granularity3_local.oracle import write_json, write_jsonl
 
 
-API_SCHEMA_VERSION = "g3-decomposed-api-v2"
-RUN_CONFIG_SCHEMA_VERSION = "g3-decomposed-api-config-v2"
+API_SCHEMA_VERSION = "g3-decomposed-api-v3"
+RUN_CONFIG_SCHEMA_VERSION = "g3-decomposed-api-config-v3"
 
 
 def _stable_hash(value):
@@ -71,6 +71,7 @@ def generation_config(
     reasoning_effort,
     verbosity,
     temperature,
+    json_mode=False,
 ):
     return {
         "kind": kind,
@@ -83,6 +84,7 @@ def generation_config(
         "reasoning_effort": reasoning_effort,
         "verbosity": verbosity,
         "temperature": temperature,
+        "api_response_format": "json_object" if json_mode else None,
     }
 
 
@@ -189,6 +191,7 @@ def call_one_request(
     reasoning_effort,
     verbosity,
     temperature,
+    json_mode,
     config,
     fingerprint,
     on_attempt=None,
@@ -211,6 +214,8 @@ def call_one_request(
                 kwargs["verbosity"] = verbosity
             if temperature is not None:
                 kwargs["temperature"] = temperature
+            if json_mode:
+                kwargs["response_format"] = {"type": "json_object"}
             response = _create_with_hard_timeout(
                 client.chat.completions.create,
                 kwargs,
@@ -330,6 +335,7 @@ def run_api_experiment(
     resume=False,
     resume_received=False,
     progress_every=1,
+    json_mode=False,
 ):
     if concurrency < 1:
         raise ValueError("concurrency must be positive")
@@ -361,6 +367,7 @@ def run_api_experiment(
         reasoning_effort=reasoning_effort,
         verbosity=verbosity,
         temperature=temperature,
+        json_mode=json_mode,
     )
     fingerprints = {
         row["request_id"]: request_fingerprint(row, config)
@@ -456,6 +463,7 @@ def run_api_experiment(
             reasoning_effort=reasoning_effort,
             verbosity=verbosity,
             temperature=temperature,
+            json_mode=json_mode,
             config=config,
             fingerprint=fingerprints[request_id],
             on_attempt=persist_attempt,
@@ -589,6 +597,11 @@ def main():
     )
     parser.add_argument("--verbosity", choices=("low", "medium", "high"))
     parser.add_argument("--temperature", type=float)
+    parser.add_argument(
+        "--json-mode",
+        action="store_true",
+        help="Request API-level JSON object output in addition to prompt constraints.",
+    )
     parser.add_argument("--concurrency", type=int, default=1)
     parser.add_argument("--progress-every", type=int, default=1)
     parser.add_argument("--resume", action="store_true")
@@ -632,6 +645,7 @@ def main():
         reasoning_effort=args.reasoning_effort,
         verbosity=args.verbosity,
         temperature=args.temperature,
+        json_mode=args.json_mode,
         concurrency=args.concurrency,
         resume=args.resume,
         resume_received=args.resume_received,

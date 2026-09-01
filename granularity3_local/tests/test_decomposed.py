@@ -274,7 +274,10 @@ class DecomposedPipelineTests(unittest.TestCase):
 
     def test_api_runner_can_execute_selected_control_request(self):
         class FakeCompletions:
+            last_kwargs = None
+
             def create(self, **_kwargs):
+                self.last_kwargs = _kwargs
                 return SimpleNamespace(
                     choices=[SimpleNamespace(
                         message=SimpleNamespace(
@@ -303,10 +306,11 @@ class DecomposedPipelineTests(unittest.TestCase):
             **{key: value for key, value in request.items() if key != "request"},
             "answer": {"trace": [["B001", 1]]},
         }
+        completions = FakeCompletions()
         with tempfile.TemporaryDirectory() as directory:
             summary = run_api_experiment(
                 client=SimpleNamespace(
-                    chat=SimpleNamespace(completions=FakeCompletions())
+                    chat=SimpleNamespace(completions=completions)
                 ),
                 requests=[request],
                 oracles=[oracle],
@@ -314,8 +318,13 @@ class DecomposedPipelineTests(unittest.TestCase):
                 model="fake",
                 api_base_url="https://example.invalid/v1",
                 retries=0,
+                json_mode=True,
             )
             self.assertEqual(summary["response_count"], 1)
+            self.assertEqual(
+                completions.last_kwargs["response_format"],
+                {"type": "json_object"},
+            )
             self.assertEqual(
                 summary["evaluation"]["expanded_trace_exact_rate_all_requests"],
                 1.0,

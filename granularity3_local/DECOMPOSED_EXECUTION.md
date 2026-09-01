@@ -345,7 +345,9 @@ API canary 和正式运行都使用 ID 文件精确选择，避免 `task-limit` 
 `--resume-received` 固定为失败。
 
 正式 API 配置为 `gpt-5.4`、`reasoning_effort=low`、`verbosity=low`、
-`max_completion_tokens=16384`、`retries=0`。Control-Flow 与 Oracle-CF
+`max_completion_tokens=16384`、`retries=0`、API JSON mode。JSON mode 是
+输出通道约束，不能替代本地 schema 校验；它防止兼容服务把 `<think>` 标签混入
+JSON 正文。Control-Flow 与 Oracle-CF
 State 可以并行；Predicted-CF State 必须在 Control-Flow 完成后构造。
 API runner 逐条追加 attempts 与 responses，进程中断时仍可恢复；正常结束后再按
 冻结 ID 顺序重写为规范 JSONL。`--progress-every 50` 只降低全量日志频率。
@@ -363,6 +365,7 @@ conda run -n Npflower python -m granularity3_local.decomposed_api `
   --reasoning-effort low `
   --verbosity low `
   --max-completion-tokens 16384 `
+  --json-mode `
   --retries 0 `
   --concurrency 3 `
   --progress-every 50
@@ -381,6 +384,7 @@ conda run -n Npflower python -m granularity3_local.decomposed_api `
   --reasoning-effort low `
   --verbosity low `
   --max-completion-tokens 16384 `
+  --json-mode `
   --retries 0 `
   --concurrency 3 `
   --progress-every 50
