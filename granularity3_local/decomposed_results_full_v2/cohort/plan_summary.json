@@ -1,0 +1,85 @@
+{
+  "canary_case_count": 40,
+  "canary_control_request_ids_sha256": "ef5976cb52b36198b9a016d086cdf976f7d32d3d2511bdd84268248ec303d34e",
+  "canary_state_length_bin_counts": {
+    "11-25": 7,
+    "2": 7,
+    "26-100": 6,
+    "3-5": 7,
+    "6-10": 7,
+    ">100": 6
+  },
+  "canary_state_request_ids_sha256": "4918c900d9f847a23fd1d1d5a78637dfa859cb2ecc6dd652dbdac2fc926d2c31",
+  "canary_value_kind_counts": {
+    "bool": 1,
+    "dict": 4,
+    "list": 40,
+    "null": 1,
+    "number": 32,
+    "object": 1,
+    "set": 1,
+    "special_float": 6,
+    "string": 7,
+    "tuple": 2,
+    "undefined": 35
+  },
+  "control_request_chars": {
+    "count": 3591,
+    "max": 1405,
+    "min": 86,
+    "p50": 185,
+    "p90": 435,
+    "p99": 984
+  },
+  "decomposed_only_case_count": 34,
+  "exclusion_reason_counts": {
+    "case:EventLimitExceeded": 3,
+    "case:TraceSizeLimitExceeded": 22,
+    "case:event_limit": 25,
+    "state_case:StatementResultMismatch": 1,
+    "variable:state_answer_size_limit": 13
+  },
+  "full_case_count": 3591,
+  "full_case_keys_sha256": "480c08c60044205e56c19335eb1074b8640af361b9013562fa4881a0d48a4ba6",
+  "legacy_case_count": 3557,
+  "prepare_schema_version": "g3-decomposed-prepare-v2",
+  "protocol_schema_version": "g3-decomposed-v2",
+  "schema_version": "g3-decomposed-plan-v1",
+  "shared_legacy_case_count": 3557,
+  "state_answer_chars": {
+    "count": 2241,
+    "max": 15942,
+    "min": 16,
+    "p50": 38,
+    "p90": 178,
+    "p99": 3299
+  },
+  "state_case_count": 1117,
+  "state_case_coverage_rate": 0.3110554163185742,
+  "state_length_bin_counts": {
+    "11-25": 258,
+    "2": 1041,
+    "26-100": 186,
+    "3-5": 396,
+    "6-10": 334,
+    ">100": 26
+  },
+  "state_lengths": {
+    "count": 2241,
+    "max": 211,
+    "min": 2,
+    "p50": 3,
+    "p90": 23,
+    "p99": 101
+  },
+  "state_request_chars": {
+    "count": 2241,
+    "max": 3723,
+    "min": 218,
+    "p50": 508,
+    "p90": 1436,
+    "p99": 2929
+  },
+  "state_request_count": 2241,
+  "state_request_ids_sha256": "8288c37b2c247a0d679a3c591756619642b2e016ee9185b6b1a3d4d097135b12"
+}

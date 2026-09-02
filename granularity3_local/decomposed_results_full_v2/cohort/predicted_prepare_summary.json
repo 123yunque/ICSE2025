@@ -1,0 +1,8 @@
+{
+  "control_request_count": 3591,
+  "excluded_state_request_count": 23,
+  "predicted_state_request_count": 2218,
+  "schema_version": "g3-decomposed-predicted-state-v2",
+  "source_state_request_count": 2241,
+  "valid_control_trace_count": 3554
+}

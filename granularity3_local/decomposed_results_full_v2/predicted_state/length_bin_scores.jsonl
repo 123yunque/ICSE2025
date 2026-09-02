@@ -1,0 +1,6 @@
+{"expected_request_count": 1028, "kind": "predicted_state", "state_exact_rate_all_requests": 0.7607003891050583, "state_length_bin": "2", "valid_response_count": 1019}
+{"expected_request_count": 393, "kind": "predicted_state", "state_exact_rate_all_requests": 0.7455470737913485, "state_length_bin": "3-5", "valid_response_count": 392}
+{"expected_request_count": 331, "kind": "predicted_state", "state_exact_rate_all_requests": 0.7492447129909365, "state_length_bin": "6-10", "valid_response_count": 331}
+{"expected_request_count": 254, "kind": "predicted_state", "state_exact_rate_all_requests": 0.7007874015748031, "state_length_bin": "11-25", "valid_response_count": 252}
+{"expected_request_count": 186, "kind": "predicted_state", "state_exact_rate_all_requests": 0.43010752688172044, "state_length_bin": "26-100", "valid_response_count": 181}
+{"expected_request_count": 26, "kind": "predicted_state", "state_exact_rate_all_requests": 0.2692307692307692, "state_length_bin": ">100", "valid_response_count": 26}

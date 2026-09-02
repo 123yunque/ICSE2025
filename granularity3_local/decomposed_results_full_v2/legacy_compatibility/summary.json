@@ -1,0 +1,13 @@
+{
+  "legacy_compatible_case_count": 871,
+  "legacy_compatible_state_request_count": 1232,
+  "legacy_compatible_state_request_rate": 0.5497545738509594,
+  "legacy_end_to_end_case_joint_exact_rate_all_compatible_cases": 0.6073478760045924,
+  "legacy_end_to_end_joint_exact_rate_all_compatible_requests": 0.6331168831168831,
+  "legacy_incompatible_state_request_count": 1009,
+  "legacy_state_case_exact_rate_all_compatible_cases": 0.6463834672789897,
+  "legacy_state_exact_count": 854,
+  "legacy_state_exact_rate_all_compatible_requests": 0.6931818181818182,
+  "schema_version": "g3-decomposed-legacy-compatibility-v1",
+  "state_request_count": 2241
+}

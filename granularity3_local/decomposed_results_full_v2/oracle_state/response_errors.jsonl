@@ -1,0 +1,9 @@
+{"case_key": "task_71/input_3", "kind": "oracle_state", "reason": "response is not valid JSON: line 1 column 1", "request_id": "task_71/input_3/state/004", "status": "invalid_response"}
+{"case_key": "task_98/input_7", "kind": "oracle_state", "reason": "response is not valid JSON: line 1 column 1", "request_id": "task_98/input_7/state/001", "status": "invalid_response"}
+{"case_key": "task_100/input_9", "kind": "oracle_state", "reason": "response is not valid JSON: line 1 column 1", "request_id": "task_100/input_9/state/004", "status": "invalid_response"}
+{"case_key": "task_428/input_2", "kind": "oracle_state", "reason": "response is not valid JSON: line 1 column 1", "request_id": "task_428/input_2/state/002", "status": "invalid_response"}
+{"case_key": "task_440/input_2", "kind": "oracle_state", "reason": "response is not valid JSON: line 1 column 1", "request_id": "task_440/input_2/state/001", "status": "invalid_response"}
+{"case_key": "task_616/input_7", "kind": "oracle_state", "reason": "response is not valid JSON: line 1 column 1", "request_id": "task_616/input_7/state/001", "status": "invalid_response"}
+{"case_key": "task_619/input_10", "kind": "oracle_state", "reason": "response is not valid JSON: line 1 column 1", "request_id": "task_619/input_10/state/002", "status": "invalid_response"}
+{"case_key": "task_633/input_10", "kind": "oracle_state", "reason": "response is not valid JSON: line 1 column 1", "request_id": "task_633/input_10/state/001", "status": "invalid_response"}
+{"case_key": "task_767/input_3", "kind": "oracle_state", "reason": "response is not valid JSON: line 1 column 1", "request_id": "task_767/input_3/state/001", "status": "invalid_response"}

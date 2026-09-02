@@ -1,0 +1,109 @@
+{
+  "checks": [
+    {
+      "actual": 0.9896964633806739,
+      "name": "control.format_valid_rate",
+      "passed": true,
+      "required": 0.95
+    },
+    {
+      "actual": true,
+      "name": "control.response_complete",
+      "passed": true,
+      "required": true
+    },
+    {
+      "actual": 0,
+      "name": "control.finish_reason",
+      "passed": true,
+      "required": 0
+    },
+    {
+      "actual": 0.9959839357429718,
+      "name": "oracle_state.format_valid_rate",
+      "passed": true,
+      "required": 0.95
+    },
+    {
+      "actual": true,
+      "name": "oracle_state.response_complete",
+      "passed": true,
+      "required": true
+    },
+    {
+      "actual": 0,
+      "name": "oracle_state.finish_reason",
+      "passed": true,
+      "required": 0
+    },
+    {
+      "actual": 0.9923354373309288,
+      "name": "predicted_state.format_valid_rate",
+      "passed": true,
+      "required": 0.95
+    },
+    {
+      "actual": true,
+      "name": "predicted_state.response_complete",
+      "passed": true,
+      "required": true
+    },
+    {
+      "actual": 0,
+      "name": "predicted_state.finish_reason",
+      "passed": true,
+      "required": 0
+    }
+  ],
+  "min_format_valid_rate": 0.95,
+  "passed": true,
+  "require_complete": true,
+  "runs": {
+    "control": {
+      "api_error_count": 2535,
+      "completion_tokens": 517725,
+      "format_valid_rate": 0.9896964633806739,
+      "invalid_attempt_count": 37,
+      "max_completion_tokens": 5800,
+      "max_prompt_tokens": 9288,
+      "non_stop_finish_count": 0,
+      "prompt_tokens": 1484918,
+      "reasoning_tokens": 405917,
+      "received_attempt_count": 3591,
+      "response_complete": true,
+      "response_count": 3591,
+      "selected_request_count": 3591
+    },
+    "oracle_state": {
+      "api_error_count": 1705,
+      "completion_tokens": 934632,
+      "format_valid_rate": 0.9959839357429718,
+      "invalid_attempt_count": 9,
+      "max_completion_tokens": 11492,
+      "max_prompt_tokens": 5934,
+      "non_stop_finish_count": 0,
+      "prompt_tokens": 1505015,
+      "reasoning_tokens": 711273,
+      "received_attempt_count": 2241,
+      "response_complete": true,
+      "response_count": 2241,
+      "selected_request_count": 2241
+    },
+    "predicted_state": {
+      "api_error_count": 19,
+      "completion_tokens": 949313,
+      "format_valid_rate": 0.9923354373309288,
+      "invalid_attempt_count": 17,
+      "max_completion_tokens": 12635,
+      "max_prompt_tokens": 11050,
+      "non_stop_finish_count": 0,
+      "prompt_tokens": 1529098,
+      "reasoning_tokens": 727673,
+      "received_attempt_count": 2218,
+      "response_complete": true,
+      "response_count": 2218,
+      "selected_request_count": 2218
+    }
+  },
+  "schema_version": "g3-decomposed-gate-v1"
+}
