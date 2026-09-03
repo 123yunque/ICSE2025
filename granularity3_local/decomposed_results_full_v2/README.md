@@ -4,6 +4,8 @@
 实验于 2026-09-02 使用 `gpt-5.4`、`reasoning_effort=low`、`verbosity=low`、
 JSON 模式和 16,384 completion-token 上限运行。
 
+![控制流分块、运行时变量提取与模型比较的真实案例](CASE_STUDY.png)
+
 协议按 `1 + k` 拆分：每个具体输入先执行 1 个控制流问题，再对该输入中每个被跟踪变量执行
 1 个独立状态问题。Oracle-CF 和 Predicted-CF 使用相同状态问题与同一运行时 Oracle，唯一差别是
 `execution_trace` 分别来自本地标准轨迹和模型控制流预测。因此两路状态结果可直接测量控制流错误的
