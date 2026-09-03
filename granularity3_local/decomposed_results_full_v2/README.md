@@ -4,6 +4,8 @@
 实验于 2026-09-02 使用 `gpt-5.4`、`reasoning_effort=low`、`verbosity=low`、
 JSON 模式和 16,384 completion-token 上限运行。
 
+![粒度 3 解耦执行推理的完整实验方法](METHOD_OVERVIEW.png)
+
 ![控制流分块、运行时变量提取与模型比较的真实案例](CASE_STUDY.png)
 
 协议按 `1 + k` 拆分：每个具体输入先执行 1 个控制流问题，再对该输入中每个被跟踪变量执行
