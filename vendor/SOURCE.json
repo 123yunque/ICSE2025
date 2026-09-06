@@ -1,0 +1,21 @@
+{
+  "revision": "28fef95ea8c9f7a547c8329f2cd3d32b92c1fa24",
+  "resolution_status": "commit_pinned",
+  "files": {
+    "lcb_runner/evaluation/testing_util.py": {
+      "url": "https://raw.githubusercontent.com/LiveCodeBench/LiveCodeBench/28fef95ea8c9f7a547c8329f2cd3d32b92c1fa24/lcb_runner/evaluation/testing_util.py",
+      "sha256": "715812d61abc40aea812d49066bd4add3895a7b59c05c2b243eec212588d7ced",
+      "upstream_sha256": "b7cb6a8a69807bb868150a61742e25d7bb5328bbe01d514471b6ec43c9fa9ed2"
+    },
+    "LICENSE": {
+      "url": "https://raw.githubusercontent.com/LiveCodeBench/LiveCodeBench/28fef95ea8c9f7a547c8329f2cd3d32b92c1fa24/LICENSE",
+      "sha256": "104099948b78ebc36f2e951b3a7973b956adfa7d39aaec0d1512f97a2686d15d",
+      "upstream_sha256": "104099948b78ebc36f2e951b3a7973b956adfa7d39aaec0d1512f97a2686d15d"
+    },
+    "ERRATA.md": {
+      "url": "https://raw.githubusercontent.com/LiveCodeBench/LiveCodeBench/28fef95ea8c9f7a547c8329f2cd3d32b92c1fa24/ERRATA.md",
+      "sha256": "7c2fa9557e0bdafad12ae29c89b2b1b8d972ccb102f9b0b58ab4293c74261861",
+      "upstream_sha256": "7c2fa9557e0bdafad12ae29c89b2b1b8d972ccb102f9b0b58ab4293c74261861"
+    }
+  }
+}

@@ -336,6 +336,7 @@ def run_api_experiment(
     resume_received=False,
     progress_every=1,
     json_mode=False,
+    dispatch_request_ids=None,
 ):
     if concurrency < 1:
         raise ValueError("concurrency must be positive")
@@ -424,6 +425,7 @@ def run_api_experiment(
         if resume
         else {}
     )
+    resumed_response_count = len(response_by_id)
     attempts = read_jsonl(attempts_path) if resume else []
     lock = threading.Lock()
 
@@ -482,6 +484,11 @@ def run_api_experiment(
         for index, row in enumerate(selected, start=1)
         if row["request_id"] not in response_by_id
     ]
+    if dispatch_request_ids is not None:
+        dispatch_ids = set(dispatch_request_ids)
+        if not dispatch_ids <= set(request_by_id):
+            raise ValueError('dispatch ids must belong to the frozen request cohort')
+        pending = [(index, row) for index, row in pending if row['request_id'] in dispatch_ids]
     if concurrency == 1:
         for index, row in pending:
             invoke(index, row)
@@ -514,7 +521,7 @@ def run_api_experiment(
         "selected_tasks": selected_tasks,
         "selected_request_count": len(selected),
         "response_count": len(responses),
-        "resumed_response_count": len(selected) - len(pending),
+        "resumed_response_count": resumed_response_count,
         "api_error_count": sum(row.get("status") == "api_error" for row in attempts),
         "invalid_attempt_count": sum(
             row.get("validation") == "invalid" for row in received_attempts
