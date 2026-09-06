@@ -14,6 +14,7 @@
 - 代码生成：`gpt-5.4`、high、JSON mode、16,384 completion tokens；每题最多三个独立候选，选最早通过全部公开及私有测试的一份。隐藏测试不进入生成提示。
 - 函数调用题统一为 `solve(*args)`，标准输入题为 `solve(raw_input: str) -> str`；使用薄包装送入官方判题器，跟踪相同算法核心。
 - 每题预选最多 10 个原始官方输入：公开按顺序最多 3 个，私有按固定题目种子抽取并补足；不按执行预测成绩替换题目、解答或输入。
+- 重复输入的输出按官方等价规则比较：函数题解析 JSON；STDIN 保留行数，逐行去首尾空白，允许相同 Decimal 数字序列。末尾换行差异不视作冲突。审计修复前的误排除记录保存在每题 `format_audit/`，仅这些未生成解答的题恢复构建。
 - Oracle：Block 500 事件、语句 2,000 事件、变量状态 500 项、状态答案 16,000 字符、原始轨迹 4 MiB；超限排除而非截断。辅助函数按原子调用处理；不支持的语法如 break/continue、递归单独报告，不要求生成器回避。
 - 判题：上游提交及本地文件哈希见 `vendor/SOURCE.json`。仅 Windows deadline 适配，比较规则不变；每测试 6 秒、候选进程 180 秒。Oracle 进程 90 秒。Python 3.9 / Conda `Npflower`。
 - 执行预测：沿用 `g3-decomposed-v2`；Control-Flow → Oracle-CF State / Predicted-CF State，`gpt-5.4`、low、JSON mode、16,384 tokens、并发 3。

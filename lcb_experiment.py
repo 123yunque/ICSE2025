@@ -22,6 +22,7 @@ import zlib
 from collections import Counter
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
+from decimal import Decimal, InvalidOperation
 from pathlib import Path
 
 from granularity3_local.block_state_api import DEFAULT_API_BASE_URL, create_http_compatible_client
@@ -126,13 +127,31 @@ def test_args(test):
     return tuple(json.loads(line) for line in test["input"].split("\n"))
 
 
+def outputs_equivalent(left, right, kind):
+    if kind == 'functional':
+        return json.loads(left) == json.loads(right)
+    a = [line.strip() for line in left.strip().split('\n')]
+    b = [line.strip() for line in right.strip().split('\n')]
+    if len(a) != len(b):
+        return False
+    for x, y in zip(a, b):
+        if x == y:
+            continue
+        try:
+            if [Decimal(t) for t in x.split()] != [Decimal(t) for t in y.split()]:
+                return False
+        except InvalidOperation:
+            return False
+    return True
+
+
 def choose_tests(public, private, key, limit=10):
     seen, pools = {}, {"public": [], "private": []}
     for label, rows in (("public", public), ("private", private)):
         for index, row in enumerate(rows):
             identity = (row["testtype"], row["input"])
             if identity in seen:
-                if seen[identity] != row["output"]:
+                if not outputs_equivalent(seen[identity], row['output'], row['testtype']):
                     raise ValueError("duplicate input has conflicting outputs")
                 continue
             seen[identity] = row["output"]
@@ -255,9 +274,15 @@ def build_problem(row, run, client, model, inputs_per_task):
     task_dir = run / "solutions" / row["task_id"]
     result_path = task_dir / "result.json"
     if result_path.exists():
-        return load(result_path)
+        previous_result = load(result_path)
+        if not (previous_result.get('status') == 'data_error'
+                and previous_result.get('reason') == 'duplicate input has conflicting outputs'
+                and previous_result.get('data_adapter_version') != 'official-output-equivalence-v1'):
+            return previous_result
+        save(task_dir / 'format_audit/previous_result.json', previous_result)
     task_dir.mkdir(parents=True, exist_ok=True)
-    result = {"task_id": row["task_id"], "problem_key": row["problem_key"]}
+    result = {"task_id": row["task_id"], "problem_key": row["problem_key"],
+              "data_adapter_version": 'official-output-equivalence-v1'}
     try:
         public, private = decode_tests(row["public_test_cases"]), decode_tests(row["private_test_cases"])
         tests = public + private

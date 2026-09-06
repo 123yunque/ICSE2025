@@ -12,6 +12,14 @@ from lcb_experiment import check_core, choose_tests, decode_tests, test_args, su
 
 
 class AdapterTests(unittest.TestCase):
+    def test_duplicate_output_equivalence_matches_judge(self):
+        from lcb_experiment import outputs_equivalent
+        self.assertTrue(outputs_equivalent('000', '000\n', 'stdin'))
+        self.assertTrue(outputs_equivalent('1.0  2', '1 2.00\n', 'stdin'))
+        self.assertFalse(outputs_equivalent('a\n\nb', 'a\nb', 'stdin'))
+        self.assertFalse(outputs_equivalent('1 2', '2 1', 'stdin'))
+        self.assertTrue(outputs_equivalent('[1,2]', '[1, 2]\n', 'functional'))
+
     def test_opaque_states_and_helper_only_boundary(self):
         from lcb_experiment import opaque_state, helper_only_target
         self.assertTrue(opaque_state([{'$u': 1}, {'$o': ['function', 'address']}]))
