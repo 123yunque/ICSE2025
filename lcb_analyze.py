@@ -180,6 +180,18 @@ def analyze(run, data='data'):
                     usage['inference_' + name] += attempt.get(name) or 0
     paired_groups = {group: four_cells([r for r in variable_rows if r['cf_group'] == group])
                      for group in ['cf_correct', 'cf_wrong_constructable', 'cf_unconstructable']}
+    candidate_failures = Counter()
+    for result in build:
+        for attempt in result.get('attempts', []):
+            if attempt.get('status') == 'invalid_candidate':
+                candidate_failures['invalid_code_response_or_interface'] += 1
+            else:
+                verdict = attempt.get('verdict', {})
+                if verdict.get('status') != 'passed':
+                    label = verdict.get('metadata', {}).get('error_message', verdict.get('status', 'unknown'))
+                    if str(label).startswith('Wrong answer'):
+                        label = 'Wrong answer'
+                    candidate_failures[str(label)] += 1
     summary = {'run_id': run.name, 'protocol': 'g3-decomposed-v2',
         'complete': len(build) == 100 and not any(r['status'] == 'api_incomplete' for r in build)
                     and (run / 'prepared/summary.json').exists()
@@ -188,6 +200,7 @@ def analyze(run, data='data'):
                     and all(r['missing'] == 0 for r in response_coverage.values())
                     and len(repeat_requests) == min(40, len(states)),
         'raw_pool': 1055, 'selected_problems': 100, 'build_status': dict(Counter(r['status'] for r in build)),
+        'candidate_failure_counts': dict(candidate_failures),
         'verified_supported_problems': sum(bool(r.get('preflight', {}).get('supported')) for r in build),
         'eligible_problems': len({r['task_id'] for r in controls}),
         'N_control_cases': len(controls), 'K_state_variables': len(states), 'M_state_cases': len(case_rows),

@@ -450,8 +450,12 @@ def prepare(run, concurrency=4):
     for row in states:
         kept_by_case.setdefault(row['case_key'], []).append(row['target_variable'])
     for row in manifests:
+        row['pre_adapter_variable_count'] = row['tracked_variable_count']
         row['tracked_variables'] = kept_by_case.get(row['case_key'], [])
         row['tracked_variable_count'] = len(row['tracked_variables'])
+        row['opaque_variables_excluded'] = row['pre_adapter_variable_count'] - row['tracked_variable_count']
+        if row['opaque_variables_excluded'] and not row['tracked_variable_count']:
+            row['state_status'] = 'excluded_opaque_variables'
     from granularity3_local.decomposed_core import make_oracle_response
     from granularity3_local.decomposed_evaluate import evaluate_response_records
     for kind, requests, oracles in [("control_flow", controls, control_oracles), ("oracle_state", states, state_oracles)]:
