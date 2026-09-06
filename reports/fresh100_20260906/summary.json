@@ -1,0 +1,295 @@
+{
+  "K_state_variables": 1976,
+  "M_state_cases": 318,
+  "N_control_cases": 351,
+  "bootstrap": {
+    "iterations": 2000,
+    "seed": 20260905,
+    "unit": "original problem; all inputs and variables together"
+  },
+  "build_status": {
+    "data_issue": 1,
+    "no_verified_solution": 40,
+    "verified": 59
+  },
+  "candidate_failure_counts": {
+    "Runtime Error": 3,
+    "Time Limit Exceeded": 14,
+    "invalid_code_response_or_interface": 108
+  },
+  "case_failure_buckets": {
+    "control_flow_failed": 310,
+    "state_failed_given_correct_cf": 8
+  },
+  "case_metrics": {
+    "end_to_end_case_joint_exact": {
+      "cluster_ci95": [
+        0.0,
+        0.0
+      ],
+      "denominator": 318,
+      "macro": 0.0,
+      "micro": 0.0,
+      "problem_count": 46
+    },
+    "oracle_cf_all_variables_exact": {
+      "cluster_ci95": [
+        0.0,
+        0.0
+      ],
+      "denominator": 318,
+      "macro": 0.0,
+      "micro": 0.0,
+      "problem_count": 46
+    },
+    "predicted_cf_all_variables_exact": {
+      "cluster_ci95": [
+        0.0,
+        0.0
+      ],
+      "denominator": 318,
+      "macro": 0.0,
+      "micro": 0.0,
+      "problem_count": 46
+    }
+  },
+  "combined": {
+    "control_case_count": 351,
+    "control_flow_expanded_exact_rate": 0.02564102564102564,
+    "end_to_end_case_joint_exact_rate": 0.0,
+    "end_to_end_joint_exact_rate": 0.0,
+    "oracle_cf_state_case_exact_rate": 0.0,
+    "oracle_cf_state_exact_rate": 0.0,
+    "predicted_cf_state_case_exact_rate": 0.0,
+    "predicted_cf_state_exact_rate": 0.0,
+    "predicted_state_attempt_rate": 0.0,
+    "predicted_state_exact_given_cf_correct": 0.0,
+    "predicted_state_exact_given_cf_wrong": 0.0,
+    "schema_version": "g3-decomposed-combined-v2",
+    "state_case_count": 318,
+    "state_case_coverage_rate": 0.905982905982906,
+    "state_error_propagation_gap": 0.0,
+    "state_task_count": 1976,
+    "state_task_macro_end_to_end_case_joint_exact_rate": 0.0,
+    "state_task_macro_end_to_end_joint_exact_rate": 0.0,
+    "state_task_macro_oracle_cf_state_case_exact_rate": 0.0,
+    "state_task_macro_oracle_cf_state_exact_rate": 0.0,
+    "state_task_macro_predicted_cf_state_case_exact_rate": 0.0,
+    "state_task_macro_predicted_cf_state_exact_rate": 0.0
+  },
+  "complete": false,
+  "control_metrics": {
+    "canonical_exact": {
+      "cluster_ci95": [
+        0.00546448087431694,
+        0.04533333333333334
+      ],
+      "denominator": 351,
+      "macro": 0.016326530612244896,
+      "micro": 0.022792022792022793,
+      "problem_count": 49
+    },
+    "expanded_exact": {
+      "cluster_ci95": [
+        0.00625,
+        0.04851752021563342
+      ],
+      "denominator": 351,
+      "macro": 0.01924198250728863,
+      "micro": 0.02564102564102564,
+      "problem_count": 49
+    }
+  },
+  "eligible_problems": 49,
+  "exclusion_reasons": {
+    "EventLimitExceeded": 24,
+    "TraceSizeLimitExceeded": 115,
+    "data_issue": 1,
+    "helper_only_target": 3,
+    "no_verified_solution": 40,
+    "opaque_object_state": 8,
+    "state_answer_size_limit": 5,
+    "unsupported_jump": 7
+  },
+  "identical_message_pairs": {
+    "correct_to_correct": 0,
+    "correct_to_wrong": 0,
+    "wrong_to_correct": 0,
+    "wrong_to_wrong": 0
+  },
+  "paired_by_cf": {
+    "cf_correct": {
+      "correct_to_correct": 0,
+      "correct_to_wrong": 0,
+      "wrong_to_correct": 0,
+      "wrong_to_wrong": 31
+    },
+    "cf_unconstructable": {
+      "correct_to_correct": 0,
+      "correct_to_wrong": 0,
+      "wrong_to_correct": 0,
+      "wrong_to_wrong": 1945
+    },
+    "cf_wrong_constructable": {
+      "correct_to_correct": 0,
+      "correct_to_wrong": 0,
+      "wrong_to_correct": 0,
+      "wrong_to_wrong": 0
+    }
+  },
+  "paired_four_cells": {
+    "correct_to_correct": 0,
+    "correct_to_wrong": 0,
+    "wrong_to_correct": 0,
+    "wrong_to_wrong": 1976
+  },
+  "protocol": "g3-decomposed-v2",
+  "raw_pool": 1055,
+  "repeat_control": {
+    "count": 40,
+    "four_cells": {
+      "correct_to_correct": 0,
+      "correct_to_wrong": 0,
+      "wrong_to_correct": 0,
+      "wrong_to_wrong": 40
+    }
+  },
+  "responses": {
+    "control_flow": {
+      "expected": 351,
+      "missing": 311,
+      "received": 40,
+      "truncated": 0
+    },
+    "oracle_state": {
+      "expected": 1976,
+      "missing": 1976,
+      "received": 0,
+      "truncated": 0
+    },
+    "predicted_state": {
+      "expected": 0,
+      "missing": 0,
+      "received": 0,
+      "truncated": 0
+    },
+    "repeat_state": {
+      "expected": 40,
+      "missing": 40,
+      "received": 0,
+      "truncated": 0
+    }
+  },
+  "run_id": "fresh100_20260906",
+  "selected_problems": 100,
+  "token_usage": {
+    "generation_completion_tokens": 290179,
+    "generation_prompt_tokens": 156641,
+    "inference_completion_tokens": 14582,
+    "inference_prompt_tokens": 21151,
+    "inference_reasoning_tokens": 6589
+  },
+  "variable_metrics": {
+    "end_to_end_joint_exact": {
+      "cluster_ci95": [
+        0.0,
+        0.0
+      ],
+      "denominator": 1976,
+      "macro": 0.0,
+      "micro": 0.0,
+      "problem_count": 46
+    },
+    "net_drop": {
+      "cluster_ci95": [
+        0.0,
+        0.0
+      ],
+      "denominator": 1976,
+      "macro": 0.0,
+      "micro": 0.0,
+      "problem_count": 46
+    },
+    "oracle_cf_state_exact": {
+      "cluster_ci95": [
+        0.0,
+        0.0
+      ],
+      "denominator": 1976,
+      "macro": 0.0,
+      "micro": 0.0,
+      "problem_count": 46
+    },
+    "oracle_normalized_prefix": {
+      "cluster_ci95": [
+        0.0,
+        0.0
+      ],
+      "denominator": 1976,
+      "macro": 0.0,
+      "micro": 0.0,
+      "problem_count": 46
+    },
+    "oracle_position_accuracy": {
+      "cluster_ci95": [
+        0.0,
+        0.0
+      ],
+      "denominator": 1976,
+      "macro": 0.0,
+      "micro": 0.0,
+      "problem_count": 46
+    },
+    "oracle_prefix": {
+      "cluster_ci95": [
+        0.0,
+        0.0
+      ],
+      "denominator": 1976,
+      "macro": 0.0,
+      "micro": 0.0,
+      "problem_count": 46
+    },
+    "predicted_cf_state_exact": {
+      "cluster_ci95": [
+        0.0,
+        0.0
+      ],
+      "denominator": 1976,
+      "macro": 0.0,
+      "micro": 0.0,
+      "problem_count": 46
+    },
+    "predicted_normalized_prefix": {
+      "cluster_ci95": [
+        0.0,
+        0.0
+      ],
+      "denominator": 1976,
+      "macro": 0.0,
+      "micro": 0.0,
+      "problem_count": 46
+    },
+    "predicted_position_accuracy": {
+      "cluster_ci95": [
+        0.0,
+        0.0
+      ],
+      "denominator": 1976,
+      "macro": 0.0,
+      "micro": 0.0,
+      "problem_count": 46
+    },
+    "predicted_prefix": {
+      "cluster_ci95": [
+        0.0,
+        0.0
+      ],
+      "denominator": 1976,
+      "macro": 0.0,
+      "micro": 0.0,
+      "problem_count": 46
+    }
+  },
+  "verified_supported_problems": 52
+}

@@ -251,6 +251,28 @@ def analyze(run, data='data'):
         '两次状态调用的差异包含模型调用波动与路径表示差异，不能全部归为控制流的因果影响。', '',
         '固定长轨迹次要分析使用 L≥10；分桶、宏平均、正确前缀、配对分组及覆盖明细见同目录 CSV 和 summary.json。',
         '原始候选、全部测试判定、Oracle、首答和请求指纹保存在 `runs/' + run.name + '/`。']
+    if not summary['complete']:
+        stage = load(run / 'progress.json') if (run / 'progress.json').exists() else {}
+        text = [f'# LiveCodeBench 100 题实验：{run.name}', '',
+            ('状态：已停止；尚无完整推理结果。' if stage.get('status') == 'stopped' else '状态：进行中；尚无完整推理结果。'), '',
+            '构建状态：`' + json.dumps(summary['build_status'], ensure_ascii=False) + '`。',
+            f"最终准备清单：{summary['eligible_problems']} 题，N={len(controls)}，K={len(states)}，M={len(case_rows)}。", '',
+            '当前阶段：`' + str(stage.get('stage', 'unknown')) + '`。',
+            '阶段说明：' + str(stage.get('reason', '流水线仍在运行。')),
+            '主指标待全部阶段结束后展示，避免将尚未发送的请求当作实际推理失败。', '',
+            '| 条件 | 已收到 | 已构造请求数 |', '| --- | ---: | ---: |']
+        for kind, coverage in response_coverage.items():
+            text.append(f"| {kind} | {coverage['received']} | {coverage['expected']} |")
+        text += ['', '原始请求和响应保存在 `runs/' + run.name + '/`。最终报告由流水线自动更新。']
+        gate_path = run / 'pilot/control_flow_gate.json'
+        if gate_path.exists():
+            gate = load(gate_path)
+            evaluation = gate['evaluation']
+            text += ['', '控制流工程试跑：'
+                + f"{evaluation['valid_response_count']}/{evaluation['expected_request_count']} 个首答格式有效"
+                + f"（{evaluation['format_valid_rate']:.1%}），预定门槛 95%。没有 token 截断。",
+                '多数无效回答返回代码、函数输出或说明，未遵循仅返回 trace 的协议。原因尚未确认，不能归因于模型算法推理能力。',
+                '后续 Oracle-State、Predicted-State 和重复调用均尚未执行。补足 API 额度后先恢复独立诊断，再决定如何在保留原始首答的条件下继续。']
     (out / 'REPORT.md').write_text('\n'.join(text) + '\n', encoding='utf-8')
     print(json.dumps({k: summary[k] for k in ['complete', 'build_status', 'eligible_problems', 'N_control_cases', 'K_state_variables', 'M_state_cases', 'responses']}, ensure_ascii=False), flush=True)
     return summary

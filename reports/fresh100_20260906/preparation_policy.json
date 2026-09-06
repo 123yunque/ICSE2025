@@ -1,0 +1,6 @@
+{
+  "helper_only_target": "exclude target calling nested helpers without target-level control flow",
+  "opaque_states": "exclude variables with $o process-specific object representation",
+  "timing": "frozen before any execution-inference model response; solution candidate choice unchanged",
+  "version": "lcb-adapter-eligibility-v1"
+}

@@ -1,0 +1,27 @@
+{
+  "evaluation": {
+    "canonical_format_valid_count": 9,
+    "canonical_format_valid_rate": 1.0,
+    "canonical_trace_exact_count": 8,
+    "canonical_trace_exact_rate": 0.8888888888888888,
+    "canonical_trace_exact_rate_all_requests": 0.2,
+    "expanded_trace_exact_count": 9,
+    "expanded_trace_exact_rate": 1.0,
+    "expanded_trace_exact_rate_all_requests": 0.225,
+    "expected_request_count": 40,
+    "format_valid_rate": 0.225,
+    "fully_valid": false,
+    "invalid_response_count": 31,
+    "kind": "control_flow",
+    "missing_response_count": 0,
+    "received_response_count": 40,
+    "response_complete": true,
+    "schema_version": "g3-decomposed-evaluation-v2",
+    "task_count": 26,
+    "task_macro_canonical_trace_exact_rate_all_requests": 0.17307692307692307,
+    "task_macro_expanded_trace_exact_rate_all_requests": 0.21153846153846154,
+    "valid_response_count": 9
+  },
+  "passed": false,
+  "truncations": 0
+}

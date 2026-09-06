@@ -1,0 +1,44 @@
+{
+  "api_base_url": "https://api.openlux.ai/v1",
+  "checker_source": {
+    "files": {
+      "ERRATA.md": {
+        "sha256": "7c2fa9557e0bdafad12ae29c89b2b1b8d972ccb102f9b0b58ab4293c74261861",
+        "upstream_sha256": "7c2fa9557e0bdafad12ae29c89b2b1b8d972ccb102f9b0b58ab4293c74261861",
+        "url": "https://raw.githubusercontent.com/LiveCodeBench/LiveCodeBench/28fef95ea8c9f7a547c8329f2cd3d32b92c1fa24/ERRATA.md"
+      },
+      "LICENSE": {
+        "sha256": "104099948b78ebc36f2e951b3a7973b956adfa7d39aaec0d1512f97a2686d15d",
+        "upstream_sha256": "104099948b78ebc36f2e951b3a7973b956adfa7d39aaec0d1512f97a2686d15d",
+        "url": "https://raw.githubusercontent.com/LiveCodeBench/LiveCodeBench/28fef95ea8c9f7a547c8329f2cd3d32b92c1fa24/LICENSE"
+      },
+      "lcb_runner/evaluation/testing_util.py": {
+        "sha256": "715812d61abc40aea812d49066bd4add3895a7b59c05c2b243eec212588d7ced",
+        "upstream_sha256": "b7cb6a8a69807bb868150a61742e25d7bb5328bbe01d514471b6ec43c9fa9ed2",
+        "url": "https://raw.githubusercontent.com/LiveCodeBench/LiveCodeBench/28fef95ea8c9f7a547c8329f2cd3d32b92c1fa24/lcb_runner/evaluation/testing_util.py"
+      }
+    },
+    "resolution_status": "commit_pinned",
+    "revision": "28fef95ea8c9f7a547c8329f2cd3d32b92c1fa24"
+  },
+  "cohort_count": 100,
+  "cohort_sha256": "6c3ee1a8d791e88cc54fe580d45465c8621497292231cafbf524d739abca4e15",
+  "concurrency": 3,
+  "fresh_generation": true,
+  "generation_prompt_sha256": "21b9e6bfba1099ba4de34e13390058f48ea36349fab8afdcbb10fcb7adb57107",
+  "inputs_per_task": 10,
+  "limits": {
+    "block_events": 500,
+    "judge_per_test_seconds": 6,
+    "judge_process_seconds": 180,
+    "oracle_process_seconds": 90,
+    "state_answer_chars": 16000,
+    "state_items": 500,
+    "statement_events": 2000,
+    "trace_bytes": 4194304
+  },
+  "model": "gpt-5.4",
+  "python_version": "3.9.25 (main, Nov  3 2025, 22:44:01) [MSC v.1929 64 bit (AMD64)]",
+  "run_id": "fresh100_20260906",
+  "started_from": "ea510130f7c09ab7c0e0d0d8a3398bf2c65d8ddd"
+}

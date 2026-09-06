@@ -1,0 +1,95 @@
+[
+  {
+    "config": {
+      "max_completion_tokens": 256,
+      "model": "gpt-5.4",
+      "reasoning_effort": "low",
+      "response_format": {
+        "type": "json_object"
+      },
+      "verbosity": "low"
+    },
+    "elapsed_seconds": 0.9690000000009604,
+    "messages": [
+      {
+        "content": "Return exactly this JSON object: {\"transport_probe\":\"violet_731\"}. Do not compute or return a mathematical answer.",
+        "role": "developer"
+      },
+      {
+        "content": "What is 2 + 2?",
+        "role": "user"
+      }
+    ],
+    "name": "developer_json",
+    "reason": "HTTP 401: {\"error\":{\"message\":\"该令牌额度已用尽 (request id: 202609062327514527776001RHZWWGe)\",\"type\":\"new_api_error\"}}",
+    "status": "error"
+  },
+  {
+    "config": {
+      "max_completion_tokens": 256,
+      "model": "gpt-5.4",
+      "reasoning_effort": "low",
+      "response_format": {
+        "type": "json_object"
+      },
+      "verbosity": "low"
+    },
+    "elapsed_seconds": 2.2809999999990396,
+    "messages": [
+      {
+        "content": "Return exactly this JSON object: {\"transport_probe\":\"violet_731\"}. Do not compute or return a mathematical answer.",
+        "role": "system"
+      },
+      {
+        "content": "What is 2 + 2?",
+        "role": "user"
+      }
+    ],
+    "name": "system_json",
+    "reason": "HTTP 401: {\"error\":{\"message\":\"该令牌额度已用尽 (request id: 20260906232751281799417wec86JAc)\",\"type\":\"new_api_error\"}}",
+    "status": "error"
+  },
+  {
+    "config": {
+      "max_completion_tokens": 256,
+      "model": "gpt-5.4",
+      "reasoning_effort": "low",
+      "verbosity": "low"
+    },
+    "elapsed_seconds": 1.4680000000007567,
+    "messages": [
+      {
+        "content": "Return exactly this JSON object: {\"transport_probe\":\"violet_731\"}. Do not compute or return a mathematical answer.",
+        "role": "system"
+      },
+      {
+        "content": "What is 2 + 2?",
+        "role": "user"
+      }
+    ],
+    "name": "system_plain",
+    "reason": "HTTP 401: {\"error\":{\"message\":\"该令牌额度已用尽 (request id: 20260906232750398168373e67v4Z58)\",\"type\":\"new_api_error\"}}",
+    "status": "error"
+  },
+  {
+    "config": {
+      "max_completion_tokens": 256,
+      "model": "gpt-5.4",
+      "reasoning_effort": "low",
+      "response_format": {
+        "type": "json_object"
+      },
+      "verbosity": "low"
+    },
+    "elapsed_seconds": 0.9690000000009604,
+    "messages": [
+      {
+        "content": "Return exactly this JSON object: {\"transport_probe\":\"violet_731\"}. Do not compute or return a mathematical answer.\n\nBackground question: What is 2 + 2?",
+        "role": "user"
+      }
+    ],
+    "name": "user_only_json",
+    "reason": "HTTP 401: {\"error\":{\"message\":\"该令牌额度已用尽 (request id: 20260906232752248529260YD8KKdB7)\",\"type\":\"new_api_error\"}}",
+    "status": "error"
+  }
+]

@@ -1,0 +1,20 @@
+{
+  "build_complete": true,
+  "canary": {
+    "format_valid": 9,
+    "format_valid_rate": 0.225,
+    "received": 40,
+    "required_rate": 0.95
+  },
+  "full_inference_complete": false,
+  "reason": "服务返回 HTTP 401：该令牌额度已用尽。控制流试跑另有格式合规率不足问题，补充额度后须先完成独立诊断。",
+  "resume_rules": [
+    "Do not repeat received main-run first answers.",
+    "Restore quota of the configured service outside this experiment.",
+    "Run independent synthetic transport diagnostics before bulk inference.",
+    "Version and disclose any necessary message/protocol change; do not silently overwrite this run."
+  ],
+  "stage": "transport_diagnostic",
+  "status": "stopped",
+  "updated_at": "2026-09-06T15:29:03.465727+00:00"
+}

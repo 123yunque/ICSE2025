@@ -1,0 +1,36 @@
+{
+  "files": {
+    "granularity3_local/__init__.py": "cef7ceeaafb0e3f14e46eb377d7959636bb101b671f73de3a82990cd951e736c",
+    "granularity3_local/block_state_api.py": "49bc654e4e96f951a8f2ba0494b8ac516e1d0ed9d85d027d3c3b4ab6e7080800",
+    "granularity3_local/block_state_batch.py": "470e12af8b35f4cc296e8c34082800aa7086501a478560cca44721c957c76d1c",
+    "granularity3_local/block_state_canary.py": "4cf20b88dbccd7acf4a38b6892b439a9d292d0625791d3fc6f1e10ca8bbf049a",
+    "granularity3_local/block_state_dataset.py": "03aca4c96012d5ff1a8fd28f665e09f1b33399c2ea2efb028f4e635b8a7cc298",
+    "granularity3_local/block_state_evaluate.py": "420d3744eb587ff38f78ca771a69a88f5924b48907563f2bd1bb44b38f33b2d3",
+    "granularity3_local/block_state_local.py": "b911302816a0a64c7173f57dc4f1067775c2fcde2a3f4f90d5c4bce302dc3f95",
+    "granularity3_local/cfg.py": "2a8e2c0a3a2f4831afccc4a433d9bbbc1e23eb7e300844692fff7a0bb342f152",
+    "granularity3_local/decomposed_api.py": "b29e75e6c7bb601a6da819a14c6fb5168fb68ee7100764d96f613c2aaa76a2c6",
+    "granularity3_local/decomposed_core.py": "e2e7e6e967762940bb66ae43c7c887e37ba9bacaec611faab8f3590639f8c701",
+    "granularity3_local/decomposed_evaluate.py": "94a1717d53569c820334cfa0d5e49e22eb046f3977baf906b2cfb0d0ef625209",
+    "granularity3_local/decomposed_gate.py": "3dc6520ce628358cef6b6cb42eaf3d66a3e3fa50772bf82e28556b44b18b2125",
+    "granularity3_local/decomposed_plan.py": "8b28adf4533d7017133f4eacef3b0de1c3d4594d6533cc6f537e9cffabbfd47a",
+    "granularity3_local/decomposed_prepare.py": "6a4400b3a2975293193703dd36be6af481fd383c7ddb4406f09697ae2a30a383",
+    "granularity3_local/decomposed_statement.py": "4dfc0db5fb5adf96d90dff6a1477910a163eca3dda7dac90e8b97fb70794a98c",
+    "granularity3_local/executor.py": "44e1867fc3f5bb9c7c51d161be0fc6e6b582b411fd539c8481352bec7d7d49f4",
+    "granularity3_local/isolated.py": "d8c12947b5b7fa0f8ad9b0650f40835e233311282fc9787b11624b5cf295a93f",
+    "granularity3_local/oracle.py": "c0ef48bcf05316e033b9628be89e49c70e4fc7e2f31553f7bc30b80cd4ff9b7a",
+    "granularity3_local/preflight.py": "c3aed9bedb527732fba32c50ffa7f7ffde3116f4f817c09a56477c6397a06a47",
+    "granularity3_local/runtime.py": "2455a300aa28086440db033cdb9a11cdb179df711893078830cfb57f347e67d7",
+    "granularity3_local/state.py": "008e1203a4f1172b9a7b091306712f060c5487f2ed6a4128003db913b81be120",
+    "lcb_experiment.py": "49b9cfc9dcba8a61bf64a5f5c772bf2aa972dbb95814d229e0b4f1a51ff8b6a7",
+    "lcb_worker.py": "2d68a7f3558bfa10b2e644d701ddacaf2db01a00c106eed3412a5f32af666a67",
+    "vendor/testing_util.py": "715812d61abc40aea812d49066bd4add3895a7b59c05c2b243eec212588d7ced"
+  },
+  "frozen_at": "2026-09-06T10:14:26.188872+00:00",
+  "git_commit": "bf50b3d363456af713c58e23562d2d128ae983d2",
+  "packages": {
+    "datasets": "4.5.0",
+    "numpy": "1.23.0",
+    "requests": "2.32.5"
+  },
+  "python": "3.9.25 (main, Nov  3 2025, 22:44:01) [MSC v.1929 64 bit (AMD64)]"
+}

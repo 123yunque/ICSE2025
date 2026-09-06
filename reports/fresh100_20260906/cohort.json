@@ -1,0 +1,867 @@
+{
+  "dataset": "livecodebench/code_generation_lite",
+  "difficulty_counts": {
+    "easy": 31,
+    "hard": 27,
+    "medium": 42
+  },
+  "downloads": [
+    {
+      "bytes": 1252609773,
+      "file": "test.jsonl",
+      "revision": "0fe84c3912ea0c4d4a78037083943e8f0c4dd505",
+      "sha256": "2bd02b38beb48e8c46b5b9987095d999ff38cd8efc255ea5d58974317c48f63f",
+      "url": "https://hf-mirror.com/datasets/livecodebench/code_generation_lite/resolve/0fe84c3912ea0c4d4a78037083943e8f0c4dd505/test.jsonl?download=true"
+    },
+    {
+      "bytes": 713377060,
+      "file": "test2.jsonl",
+      "revision": "0fe84c3912ea0c4d4a78037083943e8f0c4dd505",
+      "sha256": "095df7c5daf15f882c51a9deb84085cff1e073495a5dbcf95015a564d485f3a3",
+      "url": "https://hf-mirror.com/datasets/livecodebench/code_generation_lite/resolve/0fe84c3912ea0c4d4a78037083943e8f0c4dd505/test2.jsonl?download=true"
+    },
+    {
+      "bytes": 623360766,
+      "file": "test3.jsonl",
+      "revision": "0fe84c3912ea0c4d4a78037083943e8f0c4dd505",
+      "sha256": "28ed26cc83363ce3f1fe2d5fad9f8393077beb1907b167a31bd3b32f80801b79",
+      "url": "https://hf-mirror.com/datasets/livecodebench/code_generation_lite/resolve/0fe84c3912ea0c4d4a78037083943e8f0c4dd505/test3.jsonl?download=true"
+    },
+    {
+      "bytes": 1204644685,
+      "file": "test4.jsonl",
+      "revision": "0fe84c3912ea0c4d4a78037083943e8f0c4dd505",
+      "sha256": "d711138ddaebfcf5f8ec6a4283ee677298c0f5c5d374a235af92aaf0584510da",
+      "url": "https://hf-mirror.com/datasets/livecodebench/code_generation_lite/resolve/0fe84c3912ea0c4d4a78037083943e8f0c4dd505/test4.jsonl?download=true"
+    },
+    {
+      "bytes": 557699297,
+      "file": "test5.jsonl",
+      "revision": "0fe84c3912ea0c4d4a78037083943e8f0c4dd505",
+      "sha256": "7f77571c2a6df0c2a72a3277650309f67e01e0008e18117e624633df53f81214",
+      "url": "https://hf-mirror.com/datasets/livecodebench/code_generation_lite/resolve/0fe84c3912ea0c4d4a78037083943e8f0c4dd505/test5.jsonl?download=true"
+    },
+    {
+      "bytes": 134303240,
+      "file": "test6.jsonl",
+      "revision": "0fe84c3912ea0c4d4a78037083943e8f0c4dd505",
+      "sha256": "bb4c364f71921c4495a6ad15abe1a927350b720009f4933e2e71f8af0f6fd1f5",
+      "url": "https://hf-mirror.com/datasets/livecodebench/code_generation_lite/resolve/0fe84c3912ea0c4d4a78037083943e8f0c4dd505/test6.jsonl?download=true"
+    }
+  ],
+  "platform_counts": {
+    "atcoder": 50,
+    "leetcode": 50
+  },
+  "raw_problem_count": 1055,
+  "release": "release_v6",
+  "revision": "0fe84c3912ea0c4d4a78037083943e8f0c4dd505",
+  "seed": 20260905,
+  "selected": [
+    {
+      "problem_key": "leetcode/2754",
+      "release_index": 12,
+      "source_file": "test.jsonl",
+      "source_line": 13,
+      "task_id": "task_lcb_0012"
+    },
+    {
+      "problem_key": "leetcode/2825",
+      "release_index": 33,
+      "source_file": "test.jsonl",
+      "source_line": 34,
+      "task_id": "task_lcb_0033"
+    },
+    {
+      "problem_key": "leetcode/2844",
+      "release_index": 42,
+      "source_file": "test.jsonl",
+      "source_line": 43,
+      "task_id": "task_lcb_0042"
+    },
+    {
+      "problem_key": "leetcode/2869",
+      "release_index": 55,
+      "source_file": "test.jsonl",
+      "source_line": 56,
+      "task_id": "task_lcb_0055"
+    },
+    {
+      "problem_key": "leetcode/2881",
+      "release_index": 63,
+      "source_file": "test.jsonl",
+      "source_line": 64,
+      "task_id": "task_lcb_0063"
+    },
+    {
+      "problem_key": "leetcode/2915",
+      "release_index": 74,
+      "source_file": "test.jsonl",
+      "source_line": 75,
+      "task_id": "task_lcb_0074"
+    },
+    {
+      "problem_key": "leetcode/2919",
+      "release_index": 77,
+      "source_file": "test.jsonl",
+      "source_line": 78,
+      "task_id": "task_lcb_0077"
+    },
+    {
+      "problem_key": "leetcode/2921",
+      "release_index": 79,
+      "source_file": "test.jsonl",
+      "source_line": 80,
+      "task_id": "task_lcb_0079"
+    },
+    {
+      "problem_key": "leetcode/2952",
+      "release_index": 80,
+      "source_file": "test.jsonl",
+      "source_line": 81,
+      "task_id": "task_lcb_0080"
+    },
+    {
+      "problem_key": "leetcode/2977",
+      "release_index": 84,
+      "source_file": "test.jsonl",
+      "source_line": 85,
+      "task_id": "task_lcb_0084"
+    },
+    {
+      "problem_key": "leetcode/2999",
+      "release_index": 87,
+      "source_file": "test.jsonl",
+      "source_line": 88,
+      "task_id": "task_lcb_0087"
+    },
+    {
+      "problem_key": "leetcode/3031",
+      "release_index": 94,
+      "source_file": "test.jsonl",
+      "source_line": 95,
+      "task_id": "task_lcb_0094"
+    },
+    {
+      "problem_key": "leetcode/3044",
+      "release_index": 98,
+      "source_file": "test.jsonl",
+      "source_line": 99,
+      "task_id": "task_lcb_0098"
+    },
+    {
+      "problem_key": "leetcode/3045",
+      "release_index": 99,
+      "source_file": "test.jsonl",
+      "source_line": 100,
+      "task_id": "task_lcb_0099"
+    },
+    {
+      "problem_key": "leetcode/3093",
+      "release_index": 106,
+      "source_file": "test.jsonl",
+      "source_line": 107,
+      "task_id": "task_lcb_0106"
+    },
+    {
+      "problem_key": "leetcode/3106",
+      "release_index": 109,
+      "source_file": "test.jsonl",
+      "source_line": 110,
+      "task_id": "task_lcb_0109"
+    },
+    {
+      "problem_key": "leetcode/3163",
+      "release_index": 116,
+      "source_file": "test.jsonl",
+      "source_line": 117,
+      "task_id": "task_lcb_0116"
+    },
+    {
+      "problem_key": "leetcode/3203",
+      "release_index": 134,
+      "source_file": "test.jsonl",
+      "source_line": 135,
+      "task_id": "task_lcb_0134"
+    },
+    {
+      "problem_key": "leetcode/3245",
+      "release_index": 163,
+      "source_file": "test.jsonl",
+      "source_line": 164,
+      "task_id": "task_lcb_0163"
+    },
+    {
+      "problem_key": "leetcode/3265",
+      "release_index": 171,
+      "source_file": "test.jsonl",
+      "source_line": 172,
+      "task_id": "task_lcb_0171"
+    },
+    {
+      "problem_key": "leetcode/3320",
+      "release_index": 185,
+      "source_file": "test.jsonl",
+      "source_line": 186,
+      "task_id": "task_lcb_0185"
+    },
+    {
+      "problem_key": "leetcode/3329",
+      "release_index": 187,
+      "source_file": "test.jsonl",
+      "source_line": 188,
+      "task_id": "task_lcb_0187"
+    },
+    {
+      "problem_key": "leetcode/3331",
+      "release_index": 188,
+      "source_file": "test.jsonl",
+      "source_line": 189,
+      "task_id": "task_lcb_0188"
+    },
+    {
+      "problem_key": "atcoder/abc301_a",
+      "release_index": 190,
+      "source_file": "test.jsonl",
+      "source_line": 191,
+      "task_id": "task_lcb_0190"
+    },
+    {
+      "problem_key": "atcoder/abc301_b",
+      "release_index": 191,
+      "source_file": "test.jsonl",
+      "source_line": 192,
+      "task_id": "task_lcb_0191"
+    },
+    {
+      "problem_key": "atcoder/abc301_d",
+      "release_index": 193,
+      "source_file": "test.jsonl",
+      "source_line": 194,
+      "task_id": "task_lcb_0193"
+    },
+    {
+      "problem_key": "atcoder/abc302_d",
+      "release_index": 199,
+      "source_file": "test.jsonl",
+      "source_line": 200,
+      "task_id": "task_lcb_0199"
+    },
+    {
+      "problem_key": "atcoder/abc305_c",
+      "release_index": 214,
+      "source_file": "test.jsonl",
+      "source_line": 215,
+      "task_id": "task_lcb_0214"
+    },
+    {
+      "problem_key": "atcoder/abc305_d",
+      "release_index": 215,
+      "source_file": "test.jsonl",
+      "source_line": 216,
+      "task_id": "task_lcb_0215"
+    },
+    {
+      "problem_key": "atcoder/abc306_d",
+      "release_index": 220,
+      "source_file": "test.jsonl",
+      "source_line": 221,
+      "task_id": "task_lcb_0220"
+    },
+    {
+      "problem_key": "atcoder/abc307_d",
+      "release_index": 225,
+      "source_file": "test.jsonl",
+      "source_line": 226,
+      "task_id": "task_lcb_0225"
+    },
+    {
+      "problem_key": "atcoder/abc308_a",
+      "release_index": 227,
+      "source_file": "test.jsonl",
+      "source_line": 228,
+      "task_id": "task_lcb_0227"
+    },
+    {
+      "problem_key": "atcoder/abc309_b",
+      "release_index": 234,
+      "source_file": "test.jsonl",
+      "source_line": 235,
+      "task_id": "task_lcb_0234"
+    },
+    {
+      "problem_key": "atcoder/abc312_b",
+      "release_index": 250,
+      "source_file": "test.jsonl",
+      "source_line": 251,
+      "task_id": "task_lcb_0250"
+    },
+    {
+      "problem_key": "atcoder/abc312_d",
+      "release_index": 252,
+      "source_file": "test.jsonl",
+      "source_line": 253,
+      "task_id": "task_lcb_0252"
+    },
+    {
+      "problem_key": "atcoder/abc314_c",
+      "release_index": 260,
+      "source_file": "test.jsonl",
+      "source_line": 261,
+      "task_id": "task_lcb_0260"
+    },
+    {
+      "problem_key": "atcoder/abc322_b",
+      "release_index": 290,
+      "source_file": "test.jsonl",
+      "source_line": 291,
+      "task_id": "task_lcb_0290"
+    },
+    {
+      "problem_key": "atcoder/abc324_c",
+      "release_index": 301,
+      "source_file": "test.jsonl",
+      "source_line": 302,
+      "task_id": "task_lcb_0301"
+    },
+    {
+      "problem_key": "atcoder/abc329_d",
+      "release_index": 329,
+      "source_file": "test.jsonl",
+      "source_line": 330,
+      "task_id": "task_lcb_0329"
+    },
+    {
+      "problem_key": "atcoder/abc331_a",
+      "release_index": 337,
+      "source_file": "test.jsonl",
+      "source_line": 338,
+      "task_id": "task_lcb_0337"
+    },
+    {
+      "problem_key": "atcoder/abc335_a",
+      "release_index": 356,
+      "source_file": "test.jsonl",
+      "source_line": 357,
+      "task_id": "task_lcb_0356"
+    },
+    {
+      "problem_key": "atcoder/abc338_c",
+      "release_index": 371,
+      "source_file": "test.jsonl",
+      "source_line": 372,
+      "task_id": "task_lcb_0371"
+    },
+    {
+      "problem_key": "atcoder/abc341_c",
+      "release_index": 386,
+      "source_file": "test.jsonl",
+      "source_line": 387,
+      "task_id": "task_lcb_0386"
+    },
+    {
+      "problem_key": "atcoder/abc347_a",
+      "release_index": 413,
+      "source_file": "test2.jsonl",
+      "source_line": 14,
+      "task_id": "task_lcb_0413"
+    },
+    {
+      "problem_key": "atcoder/abc348_c",
+      "release_index": 416,
+      "source_file": "test2.jsonl",
+      "source_line": 17,
+      "task_id": "task_lcb_0416"
+    },
+    {
+      "problem_key": "atcoder/abc348_d",
+      "release_index": 419,
+      "source_file": "test2.jsonl",
+      "source_line": 20,
+      "task_id": "task_lcb_0419"
+    },
+    {
+      "problem_key": "atcoder/abc348_e",
+      "release_index": 420,
+      "source_file": "test2.jsonl",
+      "source_line": 21,
+      "task_id": "task_lcb_0420"
+    },
+    {
+      "problem_key": "atcoder/abc349_d",
+      "release_index": 424,
+      "source_file": "test2.jsonl",
+      "source_line": 25,
+      "task_id": "task_lcb_0424"
+    },
+    {
+      "problem_key": "atcoder/abc351_e",
+      "release_index": 433,
+      "source_file": "test2.jsonl",
+      "source_line": 34,
+      "task_id": "task_lcb_0433"
+    },
+    {
+      "problem_key": "atcoder/abc353_d",
+      "release_index": 446,
+      "source_file": "test2.jsonl",
+      "source_line": 47,
+      "task_id": "task_lcb_0446"
+    },
+    {
+      "problem_key": "leetcode/3356",
+      "release_index": 459,
+      "source_file": "test2.jsonl",
+      "source_line": 60,
+      "task_id": "task_lcb_0459"
+    },
+    {
+      "problem_key": "leetcode/3363",
+      "release_index": 467,
+      "source_file": "test2.jsonl",
+      "source_line": 68,
+      "task_id": "task_lcb_0467"
+    },
+    {
+      "problem_key": "leetcode/3376",
+      "release_index": 468,
+      "source_file": "test2.jsonl",
+      "source_line": 69,
+      "task_id": "task_lcb_0468"
+    },
+    {
+      "problem_key": "leetcode/3374",
+      "release_index": 470,
+      "source_file": "test2.jsonl",
+      "source_line": 71,
+      "task_id": "task_lcb_0470"
+    },
+    {
+      "problem_key": "leetcode/3354",
+      "release_index": 481,
+      "source_file": "test2.jsonl",
+      "source_line": 82,
+      "task_id": "task_lcb_0481"
+    },
+    {
+      "problem_key": "atcoder/abc357_b",
+      "release_index": 519,
+      "source_file": "test3.jsonl",
+      "source_line": 9,
+      "task_id": "task_lcb_0519"
+    },
+    {
+      "problem_key": "atcoder/abc360_c",
+      "release_index": 531,
+      "source_file": "test3.jsonl",
+      "source_line": 21,
+      "task_id": "task_lcb_0531"
+    },
+    {
+      "problem_key": "atcoder/abc363_e",
+      "release_index": 552,
+      "source_file": "test3.jsonl",
+      "source_line": 42,
+      "task_id": "task_lcb_0552"
+    },
+    {
+      "problem_key": "atcoder/abc364_b",
+      "release_index": 553,
+      "source_file": "test3.jsonl",
+      "source_line": 43,
+      "task_id": "task_lcb_0553"
+    },
+    {
+      "problem_key": "atcoder/abc364_e",
+      "release_index": 554,
+      "source_file": "test3.jsonl",
+      "source_line": 44,
+      "task_id": "task_lcb_0554"
+    },
+    {
+      "problem_key": "leetcode/3461",
+      "release_index": 574,
+      "source_file": "test3.jsonl",
+      "source_line": 64,
+      "task_id": "task_lcb_0574"
+    },
+    {
+      "problem_key": "leetcode/3439",
+      "release_index": 578,
+      "source_file": "test3.jsonl",
+      "source_line": 68,
+      "task_id": "task_lcb_0578"
+    },
+    {
+      "problem_key": "leetcode/3492",
+      "release_index": 581,
+      "source_file": "test3.jsonl",
+      "source_line": 71,
+      "task_id": "task_lcb_0581"
+    },
+    {
+      "problem_key": "leetcode/3484",
+      "release_index": 583,
+      "source_file": "test3.jsonl",
+      "source_line": 73,
+      "task_id": "task_lcb_0583"
+    },
+    {
+      "problem_key": "leetcode/3527",
+      "release_index": 594,
+      "source_file": "test3.jsonl",
+      "source_line": 84,
+      "task_id": "task_lcb_0594"
+    },
+    {
+      "problem_key": "leetcode/3413",
+      "release_index": 598,
+      "source_file": "test3.jsonl",
+      "source_line": 88,
+      "task_id": "task_lcb_0598"
+    },
+    {
+      "problem_key": "leetcode/3526",
+      "release_index": 610,
+      "source_file": "test3.jsonl",
+      "source_line": 100,
+      "task_id": "task_lcb_0610"
+    },
+    {
+      "problem_key": "atcoder/abc369_b",
+      "release_index": 637,
+      "source_file": "test4.jsonl",
+      "source_line": 26,
+      "task_id": "task_lcb_0637"
+    },
+    {
+      "problem_key": "atcoder/abc370_e",
+      "release_index": 643,
+      "source_file": "test4.jsonl",
+      "source_line": 32,
+      "task_id": "task_lcb_0643"
+    },
+    {
+      "problem_key": "atcoder/abc370_b",
+      "release_index": 644,
+      "source_file": "test4.jsonl",
+      "source_line": 33,
+      "task_id": "task_lcb_0644"
+    },
+    {
+      "problem_key": "atcoder/abc371_d",
+      "release_index": 647,
+      "source_file": "test4.jsonl",
+      "source_line": 36,
+      "task_id": "task_lcb_0647"
+    },
+    {
+      "problem_key": "atcoder/abc373_b",
+      "release_index": 660,
+      "source_file": "test4.jsonl",
+      "source_line": 49,
+      "task_id": "task_lcb_0660"
+    },
+    {
+      "problem_key": "leetcode/3543",
+      "release_index": 678,
+      "source_file": "test4.jsonl",
+      "source_line": 67,
+      "task_id": "task_lcb_0678"
+    },
+    {
+      "problem_key": "leetcode/3534",
+      "release_index": 682,
+      "source_file": "test4.jsonl",
+      "source_line": 71,
+      "task_id": "task_lcb_0682"
+    },
+    {
+      "problem_key": "atcoder/abc384_d",
+      "release_index": 779,
+      "source_file": "test5.jsonl",
+      "source_line": 67,
+      "task_id": "task_lcb_0779"
+    },
+    {
+      "problem_key": "atcoder/abc384_a",
+      "release_index": 781,
+      "source_file": "test5.jsonl",
+      "source_line": 69,
+      "task_id": "task_lcb_0781"
+    },
+    {
+      "problem_key": "atcoder/abc385_a",
+      "release_index": 786,
+      "source_file": "test5.jsonl",
+      "source_line": 74,
+      "task_id": "task_lcb_0786"
+    },
+    {
+      "problem_key": "atcoder/abc386_f",
+      "release_index": 796,
+      "source_file": "test5.jsonl",
+      "source_line": 84,
+      "task_id": "task_lcb_0796"
+    },
+    {
+      "problem_key": "atcoder/arc187_b",
+      "release_index": 809,
+      "source_file": "test5.jsonl",
+      "source_line": 97,
+      "task_id": "task_lcb_0809"
+    },
+    {
+      "problem_key": "atcoder/arc188_c",
+      "release_index": 810,
+      "source_file": "test5.jsonl",
+      "source_line": 98,
+      "task_id": "task_lcb_0810"
+    },
+    {
+      "problem_key": "atcoder/arc188_d",
+      "release_index": 812,
+      "source_file": "test5.jsonl",
+      "source_line": 100,
+      "task_id": "task_lcb_0812"
+    },
+    {
+      "problem_key": "atcoder/arc188_a",
+      "release_index": 813,
+      "source_file": "test5.jsonl",
+      "source_line": 101,
+      "task_id": "task_lcb_0813"
+    },
+    {
+      "problem_key": "leetcode/3603",
+      "release_index": 823,
+      "source_file": "test5.jsonl",
+      "source_line": 111,
+      "task_id": "task_lcb_0823"
+    },
+    {
+      "problem_key": "leetcode/3646",
+      "release_index": 831,
+      "source_file": "test5.jsonl",
+      "source_line": 119,
+      "task_id": "task_lcb_0831"
+    },
+    {
+      "problem_key": "leetcode/3631",
+      "release_index": 832,
+      "source_file": "test5.jsonl",
+      "source_line": 120,
+      "task_id": "task_lcb_0832"
+    },
+    {
+      "problem_key": "leetcode/3656",
+      "release_index": 863,
+      "source_file": "test5.jsonl",
+      "source_line": 151,
+      "task_id": "task_lcb_0863"
+    },
+    {
+      "problem_key": "leetcode/3620",
+      "release_index": 864,
+      "source_file": "test5.jsonl",
+      "source_line": 152,
+      "task_id": "task_lcb_0864"
+    },
+    {
+      "problem_key": "leetcode/3657",
+      "release_index": 871,
+      "source_file": "test5.jsonl",
+      "source_line": 159,
+      "task_id": "task_lcb_0871"
+    },
+    {
+      "problem_key": "atcoder/abc389_d",
+      "release_index": 891,
+      "source_file": "test6.jsonl",
+      "source_line": 12,
+      "task_id": "task_lcb_0891"
+    },
+    {
+      "problem_key": "atcoder/abc389_e",
+      "release_index": 896,
+      "source_file": "test6.jsonl",
+      "source_line": 17,
+      "task_id": "task_lcb_0896"
+    },
+    {
+      "problem_key": "atcoder/abc398_c",
+      "release_index": 951,
+      "source_file": "test6.jsonl",
+      "source_line": 72,
+      "task_id": "task_lcb_0951"
+    },
+    {
+      "problem_key": "atcoder/arc192_a",
+      "release_index": 974,
+      "source_file": "test6.jsonl",
+      "source_line": 95,
+      "task_id": "task_lcb_0974"
+    },
+    {
+      "problem_key": "atcoder/arc194_a",
+      "release_index": 981,
+      "source_file": "test6.jsonl",
+      "source_line": 102,
+      "task_id": "task_lcb_0981"
+    },
+    {
+      "problem_key": "leetcode/3737",
+      "release_index": 998,
+      "source_file": "test6.jsonl",
+      "source_line": 119,
+      "task_id": "task_lcb_0998"
+    },
+    {
+      "problem_key": "leetcode/3781",
+      "release_index": 1016,
+      "source_file": "test6.jsonl",
+      "source_line": 137,
+      "task_id": "task_lcb_1016"
+    },
+    {
+      "problem_key": "leetcode/3801",
+      "release_index": 1027,
+      "source_file": "test6.jsonl",
+      "source_line": 148,
+      "task_id": "task_lcb_1027"
+    },
+    {
+      "problem_key": "leetcode/3743",
+      "release_index": 1041,
+      "source_file": "test6.jsonl",
+      "source_line": 162,
+      "task_id": "task_lcb_1041"
+    },
+    {
+      "problem_key": "leetcode/3776",
+      "release_index": 1048,
+      "source_file": "test6.jsonl",
+      "source_line": 169,
+      "task_id": "task_lcb_1048"
+    },
+    {
+      "problem_key": "leetcode/3799",
+      "release_index": 1050,
+      "source_file": "test6.jsonl",
+      "source_line": 171,
+      "task_id": "task_lcb_1050"
+    },
+    {
+      "problem_key": "leetcode/3784",
+      "release_index": 1051,
+      "source_file": "test6.jsonl",
+      "source_line": 172,
+      "task_id": "task_lcb_1051"
+    }
+  ],
+  "selected_indices": [
+    12,
+    33,
+    42,
+    55,
+    63,
+    74,
+    77,
+    79,
+    80,
+    84,
+    87,
+    94,
+    98,
+    99,
+    106,
+    109,
+    116,
+    134,
+    163,
+    171,
+    185,
+    187,
+    188,
+    190,
+    191,
+    193,
+    199,
+    214,
+    215,
+    220,
+    225,
+    227,
+    234,
+    250,
+    252,
+    260,
+    290,
+    301,
+    329,
+    337,
+    356,
+    371,
+    386,
+    413,
+    416,
+    419,
+    420,
+    424,
+    433,
+    446,
+    459,
+    467,
+    468,
+    470,
+    481,
+    519,
+    531,
+    552,
+    553,
+    554,
+    574,
+    578,
+    581,
+    583,
+    594,
+    598,
+    610,
+    637,
+    643,
+    644,
+    647,
+    660,
+    678,
+    682,
+    779,
+    781,
+    786,
+    796,
+    809,
+    810,
+    812,
+    813,
+    823,
+    831,
+    832,
+    863,
+    864,
+    871,
+    891,
+    896,
+    951,
+    974,
+    981,
+    998,
+    1016,
+    1027,
+    1041,
+    1048,
+    1050,
+    1051
+  ],
+  "selected_problem_count": 100,
+  "selected_sha256": "6c3ee1a8d791e88cc54fe580d45465c8621497292231cafbf524d739abca4e15",
+  "selection": "uniform sample without replacement from official release_v6 order before any generation"
+}
