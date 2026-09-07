@@ -2,6 +2,14 @@
   "K_state_variables": 1976,
   "M_state_cases": 318,
   "N_control_cases": 351,
+  "api_billing_observation": {
+    "cost_usd": 2.28,
+    "effective_blended_usd_per_million_tokens": 2.202456129387546,
+    "note": "Billing source of truth; local usage records cover responses received by the client and exclude calls whose response was lost after a client timeout.",
+    "observed_at": "2026-09-07",
+    "source": "user-reported API dashboard",
+    "total_tokens": 1035208
+  },
   "bootstrap": {
     "iterations": 2000,
     "seed": 20260905,
@@ -146,6 +154,11 @@
   },
   "protocol": "g3-decomposed-v2",
   "raw_pool": 1055,
+  "recovery_check_token_usage": {
+    "completion_tokens": 17282,
+    "prompt_tokens": 35296,
+    "reasoning_tokens": 10634
+  },
   "repeat_control": {
     "count": 40,
     "four_cells": {

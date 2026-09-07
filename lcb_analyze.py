@@ -79,6 +79,8 @@ def analyze(run, data='data'):
     run = Path(run)
     out = Path('reports') / run.name
     out.mkdir(parents=True, exist_ok=True)
+    billing_path = out / 'api_billing_observation.json'
+    billing = load(billing_path) if billing_path.exists() else None
     build = read_jsonl(run / 'build_results.jsonl')
     metadata = {'task_lcb_' + str(r['release_index']).zfill(4): r for r in load(Path(data) / 'all_metadata.json')}
     builds = {r['task_id']: r for r in build}
@@ -181,6 +183,14 @@ def analyze(run, data='data'):
             if attempt.get('status') == 'received':
                 for name in ['prompt_tokens', 'completion_tokens', 'reasoning_tokens']:
                     usage['inference_' + name] += attempt.get(name) or 0
+    recovery_usage = Counter()
+    recovery_root = Path('runs/recovery_check_20260907')
+    for kind in ['control_flow', 'oracle_state']:
+        for attempt in read_jsonl(recovery_root / kind / 'api_attempts.jsonl'):
+            if attempt.get('status') == 'received':
+                recovery_usage['prompt_tokens'] += attempt.get('prompt_tokens') or 0
+                recovery_usage['completion_tokens'] += attempt.get('completion_tokens') or 0
+                recovery_usage['reasoning_tokens'] += attempt.get('reasoning_tokens') or 0
     paired_groups = {group: four_cells([r for r in variable_rows if r['cf_group'] == group])
                      for group in ['cf_correct', 'cf_wrong_constructable', 'cf_unconstructable']}
     candidate_failures = Counter()
@@ -216,7 +226,10 @@ def analyze(run, data='data'):
         'repeat_control': {'count': len(repeat_rows), 'four_cells': four_cells(repeat_rows, 'first_exact', 'repeat_exact')},
         'case_failure_buckets': dict(Counter(r['failure_bucket'] for r in case_rows)),
         'exclusion_reasons': dict(Counter(str(r.get('error_type') or r.get('reason') or r.get('status')) for r in exclusions)),
-        'token_usage': dict(usage), 'bootstrap': {'unit': 'original problem; all inputs and variables together', 'iterations': 2000, 'seed': 20260905}}
+        'token_usage': dict(usage), 'recovery_check_token_usage': dict(recovery_usage),
+        'bootstrap': {'unit': 'original problem; all inputs and variables together', 'iterations': 2000, 'seed': 20260905}}
+    if billing:
+        summary['api_billing_observation'] = billing
     save(out / 'summary.json', summary)
     if resumption:
         summary['resumption'] = resumption
@@ -297,6 +310,16 @@ def analyze(run, data='data'):
         text = [line for line in text if not line.startswith('后续 Oracle-State、Predicted-State')]
         text += ['', '服务恢复后，独立合成程序格式检查通过；原提示词、模型设置、冻结清单及首答均保持。',
                  '本报告属于跨服务阶段的探索性续跑，原 40 个试跑首答仍计入主分母。CF 调用阶段分层见 control_strata.csv / state_strata.csv；不能将全部差异解释为稳定模型能力。']
+    if billing:
+        main_total = sum(usage.values()) - usage.get('inference_reasoning_tokens', 0)
+        recovery_total = sum(recovery_usage.values()) - recovery_usage.get('reasoning_tokens', 0)
+        local_total = main_total + recovery_total
+        difference = billing['total_tokens'] - local_total
+        text += ['', f"API 面板计费口径：{billing['total_tokens']:,} token，US${billing['cost_usd']:.2f}，"
+                 f"折合约 US${billing['effective_blended_usd_per_million_tokens']:.2f}/百万 token。",
+                 f"本地主实验成功响应为 {main_total:,} token，恢复检查为 {recovery_total:,} token；合计 {local_total:,}，"
+                 f"少 {difference:,}（{difference / billing['total_tokens']:.2%}）。",
+                 '剩余差额包含四个未记录 usage 的小型传输探针，以及客户端超时后未收到响应、但服务端可能已经完成并计费的调用；费用分析以 API 面板为准。']
     (out / 'REPORT.md').write_text('\n'.join(text) + '\n', encoding='utf-8')
     print(json.dumps({k: summary[k] for k in ['complete', 'build_status', 'eligible_problems', 'N_control_cases', 'K_state_variables', 'M_state_cases', 'responses']}, ensure_ascii=False), flush=True)
     return summary
