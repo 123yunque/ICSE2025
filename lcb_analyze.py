@@ -184,13 +184,17 @@ def analyze(run, data='data'):
                 for name in ['prompt_tokens', 'completion_tokens', 'reasoning_tokens']:
                     usage['inference_' + name] += attempt.get(name) or 0
     recovery_usage = Counter()
-    recovery_root = Path('runs/recovery_check_20260907')
-    for kind in ['control_flow', 'oracle_state']:
-        for attempt in read_jsonl(recovery_root / kind / 'api_attempts.jsonl'):
-            if attempt.get('status') == 'received':
-                recovery_usage['prompt_tokens'] += attempt.get('prompt_tokens') or 0
-                recovery_usage['completion_tokens'] += attempt.get('completion_tokens') or 0
-                recovery_usage['reasoning_tokens'] += attempt.get('reasoning_tokens') or 0
+    recovery_runs = []
+    for recovery_root in sorted(Path('runs').glob('recovery_check_20260907*')):
+        if not (recovery_root / 'certificate.json').exists():
+            continue
+        recovery_runs.append(str(recovery_root))
+        for kind in ['control_flow', 'oracle_state']:
+            for attempt in read_jsonl(recovery_root / kind / 'api_attempts.jsonl'):
+                if attempt.get('status') == 'received':
+                    recovery_usage['prompt_tokens'] += attempt.get('prompt_tokens') or 0
+                    recovery_usage['completion_tokens'] += attempt.get('completion_tokens') or 0
+                    recovery_usage['reasoning_tokens'] += attempt.get('reasoning_tokens') or 0
     paired_groups = {group: four_cells([r for r in variable_rows if r['cf_group'] == group])
                      for group in ['cf_correct', 'cf_wrong_constructable', 'cf_unconstructable']}
     candidate_failures = Counter()
@@ -227,6 +231,7 @@ def analyze(run, data='data'):
         'case_failure_buckets': dict(Counter(r['failure_bucket'] for r in case_rows)),
         'exclusion_reasons': dict(Counter(str(r.get('error_type') or r.get('reason') or r.get('status')) for r in exclusions)),
         'token_usage': dict(usage), 'recovery_check_token_usage': dict(recovery_usage),
+        'recovery_check_runs': recovery_runs,
         'bootstrap': {'unit': 'original problem; all inputs and variables together', 'iterations': 2000, 'seed': 20260905}}
     if billing:
         summary['api_billing_observation'] = billing
@@ -297,6 +302,17 @@ def analyze(run, data='data'):
             exact = sum(bool(r.get('state_exact')) for r in received_oracle)
             text += ['', f"Oracle-State 当前收到 {len(received_oracle)}/{len(states)}，其中 {exact} 个 exact。"
                      '这批包含预选试跑和按请求顺序获得的部分记录，不是代表性完整样本，因此不作为主准确率。']
+        elif response_coverage['oracle_state']['missing'] == 0 and oracle_scores:
+            exact = sum(bool(r.get('state_exact')) for r in oracle_scores.values())
+            valid = len(oracle_scores)
+            text += ['', f"Oracle-State 已完成 {response_coverage['oracle_state']['received']}/{len(states)}：格式有效 {valid}，"
+                     f"状态 exact {exact}/{len(states)}（{exact / len(states):.2%}，固定分母）。"]
+        if 0 < response_coverage['predicted_state']['received'] < response_coverage['predicted_state']['expected']:
+            received_predicted = list(predicted_scores.values())
+            valid = len(received_predicted)
+            exact = sum(bool(r.get('state_exact')) for r in received_predicted)
+            text += ['', f"Predicted-State 当前收到 {response_coverage['predicted_state']['received']}/{len(predicted)}，"
+                     f"格式有效 {valid}，其中状态 exact {exact}。该前缀加试点子集不是代表性完整样本，不作为主准确率。"]
         gate_path = run / 'pilot/control_flow_gate.json'
         if gate_path.exists():
             gate = load(gate_path)
@@ -314,12 +330,12 @@ def analyze(run, data='data'):
         main_total = sum(usage.values()) - usage.get('inference_reasoning_tokens', 0)
         recovery_total = sum(recovery_usage.values()) - recovery_usage.get('reasoning_tokens', 0)
         local_total = main_total + recovery_total
-        difference = billing['total_tokens'] - local_total
         text += ['', f"API 面板计费口径：{billing['total_tokens']:,} token，US${billing['cost_usd']:.2f}，"
-                 f"折合约 US${billing['effective_blended_usd_per_million_tokens']:.2f}/百万 token。",
-                 f"本地主实验成功响应为 {main_total:,} token，恢复检查为 {recovery_total:,} token；合计 {local_total:,}，"
-                 f"少 {difference:,}（{difference / billing['total_tokens']:.2%}）。",
-                 '剩余差额包含四个未记录 usage 的小型传输探针，以及客户端超时后未收到响应、但服务端可能已经完成并计费的调用；费用分析以 API 面板为准。']
+                 f"折合约 US${billing['effective_blended_usd_per_million_tokens']:.2f}/百万 token。"
+                 '该面板快照早于本次新增额度续跑，不能与当前累计本地 usage 直接相减。',
+                 f"截至当前，本地收到响应并记录 usage 的主实验为 {main_total:,} token，"
+                 f"两次恢复检查合计 {recovery_total:,} token；合计 {local_total:,}。",
+                 '客户端超时后未收到响应、但服务端可能已经完成的调用不在本地 usage 中；最终费用以新的 API 面板累计值为准。']
     (out / 'REPORT.md').write_text('\n'.join(text) + '\n', encoding='utf-8')
     print(json.dumps({k: summary[k] for k in ['complete', 'build_status', 'eligible_problems', 'N_control_cases', 'K_state_variables', 'M_state_cases', 'responses']}, ensure_ascii=False), flush=True)
     return summary

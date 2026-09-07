@@ -1,42 +1,30 @@
 # 本批停点与恢复
 
-2026-09-07 续跑入口：先运行 `recovery_check.py` 完成独立合成程序格式验证；
-仅在保存通过的 certificate 后运行 `resume_experiment.py`。该入口核验原执行代码哈希，
-保留全部已有主实验首答，追加调用有独立阶段标识，并在额度/认证拒绝时停止派发网络请求。
-下文保留 2026-09-06 的历史停点，不能据此认定当前额度仍然不足。
+截至 2026-09-07，本次 100 题实验因 OpenAI 兼容 API 额度不足停在 `predicted_state`：
 
-2026-09-07 本次恢复后，CF 已完整收到 351/351；Oracle-State 收到 119/1,976 后，
-服务再次返回 401“该令牌额度已用尽”，保护电路阻止了其余请求。补充额度后应新建恢复检查目录：
+- Control-Flow：351/351 已收到；320 个格式有效，31 个格式无效首答按固定分母计失败。
+- Oracle-State：1,976/1,976 已收到；1,974 个格式有效，状态 exact 为 1,856/1,976（93.93%）。
+- Predicted-State：可构造 1,793 个请求，已收到 356 个；355 个格式有效，1 个格式无效。
+- Repeat-State：0/40。
+
+最后一个真实服务错误为 HTTP 403 `local:pre_consume_token_quota_failed`。当时服务报告余额
+约 US$0.009354，而下一次请求预扣需要约 US$0.009626。保护电路随后阻止 1,435 个排队请求
+实际派发；这些 `not_dispatched_circuit_open` 记录不是模型调用，也没有回答。
+
+补充额度后必须新建独立恢复检查目录，再接续主实验：
 
 ```powershell
 conda run -n Npflower --no-capture-output python recovery_check.py --run runs/recovery_check_<新名称>
 conda run -n Npflower --no-capture-output python resume_experiment.py --recovery runs/recovery_check_<新名称>
 ```
 
-不要复用旧 certificate 来证明下一次服务恢复。主实验运行器仍仅补齐缺失 ID；已有 351 个 CF 与
-119 个 Oracle-State 首答不重发。电路拦截生成的 `api_error` 是派发审计记录，不是模型回答。
+不要复用旧 certificate 来证明下一次服务恢复。恢复入口核验冻结执行代码哈希，只补齐缺失
+request ID；已有 351 个 Control-Flow、1,976 个 Oracle-State 和 356 个 Predicted-State 首答不重发。
+不要同时启动两个同一阶段的运行器。
 
-本次 100 题构建和 Oracle 已完成；完整三条件推理未完成。
+当前报告见 `reports/fresh100_20260906/REPORT.md`；停止审计见 `STOP_20260907.json`；两次恢复
+证书与各条件响应哈希见 `service_epochs.json`。原始请求、首答、请求指纹和 usage 记录保存在
+`runs/fresh100_20260906/`。
 
-1. 59 题的本次新解答通过全部官方测试；40 题没有合格解；1 题确认官方测试违反约束。
-2. 过滤后保留 49 题、351 个 CF 案例、1,976 个状态变量请求、318 个状态案例。
-3. CF 试跑收到 40 个首答，9 个格式有效，未达 95% 门槛。多数无效首答输出代码或函数答案。
-4. 随后的四个独立合成诊断请求均返回 HTTP 401“该令牌额度已用尽”，尚不能判断角色消息/JSON 模式问题的根因。
-
-当前服务是配置文件中的 OpenAI 兼容服务，API 额度与 Codex/ChatGPT 任务额度不同。
-需要在该服务补充当前令牌额度或在本机安全更新授权凭据；不要把密钥写入报告或聊天记录。
-
-额度恢复后先执行：
-
-```powershell
-conda run -n Npflower --no-capture-output python diagnose_transport.py --retry-errors
-```
-
-该命令只重试未收到回答的合成诊断，旧错误记录归档。它不会重写主实验首答。
-不要直接跳过工程门槛调用全部推理请求。先核对消息传递与协议遵循，再决定是否需要新的协议/运行版本。
-如果修改了模型可见消息或生成配置，必须另建 run 并记录版本，不能覆盖当前首答后宣称同一次实验。
-原 40 个 CF 首答和所有生成候选继续保留为工程试跑证据。
-
-运行源文件哈希见 `runs/fresh100_20260906/execution_source.json`，
-数据和候选生成指纹见 `config.json`、`cohort.json` 及每题 `candidate_*/request.json`。
-当前状态与报告见 `reports/fresh100_20260906/STOP.json` 和 `REPORT.md`。
+服务 API 额度与 Codex/ChatGPT 任务额度相互独立。凭据仅从 `YUNWU_API_KEY` 环境变量读取，
+不要写入报告或聊天记录。若模型可见消息或生成配置发生变化，必须另建 run，不能覆盖当前首答。

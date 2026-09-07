@@ -5,8 +5,12 @@
   "api_billing_observation": {
     "cost_usd": 2.28,
     "effective_blended_usd_per_million_tokens": 2.202456129387546,
-    "note": "Billing source of truth; local usage records cover responses received by the client and exclude calls whose response was lost after a client timeout.",
+    "local_main_tokens_at_observation": 955873,
+    "local_recovery_tokens_at_observation": 52578,
+    "local_total_tokens_at_observation": 1008451,
+    "note": "Historical billing snapshot. Local usage covers responses received by the client and excludes calls whose response was lost after a client timeout.",
     "observed_at": "2026-09-07",
+    "snapshot_scope": "before recovery_check_20260907_b and the second main-run continuation",
     "source": "user-reported API dashboard",
     "total_tokens": 1035208
   },
@@ -26,64 +30,65 @@
     "invalid_code_response_or_interface": 108
   },
   "case_failure_buckets": {
+    "all_correct": 56,
     "control_flow_failed": 40,
-    "state_failed_given_correct_cf": 278
+    "state_failed_given_correct_cf": 222
   },
   "case_metrics": {
     "end_to_end_case_joint_exact": {
       "cluster_ci95": [
-        0.0,
-        0.0
+        0.07717041800643087,
+        0.29518072289156627
       ],
       "denominator": 318,
-      "macro": 0.0,
-      "micro": 0.0,
+      "macro": 0.15106107660455487,
+      "micro": 0.1761006289308176,
       "problem_count": 46
     },
     "oracle_cf_all_variables_exact": {
       "cluster_ci95": [
-        0.0,
-        0.11326860841423948
+        0.7151162790697675,
+        0.890625
       ],
       "denominator": 318,
-      "macro": 0.0391304347826087,
-      "micro": 0.04716981132075472,
+      "macro": 0.7992236024844722,
+      "micro": 0.8081761006289309,
       "problem_count": 46
     },
     "predicted_cf_all_variables_exact": {
       "cluster_ci95": [
-        0.0,
-        0.0
+        0.08157099697885196,
+        0.30434782608695654
       ],
       "denominator": 318,
-      "macro": 0.0,
-      "micro": 0.0,
+      "macro": 0.1586697722567288,
+      "micro": 0.18238993710691823,
       "problem_count": 46
     }
   },
   "combined": {
     "control_case_count": 351,
     "control_flow_expanded_exact_rate": 0.8717948717948718,
-    "end_to_end_case_joint_exact_rate": 0.0,
-    "end_to_end_joint_exact_rate": 0.0,
-    "oracle_cf_state_case_exact_rate": 0.04716981132075472,
-    "oracle_cf_state_exact_rate": 0.058704453441295545,
-    "predicted_cf_state_case_exact_rate": 0.0,
-    "predicted_cf_state_exact_rate": 0.0,
-    "predicted_state_attempt_rate": 0.0,
-    "predicted_state_exact_given_cf_correct": 0.0,
-    "predicted_state_exact_given_cf_wrong": 0.0,
+    "end_to_end_case_joint_exact_rate": 0.1761006289308176,
+    "end_to_end_joint_exact_rate": 0.16497975708502025,
+    "oracle_cf_state_case_exact_rate": 0.8081761006289309,
+    "oracle_cf_state_exact_rate": 0.9392712550607287,
+    "predicted_cf_state_case_exact_rate": 0.18238993710691823,
+    "predicted_cf_state_exact_rate": 0.17459514170040485,
+    "predicted_state_attempt_rate": 0.9073886639676113,
+    "predicted_state_exact_given_cf_correct": 0.19451073985680192,
+    "predicted_state_exact_given_cf_wrong": 0.06333333333333334,
     "schema_version": "g3-decomposed-combined-v2",
     "state_case_count": 318,
     "state_case_coverage_rate": 0.905982905982906,
-    "state_error_propagation_gap": 0.058704453441295545,
+    "state_error_propagation_gap": 0.7646761133603239,
     "state_task_count": 1976,
-    "state_task_macro_end_to_end_case_joint_exact_rate": 0.0,
-    "state_task_macro_end_to_end_joint_exact_rate": 0.0,
-    "state_task_macro_oracle_cf_state_case_exact_rate": 0.0391304347826087,
-    "state_task_macro_oracle_cf_state_exact_rate": 0.06774725014698776,
-    "state_task_macro_predicted_cf_state_case_exact_rate": 0.0,
-    "state_task_macro_predicted_cf_state_exact_rate": 0.0
+    "state_task_macro_end_to_end_case_joint_exact_rate": 0.15106107660455487,
+    "state_task_macro_end_to_end_joint_exact_rate": 0.18972893693845713,
+    "state_task_macro_oracle_cf_state_case_exact_rate": 0.7992236024844722,
+    "state_task_macro_oracle_cf_state_exact_rate": 0.9561342220581351,
+    "state_task_macro_predicted_cf_state_case_exact_rate": 0.1586697722567288,
+    "state_task_macro_predicted_cf_state_exact_rate": 0.19769995143121075
   },
   "complete": false,
   "control_metrics": {
@@ -120,52 +125,56 @@
     "unsupported_jump": 7
   },
   "identical_message_pairs": {
-    "correct_to_correct": 0,
-    "correct_to_wrong": 0,
-    "wrong_to_correct": 0,
-    "wrong_to_wrong": 0
+    "correct_to_correct": 263,
+    "correct_to_wrong": 734,
+    "wrong_to_correct": 2,
+    "wrong_to_wrong": 72
   },
   "interpretation": "Exploratory continuation across service epochs; original failed pilot retained in all-request denominators.",
   "paired_by_cf": {
     "cf_correct": {
-      "correct_to_correct": 0,
-      "correct_to_wrong": 107,
-      "wrong_to_correct": 0,
-      "wrong_to_wrong": 1569
+      "correct_to_correct": 322,
+      "correct_to_wrong": 1269,
+      "wrong_to_correct": 4,
+      "wrong_to_wrong": 81
     },
     "cf_unconstructable": {
       "correct_to_correct": 0,
-      "correct_to_wrong": 9,
+      "correct_to_wrong": 172,
       "wrong_to_correct": 0,
-      "wrong_to_wrong": 291
+      "wrong_to_wrong": 11
     },
     "cf_wrong_constructable": {
-      "correct_to_correct": 0,
-      "correct_to_wrong": 0,
-      "wrong_to_correct": 0,
-      "wrong_to_wrong": 0
+      "correct_to_correct": 18,
+      "correct_to_wrong": 75,
+      "wrong_to_correct": 1,
+      "wrong_to_wrong": 23
     }
   },
   "paired_four_cells": {
-    "correct_to_correct": 0,
-    "correct_to_wrong": 116,
-    "wrong_to_correct": 0,
-    "wrong_to_wrong": 1860
+    "correct_to_correct": 340,
+    "correct_to_wrong": 1516,
+    "wrong_to_correct": 5,
+    "wrong_to_wrong": 115
   },
   "protocol": "g3-decomposed-v2",
   "raw_pool": 1055,
+  "recovery_check_runs": [
+    "runs\\recovery_check_20260907",
+    "runs\\recovery_check_20260907_b"
+  ],
   "recovery_check_token_usage": {
-    "completion_tokens": 17282,
-    "prompt_tokens": 35296,
-    "reasoning_tokens": 10634
+    "completion_tokens": 36527,
+    "prompt_tokens": 158232,
+    "reasoning_tokens": 23320
   },
   "repeat_control": {
     "count": 40,
     "four_cells": {
       "correct_to_correct": 0,
-      "correct_to_wrong": 3,
+      "correct_to_wrong": 40,
       "wrong_to_correct": 0,
-      "wrong_to_wrong": 37
+      "wrong_to_wrong": 0
     }
   },
   "responses": {
@@ -177,14 +186,14 @@
     },
     "oracle_state": {
       "expected": 1976,
-      "missing": 1857,
-      "received": 119,
+      "missing": 0,
+      "received": 1976,
       "truncated": 0
     },
     "predicted_state": {
-      "expected": 0,
-      "missing": 0,
-      "received": 0,
+      "expected": 1793,
+      "missing": 1437,
+      "received": 356,
       "truncated": 0
     },
     "repeat_state": {
@@ -300,109 +309,109 @@
   "token_usage": {
     "generation_completion_tokens": 290179,
     "generation_prompt_tokens": 156641,
-    "inference_completion_tokens": 238306,
-    "inference_prompt_tokens": 270747,
-    "inference_reasoning_tokens": 195236
+    "inference_completion_tokens": 1049372,
+    "inference_prompt_tokens": 2685546,
+    "inference_reasoning_tokens": 855133
   },
   "variable_metrics": {
     "end_to_end_joint_exact": {
       "cluster_ci95": [
-        0.0,
-        0.0
+        0.07191448007774538,
+        0.29120879120879123
       ],
       "denominator": 1976,
-      "macro": 0.0,
-      "micro": 0.0,
+      "macro": 0.18972893693845713,
+      "micro": 0.16497975708502025,
       "problem_count": 46
     },
     "net_drop": {
       "cluster_ci95": [
-        0.017866811044937737,
-        0.11476264997391758
+        0.6453980801806889,
+        0.8691544638639584
       ],
       "denominator": 1976,
-      "macro": 0.06774725014698776,
-      "micro": 0.058704453441295545,
+      "macro": 0.7584342706269243,
+      "micro": 0.7646761133603239,
       "problem_count": 46
     },
     "oracle_cf_state_exact": {
       "cluster_ci95": [
-        0.017866811044937737,
-        0.11476264997391758
+        0.897164824603556,
+        0.975736568457539
       ],
       "denominator": 1976,
-      "macro": 0.06774725014698776,
-      "micro": 0.058704453441295545,
+      "macro": 0.9561342220581351,
+      "micro": 0.9392712550607287,
       "problem_count": 46
     },
     "oracle_normalized_prefix": {
       "cluster_ci95": [
-        0.018084066471163247,
-        0.11704227145403616
+        0.9368558127247911,
+        0.9872932071459322
       ],
       "denominator": 1976,
-      "macro": 0.06905443968947143,
-      "micro": 0.05986544415336984,
+      "macro": 0.9753707728550143,
+      "micro": 0.9641238939349978,
       "problem_count": 46
     },
     "oracle_position_accuracy": {
       "cluster_ci95": [
-        0.018084066471163247,
-        0.11704227145403616
+        0.9412205751426947,
+        0.9885361740618708
       ],
       "denominator": 1976,
-      "macro": 0.06905443968947143,
-      "micro": 0.05986544415336984,
+      "macro": 0.9769294918820869,
+      "micro": 0.9665808552372004,
       "problem_count": 46
     },
     "oracle_prefix": {
       "cluster_ci95": [
-        0.07597645799892991,
-        0.7984189723320159
+        5.653204092622509,
+        8.905005107252299
       ],
       "denominator": 1976,
-      "macro": 0.393436344494253,
-      "micro": 0.3507085020242915,
+      "macro": 7.447168919339828,
+      "micro": 7.1826923076923075,
       "problem_count": 46
     },
     "predicted_cf_state_exact": {
       "cluster_ci95": [
-        0.0,
-        0.0
+        0.07636031092821216,
+        0.29818012132524496
       ],
       "denominator": 1976,
-      "macro": 0.0,
-      "micro": 0.0,
+      "macro": 0.19769995143121075,
+      "micro": 0.17459514170040485,
       "problem_count": 46
     },
     "predicted_normalized_prefix": {
       "cluster_ci95": [
-        0.0,
-        0.0
+        0.07725726753081252,
+        0.30159555019564355
       ],
       "denominator": 1976,
-      "macro": 0.0,
-      "micro": 0.0,
+      "macro": 0.20034779078102913,
+      "micro": 0.17647270991517222,
       "problem_count": 46
     },
     "predicted_position_accuracy": {
       "cluster_ci95": [
-        0.0,
-        0.0
+        0.07721333852009385,
+        0.30159555019564355
       ],
       "denominator": 1976,
-      "macro": 0.0,
-      "micro": 0.0,
+      "macro": 0.20023276892687686,
+      "micro": 0.17642451249855376,
       "problem_count": 46
     },
     "predicted_prefix": {
       "cluster_ci95": [
-        0.0,
-        0.0
+        0.47098797699947725,
+        1.660908193484699
       ],
       "denominator": 1976,
-      "macro": 0.0,
-      "micro": 0.0,
+      "macro": 1.3872111894019694,
+      "micro": 0.9944331983805668,
       "problem_count": 46
     }
   },

@@ -4,5 +4,9 @@
   "total_tokens": 1035208,
   "cost_usd": 2.28,
   "effective_blended_usd_per_million_tokens": 2.202456129387546,
-  "note": "Billing source of truth; local usage records cover responses received by the client and exclude calls whose response was lost after a client timeout."
+  "snapshot_scope": "before recovery_check_20260907_b and the second main-run continuation",
+  "local_main_tokens_at_observation": 955873,
+  "local_recovery_tokens_at_observation": 52578,
+  "local_total_tokens_at_observation": 1008451,
+  "note": "Historical billing snapshot. Local usage covers responses received by the client and excludes calls whose response was lost after a client timeout."
 }

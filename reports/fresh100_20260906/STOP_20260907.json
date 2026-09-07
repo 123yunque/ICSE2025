@@ -1,16 +1,21 @@
 {
   "completed_conditions": [
-    "control_flow"
+    "control_flow",
+    "oracle_state"
   ],
   "incomplete_conditions": [
-    "oracle_state",
     "predicted_state",
     "repeat_state"
   ],
-  "reason": "恢复后服务再次返回 HTTP 401：该令牌额度已用尽。保护电路停止后续网络派发。",
+  "quota_observation": {
+    "next_request_preconsume_usd": 0.009626,
+    "remaining_usd": 0.009354,
+    "source": "HTTP 403 response from the configured API service"
+  },
+  "reason": "服务返回 HTTP 403 local:pre_consume_token_quota_failed：剩余额度不足以预扣下一次请求。保护电路停止后续网络派发；排队项未发送。",
   "recovery_check": {
     "api_base_url": "https://api.openlux.ai/v1",
-    "completed_at": "2026-09-07T08:04:47.217219+00:00",
+    "completed_at": "2026-09-07T13:45:17.433876+00:00",
     "control_messages_sha256": "acc6cf69dbd2c94be78823a8fe658dd5968f31de863ad7a32f0bf6d4ec289bf1",
     "gates": {
       "control_flow": {
@@ -36,6 +41,9 @@
   },
   "response_counts": {
     "control_flow": {
+      "attempt_errors": {
+        "http_429": 2
+      },
       "attempt_status": {
         "api_error": 2,
         "received": 351
@@ -48,23 +56,42 @@
       }
     },
     "oracle_state": {
+      "attempt_errors": {
+        "client_timeout": 4,
+        "http_401_quota": 1,
+        "http_429": 14,
+        "not_dispatched_circuit_open": 1855
+      },
       "attempt_status": {
-        "api_error": 1857,
-        "received": 119
+        "api_error": 1874,
+        "received": 1976
       },
       "expected": 1976,
-      "received": 119,
+      "received": 1976,
       "received_format": {
-        "valid": 119
+        "invalid": 2,
+        "valid": 1974
       }
     },
     "predicted_state": {
-      "attempt_status": {},
-      "expected": 0,
-      "received": 0,
-      "received_format": {}
+      "attempt_errors": {
+        "http_403_quota": 1,
+        "http_429": 1,
+        "not_dispatched_circuit_open": 1435
+      },
+      "attempt_status": {
+        "api_error": 1437,
+        "received": 356
+      },
+      "expected": 1793,
+      "received": 356,
+      "received_format": {
+        "invalid": 1,
+        "valid": 355
+      }
     },
     "repeat_state": {
+      "attempt_errors": {},
       "attempt_status": {},
       "expected": 40,
       "received": 0,
@@ -77,7 +104,7 @@
     "Do not count circuit-blocked attempts as received model answers.",
     "Continue only missing request IDs under the unchanged configuration."
   ],
-  "stage": "oracle_state",
+  "stage": "predicted_state",
   "status": "stopped",
-  "updated_at": "2026-09-07T13:08:14.942566+00:00"
+  "updated_at": "2026-09-07T15:40:20.260653+00:00"
 }
