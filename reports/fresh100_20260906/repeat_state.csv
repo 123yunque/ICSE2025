@@ -13,7 +13,7 @@ task_lcb_0660,task_lcb_0660/input_007/state/005,False,False
 task_lcb_0581,task_lcb_0581/input_006/state/001,False,False
 task_lcb_0553,task_lcb_0553/input_002/state/010,False,False
 task_lcb_0116,task_lcb_0116/input_000/state/001,False,False
-task_lcb_0055,task_lcb_0055/input_000/state/010,False,False
+task_lcb_0055,task_lcb_0055/input_000/state/010,True,False
 task_lcb_0171,task_lcb_0171/input_008/state/006,False,False
 task_lcb_0998,task_lcb_0998/input_004/state/003,False,False
 task_lcb_0998,task_lcb_0998/input_000/state/008,False,False
@@ -22,9 +22,9 @@ task_lcb_0080,task_lcb_0080/input_001/state/003,False,False
 task_lcb_0055,task_lcb_0055/input_003/state/009,False,False
 task_lcb_0424,task_lcb_0424/input_008/state/003,False,False
 task_lcb_0109,task_lcb_0109/input_005/state/002,False,False
-task_lcb_0055,task_lcb_0055/input_000/state/005,False,False
+task_lcb_0055,task_lcb_0055/input_000/state/005,True,False
 task_lcb_0553,task_lcb_0553/input_007/state/005,False,False
-task_lcb_0012,task_lcb_0012/input_004/state/003,False,False
+task_lcb_0012,task_lcb_0012/input_004/state/003,True,False
 task_lcb_0831,task_lcb_0831/input_002/state/006,False,False
 task_lcb_0831,task_lcb_0831/input_007/state/007,False,False
 task_lcb_0781,task_lcb_0781/input_007/state/001,False,False

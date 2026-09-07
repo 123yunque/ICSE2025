@@ -83,6 +83,8 @@ def analyze(run, data='data'):
     metadata = {'task_lcb_' + str(r['release_index']).zfill(4): r for r in load(Path(data) / 'all_metadata.json')}
     builds = {r['task_id']: r for r in build}
     cases = {r['case_key']: r for r in read_jsonl(run / 'local/case_records.jsonl')}
+    resumption = load(run / 'resumption_audit.json') if (run / 'resumption_audit.json').exists() else None
+    old_cf_ids = set(resumption['preserved_control_response_ids']) if resumption else set()
     controls = read_jsonl(run / 'prepared/control_flow/requests.jsonl')
     states = read_jsonl(run / 'prepared/oracle_state/requests.jsonl')
     predicted = read_jsonl(run / 'prepared/predicted_state/requests.jsonl')
@@ -107,6 +109,7 @@ def analyze(run, data='data'):
                 counts[block] += repeats
         length = sum(counts.values())
         return {'problem_key': metadata[task]['problem_key'], 'platform': metadata[task]['platform'],
+                'cf_service_epoch': ('before_service_recovery' if request['case_key'] in old_cf_ids else 'after_service_recovery') if resumption else 'initial_run',
                 'difficulty': metadata[task]['difficulty'], 'contest_date': metadata[task]['contest_date'],
                 'interface': builds[task]['interface'], 'test_source': cases[request['case_key']]['test_source'],
                 'trace_length': length, 'trace_bin': bins(length), 'long_trace': length >= 10,
@@ -151,7 +154,7 @@ def analyze(run, data='data'):
                         'oracle_prefix', 'predicted_prefix', 'oracle_normalized_prefix', 'predicted_normalized_prefix']
     case_metrics = ['oracle_cf_all_variables_exact', 'predicted_cf_all_variables_exact', 'end_to_end_case_joint_exact']
     fields = ['platform', 'difficulty', 'interface', 'test_source', 'trace_bin', 'long_trace', 'repeated_block',
-              'distinct_blocks', 'compressed_runs', 'selected_candidate', 'helper_functions']
+              'distinct_blocks', 'compressed_runs', 'selected_candidate', 'helper_functions', 'cf_service_epoch']
     var_strata = strata(variable_rows, fields + ['state_bin', 'cf_group', 'identical_visible_messages'], variable_metrics)
     cf_strata = strata(control_rows, fields, ['expanded_exact', 'canonical_exact'])
     repeat_requests = read_jsonl(run / 'prepared/repeat_state/requests.jsonl')
@@ -215,6 +218,11 @@ def analyze(run, data='data'):
         'exclusion_reasons': dict(Counter(str(r.get('error_type') or r.get('reason') or r.get('status')) for r in exclusions)),
         'token_usage': dict(usage), 'bootstrap': {'unit': 'original problem; all inputs and variables together', 'iterations': 2000, 'seed': 20260905}}
     save(out / 'summary.json', summary)
+    if resumption:
+        summary['resumption'] = resumption
+        summary['interpretation'] = 'Exploratory continuation across service epochs; original failed pilot retained in all-request denominators.'
+        save(out / 'resumption_audit.json', resumption)
+        save(out / 'summary.json', summary)
     save(out / 'cohort.json', load(run / 'cohort.json'))
     save(out / 'run_config.json', load(run / 'config.json'))
     for name in ['execution_source.json', 'preparation_policy.json']:
@@ -264,6 +272,18 @@ def analyze(run, data='data'):
         for kind, coverage in response_coverage.items():
             text.append(f"| {kind} | {coverage['received']} | {coverage['expected']} |")
         text += ['', '原始请求和响应保存在 `runs/' + run.name + '/`。最终报告由流水线自动更新。']
+        if response_coverage['control_flow']['missing'] == 0 and control_rows:
+            metric = summary['control_metrics']['expanded_exact']
+            lo, hi = metric['cluster_ci95']
+            text += ['', f"控制流条件已经完整：展开路径 exact 为 {metric['micro']:.2%}，"
+                     f"按原始题目聚类 bootstrap 95% 区间为 [{lo:.2%}, {hi:.2%}]。",
+                     f"canonical exact 为 {summary['control_metrics']['canonical_exact']['micro']:.2%}。"
+                     '恢复前的 31 个格式无效首答已按 351 的固定分母计失败。']
+        if 0 < response_coverage['oracle_state']['received'] < response_coverage['oracle_state']['expected']:
+            received_oracle = [r for r in oracle_scores.values()]
+            exact = sum(bool(r.get('state_exact')) for r in received_oracle)
+            text += ['', f"Oracle-State 当前收到 {len(received_oracle)}/{len(states)}，其中 {exact} 个 exact。"
+                     '这批包含预选试跑和按请求顺序获得的部分记录，不是代表性完整样本，因此不作为主准确率。']
         gate_path = run / 'pilot/control_flow_gate.json'
         if gate_path.exists():
             gate = load(gate_path)
@@ -273,6 +293,10 @@ def analyze(run, data='data'):
                 + f"（{evaluation['format_valid_rate']:.1%}），预定门槛 95%。没有 token 截断。",
                 '多数无效回答返回代码、函数输出或说明，未遵循仅返回 trace 的协议。原因尚未确认，不能归因于模型算法推理能力。',
                 '后续 Oracle-State、Predicted-State 和重复调用均尚未执行。补足 API 额度后先恢复独立诊断，再决定如何在保留原始首答的条件下继续。']
+    if resumption:
+        text = [line for line in text if not line.startswith('后续 Oracle-State、Predicted-State')]
+        text += ['', '服务恢复后，独立合成程序格式检查通过；原提示词、模型设置、冻结清单及首答均保持。',
+                 '本报告属于跨服务阶段的探索性续跑，原 40 个试跑首答仍计入主分母。CF 调用阶段分层见 control_strata.csv / state_strata.csv；不能将全部差异解释为稳定模型能力。']
     (out / 'REPORT.md').write_text('\n'.join(text) + '\n', encoding='utf-8')
     print(json.dumps({k: summary[k] for k in ['complete', 'build_status', 'eligible_problems', 'N_control_cases', 'K_state_variables', 'M_state_cases', 'responses']}, ensure_ascii=False), flush=True)
     return summary

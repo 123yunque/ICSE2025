@@ -1,0 +1,83 @@
+{
+  "completed_conditions": [
+    "control_flow"
+  ],
+  "incomplete_conditions": [
+    "oracle_state",
+    "predicted_state",
+    "repeat_state"
+  ],
+  "reason": "恢复后服务再次返回 HTTP 401：该令牌额度已用尽。保护电路停止后续网络派发。",
+  "recovery_check": {
+    "api_base_url": "https://api.openlux.ai/v1",
+    "completed_at": "2026-09-07T08:04:47.217219+00:00",
+    "control_messages_sha256": "acc6cf69dbd2c94be78823a8fe658dd5968f31de863ad7a32f0bf6d4ec289bf1",
+    "gates": {
+      "control_flow": {
+        "expected": 40,
+        "format_valid_rate": 1.0,
+        "passed": true,
+        "received": 40,
+        "truncations": 0
+      },
+      "oracle_state": {
+        "expected": 39,
+        "format_valid_rate": 1.0,
+        "passed": true,
+        "received": 39,
+        "truncations": 0
+      }
+    },
+    "main_first_answers_replaced": false,
+    "model": "gpt-5.4",
+    "passed": true,
+    "protocol_change": false,
+    "state_messages_sha256": "017c0ed502d9c019f4cd803daa951030b907e851aa01fa102e45b2b602dfa637"
+  },
+  "response_counts": {
+    "control_flow": {
+      "attempt_status": {
+        "api_error": 2,
+        "received": 351
+      },
+      "expected": 351,
+      "received": 351,
+      "received_format": {
+        "invalid": 31,
+        "valid": 320
+      }
+    },
+    "oracle_state": {
+      "attempt_status": {
+        "api_error": 1857,
+        "received": 119
+      },
+      "expected": 1976,
+      "received": 119,
+      "received_format": {
+        "valid": 119
+      }
+    },
+    "predicted_state": {
+      "attempt_status": {},
+      "expected": 0,
+      "received": 0,
+      "received_format": {}
+    },
+    "repeat_state": {
+      "attempt_status": {},
+      "expected": 40,
+      "received": 0,
+      "received_format": {}
+    }
+  },
+  "resume_rules": [
+    "Retain all received first answers and frozen denominators.",
+    "After restoring external service quota, run a new independent recovery epoch.",
+    "Do not count circuit-blocked attempts as received model answers.",
+    "Continue only missing request IDs under the unchanged configuration."
+  ],
+  "stage": "oracle_state",
+  "status": "stopped",
+  "updated_at": "2026-09-07T13:08:14.942566+00:00"
+}

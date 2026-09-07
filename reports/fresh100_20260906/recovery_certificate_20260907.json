@@ -1,0 +1,26 @@
+{
+  "api_base_url": "https://api.openlux.ai/v1",
+  "completed_at": "2026-09-07T08:04:47.217219+00:00",
+  "control_messages_sha256": "acc6cf69dbd2c94be78823a8fe658dd5968f31de863ad7a32f0bf6d4ec289bf1",
+  "gates": {
+    "control_flow": {
+      "expected": 40,
+      "format_valid_rate": 1.0,
+      "passed": true,
+      "received": 40,
+      "truncations": 0
+    },
+    "oracle_state": {
+      "expected": 39,
+      "format_valid_rate": 1.0,
+      "passed": true,
+      "received": 39,
+      "truncations": 0
+    }
+  },
+  "main_first_answers_replaced": false,
+  "model": "gpt-5.4",
+  "passed": true,
+  "protocol_change": false,
+  "state_messages_sha256": "017c0ed502d9c019f4cd803daa951030b907e851aa01fa102e45b2b602dfa637"
+}

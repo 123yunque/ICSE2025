@@ -18,8 +18,8 @@
     "invalid_code_response_or_interface": 108
   },
   "case_failure_buckets": {
-    "control_flow_failed": 310,
-    "state_failed_given_correct_cf": 8
+    "control_flow_failed": 40,
+    "state_failed_given_correct_cf": 278
   },
   "case_metrics": {
     "end_to_end_case_joint_exact": {
@@ -35,11 +35,11 @@
     "oracle_cf_all_variables_exact": {
       "cluster_ci95": [
         0.0,
-        0.0
+        0.11326860841423948
       ],
       "denominator": 318,
-      "macro": 0.0,
-      "micro": 0.0,
+      "macro": 0.0391304347826087,
+      "micro": 0.04716981132075472,
       "problem_count": 46
     },
     "predicted_cf_all_variables_exact": {
@@ -55,11 +55,11 @@
   },
   "combined": {
     "control_case_count": 351,
-    "control_flow_expanded_exact_rate": 0.02564102564102564,
+    "control_flow_expanded_exact_rate": 0.8717948717948718,
     "end_to_end_case_joint_exact_rate": 0.0,
     "end_to_end_joint_exact_rate": 0.0,
-    "oracle_cf_state_case_exact_rate": 0.0,
-    "oracle_cf_state_exact_rate": 0.0,
+    "oracle_cf_state_case_exact_rate": 0.04716981132075472,
+    "oracle_cf_state_exact_rate": 0.058704453441295545,
     "predicted_cf_state_case_exact_rate": 0.0,
     "predicted_cf_state_exact_rate": 0.0,
     "predicted_state_attempt_rate": 0.0,
@@ -68,12 +68,12 @@
     "schema_version": "g3-decomposed-combined-v2",
     "state_case_count": 318,
     "state_case_coverage_rate": 0.905982905982906,
-    "state_error_propagation_gap": 0.0,
+    "state_error_propagation_gap": 0.058704453441295545,
     "state_task_count": 1976,
     "state_task_macro_end_to_end_case_joint_exact_rate": 0.0,
     "state_task_macro_end_to_end_joint_exact_rate": 0.0,
-    "state_task_macro_oracle_cf_state_case_exact_rate": 0.0,
-    "state_task_macro_oracle_cf_state_exact_rate": 0.0,
+    "state_task_macro_oracle_cf_state_case_exact_rate": 0.0391304347826087,
+    "state_task_macro_oracle_cf_state_exact_rate": 0.06774725014698776,
     "state_task_macro_predicted_cf_state_case_exact_rate": 0.0,
     "state_task_macro_predicted_cf_state_exact_rate": 0.0
   },
@@ -81,22 +81,22 @@
   "control_metrics": {
     "canonical_exact": {
       "cluster_ci95": [
-        0.00546448087431694,
-        0.04533333333333334
+        0.5118343195266272,
+        0.7142857142857143
       ],
       "denominator": 351,
-      "macro": 0.016326530612244896,
-      "micro": 0.022792022792022793,
+      "macro": 0.5823372206025268,
+      "micro": 0.6153846153846154,
       "problem_count": 49
     },
     "expanded_exact": {
       "cluster_ci95": [
-        0.00625,
-        0.04851752021563342
+        0.8157181571815718,
+        0.918918918918919
       ],
       "denominator": 351,
-      "macro": 0.01924198250728863,
-      "micro": 0.02564102564102564,
+      "macro": 0.8737609329446064,
+      "micro": 0.8717948717948718,
       "problem_count": 49
     }
   },
@@ -117,18 +117,19 @@
     "wrong_to_correct": 0,
     "wrong_to_wrong": 0
   },
+  "interpretation": "Exploratory continuation across service epochs; original failed pilot retained in all-request denominators.",
   "paired_by_cf": {
     "cf_correct": {
       "correct_to_correct": 0,
-      "correct_to_wrong": 0,
+      "correct_to_wrong": 107,
       "wrong_to_correct": 0,
-      "wrong_to_wrong": 31
+      "wrong_to_wrong": 1569
     },
     "cf_unconstructable": {
       "correct_to_correct": 0,
-      "correct_to_wrong": 0,
+      "correct_to_wrong": 9,
       "wrong_to_correct": 0,
-      "wrong_to_wrong": 1945
+      "wrong_to_wrong": 291
     },
     "cf_wrong_constructable": {
       "correct_to_correct": 0,
@@ -139,9 +140,9 @@
   },
   "paired_four_cells": {
     "correct_to_correct": 0,
-    "correct_to_wrong": 0,
+    "correct_to_wrong": 116,
     "wrong_to_correct": 0,
-    "wrong_to_wrong": 1976
+    "wrong_to_wrong": 1860
   },
   "protocol": "g3-decomposed-v2",
   "raw_pool": 1055,
@@ -149,22 +150,22 @@
     "count": 40,
     "four_cells": {
       "correct_to_correct": 0,
-      "correct_to_wrong": 0,
+      "correct_to_wrong": 3,
       "wrong_to_correct": 0,
-      "wrong_to_wrong": 40
+      "wrong_to_wrong": 37
     }
   },
   "responses": {
     "control_flow": {
       "expected": 351,
-      "missing": 311,
-      "received": 40,
+      "missing": 0,
+      "received": 351,
       "truncated": 0
     },
     "oracle_state": {
       "expected": 1976,
-      "missing": 1976,
-      "received": 0,
+      "missing": 1857,
+      "received": 119,
       "truncated": 0
     },
     "predicted_state": {
@@ -180,14 +181,115 @@
       "truncated": 0
     }
   },
+  "resumption": {
+    "interpretation": "Exploratory continuation across service epochs; preserve all-request denominators and report epoch-specific coverage.",
+    "original_control_pilot_gate": {
+      "evaluation": {
+        "canonical_format_valid_count": 9,
+        "canonical_format_valid_rate": 1.0,
+        "canonical_trace_exact_count": 8,
+        "canonical_trace_exact_rate": 0.8888888888888888,
+        "canonical_trace_exact_rate_all_requests": 0.2,
+        "expanded_trace_exact_count": 9,
+        "expanded_trace_exact_rate": 1.0,
+        "expanded_trace_exact_rate_all_requests": 0.225,
+        "expected_request_count": 40,
+        "format_valid_rate": 0.225,
+        "fully_valid": false,
+        "invalid_response_count": 31,
+        "kind": "control_flow",
+        "missing_response_count": 0,
+        "received_response_count": 40,
+        "response_complete": true,
+        "schema_version": "g3-decomposed-evaluation-v2",
+        "task_count": 26,
+        "task_macro_canonical_trace_exact_rate_all_requests": 0.17307692307692307,
+        "task_macro_expanded_trace_exact_rate_all_requests": 0.21153846153846154,
+        "valid_response_count": 9
+      },
+      "passed": false,
+      "truncations": 0
+    },
+    "preserved_control_response_ids": [
+      "task_lcb_0033/input_002",
+      "task_lcb_0033/input_003",
+      "task_lcb_0033/input_007",
+      "task_lcb_0042/input_004",
+      "task_lcb_0042/input_009",
+      "task_lcb_0055/input_005",
+      "task_lcb_0077/input_004",
+      "task_lcb_0077/input_008",
+      "task_lcb_0077/input_009",
+      "task_lcb_0084/input_002",
+      "task_lcb_0084/input_009",
+      "task_lcb_0087/input_003",
+      "task_lcb_0109/input_004",
+      "task_lcb_0116/input_006",
+      "task_lcb_0171/input_009",
+      "task_lcb_0188/input_003",
+      "task_lcb_0188/input_005",
+      "task_lcb_0191/input_000",
+      "task_lcb_0191/input_002",
+      "task_lcb_0193/input_009",
+      "task_lcb_0199/input_002",
+      "task_lcb_0329/input_000",
+      "task_lcb_0337/input_005",
+      "task_lcb_0356/input_006",
+      "task_lcb_0424/input_004",
+      "task_lcb_0424/input_008",
+      "task_lcb_0446/input_009",
+      "task_lcb_0519/input_009",
+      "task_lcb_0553/input_001",
+      "task_lcb_0574/input_007",
+      "task_lcb_0660/input_006",
+      "task_lcb_0660/input_008",
+      "task_lcb_0678/input_000",
+      "task_lcb_0678/input_004",
+      "task_lcb_0779/input_008",
+      "task_lcb_0779/input_009",
+      "task_lcb_0781/input_003",
+      "task_lcb_0781/input_004",
+      "task_lcb_0781/input_008",
+      "task_lcb_0786/input_002"
+    ],
+    "preserved_response_sha256": "4f458ba655788a3c683880de83fe3b622db9972d45fce5ecf1ef57e68a277e19",
+    "reason": "Continue after independent service-format revalidation; original failed pilot is not rescored or replaced.",
+    "recovery_certificate": {
+      "api_base_url": "https://api.openlux.ai/v1",
+      "completed_at": "2026-09-07T08:04:47.217219+00:00",
+      "control_messages_sha256": "acc6cf69dbd2c94be78823a8fe658dd5968f31de863ad7a32f0bf6d4ec289bf1",
+      "gates": {
+        "control_flow": {
+          "expected": 40,
+          "format_valid_rate": 1.0,
+          "passed": true,
+          "received": 40,
+          "truncations": 0
+        },
+        "oracle_state": {
+          "expected": 39,
+          "format_valid_rate": 1.0,
+          "passed": true,
+          "received": 39,
+          "truncations": 0
+        }
+      },
+      "main_first_answers_replaced": false,
+      "model": "gpt-5.4",
+      "passed": true,
+      "protocol_change": false,
+      "state_messages_sha256": "017c0ed502d9c019f4cd803daa951030b907e851aa01fa102e45b2b602dfa637"
+    },
+    "resumed_at": "2026-09-07T12:42:07.147972+00:00"
+  },
   "run_id": "fresh100_20260906",
   "selected_problems": 100,
   "token_usage": {
     "generation_completion_tokens": 290179,
     "generation_prompt_tokens": 156641,
-    "inference_completion_tokens": 14582,
-    "inference_prompt_tokens": 21151,
-    "inference_reasoning_tokens": 6589
+    "inference_completion_tokens": 238306,
+    "inference_prompt_tokens": 270747,
+    "inference_reasoning_tokens": 195236
   },
   "variable_metrics": {
     "end_to_end_joint_exact": {
@@ -202,52 +304,52 @@
     },
     "net_drop": {
       "cluster_ci95": [
-        0.0,
-        0.0
+        0.017866811044937737,
+        0.11476264997391758
       ],
       "denominator": 1976,
-      "macro": 0.0,
-      "micro": 0.0,
+      "macro": 0.06774725014698776,
+      "micro": 0.058704453441295545,
       "problem_count": 46
     },
     "oracle_cf_state_exact": {
       "cluster_ci95": [
-        0.0,
-        0.0
+        0.017866811044937737,
+        0.11476264997391758
       ],
       "denominator": 1976,
-      "macro": 0.0,
-      "micro": 0.0,
+      "macro": 0.06774725014698776,
+      "micro": 0.058704453441295545,
       "problem_count": 46
     },
     "oracle_normalized_prefix": {
       "cluster_ci95": [
-        0.0,
-        0.0
+        0.018084066471163247,
+        0.11704227145403616
       ],
       "denominator": 1976,
-      "macro": 0.0,
-      "micro": 0.0,
+      "macro": 0.06905443968947143,
+      "micro": 0.05986544415336984,
       "problem_count": 46
     },
     "oracle_position_accuracy": {
       "cluster_ci95": [
-        0.0,
-        0.0
+        0.018084066471163247,
+        0.11704227145403616
       ],
       "denominator": 1976,
-      "macro": 0.0,
-      "micro": 0.0,
+      "macro": 0.06905443968947143,
+      "micro": 0.05986544415336984,
       "problem_count": 46
     },
     "oracle_prefix": {
       "cluster_ci95": [
-        0.0,
-        0.0
+        0.07597645799892991,
+        0.7984189723320159
       ],
       "denominator": 1976,
-      "macro": 0.0,
-      "micro": 0.0,
+      "macro": 0.393436344494253,
+      "micro": 0.3507085020242915,
       "problem_count": 46
     },
     "predicted_cf_state_exact": {

@@ -1,5 +1,21 @@
 # 本批停点与恢复
 
+2026-09-07 续跑入口：先运行 `recovery_check.py` 完成独立合成程序格式验证；
+仅在保存通过的 certificate 后运行 `resume_experiment.py`。该入口核验原执行代码哈希，
+保留全部已有主实验首答，追加调用有独立阶段标识，并在额度/认证拒绝时停止派发网络请求。
+下文保留 2026-09-06 的历史停点，不能据此认定当前额度仍然不足。
+
+2026-09-07 本次恢复后，CF 已完整收到 351/351；Oracle-State 收到 119/1,976 后，
+服务再次返回 401“该令牌额度已用尽”，保护电路阻止了其余请求。补充额度后应新建恢复检查目录：
+
+```powershell
+conda run -n Npflower --no-capture-output python recovery_check.py --run runs/recovery_check_<新名称>
+conda run -n Npflower --no-capture-output python resume_experiment.py --recovery runs/recovery_check_<新名称>
+```
+
+不要复用旧 certificate 来证明下一次服务恢复。主实验运行器仍仅补齐缺失 ID；已有 351 个 CF 与
+119 个 Oracle-State 首答不重发。电路拦截生成的 `api_error` 是派发审计记录，不是模型回答。
+
 本次 100 题构建和 Oracle 已完成；完整三条件推理未完成。
 
 1. 59 题的本次新解答通过全部官方测试；40 题没有合格解；1 题确认官方测试违反约束。
