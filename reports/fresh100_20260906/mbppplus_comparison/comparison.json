@@ -1,0 +1,703 @@
+{
+  "schema_version": "lcb-mbppplus-comparison-v1",
+  "bootstrap": {
+    "unit": "original task; all inputs and variables sampled together",
+    "iterations": 2000,
+    "seed": 20260905
+  },
+  "verdict": "inference_core_aligned_full_experiment_not_dataset_only",
+  "mbppplus_policy_harmonization": {
+    "helper_only_tasks": [
+      "task_301",
+      "task_592",
+      "task_6",
+      "task_630",
+      "task_751",
+      "task_797"
+    ],
+    "helper_only_task_count": 6,
+    "opaque_state_request_count": 112
+  },
+  "denominators": {
+    "mbppplus": {
+      "N": 3531,
+      "K": 2129,
+      "M": 1059,
+      "tasks_N": 360,
+      "tasks_K": 120
+    },
+    "livecodebench": {
+      "N": 351,
+      "K": 1976,
+      "M": 318,
+      "tasks_N": 49,
+      "tasks_K": 46
+    }
+  },
+  "metrics": {
+    "control_expanded_exact": {
+      "livecodebench": {
+        "micro": 0.8717948717948718,
+        "macro": 0.8737609329446064,
+        "cluster_ci95": [
+          0.8157181571815718,
+          0.918918918918919
+        ],
+        "problem_count": 49,
+        "denominator": 351
+      },
+      "mbppplus": {
+        "micro": 0.9498725573491928,
+        "macro": 0.9464219576719575,
+        "cluster_ci95": [
+          0.933029353092049,
+          0.9645152277172394
+        ],
+        "problem_count": 360,
+        "denominator": 3531
+      },
+      "delta_livecodebench_minus_mbppplus": -0.07807768555432104,
+      "delta_cluster_ci95": [
+        -0.13734070385293262,
+        -0.02517495987158913
+      ],
+      "livecodebench_numerator": 306,
+      "mbppplus_numerator": 3354
+    },
+    "control_canonical_exact": {
+      "livecodebench": {
+        "micro": 0.6153846153846154,
+        "macro": 0.5823372206025268,
+        "cluster_ci95": [
+          0.5118343195266272,
+          0.7142857142857143
+        ],
+        "problem_count": 49,
+        "denominator": 351
+      },
+      "mbppplus": {
+        "micro": 0.9153214386859246,
+        "macro": 0.9099305555555556,
+        "cluster_ci95": [
+          0.8917070390424623,
+          0.9360628154795289
+        ],
+        "problem_count": 360,
+        "denominator": 3531
+      },
+      "delta_livecodebench_minus_mbppplus": -0.2999368233013092,
+      "delta_cluster_ci95": [
+        -0.41069686379847814,
+        -0.20058103443994735
+      ],
+      "livecodebench_numerator": 216,
+      "mbppplus_numerator": 3232
+    },
+    "oracle_state_exact": {
+      "livecodebench": {
+        "micro": 0.9392712550607287,
+        "macro": 0.9561342220581351,
+        "cluster_ci95": [
+          0.897164824603556,
+          0.975736568457539
+        ],
+        "problem_count": 46,
+        "denominator": 1976
+      },
+      "mbppplus": {
+        "micro": 0.777829967120714,
+        "macro": 0.7756481965964649,
+        "cluster_ci95": [
+          0.7342557251908397,
+          0.8192982456140351
+        ],
+        "problem_count": 120,
+        "denominator": 2129
+      },
+      "delta_livecodebench_minus_mbppplus": 0.16144128794001478,
+      "delta_cluster_ci95": [
+        0.10301713131278922,
+        0.21800509784687105
+      ],
+      "livecodebench_numerator": 1856,
+      "mbppplus_numerator": 1656
+    },
+    "predicted_state_exact": {
+      "livecodebench": {
+        "micro": 0.8598178137651822,
+        "macro": 0.8818255306652675,
+        "cluster_ci95": [
+          0.8101330603889457,
+          0.9090909090909091
+        ],
+        "problem_count": 46,
+        "denominator": 1976
+      },
+      "mbppplus": {
+        "micro": 0.7458900892437764,
+        "macro": 0.7553182972872843,
+        "cluster_ci95": [
+          0.6987643800596506,
+          0.7880434782608695
+        ],
+        "problem_count": 120,
+        "denominator": 2129
+      },
+      "delta_livecodebench_minus_mbppplus": 0.11392772452140576,
+      "delta_cluster_ci95": [
+        0.050886949143945315,
+        0.1823816941012666
+      ],
+      "livecodebench_numerator": 1699,
+      "mbppplus_numerator": 1588
+    },
+    "end_to_end_variable_exact": {
+      "livecodebench": {
+        "micro": 0.8183198380566802,
+        "macro": 0.8532079163954797,
+        "cluster_ci95": [
+          0.7531584062196307,
+          0.8784940102681118
+        ],
+        "problem_count": 46,
+        "denominator": 1976
+      },
+      "mbppplus": {
+        "micro": 0.6270549553781118,
+        "macro": 0.6785467365684735,
+        "cluster_ci95": [
+          0.5552421250587682,
+          0.6982543640897756
+        ],
+        "problem_count": 120,
+        "denominator": 2129
+      },
+      "delta_livecodebench_minus_mbppplus": 0.19126488267856834,
+      "delta_cluster_ci95": [
+        0.0970631065015185,
+        0.2873710632977403
+      ],
+      "livecodebench_numerator": 1617,
+      "mbppplus_numerator": 1335
+    },
+    "oracle_case_exact": {
+      "livecodebench": {
+        "micro": 0.8081761006289309,
+        "macro": 0.7992236024844722,
+        "cluster_ci95": [
+          0.7151162790697675,
+          0.890625
+        ],
+        "problem_count": 46,
+        "denominator": 318
+      },
+      "mbppplus": {
+        "micro": 0.6543909348441926,
+        "macro": 0.6302678571428569,
+        "cluster_ci95": [
+          0.5813492063492064,
+          0.7203389830508474
+        ],
+        "problem_count": 120,
+        "denominator": 1059
+      },
+      "delta_livecodebench_minus_mbppplus": 0.15378516578473822,
+      "delta_cluster_ci95": [
+        0.03975732862577386,
+        0.2602423112767941
+      ],
+      "livecodebench_numerator": 257,
+      "mbppplus_numerator": 693
+    },
+    "predicted_case_exact": {
+      "livecodebench": {
+        "micro": 0.7547169811320755,
+        "macro": 0.7442028985507246,
+        "cluster_ci95": [
+          0.6636636636636637,
+          0.8328173374613003
+        ],
+        "problem_count": 46,
+        "denominator": 318
+      },
+      "mbppplus": {
+        "micro": 0.6317280453257791,
+        "macro": 0.6250363756613755,
+        "cluster_ci95": [
+          0.5634469696969697,
+          0.696236559139785
+        ],
+        "problem_count": 120,
+        "denominator": 1059
+      },
+      "delta_livecodebench_minus_mbppplus": 0.12298893580629644,
+      "delta_cluster_ci95": [
+        0.012269103636010192,
+        0.2302209550962223
+      ],
+      "livecodebench_numerator": 240,
+      "mbppplus_numerator": 669
+    },
+    "end_to_end_case_exact": {
+      "livecodebench": {
+        "micro": 0.7484276729559748,
+        "macro": 0.7365942028985507,
+        "cluster_ci95": [
+          0.6576576576576577,
+          0.8245614035087719
+        ],
+        "problem_count": 46,
+        "denominator": 318
+      },
+      "mbppplus": {
+        "micro": 0.5996222851746931,
+        "macro": 0.5910449735449734,
+        "cluster_ci95": [
+          0.5311320754716982,
+          0.666971637694419
+        ],
+        "problem_count": 120,
+        "denominator": 1059
+      },
+      "delta_livecodebench_minus_mbppplus": 0.14880538778128172,
+      "delta_cluster_ci95": [
+        0.03933671501127045,
+        0.2583182128121858
+      ],
+      "livecodebench_numerator": 238,
+      "mbppplus_numerator": 635
+    }
+  },
+  "complexity": {
+    "mbppplus": {
+      "all": {
+        "expanded_exact": {
+          "micro": 0.9498725573491928,
+          "macro": 0.9464219576719575,
+          "cluster_ci95": [
+            0.933029353092049,
+            0.9645152277172394
+          ],
+          "problem_count": 360,
+          "denominator": 3531
+        },
+        "canonical_exact": {
+          "micro": 0.9153214386859246,
+          "macro": 0.9099305555555556,
+          "cluster_ci95": [
+            0.8917070390424623,
+            0.9360628154795289
+          ],
+          "problem_count": 360,
+          "denominator": 3531
+        },
+        "count": 3531,
+        "problem_count": 360,
+        "format_valid_count": 3494,
+        "format_valid_rate": 0.9895213820447465,
+        "expanded_exact_given_valid": 0.9599313108185461
+      },
+      "trace_length_ge_10": {
+        "expanded_exact": {
+          "micro": 0.6779220779220779,
+          "macro": 0.7030753968253968,
+          "cluster_ci95": [
+            0.5750577367205543,
+            0.7774936061381074
+          ],
+          "problem_count": 56,
+          "denominator": 385
+        },
+        "canonical_exact": {
+          "micro": 0.5428571428571428,
+          "macro": 0.5523880385487528,
+          "cluster_ci95": [
+            0.4225,
+            0.6514745308310992
+          ],
+          "problem_count": 56,
+          "denominator": 385
+        },
+        "count": 385,
+        "problem_count": 56,
+        "format_valid_count": 382,
+        "format_valid_rate": 0.9922077922077922,
+        "expanded_exact_given_valid": 0.6832460732984293
+      },
+      "trace_length_gt_100": {
+        "expanded_exact": {
+          "micro": 0.34065934065934067,
+          "macro": 0.5286630036630037,
+          "cluster_ci95": [
+            0.1978021978021978,
+            0.5443037974683544
+          ],
+          "problem_count": 26,
+          "denominator": 91
+        },
+        "canonical_exact": {
+          "micro": 0.23076923076923078,
+          "macro": 0.40384615384615385,
+          "cluster_ci95": [
+            0.10344827586206896,
+            0.4230769230769231
+          ],
+          "problem_count": 26,
+          "denominator": 91
+        },
+        "count": 91,
+        "problem_count": 26,
+        "format_valid_count": 91,
+        "format_valid_rate": 1.0,
+        "expanded_exact_given_valid": 0.34065934065934067
+      }
+    },
+    "livecodebench": {
+      "all": {
+        "expanded_exact": {
+          "micro": 0.8717948717948718,
+          "macro": 0.8737609329446064,
+          "cluster_ci95": [
+            0.8157181571815718,
+            0.918918918918919
+          ],
+          "problem_count": 49,
+          "denominator": 351
+        },
+        "canonical_exact": {
+          "micro": 0.6153846153846154,
+          "macro": 0.5823372206025268,
+          "cluster_ci95": [
+            0.5118343195266272,
+            0.7142857142857143
+          ],
+          "problem_count": 49,
+          "denominator": 351
+        },
+        "count": 351,
+        "problem_count": 49,
+        "format_valid_count": 320,
+        "format_valid_rate": 0.9116809116809117,
+        "expanded_exact_given_valid": 0.95625
+      },
+      "trace_length_ge_10": {
+        "expanded_exact": {
+          "micro": 0.8413461538461539,
+          "macro": 0.8613349613349615,
+          "cluster_ci95": [
+            0.7570093457943925,
+            0.9111111111111111
+          ],
+          "problem_count": 39,
+          "denominator": 208
+        },
+        "canonical_exact": {
+          "micro": 0.49038461538461536,
+          "macro": 0.4842592592592593,
+          "cluster_ci95": [
+            0.36923076923076925,
+            0.6226415094339622
+          ],
+          "problem_count": 39,
+          "denominator": 208
+        },
+        "count": 208,
+        "problem_count": 39,
+        "format_valid_count": 189,
+        "format_valid_rate": 0.9086538461538461,
+        "expanded_exact_given_valid": 0.9259259259259259
+      },
+      "trace_length_gt_100": {
+        "expanded_exact": {
+          "micro": 0.6833333333333333,
+          "macro": 0.6831932773109244,
+          "cluster_ci95": [
+            0.49206349206349204,
+            0.8395061728395061
+          ],
+          "problem_count": 17,
+          "denominator": 60
+        },
+        "canonical_exact": {
+          "micro": 0.38333333333333336,
+          "macro": 0.33725490196078434,
+          "cluster_ci95": [
+            0.11764705882352941,
+            0.6111111111111112
+          ],
+          "problem_count": 17,
+          "denominator": 60
+        },
+        "count": 60,
+        "problem_count": 17,
+        "format_valid_count": 53,
+        "format_valid_rate": 0.8833333333333333,
+        "expanded_exact_given_valid": 0.7735849056603774
+      }
+    }
+  },
+  "paired": {
+    "mbppplus": {
+      "all": {
+        "count": 2129,
+        "oracle": 0.777829967120714,
+        "predicted": 0.7458900892437764,
+        "oracle_minus_predicted": 0.03193987787693753
+      },
+      "cf_correct": {
+        "count": 1665,
+        "oracle": 0.8024024024024023,
+        "predicted": 0.8018018018018018,
+        "oracle_minus_predicted": 0.0006006006006005205
+      },
+      "cf_wrong_constructable": {
+        "count": 443,
+        "oracle": 0.6794582392776524,
+        "predicted": 0.5711060948081265,
+        "oracle_minus_predicted": 0.1083521444695259
+      },
+      "cf_unconstructable": {
+        "count": 21,
+        "oracle": 0.9047619047619048,
+        "predicted": 0.0,
+        "oracle_minus_predicted": 0.9047619047619048
+      }
+    },
+    "livecodebench": {
+      "all": {
+        "count": 1976,
+        "oracle": 0.9392712550607287,
+        "predicted": 0.8598178137651822,
+        "oracle_minus_predicted": 0.07945344129554655
+      },
+      "cf_correct": {
+        "count": 1676,
+        "oracle": 0.9492840095465394,
+        "predicted": 0.9647971360381862,
+        "oracle_minus_predicted": -0.015513126491646823
+      },
+      "cf_wrong_constructable": {
+        "count": 117,
+        "oracle": 0.7948717948717948,
+        "predicted": 0.7008547008547008,
+        "oracle_minus_predicted": 0.09401709401709402
+      },
+      "cf_unconstructable": {
+        "count": 183,
+        "oracle": 0.9398907103825137,
+        "predicted": 0.0,
+        "oracle_minus_predicted": 0.9398907103825137
+      }
+    }
+  },
+  "state_length_bins": {
+    "mbppplus": {
+      "2": {
+        "count": 945,
+        "oracle": 0.8455026455026455,
+        "predicted": 0.8275132275132275
+      },
+      "3-5": {
+        "count": 385,
+        "oracle": 0.7948051948051948,
+        "predicted": 0.7610389610389611
+      },
+      "6-10": {
+        "count": 333,
+        "oracle": 0.7867867867867868,
+        "predicted": 0.7447447447447447
+      },
+      "11-25": {
+        "count": 254,
+        "oracle": 0.7007874015748031,
+        "predicted": 0.7007874015748031
+      },
+      "26-100": {
+        "count": 186,
+        "oracle": 0.553763440860215,
+        "predicted": 0.43010752688172044
+      },
+      ">100": {
+        "count": 26,
+        "oracle": 0.3076923076923077,
+        "predicted": 0.2692307692307692
+      }
+    },
+    "livecodebench": {
+      "2": {
+        "count": 879,
+        "oracle": 0.9795221843003413,
+        "predicted": 0.8737201365187713
+      },
+      "3-5": {
+        "count": 537,
+        "oracle": 0.9497206703910615,
+        "predicted": 0.9050279329608939
+      },
+      "6-10": {
+        "count": 272,
+        "oracle": 0.9227941176470589,
+        "predicted": 0.8566176470588235
+      },
+      "11-25": {
+        "count": 106,
+        "oracle": 0.9811320754716981,
+        "predicted": 0.8584905660377359
+      },
+      "26-100": {
+        "count": 173,
+        "oracle": 0.7052023121387283,
+        "predicted": 0.6647398843930635
+      },
+      ">100": {
+        "count": 9,
+        "oracle": 0.8888888888888888,
+        "predicted": 0.6666666666666666
+      }
+    }
+  },
+  "original_mbppplus_combined": {
+    "control_case_count": 3591,
+    "control_flow_expanded_exact_rate": 0.9507101086048454,
+    "end_to_end_case_joint_exact_rate": 0.5478961504028648,
+    "end_to_end_joint_exact_rate": 0.5957161981258366,
+    "oracle_cf_state_case_exact_rate": 0.5962399283795882,
+    "oracle_cf_state_exact_rate": 0.7389558232931727,
+    "predicted_cf_state_case_exact_rate": 0.576544315129812,
+    "predicted_cf_state_exact_rate": 0.7086122266845158,
+    "predicted_state_attempt_rate": 0.9897367246764837,
+    "predicted_state_exact_given_cf_correct": 0.7542372881355932,
+    "predicted_state_exact_given_cf_wrong": 0.5371549893842887,
+    "schema_version": "g3-decomposed-combined-v2",
+    "state_case_count": 1117,
+    "state_case_coverage_rate": 0.3110554163185742,
+    "state_error_propagation_gap": 0.03034359660865685,
+    "state_task_count": 2241,
+    "state_task_macro_end_to_end_case_joint_exact_rate": 0.5411690602166792,
+    "state_task_macro_end_to_end_joint_exact_rate": 0.6373934539617749,
+    "state_task_macro_oracle_cf_state_case_exact_rate": 0.5746693121693119,
+    "state_task_macro_oracle_cf_state_exact_rate": 0.727405191701161,
+    "state_task_macro_predicted_cf_state_case_exact_rate": 0.5708207357016879,
+    "state_task_macro_predicted_cf_state_exact_rate": 0.7090730960673693
+  },
+  "harmonized_mbppplus_combined": {
+    "schema_version": "g3-decomposed-combined-v2",
+    "control_case_count": 3531,
+    "state_task_count": 2129,
+    "state_case_count": 1059,
+    "state_case_coverage_rate": 0.29991503823279525,
+    "control_flow_expanded_exact_rate": 0.9498725573491928,
+    "oracle_cf_state_exact_rate": 0.777829967120714,
+    "predicted_cf_state_exact_rate": 0.7458900892437764,
+    "state_error_propagation_gap": 0.03193987787693753,
+    "end_to_end_joint_exact_rate": 0.6270549553781118,
+    "predicted_state_attempt_rate": 0.9901362141850634,
+    "predicted_state_exact_given_cf_correct": 0.8018018018018018,
+    "predicted_state_exact_given_cf_wrong": 0.5452586206896551,
+    "oracle_cf_state_case_exact_rate": 0.6543909348441926,
+    "predicted_cf_state_case_exact_rate": 0.6317280453257791,
+    "end_to_end_case_joint_exact_rate": 0.5996222851746931,
+    "state_task_macro_oracle_cf_state_exact_rate": 0.7756481965964644,
+    "state_task_macro_predicted_cf_state_exact_rate": 0.7553182972872842,
+    "state_task_macro_end_to_end_joint_exact_rate": 0.6785467365684734,
+    "state_task_macro_oracle_cf_state_case_exact_rate": 0.6302678571428569,
+    "state_task_macro_predicted_cf_state_case_exact_rate": 0.6250363756613755,
+    "state_task_macro_end_to_end_case_joint_exact_rate": 0.5910449735449733
+  },
+  "method_audit": {
+    "request_configs": {
+      "control_flow": {
+        "equal": true,
+        "generation": {
+          "api_base_url": "https://api.openlux.ai/v1",
+          "api_response_format": "json_object",
+          "kind": "control_flow",
+          "max_completion_tokens": 16384,
+          "model": "gpt-5.4",
+          "reasoning_effort": "low",
+          "system_prompt_sha256": "0418f67c2cef4409bb156fcd95441d3e5ece84c2942fe9dd40ffcf39a11c7b6e",
+          "temperature": null,
+          "verbosity": "low"
+        },
+        "execution": {
+          "concurrency": 3,
+          "progress_every": 50,
+          "retries": 0,
+          "retry_invalid": false,
+          "timeout": 180
+        }
+      },
+      "oracle_state": {
+        "equal": true,
+        "generation": {
+          "api_base_url": "https://api.openlux.ai/v1",
+          "api_response_format": "json_object",
+          "kind": "oracle_state",
+          "max_completion_tokens": 16384,
+          "model": "gpt-5.4",
+          "reasoning_effort": "low",
+          "system_prompt_sha256": "af476bb35536a094a98b18d8fe47db495550e66651ec5e4b6efd30a81a936b17",
+          "temperature": null,
+          "verbosity": "low"
+        },
+        "execution": {
+          "concurrency": 3,
+          "progress_every": 50,
+          "retries": 0,
+          "retry_invalid": false,
+          "timeout": 180
+        }
+      },
+      "predicted_state": {
+        "equal": true,
+        "generation": {
+          "api_base_url": "https://api.openlux.ai/v1",
+          "api_response_format": "json_object",
+          "kind": "predicted_state",
+          "max_completion_tokens": 16384,
+          "model": "gpt-5.4",
+          "reasoning_effort": "low",
+          "system_prompt_sha256": "af476bb35536a094a98b18d8fe47db495550e66651ec5e4b6efd30a81a936b17",
+          "temperature": null,
+          "verbosity": "low"
+        },
+        "execution": {
+          "concurrency": 3,
+          "progress_every": 50,
+          "retries": 0,
+          "retry_invalid": false,
+          "timeout": 180
+        }
+      }
+    },
+    "all_request_configs_equal": true,
+    "protocol_files": {
+      "decomposed_core.py": {
+        "equal": true,
+        "sha256": "068586ea794e6447c301f27db80a881d1326055700c1f7bf966d79f77f25ee35"
+      },
+      "decomposed_prepare.py": {
+        "equal": true,
+        "sha256": "625f39f9b01b439672d3f598364eafcf5d40adc1bc33918bf1787da0fd11a435"
+      },
+      "decomposed_evaluate.py": {
+        "equal": true,
+        "sha256": "73c19bada2bacca682c07182f75fba13d5b8136bed32ced35794a12d01ff1fef"
+      },
+      "decomposed_gate.py": {
+        "equal": true,
+        "sha256": "3dc6520ce628358cef6b6cb42eaf3d66a3e3fa50772bf82e28556b44b18b2125"
+      },
+      "decomposed_plan.py": {
+        "equal": true,
+        "sha256": "8b28adf4533d7017133f4eacef3b0de1c3d4594d6533cc6f537e9cffabbfd47a"
+      },
+      "decomposed_statement.py": {
+        "equal": true,
+        "sha256": "9bc495ffa2c1e2b54fe7a758281fd2511a7408e7e1d28f1ff5248330876e92d7"
+      }
+    },
+    "all_protocol_files_equal_after_line_ending_normalization": true,
+    "api_runner_difference": "LCB changes resume-count bookkeeping only; recorded request configurations are equal."
+  }
+}
