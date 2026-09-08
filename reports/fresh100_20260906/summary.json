@@ -30,19 +30,19 @@
     "invalid_code_response_or_interface": 108
   },
   "case_failure_buckets": {
-    "all_correct": 56,
+    "all_correct": 238,
     "control_flow_failed": 40,
-    "state_failed_given_correct_cf": 222
+    "state_failed_given_correct_cf": 40
   },
   "case_metrics": {
     "end_to_end_case_joint_exact": {
       "cluster_ci95": [
-        0.07717041800643087,
-        0.29518072289156627
+        0.6576576576576577,
+        0.8245614035087719
       ],
       "denominator": 318,
-      "macro": 0.15106107660455487,
-      "micro": 0.1761006289308176,
+      "macro": 0.7365942028985507,
+      "micro": 0.7484276729559748,
       "problem_count": 46
     },
     "oracle_cf_all_variables_exact": {
@@ -57,40 +57,40 @@
     },
     "predicted_cf_all_variables_exact": {
       "cluster_ci95": [
-        0.08157099697885196,
-        0.30434782608695654
+        0.6636636636636637,
+        0.8328173374613003
       ],
       "denominator": 318,
-      "macro": 0.1586697722567288,
-      "micro": 0.18238993710691823,
+      "macro": 0.7442028985507246,
+      "micro": 0.7547169811320755,
       "problem_count": 46
     }
   },
   "combined": {
     "control_case_count": 351,
     "control_flow_expanded_exact_rate": 0.8717948717948718,
-    "end_to_end_case_joint_exact_rate": 0.1761006289308176,
-    "end_to_end_joint_exact_rate": 0.16497975708502025,
+    "end_to_end_case_joint_exact_rate": 0.7484276729559748,
+    "end_to_end_joint_exact_rate": 0.8183198380566802,
     "oracle_cf_state_case_exact_rate": 0.8081761006289309,
     "oracle_cf_state_exact_rate": 0.9392712550607287,
-    "predicted_cf_state_case_exact_rate": 0.18238993710691823,
-    "predicted_cf_state_exact_rate": 0.17459514170040485,
+    "predicted_cf_state_case_exact_rate": 0.7547169811320755,
+    "predicted_cf_state_exact_rate": 0.8598178137651822,
     "predicted_state_attempt_rate": 0.9073886639676113,
-    "predicted_state_exact_given_cf_correct": 0.19451073985680192,
-    "predicted_state_exact_given_cf_wrong": 0.06333333333333334,
+    "predicted_state_exact_given_cf_correct": 0.9647971360381862,
+    "predicted_state_exact_given_cf_wrong": 0.2733333333333333,
     "schema_version": "g3-decomposed-combined-v2",
     "state_case_count": 318,
     "state_case_coverage_rate": 0.905982905982906,
-    "state_error_propagation_gap": 0.7646761133603239,
+    "state_error_propagation_gap": 0.07945344129554656,
     "state_task_count": 1976,
-    "state_task_macro_end_to_end_case_joint_exact_rate": 0.15106107660455487,
-    "state_task_macro_end_to_end_joint_exact_rate": 0.18972893693845713,
+    "state_task_macro_end_to_end_case_joint_exact_rate": 0.7365942028985507,
+    "state_task_macro_end_to_end_joint_exact_rate": 0.8532079163954797,
     "state_task_macro_oracle_cf_state_case_exact_rate": 0.7992236024844722,
     "state_task_macro_oracle_cf_state_exact_rate": 0.9561342220581351,
-    "state_task_macro_predicted_cf_state_case_exact_rate": 0.1586697722567288,
-    "state_task_macro_predicted_cf_state_exact_rate": 0.19769995143121075
+    "state_task_macro_predicted_cf_state_case_exact_rate": 0.7442028985507246,
+    "state_task_macro_predicted_cf_state_exact_rate": 0.8818255306652675
   },
-  "complete": false,
+  "complete": true,
   "control_metrics": {
     "canonical_exact": {
       "cluster_ci95": [
@@ -125,18 +125,18 @@
     "unsupported_jump": 7
   },
   "identical_message_pairs": {
-    "correct_to_correct": 263,
-    "correct_to_wrong": 734,
-    "wrong_to_correct": 2,
-    "wrong_to_wrong": 72
+    "correct_to_correct": 979,
+    "correct_to_wrong": 18,
+    "wrong_to_correct": 42,
+    "wrong_to_wrong": 32
   },
   "interpretation": "Exploratory continuation across service epochs; original failed pilot retained in all-request denominators.",
   "paired_by_cf": {
     "cf_correct": {
-      "correct_to_correct": 322,
-      "correct_to_wrong": 1269,
-      "wrong_to_correct": 4,
-      "wrong_to_wrong": 81
+      "correct_to_correct": 1567,
+      "correct_to_wrong": 24,
+      "wrong_to_correct": 50,
+      "wrong_to_wrong": 35
     },
     "cf_unconstructable": {
       "correct_to_correct": 0,
@@ -145,34 +145,35 @@
       "wrong_to_wrong": 11
     },
     "cf_wrong_constructable": {
-      "correct_to_correct": 18,
-      "correct_to_wrong": 75,
-      "wrong_to_correct": 1,
-      "wrong_to_wrong": 23
+      "correct_to_correct": 80,
+      "correct_to_wrong": 13,
+      "wrong_to_correct": 2,
+      "wrong_to_wrong": 22
     }
   },
   "paired_four_cells": {
-    "correct_to_correct": 340,
-    "correct_to_wrong": 1516,
-    "wrong_to_correct": 5,
-    "wrong_to_wrong": 115
+    "correct_to_correct": 1647,
+    "correct_to_wrong": 209,
+    "wrong_to_correct": 52,
+    "wrong_to_wrong": 68
   },
   "protocol": "g3-decomposed-v2",
   "raw_pool": 1055,
   "recovery_check_runs": [
     "runs\\recovery_check_20260907",
-    "runs\\recovery_check_20260907_b"
+    "runs\\recovery_check_20260907_b",
+    "runs\\recovery_check_20260908_c"
   ],
   "recovery_check_token_usage": {
-    "completion_tokens": 36527,
-    "prompt_tokens": 158232,
-    "reasoning_tokens": 23320
+    "completion_tokens": 54742,
+    "prompt_tokens": 193528,
+    "reasoning_tokens": 34889
   },
   "repeat_control": {
     "count": 40,
     "four_cells": {
-      "correct_to_correct": 0,
-      "correct_to_wrong": 40,
+      "correct_to_correct": 40,
+      "correct_to_wrong": 0,
       "wrong_to_correct": 0,
       "wrong_to_wrong": 0
     }
@@ -192,14 +193,14 @@
     },
     "predicted_state": {
       "expected": 1793,
-      "missing": 1437,
-      "received": 356,
+      "missing": 0,
+      "received": 1793,
       "truncated": 0
     },
     "repeat_state": {
       "expected": 40,
-      "missing": 40,
-      "received": 0,
+      "missing": 0,
+      "received": 40,
       "truncated": 0
     }
   },
@@ -309,29 +310,29 @@
   "token_usage": {
     "generation_completion_tokens": 290179,
     "generation_prompt_tokens": 156641,
-    "inference_completion_tokens": 1049372,
-    "inference_prompt_tokens": 2685546,
-    "inference_reasoning_tokens": 855133
+    "inference_completion_tokens": 1618316,
+    "inference_prompt_tokens": 3928682,
+    "inference_reasoning_tokens": 1315361
   },
   "variable_metrics": {
     "end_to_end_joint_exact": {
       "cluster_ci95": [
-        0.07191448007774538,
-        0.29120879120879123
+        0.7531584062196307,
+        0.8784940102681118
       ],
       "denominator": 1976,
-      "macro": 0.18972893693845713,
-      "micro": 0.16497975708502025,
+      "macro": 0.8532079163954797,
+      "micro": 0.8183198380566802,
       "problem_count": 46
     },
     "net_drop": {
       "cluster_ci95": [
-        0.6453980801806889,
-        0.8691544638639584
+        0.042165538781884435,
+        0.12110726643598616
       ],
       "denominator": 1976,
-      "macro": 0.7584342706269243,
-      "micro": 0.7646761133603239,
+      "macro": 0.07430869139286735,
+      "micro": 0.07945344129554656,
       "problem_count": 46
     },
     "oracle_cf_state_exact": {
@@ -376,42 +377,42 @@
     },
     "predicted_cf_state_exact": {
       "cluster_ci95": [
-        0.07636031092821216,
-        0.29818012132524496
+        0.8101330603889457,
+        0.9090909090909091
       ],
       "denominator": 1976,
-      "macro": 0.19769995143121075,
-      "micro": 0.17459514170040485,
+      "macro": 0.8818255306652675,
+      "micro": 0.8598178137651822,
       "problem_count": 46
     },
     "predicted_normalized_prefix": {
       "cluster_ci95": [
-        0.07725726753081252,
-        0.30159555019564355
+        0.8409591494467906,
+        0.9220306373940061
       ],
       "denominator": 1976,
-      "macro": 0.20034779078102913,
-      "micro": 0.17647270991517222,
+      "macro": 0.896780813886336,
+      "micro": 0.8811668715583361,
       "problem_count": 46
     },
     "predicted_position_accuracy": {
       "cluster_ci95": [
-        0.07721333852009385,
-        0.30159555019564355
+        0.841737188372551,
+        0.923092137545291
       ],
       "denominator": 1976,
-      "macro": 0.20023276892687686,
-      "micro": 0.17642451249855376,
+      "macro": 0.8978593609780343,
+      "micro": 0.882531803629921,
       "problem_count": 46
     },
     "predicted_prefix": {
       "cluster_ci95": [
-        0.47098797699947725,
-        1.660908193484699
+        4.879892761394101,
+        7.929473684210526
       ],
       "denominator": 1976,
-      "macro": 1.3872111894019694,
-      "micro": 0.9944331983805668,
+      "macro": 6.5365855224956855,
+      "micro": 6.3562753036437245,
       "problem_count": 46
     }
   },

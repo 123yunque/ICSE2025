@@ -1,5 +1,31 @@
 {
-  "epochs": [
+  "main_conditions": [
+    {
+      "condition": "control_flow",
+      "expected": 351,
+      "received": 351,
+      "responses_sha256": "b151030c387611df6c09adc03dc1d1663ae2db83261cac9bb99c1df2753eeb18"
+    },
+    {
+      "condition": "oracle_state",
+      "expected": 1976,
+      "received": 1976,
+      "responses_sha256": "d4353b5c7b02cbe68a48d51a5da5bed256fd57ec7bcbfc8f0254695ffed2f4d3"
+    },
+    {
+      "condition": "predicted_state",
+      "expected": 1793,
+      "received": 1793,
+      "responses_sha256": "a94fcfb6bf89931c073fcfb8c85c9c9fd23f4e9789c7a074938caa9a2d75a6ce"
+    },
+    {
+      "condition": "repeat_state",
+      "expected": 40,
+      "received": 40,
+      "responses_sha256": "61b5ccb3f69700b3f746d351dfc73dd36614d19c7d8feae40b58695bcf719013"
+    }
+  ],
+  "recovery_checks": [
     {
       "certificate": {
         "api_base_url": "https://api.openlux.ai/v1",
@@ -59,30 +85,39 @@
       "recovery_run": "runs\\recovery_check_20260907_b"
     },
     {
-      "main_condition": "control_flow",
-      "received": 351,
-      "responses_sha256": "b151030c387611df6c09adc03dc1d1663ae2db83261cac9bb99c1df2753eeb18"
-    },
-    {
-      "main_condition": "oracle_state",
-      "received": 1976,
-      "responses_sha256": "d4353b5c7b02cbe68a48d51a5da5bed256fd57ec7bcbfc8f0254695ffed2f4d3"
-    },
-    {
-      "main_condition": "predicted_state",
-      "received": 356,
-      "responses_sha256": "06a5326d0ff1f769c1e95a89f5ab5099070602617f39df8364269886dafbfa6a"
-    },
-    {
-      "main_condition": "repeat_state",
-      "received": 0,
-      "responses_sha256": null
+      "certificate": {
+        "api_base_url": "https://api.openlux.ai/v1",
+        "completed_at": "2026-09-08T03:36:02.263461+00:00",
+        "control_messages_sha256": "acc6cf69dbd2c94be78823a8fe658dd5968f31de863ad7a32f0bf6d4ec289bf1",
+        "gates": {
+          "control_flow": {
+            "expected": 40,
+            "format_valid_rate": 1.0,
+            "passed": true,
+            "received": 40,
+            "truncations": 0
+          },
+          "oracle_state": {
+            "expected": 39,
+            "format_valid_rate": 1.0,
+            "passed": true,
+            "received": 39,
+            "truncations": 0
+          }
+        },
+        "main_first_answers_replaced": false,
+        "model": "gpt-5.4",
+        "passed": true,
+        "protocol_change": false,
+        "state_messages_sha256": "017c0ed502d9c019f4cd803daa951030b907e851aa01fa102e45b2b602dfa637"
+      },
+      "recovery_run": "runs\\recovery_check_20260908_c"
     }
   ],
-  "latest_stop": {
-    "reason": "服务返回 HTTP 403 local:pre_consume_token_quota_failed：剩余额度不足以预扣下一次请求。保护电路停止后续网络派发；排队项未发送。",
-    "stage": "predicted_state"
-  },
   "schema_version": "service-epochs-v1",
-  "updated_at": "2026-09-07T15:40:20.260653+00:00"
+  "status": {
+    "stage": "complete",
+    "status": "complete",
+    "updated_at": "2026-09-08T05:12:52.139809+00:00"
+  }
 }

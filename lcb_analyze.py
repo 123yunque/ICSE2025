@@ -1,6 +1,7 @@
 """Fixed-denominator, problem-clustered analysis of the fresh 100-question run."""
 import argparse
 import csv
+import hashlib
 import json
 import random
 from collections import Counter, defaultdict
@@ -185,7 +186,7 @@ def analyze(run, data='data'):
                     usage['inference_' + name] += attempt.get(name) or 0
     recovery_usage = Counter()
     recovery_runs = []
-    for recovery_root in sorted(Path('runs').glob('recovery_check_20260907*')):
+    for recovery_root in sorted(Path('runs').glob('recovery_check_*')):
         if not (recovery_root / 'certificate.json').exists():
             continue
         recovery_runs.append(str(recovery_root))
@@ -241,6 +242,23 @@ def analyze(run, data='data'):
         summary['interpretation'] = 'Exploratory continuation across service epochs; original failed pilot retained in all-request denominators.'
         save(out / 'resumption_audit.json', resumption)
         save(out / 'summary.json', summary)
+    progress = load(run / 'progress.json') if (run / 'progress.json').exists() else {}
+    service_epochs = {'schema_version': 'service-epochs-v1', 'status': progress,
+                      'recovery_checks': [], 'main_conditions': []}
+    for recovery_name in recovery_runs:
+        recovery_root = Path(recovery_name)
+        service_epochs['recovery_checks'].append({
+            'recovery_run': recovery_name,
+            'certificate': load(recovery_root / 'certificate.json')})
+    for kind in ['control_flow', 'oracle_state', 'predicted_state', 'repeat_state']:
+        path = run / kind / 'model_responses.jsonl'
+        service_epochs['main_conditions'].append({
+            'condition': kind,
+            'received': response_coverage[kind]['received'],
+            'expected': response_coverage[kind]['expected'],
+            'responses_sha256': hashlib.sha256(path.read_bytes()).hexdigest() if path.exists() else None})
+    save(run / 'service_epochs.json', service_epochs)
+    save(out / 'service_epochs.json', service_epochs)
     save(out / 'cohort.json', load(run / 'cohort.json'))
     save(out / 'run_config.json', load(run / 'config.json'))
     for name in ['execution_source.json', 'preparation_policy.json']:
@@ -334,7 +352,7 @@ def analyze(run, data='data'):
                  f"折合约 US${billing['effective_blended_usd_per_million_tokens']:.2f}/百万 token。"
                  '该面板快照早于本次新增额度续跑，不能与当前累计本地 usage 直接相减。',
                  f"截至当前，本地收到响应并记录 usage 的主实验为 {main_total:,} token，"
-                 f"两次恢复检查合计 {recovery_total:,} token；合计 {local_total:,}。",
+                 f"{len(recovery_runs)}次恢复检查合计 {recovery_total:,} token；合计 {local_total:,}。",
                  '客户端超时后未收到响应、但服务端可能已经完成的调用不在本地 usage 中；最终费用以新的 API 面板累计值为准。']
     (out / 'REPORT.md').write_text('\n'.join(text) + '\n', encoding='utf-8')
     print(json.dumps({k: summary[k] for k in ['complete', 'build_status', 'eligible_problems', 'N_control_cases', 'K_state_variables', 'M_state_cases', 'responses']}, ensure_ascii=False), flush=True)
