@@ -1,0 +1,126 @@
+[
+  {
+    "id": "01_duplication",
+    "url": "https://arxiv.org/pdf/2401.07930",
+    "pages": 14,
+    "chars": 77382,
+    "status": "ok"
+  },
+  {
+    "id": "02_membership",
+    "url": "https://arxiv.org/pdf/2511.15107",
+    "pages": 13,
+    "chars": 114744,
+    "status": "ok"
+  },
+  {
+    "id": "04_paichecker",
+    "url": "https://arxiv.org/pdf/2607.28587",
+    "pages": 13,
+    "chars": 83154,
+    "status": "ok"
+  },
+  {
+    "id": "05_patchdiff",
+    "url": "https://software-lab.org/publications/icse2026_SWE-bench-correctness.pdf",
+    "pages": 13,
+    "chars": 83329,
+    "status": "ok"
+  },
+  {
+    "id": "06_reproducibility",
+    "url": "https://arxiv.org/pdf/2510.25506",
+    "pages": 13,
+    "chars": 85512,
+    "status": "ok"
+  },
+  {
+    "id": "07_reval",
+    "url": "https://xing-hu.github.io/assets/papers/ICSE2025CodeReasoning.pdf",
+    "pages": 13,
+    "chars": 73240,
+    "status": "ok"
+  },
+  {
+    "id": "08_tracecoder",
+    "url": "https://arxiv.org/pdf/2602.06875",
+    "pages": 13,
+    "chars": 81588,
+    "status": "ok"
+  },
+  {
+    "id": "10_seer",
+    "url": "https://arxiv.org/pdf/2510.17130",
+    "status": "error",
+    "error": "'utf-8' codec can't encode character '\\ud835' in position 18304: surrogates not allowed"
+  },
+  {
+    "id": "11_mgdebugger",
+    "url": "https://arxiv.org/pdf/2410.01215",
+    "pages": 13,
+    "chars": 83225,
+    "status": "ok"
+  },
+  {
+    "id": "14_judge",
+    "url": "https://arxiv.org/pdf/2507.16587",
+    "pages": 17,
+    "chars": 99878,
+    "status": "ok"
+  },
+  {
+    "id": "16_proxywar",
+    "url": "https://arxiv.org/pdf/2602.04296",
+    "pages": 13,
+    "chars": 80177,
+    "status": "ok"
+  },
+  {
+    "id": "17_coffe",
+    "url": "https://arxiv.org/pdf/2502.02827",
+    "pages": 24,
+    "chars": 95968,
+    "status": "ok"
+  },
+  {
+    "id": "19_adapteval",
+    "url": "https://arxiv.org/pdf/2601.04540",
+    "pages": 13,
+    "chars": 84510,
+    "status": "ok"
+  },
+  {
+    "id": "20_mcrbench",
+    "url": "https://arxiv.org/pdf/2608.27442",
+    "pages": 24,
+    "chars": 101248,
+    "status": "ok"
+  },
+  {
+    "id": "12_causality",
+    "url": "https://repository.hkust.edu.hk/ir/bitstream/1783.1-167759/1/1783.1-167759.pdf",
+    "status": "error",
+    "error": "HTTP Error 302: The HTTP server returned a redirect error that would lead to an infinite loop.\nThe last 30x error message was:\nFound"
+  },
+  {
+    "id": "13_turbulence",
+    "url": "https://www.doc.ic.ac.uk/~afd/papers/2025/TSE.pdf",
+    "pages": 29,
+    "chars": 210789,
+    "status": "ok"
+  },
+  {
+    "id": "15_local",
+    "url": "https://arxiv.org/pdf/2509.15397",
+    "pages": 22,
+    "chars": 82801,
+    "status": "ok"
+  },
+  {
+    "id": "18_realistic",
+    "url": "https://xing-hu.github.io/assets/papers/ase254.pdf",
+    "pages": 13,
+    "chars": 83767,
+    "status": "ok"
+  }
+]
