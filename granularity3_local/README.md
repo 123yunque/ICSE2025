@@ -1,6 +1,6 @@
 # 粒度三实验本地流水线
 
-当前主线是“完整 Block 执行序列 + 稀疏变量变化”。模型只接收静态代码、Block/CFG 定义和函数输入；本地执行器生成 Oracle，最后由评分器比较模型结果与 Oracle。
+本目录保留两套粒度三协议：旧版“完整 Block 执行序列 + 稀疏变量变化”联合实验，以及 `codex/g3-decomposed-execution` 分支新增的控制流与逐变量状态解耦实验。解耦分支的新读者入口是 [`G3_DECOMPOSED_BRANCH_GUIDE.md`](G3_DECOMPOSED_BRANCH_GUIDE.md)。两套协议都只把静态代码、Block/CFG 定义和函数输入交给模型，由本地执行器生成 Oracle，再由评分器进行比较。
 
 正式 `gpt-5.4 + reasoning_effort=low` 全量实验已经完成：3557/3557 个输入收到响应，Expanded Block exact 为 94.38%，变量变化 exact 为 81.87%，联合 exact 为 81.47%。克隆仓库后可直接执行：
 
@@ -11,7 +11,7 @@ conda run -n granularity3 python -m granularity3_local.verify_release
 
 完整离线复评流程见 [`REPRODUCIBILITY.md`](REPRODUCIBILITY.md)；正式运行产物逐项说明见 [`block_state_api_full_gpt54_low_3557/RUN_ARTIFACT_GUIDE.md`](block_state_api_full_gpt54_low_3557/RUN_ARTIFACT_GUIDE.md)，端到端案例见 [`CASE_STUDY.md`](block_state_api_full_gpt54_low_3557/CASE_STUDY.md) 和 [`CASE_STUDY.png`](block_state_api_full_gpt54_low_3557/CASE_STUDY.png)。
 
-控制流与变量状态解耦的新实验见 [`DECOMPOSED_EXECUTION.md`](DECOMPOSED_EXECUTION.md)。该方案保留旧版联合实验作为基线，新增 Control-Flow、Oracle-CF State 和 Predicted-CF State 三种条件。
+控制流与变量状态解耦的新实验见 [`G3_DECOMPOSED_BRANCH_GUIDE.md`](G3_DECOMPOSED_BRANCH_GUIDE.md)。该分支说明面向新读者介绍实验内容、完整流程、代码调用树、正式结果和复评入口；协议细节与完整运行命令见 [`DECOMPOSED_EXECUTION.md`](DECOMPOSED_EXECUTION.md)。该方案保留旧版联合实验作为基线，新增 Control-Flow、Oracle-CF State 和 Predicted-CF State 三种条件。
 
 ## 目录结构
 
