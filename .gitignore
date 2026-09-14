@@ -41,3 +41,16 @@ __pycache__/
 # Reproduced outputs should be written separately from immutable formal artifacts.
 /granularity3_local/block_state_api_full_gpt54_low_3557/evaluation_reproduced/
 /granularity3_local/block_state_api_full_gpt54_low_3557/final_gate_reproduced/
+
+# Independent nested worktree; versioned on codex/livecodebench-v6-100.
+/livecodebench_v6_100/
+
+# Literature-review downloads and regenerable layout-check artifacts.
+# Keep the report deliverables, reusable scripts, and source manifest versioned.
+/output/literature_review_20260908/sources/
+/output/literature_review_20260908/qa/
+/output/literature_review_20260908/qa_final/
+/output/literature_review_20260908/report_check.json
+
+# Retired temporary presentation build directory (previous files remain in Git history).
+/.codex_tmp/background_significance_ppt/
